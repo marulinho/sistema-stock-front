@@ -1,0 +1,44 @@
+#atributo{
+    font-weight: bold;
+}
+a{
+    cursor: pointer;
+}
+
+.example-tooltip-host {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .example-select {
+    margin:0 0 10px 50px;
+  }
+
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 100px;
+}
+td,th{
+    text-align: left;
+    padding: 10px;
+    cursor: pointer;
+    
+}
+th{
+    background-color:#009688; 
+}
+
+tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+md-list{
+    margin-top: -20px;
+}
+
+#botonVolver{
+    float: right ;
+    
+}
