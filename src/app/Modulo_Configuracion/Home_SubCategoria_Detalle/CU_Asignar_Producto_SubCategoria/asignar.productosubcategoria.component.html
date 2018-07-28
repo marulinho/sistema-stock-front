@@ -1,0 +1,72 @@
+<div class="page-content">
+        <md-card fxFlex class="page-card">
+          <md-card-title>
+            {{label_productos}}
+            <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+              <img src="assets/icons/atras.png">
+            </a>
+          </md-card-title>
+    
+          <section *ngIf="errorMessage" class="bs">
+              <div class="bd-example" data-example-id="">
+                      <div class="alert alert-danger" role="alert">
+                              <strong>{{errorMessage}}</strong>
+                      </div>
+              </div><br>
+          </section>
+          <md-card-content *ngIf="!errorMessage">
+    
+            <p>{{label_detalle_productos}}</p>
+            <input
+                type='text'
+                style='padding:8px;margin:15px auto;width:30%;'
+                placeholder={{label_tabla_producto}}
+                (keyup)='updateFilter($event)'
+            />
+              <ngx-datatable
+                #mydatatable
+                class="material fullscreen"
+                [headerHeight]="50"
+                [limit]="10"
+                [sortType]="'multi'"
+                [columnMode]="'force'"
+                [footerHeight]="50"
+                [rowHeight]="'auto'"
+                [rows]="productos">
+                <ngx-datatable-column name={{label_codigo}}>
+                  <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                    {{row.codigo}}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name={{label_nombre}}>
+                  <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                      {{row.nombre}}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name={{label_marca}}>
+                    <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                        {{row.marca}}
+                    </ng-template>|
+                  </ngx-datatable-column>
+                <ngx-datatable-column name={{label_medida}}>
+                    <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                        {{row.medida}} {{row.nombre_unidad_medida}}
+                    </ng-template>|
+                </ngx-datatable-column>
+                <ngx-datatable-column name={{label_accion}}>
+                    <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                        <label id="invisible">{{row.codigo}}</label>
+                        <a class="example-tooltip-host" mdTooltip={{tooltipAsignarProducto}} [mdTooltipPosition]="position">
+                                <img src="assets/icons/asignar.png" (click) = "openDialog(row.codigo)">
+                        </a>  
+                    </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+    
+          </md-card-content>
+    
+        </md-card>
+    </div>
+    
+              
+      

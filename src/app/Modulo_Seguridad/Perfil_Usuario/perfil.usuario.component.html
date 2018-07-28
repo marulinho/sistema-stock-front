@@ -3,7 +3,7 @@
     <md-card class="page-card">
         <md-card-title>{{label_perfil_usuario}}
             <a class="example-tooltip-host" mdTooltip={{tooltipEditarUsuario}} [mdTooltipPosition]="position">
-                <img src="assets/icons/editar.png" [routerLink]="['/modificarUsuario/']">
+                <img src="assets/icons/editar.png" [routerLink]="['/editUser/']">
             </a>
 
             <a class="example-tooltip-host" mdTooltip={{tooltipEliminarUsuario}} [mdTooltipPosition]="position" (click)="apretarEliminarIcono()">
@@ -11,7 +11,7 @@
             </a>
 
             <a class="example-tooltip-host" mdTooltip={{tooltipCambiarContrasenia}} [mdTooltipPosition]="position">
-                    <img src="assets/icons/candado.png" [routerLink]="['/modificarContraseniaUsuario/']">
+                    <img src="assets/icons/candado.png" [routerLink]="['/changePassword/']">
             </a>
         </md-card-title>
         <md-card-content>

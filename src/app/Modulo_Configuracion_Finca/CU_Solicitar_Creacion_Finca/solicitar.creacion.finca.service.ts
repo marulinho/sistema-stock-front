@@ -21,7 +21,7 @@ export class SolicitarCreacionFincaService extends RestBaseService{
       'nombreProveedor':proveedor
     };
 
-    return this.http.put(SolicitarCreacionFincaService.serverUrl +this.crearFincaUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.put(SolicitarCreacionFincaService.serverURL +this.crearFincaUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
         return response.json() as FincaCreada;
@@ -30,7 +30,7 @@ export class SolicitarCreacionFincaService extends RestBaseService{
   }
 
   obtenerProveedores():Promise<ProveedorInformacion>{
-    return this.http.get(SolicitarCreacionFincaService.serverUrl + this.obtenerProvUrl, this.getRestHeader())
+    return this.http.get(SolicitarCreacionFincaService.serverURL + this.obtenerProvUrl, this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as ProveedorInformacion;})
     .catch(this.handleError);

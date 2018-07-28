@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { MdSnackBar } from '@angular/material';
 import { AppService } from '../../app.service';
 import { Constantes } from '../../Datos_Sistema/constantes';
 import { ModuloSeguridadService } from '../moludo.seguridad.service';
@@ -21,9 +22,11 @@ export class IniciarSesionComponent implements OnInit, OnDestroy {
   link_registarse = Constantes.LINK_REGISTRAR;
   link_olvide_contrasenia = Constantes.LINK_OLVIDO_CONTRASENIA;
   errorMessage: string = "";
+  snackBarRef: any;
 
   constructor(private appService: AppService,
     private router: Router,
+    private snackBar: MdSnackBar,
     private moduloSeguridad: ModuloSeguridadService) {
     appService.getState().pageFullscreen = true;
   }
@@ -43,6 +46,7 @@ export class IniciarSesionComponent implements OnInit, OnDestroy {
           response => {
             localStorage.setItem('idUsuario',JSON.stringify(response.datos_operacion.id_usuario));
             this.router.navigate([Constantes.URL_HOME]);
+            this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_INICIO_SISTEMA, Constantes.MENSAJE_OK, {duration: 3000,});
           }
         )
         .catch(

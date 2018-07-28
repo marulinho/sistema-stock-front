@@ -1,0 +1,39 @@
+<!--SECCION MODIFICAR USUARIO-->
+<div class="sign-container">
+        <md-card class="page-card">
+                <md-card-title>{{label_modificar_categoria}}</md-card-title>
+                <md-card-content>
+                        <section *ngIf="errorMessage" class="bs">
+                                <div class="bd-example" data-example-id="">
+                                        <div class="alert alert-danger" role="alert">
+                                                <strong>{{errorMessage}}</strong>
+                                        </div>
+                                </div>
+                                <br>
+                        </section>
+
+                        <h2>{{label_datos_categoria}}</h2>
+
+                        <label id="atributo">{{label_codigo}}: </label>
+                        <label>{{codigo}}.</label> <br><br>
+
+                        <md-input-container>
+                                <input mdInput placeholder={{label_nombre}} type="text" [(ngModel)]="nombre" name="nombre" required maxlength="40">
+                                <br>
+                        </md-input-container>
+
+                        <md-input-container>
+                                <input mdInput placeholder={{label_descripcion}} type="text" [(ngModel)]="descripcion" name="descripcion" required maxlength="40">
+                                <br>
+                        </md-input-container>
+
+
+                </md-card-content>
+                <md-card-actions>
+                        <button md-raised-button (click)="apretarModificarCategoria()">{{boton_modificar}}</button>
+                        <button md-raised-button (click)="apretarSalir()">{{boton_salir}}</button>
+                </md-card-actions>
+                <md-card-footer></md-card-footer>
+        </md-card>
+
+</div>

@@ -26,7 +26,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'idFinca': idFinca,
             'idMecanismoRiegoFincaSector': idMecanismoRiegoFincaSector
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.obtenerConfiguracionRiegoMecanismoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.obtenerConfiguracionRiegoMecanismoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as ConfiguracionRiego; })
             .catch(this.handleError);
@@ -42,7 +42,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'duracionMaximaConfiguracionRiego': duracionMaximaConfiguracionRiego
 
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.crearConfiguracionRiegoAutomaticoUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.crearConfiguracionRiegoAutomaticoUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as any; })
             .catch(this.handleError);
@@ -58,7 +58,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'duracionMaximaConfiguracionRiego': duracionMaximaConfiguracionRiego
 
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.crearConfiguracionRiegoManualUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.crearConfiguracionRiegoManualUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as any; })
             .catch(this.handleError);
@@ -82,7 +82,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'operador':operador
 
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.agregarCriterioInicialConfiguracionRiegoUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.agregarCriterioInicialConfiguracionRiegoUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as any; })
             .catch(this.handleError);
@@ -107,7 +107,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'operador':operador
 
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.agregarCriterioFinalConfiguracionRiegoUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.agregarCriterioFinalConfiguracionRiegoUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as any; })
             .catch(this.handleError);
@@ -120,7 +120,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'idConfiguracionRiego': idConfiguracionRiego
 
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.obtenerCriterioInicialConfiguracionRiegoUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.obtenerCriterioInicialConfiguracionRiegoUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as CriterioRiego; })
             .catch(this.handleError);
@@ -133,7 +133,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'idConfiguracionRiego': idConfiguracionRiego
 
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.obtenerCriterioFinalConfiguracionRiegoUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.obtenerCriterioFinalConfiguracionRiegoUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as CriterioRiego; })
             .catch(this.handleError);
@@ -146,7 +146,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'idConfiguracionRiego': idConfiguracionRiego
 
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.cambiarEstadoConfiguracionRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.cambiarEstadoConfiguracionRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as any; })
             .catch(this.handleError);
@@ -163,7 +163,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'duracionMaximaConfiguracionRiego':duracionMaximaConfiguracionRiego
 
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.modificarConfiguracionRiegoMecanismoRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.modificarConfiguracionRiegoMecanismoRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as any; })
             .catch(this.handleError);
@@ -176,7 +176,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'idConfiguracionRiego': idConfiguracionRiego,
 
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.eliminarConfiguracionRiegoMecanismoRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.eliminarConfiguracionRiegoMecanismoRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as any; })
             .catch(this.handleError);
@@ -191,7 +191,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'idCriterioRiego':idCriterioRiego
 
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.eliminarCriterioConfiguracionRiegoMecanismoRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.eliminarCriterioConfiguracionRiegoMecanismoRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as Boolean; })
             .catch(this.handleError);
@@ -217,7 +217,7 @@ export class GestionarConfiguracionRiegoService extends RestBaseService {
             'operador':operador
 
         };
-        return this.http.post(GestionarConfiguracionRiegoService.serverUrl + this.modificarCriterioConfiguracionRiegoMecanismoRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarConfiguracionRiegoService.serverURL + this.modificarCriterioConfiguracionRiegoMecanismoRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as any; })
             .catch(this.handleError);

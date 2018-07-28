@@ -12,10 +12,10 @@ export class MenuMock {
     },*/
 
     {
-      name: 'finca',
-      title: 'Finca',
+      name: 'home',
+      title: 'Home',
       faIcon: 'fa-tachometer',
-      link: '/homeFinca/'
+      link: '/home/'
     },
     {
       name: 'reportes',

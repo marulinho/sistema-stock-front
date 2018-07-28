@@ -21,7 +21,7 @@ export class GestionarProveedorInformacionService extends RestBaseService{
       'idFinca': idFinca,
     };
 
-    return this.http.post(GestionarProveedorInformacionService.serverUrl +this.obtenerProvFincaUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarProveedorInformacionService.serverURL +this.obtenerProvFincaUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
         return response.json() as ProveedorInformacion;
@@ -30,7 +30,7 @@ export class GestionarProveedorInformacionService extends RestBaseService{
   }
 
   obtenerTodosProveedores():Promise<ProveedorInformacion>{
-    return this.http.get(GestionarProveedorInformacionService.serverUrl + this.obtenerTodosProvUrl, this.getRestHeader())
+    return this.http.get(GestionarProveedorInformacionService.serverURL + this.obtenerTodosProvUrl, this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as ProveedorInformacion;})
     .catch(this.handleError);
@@ -42,7 +42,7 @@ export class GestionarProveedorInformacionService extends RestBaseService{
       'nombreProveedor':nombreProveedor
     };
 
-    return this.http.post(GestionarProveedorInformacionService.serverUrl +this.buscarProveedorNombreUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarProveedorInformacionService.serverURL +this.buscarProveedorNombreUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
         return response.json() as ProveedorInformacion;
@@ -58,7 +58,7 @@ export class GestionarProveedorInformacionService extends RestBaseService{
         'frecuencia':frecuencia
       };
   
-      return this.http.post(GestionarProveedorInformacionService.serverUrl +this.modificarProveedorUrl, JSON.stringify(data), this.getRestHeader())
+      return this.http.post(GestionarProveedorInformacionService.serverURL +this.modificarProveedorUrl, JSON.stringify(data), this.getRestHeader())
         .toPromise()
         .then(response => {
           return response.json() as any;
@@ -72,7 +72,7 @@ export class GestionarProveedorInformacionService extends RestBaseService{
         'nombreProveedor': nombreProveedor
       };
   
-      return this.http.post(GestionarProveedorInformacionService.serverUrl +this.deshabilitarProvUrl, JSON.stringify(data), this.getRestHeader())
+      return this.http.post(GestionarProveedorInformacionService.serverURL +this.deshabilitarProvUrl, JSON.stringify(data), this.getRestHeader())
         .toPromise()
         .then(response => {
           return response.json() as any;
@@ -87,7 +87,7 @@ export class GestionarProveedorInformacionService extends RestBaseService{
         'frecuencia':frecuencia
       };
   
-      return this.http.post(GestionarProveedorInformacionService.serverUrl +this.cambiarProvUrl, JSON.stringify(data), this.getRestHeader())
+      return this.http.post(GestionarProveedorInformacionService.serverURL +this.cambiarProvUrl, JSON.stringify(data), this.getRestHeader())
         .toPromise()
         .then(response => {
           return response.json() as any;

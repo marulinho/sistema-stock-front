@@ -1,53 +1,43 @@
 <!--SECCION MODIFICAR USUARIO-->
-<div  class="sign-container">
-
+<div class="sign-container">
         <md-card class="page-card">
-                <md-card-title>Modificar Usuario</md-card-title>
+                <md-card-title>{{label_modificar_usuario}}</md-card-title>
                 <md-card-content>
                         <section *ngIf="errorMessage" class="bs">
                                 <div class="bd-example" data-example-id="">
                                         <div class="alert alert-danger" role="alert">
                                                 <strong>{{errorMessage}}</strong>
                                         </div>
-                                </div><br>
+                                </div>
+                                <br>
                         </section>
 
-                        <h2>Datos Personales.</h2>
+                        <h2>{{label_datos_personales}}</h2>
 
                         <md-input-container>
-                                <input mdInput placeholder="Nombre." type="text" [(ngModel)]="nombre" name="nombre"  required maxlength="30"><br>
+                                <input mdInput placeholder={{label_nombre}} type="text" [(ngModel)]="nombre" name="nombre" required maxlength="40">
+                                <br>
                         </md-input-container>
 
                         <md-input-container>
-                                <input mdInput placeholder="Apellido." type="text" [(ngModel)]="apellido" name="apellido"  required maxlength="30"><br>
+                                <input mdInput placeholder={{label_apellido}} type="text" [(ngModel)]="apellido" name="apellido" required maxlength="40">
+                                <br>
                         </md-input-container>
 
-                        <md-input-container>
-                                <input mdInput placeholder="Email." type="email" [(ngModel)]="email" name="email"  required maxlength="75"><br>
-                        </md-input-container>
+                        <label id="atributo">{{label_pregunta}}: </label>
+                        <label>{{pregunta}}.</label><br><br>
 
                         <md-input-container>
-                                <input mdInput placeholder="Fecha Nacimiento." type="date" [(ngModel)]="fechaNacimiento" name="fechaNacimiento" ><br>
+                                <input mdInput placeholder={{label_respuesta_pregunta}} type="text" [(ngModel)]="respuestaPregunta" name="respuestaPregunta" required maxlength="40">
+                                <br>
                         </md-input-container>
 
-                        <md-input-container>
-                                <input mdInput placeholder="DNI." type="number" [(ngModel)]="dni" name="dni" maxlength="8"  ><br>
-                        </md-input-container>
-
-                        <md-input-container>
-                                <input mdInput placeholder="CUIT." type="text" [(ngModel)]="cuit" name="cuit" maxlength="15" ><br>
-                        </md-input-container>
-
-                        <md-input-container>
-                                <input mdInput placeholder="Domicilio." type="text" [(ngModel)]="domicilio" name="domicilio" maxlength="50" ><br>
-                        </md-input-container>
                 </md-card-content>
                 <md-card-actions>
-                        <button md-raised-button (click)="apretarModificarUsuario()">MODIFICAR</button>
-                        <button md-raised-button (click)="apretarSalir()">SALIR</button>
+                        <button md-raised-button (click)="apretarModificarUsuario()">{{boton_modificar}}</button>
+                        <button md-raised-button (click)="apretarSalir()">{{boton_salir}}</button>
                 </md-card-actions>
                 <md-card-footer></md-card-footer>
         </md-card>
 
 </div>
-

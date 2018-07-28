@@ -17,7 +17,7 @@ export class GestionarSectorFincaService extends RestBaseService{
     const data = {
       'idFinca':idFinca
     };
-    return this.http.post(GestionarSectorFincaService.serverUrl + this.mostrarSectoresUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarSectorFincaService.serverURL + this.mostrarSectoresUrl, JSON.stringify(data), this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as Sector;})
     .catch(this.handleError);
@@ -28,7 +28,7 @@ export class GestionarSectorFincaService extends RestBaseService{
       'idSector':idSector,
       'idFinca':idFinca
     };
-    return this.http.post(GestionarSectorFincaService.serverUrl + this.buscarSectorIdUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarSectorFincaService.serverURL + this.buscarSectorIdUrl, JSON.stringify(data), this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as Sector;})
     .catch(this.handleError);
@@ -42,7 +42,7 @@ export class GestionarSectorFincaService extends RestBaseService{
       'superficieSector':superficie,
       'idFinca':idFinca
     };
-    return this.http.post(GestionarSectorFincaService.serverUrl + this.modificarSectorUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarSectorFincaService.serverURL + this.modificarSectorUrl, JSON.stringify(data), this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as any;})
     .catch(this.handleError);
@@ -53,7 +53,7 @@ export class GestionarSectorFincaService extends RestBaseService{
       'idSector':idSector,
       'idFinca':idFinca
     };
-      return this.http.post(GestionarSectorFincaService.serverUrl + this.eliminarSectorUrl,JSON.stringify(data),this.getRestHeader())
+      return this.http.post(GestionarSectorFincaService.serverURL + this.eliminarSectorUrl,JSON.stringify(data),this.getRestHeader())
       .toPromise()
       .then(response => {
         return "";

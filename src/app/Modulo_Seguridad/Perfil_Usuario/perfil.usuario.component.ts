@@ -3,9 +3,8 @@ import { Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { MdDialog } from '@angular/material';
 import { MdSnackBar } from '@angular/material';
-import { DialogExampleComponent } from '../../../app/shared/dialog/dialog-example/dialog-example.component';
+import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
 import { ModuloSeguridadService, Usuario } from '../moludo.seguridad.service';
-import { ModificarUsuarioService } from '../CU_Modificar_Usuario/modificar.usuario.service';
 import { Constantes } from '../../Datos_Sistema/constantes';
 
 @Component({
@@ -36,7 +35,6 @@ export class PerfilUsuarioComponent implements OnInit {
 
     constructor(private router: Router,
         private moduloSeguridad: ModuloSeguridadService,
-        private modificarUsuarioService: ModificarUsuarioService,
         private appService: AppService,
         private snackBar: MdSnackBar,
         private dialog: MdDialog) {
@@ -84,12 +82,13 @@ export class PerfilUsuarioComponent implements OnInit {
         dialogRef.afterClosed().subscribe(
             result => {
                 this.selectedOption = result;
-                if (this.selectedOption === Constantes.BOTON_ACEPTAR) {
-                    this.modificarUsuarioService.eliminarUsuario()
+                if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
+                    this.moduloSeguridad.eliminarUsuario(this.id_usuario)
                         .then(
-                            response => {
-                                this.router.navigate([Constantes.URL_LOGIN]);
-                            }
+                        response => {
+                            this.router.navigate([Constantes.URL_LOGIN]);
+                            this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_USUARIO_ELIMINADO, Constantes.MENSAJE_OK, {duration: 3000,});
+                        }
                         )
                         .catch(
                             error => {
@@ -103,5 +102,5 @@ export class PerfilUsuarioComponent implements OnInit {
                         );
                 }
             });
-    }
+        }
 }

@@ -9,10 +9,10 @@ export class SearchMock {
     },
 
     {
-      name: 'finca',
-      title: 'Finca',
+      name: 'home',
+      title: 'Home',
       faIcon: 'fa-tachometer',
-      link: '/finca'
+      link: '/home/'
     },
 
     {

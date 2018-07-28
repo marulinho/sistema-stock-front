@@ -1,0 +1,68 @@
+<div class="page-content">
+    <md-card fxFlex class="page-card">
+      <md-card-title>
+        {{label_categoria}}
+        <a class="example-tooltip-host" mdTooltip={{tooltipAgregarCategoria}} [mdTooltipPosition]="position" (click)="apretarAgregarCategoria()">
+            <img src="assets/icons/nuevo.png">
+        </a>
+        <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+          <img src="assets/icons/atras.png">
+        </a>
+      </md-card-title>
+
+      <section *ngIf="errorMessageCategoria" class="bs">
+          <div class="bd-example" data-example-id="">
+                  <div class="alert alert-danger" role="alert">
+                          <strong>{{errorMessageCategoria}}</strong>
+                  </div>
+          </div><br>
+      </section>
+      <md-card-content *ngIf="!errorMessageCategoria">
+
+        <p>{{label_detalle_categoria}}</p>
+        <input
+            type='text'
+            style='padding:8px;margin:15px auto;width:30%;'
+            placeholder={{label_tabla_categoria}}
+            (keyup)='updateFilter($event)'
+        />
+          <ngx-datatable
+            #mydatatable
+            class="material fullscreen"
+            [headerHeight]="50"
+            [limit]="10"
+            [sortType]="'multi'"
+            [columnMode]="'force'"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [rows]="categorias">
+            <ngx-datatable-column name={{label_codigo}}>
+              <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                <span 
+                  title={{label_navegar_categoria}}
+                  (click)="apretarIrCategoria(row.codigo)"
+                >
+                {{row.codigo}}
+              </span>
+                
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_nombre}}>
+              <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                  {{row.nombre}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_descripcion}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    {{row.descripcion}}
+                </ng-template>
+              </ngx-datatable-column>
+          </ngx-datatable>
+
+      </md-card-content>
+
+    </md-card>
+</div>
+
+          
+  

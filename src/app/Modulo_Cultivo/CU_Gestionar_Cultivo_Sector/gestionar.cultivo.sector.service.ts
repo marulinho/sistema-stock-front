@@ -21,7 +21,7 @@ export class GestionarCultivoSectorService extends RestBaseService{
       'cantidadPlantas':cantidadPlantas,
       'idFinca':idFinca
     };
-    return this.http.post(GestionarCultivoSectorService.serverUrl + this.modificarCultivoSectorUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarCultivoSectorService.serverURL + this.modificarCultivoSectorUrl, JSON.stringify(data), this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as any;})
     .catch(this.handleError);
@@ -32,7 +32,7 @@ export class GestionarCultivoSectorService extends RestBaseService{
       'idCultivo':idCultivo,
       'idFinca':idFinca,
     };
-    return this.http.post(GestionarCultivoSectorService.serverUrl + this.deshabilitarCultivoSectorUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarCultivoSectorService.serverURL + this.deshabilitarCultivoSectorUrl, JSON.stringify(data), this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as any;})
     .catch(this.handleError);
@@ -43,7 +43,7 @@ export class GestionarCultivoSectorService extends RestBaseService{
         'idSector':idSector,
         'idFinca':idFinca
       };
-      return this.http.post(GestionarCultivoSectorService.serverUrl + this.mostrarCultivoSectorUrl, JSON.stringify(data), this.getRestHeader())
+      return this.http.post(GestionarCultivoSectorService.serverURL + this.mostrarCultivoSectorUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {return response.json() as Cultivo;})
       .catch(this.handleError);

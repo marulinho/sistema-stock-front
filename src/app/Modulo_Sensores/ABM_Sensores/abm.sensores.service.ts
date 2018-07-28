@@ -22,7 +22,7 @@ export class ABMSensorFincaService extends RestBaseService {
             'idFinca': idFinca
         };
 
-        return this.http.post(ABMSensorFincaService.serverUrl + this.crearSensorUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(ABMSensorFincaService.serverURL + this.crearSensorUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as any;
@@ -31,7 +31,7 @@ export class ABMSensorFincaService extends RestBaseService {
     }
 
     buscarTipoMediciones(): Promise<TipoMediciones> { 
-        return this.http.get(ABMSensorFincaService.serverUrl + this.mostrarTipoMedicionesUrl, this.getRestHeader())
+        return this.http.get(ABMSensorFincaService.serverURL + this.mostrarTipoMedicionesUrl, this.getRestHeader())
         .toPromise()
         .then(response => {return response.json() as TipoMediciones;})
         .catch(this.handleError);
@@ -42,7 +42,7 @@ export class ABMSensorFincaService extends RestBaseService {
             'idFinca': idFinca
         };
 
-        return this.http.post(ABMSensorFincaService.serverUrl + this.mostrarSensoresFincaUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(ABMSensorFincaService.serverURL + this.mostrarSensoresFincaUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as any;
@@ -58,7 +58,7 @@ export class ABMSensorFincaService extends RestBaseService {
             'idFinca':idFinca
         };
 
-        return this.http.post(ABMSensorFincaService.serverUrl + this.modificarSensorFincaUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(ABMSensorFincaService.serverURL + this.modificarSensorFincaUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as any;
@@ -72,7 +72,7 @@ export class ABMSensorFincaService extends RestBaseService {
             'idFinca':idFinca
         };
 
-        return this.http.post(ABMSensorFincaService.serverUrl + this.deshabilitarSensorFincaUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(ABMSensorFincaService.serverURL + this.deshabilitarSensorFincaUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as any;
@@ -86,7 +86,7 @@ export class ABMSensorFincaService extends RestBaseService {
             'idFinca':idFinca
         };
 
-        return this.http.post(ABMSensorFincaService.serverUrl + this.buscarSensorIdUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(ABMSensorFincaService.serverURL + this.buscarSensorIdUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as any;

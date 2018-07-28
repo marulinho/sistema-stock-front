@@ -1,0 +1,75 @@
+<div class="page-content">
+    <md-card fxFlex class="page-card">
+      <md-card-title>
+        {{label_producto}}
+        <a class="example-tooltip-host" mdTooltip={{tooltipAgregarProducto}} [mdTooltipPosition]="position" (click)="apretarAgregarProducto()">
+            <img src="assets/icons/nuevo.png">
+        </a>
+      </md-card-title>
+
+      <section *ngIf="errorMessageProducto" class="bs">
+          <div class="bd-example" data-example-id="">
+                  <div class="alert alert-danger" role="alert">
+                          <strong>{{errorMessageProducto}}</strong>
+                  </div>
+          </div><br>
+      </section>
+      <md-card-content *ngIf="!errorMessageProducto">
+
+        <p>{{label_detalle_producto}}</p>
+        <input
+            type='text'
+            style='padding:8px;margin:15px auto;width:30%;'
+            placeholder={{label_tabla_producto}}
+            (keyup)='updateFilter($event)'
+        />
+          <ngx-datatable
+            #mydatatable
+            class="material fullscreen"
+            [headerHeight]="50"
+            [limit]="10"
+            [sortType]="'multi'"
+            [columnMode]="'force'"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [rows]="productos">
+            <ngx-datatable-column name={{label_codigo}}>
+              <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                <span 
+                  title={{label_navegar_producto}}
+                  (click)="apretarIrProducto(row.codigo)"
+                >
+                {{row.codigo}}
+              </span>
+                
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_nombre}}>
+              <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                  {{row.nombre}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_marca}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    {{row.marca}}
+                </ng-template>
+              </ngx-datatable-column>
+          <ngx-datatable-column name={{label_medida}}>
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                {{row.medida}} 
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name={{label_unidad_medida}}>
+            <ng-template  ngx-datatable-cell-template let-row="row" let-value="value">
+                {{row.nombre_unidad_medida}}
+            </ng-template>
+          </ngx-datatable-column>
+      </ngx-datatable>
+
+      </md-card-content>
+
+    </md-card>
+</div>
+
+          
+  

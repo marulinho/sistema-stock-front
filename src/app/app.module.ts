@@ -78,19 +78,37 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
 
 //IMPORTS MODULO SEGURIDAD
   import { IniciarSesionComponent } from './Modulo_Seguridad/CU_Iniciar_Sesion/iniciar.sesion.component';
-  import { IniciarSesionService } from './Modulo_Seguridad/CU_Iniciar_Sesion/iniciar.sesion.service';
   import { PerfilUsuarioComponent } from './Modulo_Seguridad/Perfil_Usuario/perfil.usuario.component';
-  import { PerfilUsuarioService } from './Modulo_Seguridad/Perfil_Usuario/perfil.usuario.service';
   import { ModificarUsuarioComponent } from './Modulo_Seguridad/CU_Modificar_Usuario/Modificar_Usuario/modificar.usuario.component';
-  import { ModificarUsuarioService } from './Modulo_Seguridad/CU_Modificar_Usuario/modificar.usuario.service';
   import { RegistrarUsuarioComponent } from './Modulo_Seguridad/CU_Registrar_Usuario/registrar.usuario.component';
-  import { RegistrarUsuarioService } from './Modulo_Seguridad/CU_Registrar_Usuario/registrar.usuario.service';
   import { RecuperarCuentaComponent } from './Modulo_Seguridad/CU_Recuperar_Cuenta/recuperar.cuenta.component';
-  import { RecuperarCuentaService } from './Modulo_Seguridad/CU_Recuperar_Cuenta/recuperar.cuenta.service';
   import { ModificarContraseniaComponent } from './Modulo_Seguridad/CU_Modificar_Usuario/Cambiar_Contrasenia/modificar.contrasenia.component';
-  import { FinalizarSesionService } from './Modulo_Seguridad/CU_Finalizar_Sesion/finalizar.sesion.service';
-
   import { ModuloSeguridadService } from './Modulo_Seguridad/moludo.seguridad.service';
+
+//IMPORTS MODULO CONFIGURACION
+  import { ModuloConfiguracionService } from './Modulo_Configuracion/modulo.configuracion.service';
+  import { HomeSistemaComponent } from './Modulo_Configuracion/Home_Sistema/home.sistema.component';
+  
+  import { HomeCategoriaComponent } from './Modulo_Configuracion/Home_Categoria/home.categoria.component';
+  import { RegistrarCategoriaComponent } from './Modulo_Configuracion/Home_Categoria/CU_Registrar_Categoria/registrar.categoria.component';
+  import { HomeCategoriaDetalleComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/home.categoria.detalle.component';
+  import { ModificarCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Modificar_Categoria/modificar.categoria.component';
+  import { AsignarSubCategoriaCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Asignar_SubCategoria_Categoria/asignar.subcategoriacategoria.component';
+  import { AsignarProductoCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Asignar_Producto_Categoria/asignar.productocategoria.component';
+
+  import { HomeSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria/home.subcategoria.component';
+  import { RegistrarSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria/CU_Registrar_SubCategoria/registrar.subcategoria.component';
+  import { HomeSubCategoriaDetalleComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/home.subcategoria.detalle.component';
+  import { ModificarSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/CU_Modificar_SubCategoria/modificar.subcategoria.component';
+  import { AsignarProductoSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/CU_Asignar_Producto_SubCategoria/asignar.productosubcategoria.component';
+
+
+  import { HomeProductoComponent } from './Modulo_Configuracion/Home_Producto/home.producto.component';
+  import { RegistrarProductoComponent } from './Modulo_Configuracion/Home_Producto/CU_Registrar_Producto/registrar.producto.component';
+  import { HomeProductoDetalleComponent } from './Modulo_Configuracion/Home_Producto_Detalle/home.producto.detalle.component';
+  import { ModificarProductoComponent } from './Modulo_Configuracion/Home_Producto_Detalle/CU_Modificar_Producto/modificar.producto.component';
+
+  
 
 //IMPORTS MODULOS CONFIGURACION FINCA
   import { HomeFincaComponent } from './Modulo_Configuracion_Finca/Home_Finca/home.finca.component';
@@ -151,7 +169,7 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
   import { ModificarProveedorInformacionComponent } from './Modulo_Obtencion_Informacion_Externa/CU_Gestionar_Proveedor_Informacion/Modificar_Proveedor_Informacion/modficar.proveedor.component';
   import { CambiarProveedorInformacionComponent } from './Modulo_Obtencion_Informacion_Externa/CU_Gestionar_Proveedor_Informacion/Cambiar_Proveedor_Informacion/cambiar.proveedor.component';
   import { GestionarProveedorInformacionService } from './Modulo_Obtencion_Informacion_Externa/CU_Gestionar_Proveedor_Informacion/gestionar.proveedor.service';
-
+ 
 
 
 /**
@@ -226,6 +244,26 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     RegistrarUsuarioComponent,
     RecuperarCuentaComponent,
     ModificarContraseniaComponent,
+
+    //COMPONENTS MODULO CONFIGURACION
+    HomeSistemaComponent,
+    HomeCategoriaComponent,
+    RegistrarCategoriaComponent,
+    HomeCategoriaDetalleComponent,
+    ModificarCategoriaComponent,
+    AsignarSubCategoriaCategoriaComponent,
+    AsignarProductoCategoriaComponent,
+
+    HomeSubCategoriaComponent,
+    RegistrarSubCategoriaComponent,
+    HomeSubCategoriaDetalleComponent,
+    ModificarSubCategoriaComponent,
+    AsignarProductoSubCategoriaComponent,
+
+    HomeProductoComponent,
+    RegistrarProductoComponent,
+    HomeProductoDetalleComponent,
+    ModificarProductoComponent,
 
     //COMPONENTS MODULO CONFIGURACION FINCA
     HomeFincaComponent,
@@ -304,14 +342,10 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     
     //SERVICES MODULO SEGURIDAD
     AppService,
-    IniciarSesionService,
-    ModificarUsuarioService,
-    PerfilUsuarioService,
-    RegistrarUsuarioService,
-    RecuperarCuentaService,
-    FinalizarSesionService,
-
     ModuloSeguridadService,
+
+    //SERVICES MODULO CONFIGURACION
+    ModuloConfiguracionService,
 
     //LLAMADAS MODULO CONFIGURACION FINCA
     HomeFincaService,

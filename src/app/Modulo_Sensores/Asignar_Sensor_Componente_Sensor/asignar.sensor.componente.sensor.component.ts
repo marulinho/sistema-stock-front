@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
 import { MdDialog } from '@angular/material';
 import { AppService } from '../../app.service';
-import { AsignarSensorComponenteSensorService, Sensor } from '../Asignar_Sensor_Componente_Sensor/asignar.sensor.componente.sensor.service';
+import { AsignarSensorComponenteSensorService, Sensor } from './asignar.sensor.componente.sensor.service';
 import { ErroresSistema } from '../../Datos_Sistema/errores.sistema';
  
 @Component({

@@ -21,7 +21,7 @@ export class GestionarUsuarioFincaService extends RestBaseService{
       'idFinca': idFinca,
       
     };
-    return this.http.post(GestionarUsuarioFincaService.serverUrl + this.buscarUsuarioNoEncargadoUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarUsuarioFincaService.serverURL + this.buscarUsuarioNoEncargadoUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
           return response.json() as Usuario;
@@ -34,7 +34,7 @@ export class GestionarUsuarioFincaService extends RestBaseService{
       'idFinca': idFinca,
       
     };
-    return this.http.post(GestionarUsuarioFincaService.serverUrl + this.buscarUsuarioFincaUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarUsuarioFincaService.serverURL + this.buscarUsuarioFincaUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
           return response.json() as Usuario;
@@ -48,7 +48,7 @@ export class GestionarUsuarioFincaService extends RestBaseService{
       'idFinca':idFinca
       
     };
-    return this.http.post(GestionarUsuarioFincaService.serverUrl + this.eliminarUsuarioFincaUrl,JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarUsuarioFincaService.serverURL + this.eliminarUsuarioFincaUrl,JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
         return "";
@@ -61,7 +61,7 @@ export class GestionarUsuarioFincaService extends RestBaseService{
       'idFinca': idFinca
       
     };
-    return this.http.post(GestionarUsuarioFincaService.serverUrl + this.buscarUsuarioNoFincaUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarUsuarioFincaService.serverURL + this.buscarUsuarioNoFincaUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
           return response.json() as Usuario;
@@ -77,7 +77,7 @@ export class GestionarUsuarioFincaService extends RestBaseService{
       'nombreRol':rol
     };
 
-    return this.http.put(GestionarUsuarioFincaService.serverUrl +this.agregarUsuarioFincaUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.put(GestionarUsuarioFincaService.serverURL +this.agregarUsuarioFincaUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
         return response.json() as any;
@@ -93,7 +93,7 @@ export class GestionarUsuarioFincaService extends RestBaseService{
         
     };
 
-    return this.http.post(GestionarUsuarioFincaService.serverUrl + this.modificarRolUsuarioFincaUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarUsuarioFincaService.serverURL + this.modificarRolUsuarioFincaUrl, JSON.stringify(data), this.getRestHeader())
         .toPromise()
         .then(response => {
             return response.json() as any;
@@ -104,7 +104,7 @@ export class GestionarUsuarioFincaService extends RestBaseService{
   }
 
   buscarRoles(){
-    return this.http.get(GestionarUsuarioFincaService.serverUrl + this.buscarRolesUrl, this.getRestHeader())
+    return this.http.get(GestionarUsuarioFincaService.serverURL + this.buscarRolesUrl, this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as Roles;})
     .catch(this.handleError);

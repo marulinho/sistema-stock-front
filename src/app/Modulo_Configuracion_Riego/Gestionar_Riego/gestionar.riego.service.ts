@@ -18,7 +18,7 @@ export class GestionarRiegoService extends RestBaseService {
             'idFinca': idFinca,
             'idMecanismoRiegoFincaSector': idMecanismoRiegoFincaSector
         };
-        return this.http.post(GestionarRiegoService.serverUrl + this.obtenerRiegoEnEjecucionMecanismoRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarRiegoService.serverURL + this.obtenerRiegoEnEjecucionMecanismoRiegoFincaSectorUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as Riego; })
             .catch(this.handleError);
@@ -29,7 +29,7 @@ export class GestionarRiegoService extends RestBaseService {
             'idFinca': idFinca,
             'idMecanismoRiegoFincaSector': idMecanismoRiegoFincaSector
         };
-        return this.http.post(GestionarRiegoService.serverUrl + this.iniciarRiegoManualmenteUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarRiegoService.serverURL + this.iniciarRiegoManualmenteUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as any; })
             .catch(this.handleError);
@@ -40,7 +40,7 @@ export class GestionarRiegoService extends RestBaseService {
             'idFinca': idFinca,
             'idMecanismoRiegoFincaSector': idMecanismoRiegoFincaSector
         };
-        return this.http.post(GestionarRiegoService.serverUrl + this.pausarRiegoManualmenteUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarRiegoService.serverURL + this.pausarRiegoManualmenteUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as any; })
             .catch(this.handleError);
@@ -51,7 +51,7 @@ export class GestionarRiegoService extends RestBaseService {
             'idFinca': idFinca,
             'idMecanismoRiegoFincaSector': idMecanismoRiegoFincaSector
         };
-        return this.http.post(GestionarRiegoService.serverUrl + this.cancelarRiegoManualmenteUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarRiegoService.serverURL + this.cancelarRiegoManualmenteUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => { return response.json() as any; })
             .catch(this.handleError);

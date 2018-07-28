@@ -17,7 +17,7 @@ export class HomeFincaDetalleService extends RestBaseService {
     const data = {
       'idFinca': id
     };
-    return this.http.post(HomeFincaDetalleService.serverUrl + this.buscarFincaUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(HomeFincaDetalleService.serverURL + this.buscarFincaUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => { return response.json() as Finca; })
       .catch(this.handleError);
@@ -27,7 +27,7 @@ export class HomeFincaDetalleService extends RestBaseService {
     const data = {
       'idFinca': idFinca
     };
-    return this.http.post(HomeFincaDetalleService.serverUrl + this.eliminarFincaUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(HomeFincaDetalleService.serverURL + this.eliminarFincaUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
         return "";
@@ -40,7 +40,7 @@ export class HomeFincaDetalleService extends RestBaseService {
     const data = {
       'idFinca': idFinca
     };
-    return this.http.post(HomeFincaDetalleService.serverUrl + this.devolverPermisosUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(HomeFincaDetalleService.serverURL + this.devolverPermisosUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => { return response.json() as Permisos; })
       .catch(this.handleError);

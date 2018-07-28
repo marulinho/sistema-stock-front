@@ -20,7 +20,7 @@ export class AsignarMecanismoRiegoFincaService extends RestBaseService{
     const data = {
       'idFinca':idFinca
     };
-    return this.http.post(AsignarMecanismoRiegoFincaService.serverUrl + this.mostrarMecanismosUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(AsignarMecanismoRiegoFincaService.serverURL + this.mostrarMecanismosUrl, JSON.stringify(data), this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as MecanismoRiego;})
     .catch(this.handleError);
@@ -30,7 +30,7 @@ export class AsignarMecanismoRiegoFincaService extends RestBaseService{
     const data = {
         'idFinca':idFinca
       };
-      return this.http.post(AsignarMecanismoRiegoFincaService.serverUrl + this.mostrarMecanismosNuevosUrl, JSON.stringify(data), this.getRestHeader())
+      return this.http.post(AsignarMecanismoRiegoFincaService.serverURL + this.mostrarMecanismosNuevosUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {return response.json() as MecanismoRiego;})
       .catch(this.handleError);
@@ -42,7 +42,7 @@ export class AsignarMecanismoRiegoFincaService extends RestBaseService{
         'idFinca':idFinca,
         'idMecanismoRiegoFinca':idMecanismoRiegoFinca
       };
-      return this.http.post(AsignarMecanismoRiegoFincaService.serverUrl + this.habilitarMecanismoUrl, JSON.stringify(data), this.getRestHeader())
+      return this.http.post(AsignarMecanismoRiegoFincaService.serverURL + this.habilitarMecanismoUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {return response.json() as MecanismoRiego;})
       .catch(this.handleError);
@@ -53,7 +53,7 @@ export class AsignarMecanismoRiegoFincaService extends RestBaseService{
         'idFinca':idFinca,
         'idMecanismoRiegoFinca':idMecanismoRiegoFinca
       };
-      return this.http.post(AsignarMecanismoRiegoFincaService.serverUrl + this.deshabilitarMecanismoUrl, JSON.stringify(data), this.getRestHeader())
+      return this.http.post(AsignarMecanismoRiegoFincaService.serverURL + this.deshabilitarMecanismoUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {return response.json() as MecanismoRiego;})
       .catch(this.handleError);
@@ -66,7 +66,7 @@ export class AsignarMecanismoRiegoFincaService extends RestBaseService{
       'direccionIP':direccionIp
     };
 
-    return this.http.put(AsignarMecanismoRiegoFincaService.serverUrl +this.agregarMecanismoUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.put(AsignarMecanismoRiegoFincaService.serverURL +this.agregarMecanismoUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
         return response.json() as any;

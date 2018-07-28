@@ -13,7 +13,7 @@ export class AsignarCultivoSectorService extends RestBaseService{
 
     mostrarCultivo():Promise<Cultivo>{
 
-        return this.http.get(AsignarCultivoSectorService.serverUrl + this.mostrarSubTipoCultivoUrl, this.getRestHeader())
+        return this.http.get(AsignarCultivoSectorService.serverURL + this.mostrarSubTipoCultivoUrl, this.getRestHeader())
         .toPromise()
         .then(response => {return response.json() as Cultivo;})
         .catch(this.handleError);
@@ -30,7 +30,7 @@ export class AsignarCultivoSectorService extends RestBaseService{
             'idFinca':idFinca
           };
       
-          return this.http.put(AsignarCultivoSectorService.serverUrl +this.asignarCultivoUrl, JSON.stringify(data), this.getRestHeader())
+          return this.http.put(AsignarCultivoSectorService.serverURL +this.asignarCultivoUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
               return response.json() as any;

@@ -1,0 +1,37 @@
+<div class="sign-container">
+  <md-card class="page-card">
+      <md-card-title>{{label_producto_detalle}}
+          <a class="example-tooltip-host" mdTooltip={{tooltipEditarProducto}} [mdTooltipPosition]="position">
+              <img src="assets/icons/editar.png" (click) = "apretarEditarProducto()">
+          </a>
+
+          <a class="example-tooltip-host" mdTooltip={{tooltipEliminarProducto}} [mdTooltipPosition]="position" (click)="apretarEliminarProducto()">
+              <img src="assets/icons/delete.png">
+          </a>
+
+      </md-card-title>
+      <md-card-content *ngIf="producto">
+          <section *ngIf="errorMessage" class="bs">
+              <div class="bd-example" data-example-id="">
+                  <div class="alert alert-danger" role="alert">
+                      <strong>{{errorMessageProducto}}</strong>
+                  </div>
+              </div><br>
+          </section>
+          
+          <label id="atributo">{{label_codigo_producto}}: </label>
+          <label>{{codigo}}.</label><br><br>
+
+          <label id="atributo">{{label_nombre}}: </label>
+          <label>{{producto.nombre}}.</label><br><br>
+
+          <label id="atributo">{{label_marca}}: </label>
+          <label>{{producto.marca}}.</label><br><br>
+
+          <label id="atributo">{{label_medida}}: </label>
+          <label>{{producto.medida}} {{producto.nombre_unidad_medida}}.</label><br><br>
+
+      </md-card-content>
+    </md-card>
+
+</div>

@@ -15,7 +15,7 @@ export class AsignarMecanismoRiegoSectorService extends RestBaseService{
     const data = {
       'idSector':idSector
     };
-    return this.http.post(AsignarMecanismoRiegoSectorService.serverUrl + this.mostrarMecanismoRiegoSectorUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(AsignarMecanismoRiegoSectorService.serverURL + this.mostrarMecanismoRiegoSectorUrl, JSON.stringify(data), this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as MecanismoRiego;})
     .catch(this.handleError);
@@ -26,7 +26,7 @@ export class AsignarMecanismoRiegoSectorService extends RestBaseService{
       'idMecanismoRiegoFincaSector':idMecanismoRiegoFincaSector,
       'idFinca':idFinca
     };
-    return this.http.post(AsignarMecanismoRiegoSectorService.serverUrl + this.deshabilitarMecanismoRiegoSectorUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(AsignarMecanismoRiegoSectorService.serverURL + this.deshabilitarMecanismoRiegoSectorUrl, JSON.stringify(data), this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as any;})
     .catch(this.handleError);
@@ -41,7 +41,7 @@ export class AsignarMecanismoRiegoSectorService extends RestBaseService{
       'idFinca':idFinca
     };
 
-    return this.http.put(AsignarMecanismoRiegoSectorService.serverUrl +this.asignarMecanismoASectorUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.put(AsignarMecanismoRiegoSectorService.serverURL +this.asignarMecanismoASectorUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
         return response.json() as any;

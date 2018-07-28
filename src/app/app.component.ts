@@ -5,9 +5,7 @@ import { MenuMock } from './shared/mockdata/menu';
 import { SearchMock } from './shared/mockdata/search';
 import { MdDialog, MdSnackBar } from '@angular/material';
 import { DialogThemeComponent } from './shared/dialog/dialog-theme/dialog-theme.component';
-import { TranslateService } from 'ng2-translate';
-import { FinalizarSesionService } from '../app/Modulo_Seguridad/CU_Finalizar_Sesion/finalizar.sesion.service';
-import { ErroresSistema } from './Datos_Sistema/errores.sistema';
+import { ModuloSeguridadService } from './Modulo_Seguridad/moludo.seguridad.service';
 import { Constantes } from './Datos_Sistema/constantes';
 
 @Component({
@@ -18,7 +16,6 @@ import { Constantes } from './Datos_Sistema/constantes';
 })
 export class AppComponent implements OnInit {
 
-  erroresSistema = new ErroresSistema();
   // Mock Menu
   mainMenu = MenuMock.root;
   // Mock search item
@@ -30,23 +27,13 @@ export class AppComponent implements OnInit {
   snackBarRef: any;
 
   errroMessage:string="";
+  id_usuario = JSON.parse(localStorage.getItem('idUsuario'));
 
   constructor(private appService: AppService,
               private dialog: MdDialog,
-              private translate: TranslateService,
               private router: Router,
               private snackBar: MdSnackBar,
-              private finalizarSesionService:FinalizarSesionService ) {
-
-    // Change your page title here
-    //appService.getState().topnavTitle = 'Loading';
-    translate.addLangs(['en', 'zh-cn']);
-    translate.setDefaultLang(appService.getState().defaultLang);
-    this.date = new Date();
-    setInterval(() => {
-      this.date = new Date();
-    }, 1000);
-    //this.snackBarRef = this.snackBar.open('Welcome to CrazyBeer!', 'Done', {duration: 5000,});
+              private moduloSeguridad:ModuloSeguridadService ) {
   }
 
   ngOnInit() {
@@ -173,7 +160,7 @@ export class AppComponent implements OnInit {
   }
 
   apretamosCerrarSesion(){
-    this.finalizarSesionService.cerrarSesion()
+    this.moduloSeguridad.finalizarSesion(this.id_usuario)
       .then(
         response=>{
           this.router.navigate([Constantes.URL_LOGIN]);
@@ -181,8 +168,9 @@ export class AppComponent implements OnInit {
       )
       .catch(
         error=>{
-          if(error.error_description==this.erroresSistema.getInicioSesion()){
+          if(error.error_description == Constantes.ERROR_NO_INICIO_SESION){
             this.router.navigate([Constantes.URL_LOGIN]);
+            this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_NO_INICIO_SESION, Constantes.MENSAJE_OK, {duration: 3000,});
           }
           else{
             this.errroMessage=error.error_description;

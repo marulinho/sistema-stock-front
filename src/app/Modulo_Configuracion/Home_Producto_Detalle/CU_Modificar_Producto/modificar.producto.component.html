@@ -1,0 +1,50 @@
+<div class="sign-container">
+        <md-card class="page-card">
+                <md-card-title>{{label_modificar_producto}}</md-card-title>
+                <md-card-content>
+                        <section *ngIf="errorMessage" class="bs">
+                                <div class="bd-example" data-example-id="">
+                                        <div class="alert alert-danger" role="alert">
+                                                <strong>{{errorMessage}}</strong>
+                                        </div>
+                                </div>
+                                <br>
+                        </section>
+
+                        <h3>{{label_datos_producto}}</h3>
+
+                        <label id="atributo">{{label_codigo}}: </label>
+                        <label>{{codigo}}.</label> <br><br>
+
+                        <md-input-container>
+                                <input mdInput placeholder={{label_nombre}} type="text" [(ngModel)]="nombre" name="nombre" required maxlength="40">
+                                <br>
+                        </md-input-container>
+        
+                        <md-input-container>
+                                <input mdInput placeholder={{label_marca}} type="text" [(ngModel)]="marca" name="marca" required maxlength="40">
+                                <br>
+                        </md-input-container><br><br>
+        
+                        <md-select placeholder={{label_unidad_medida}} [(ngModel)]="id_unidad_medidad" name="id_unidad_medidad">
+                                <md-option *ngFor="let unidadMedida of unidades_medidas" [value]="unidadMedida.id_unidad_medida" requerid>
+                                        {{unidadMedida.nombre}}
+                                </md-option>
+                        </md-select>
+                        <br><br>
+        
+                        <md-input-container>
+                                <input mdInput placeholder={{label_respuesta_unidad_medida}} type="number" [(ngModel)]="medida" name="medida" maxlength="40">
+                                <br>
+                        </md-input-container>
+
+
+                </md-card-content>
+                <md-card-actions>
+                        <button md-raised-button (click)="apretarModificarProducto()">{{boton_modificar}}</button>
+                        <button md-raised-button (click)="apretarSalir()">{{boton_salir}}</button>
+                </md-card-actions>
+                <md-card-footer></md-card-footer>
+        </md-card>
+
+</div>

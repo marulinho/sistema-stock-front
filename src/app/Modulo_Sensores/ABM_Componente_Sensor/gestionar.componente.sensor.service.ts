@@ -24,7 +24,7 @@ export class GestionarComponenteSensorService extends RestBaseService {
             'cantidadMaximaSensores':cantMaximaSensores
         };
 
-        return this.http.post(GestionarComponenteSensorService.serverUrl + this.crearComponenterUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarComponenteSensorService.serverURL + this.crearComponenterUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as any;
@@ -41,7 +41,7 @@ export class GestionarComponenteSensorService extends RestBaseService {
             'cantidadMaximaSensores':cantMaximaSensores
         };
 
-        return this.http.post(GestionarComponenteSensorService.serverUrl + this.modificarComponenteUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarComponenteSensorService.serverURL + this.modificarComponenteUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as any;
@@ -54,7 +54,7 @@ export class GestionarComponenteSensorService extends RestBaseService {
             'idFinca': idFinca
         };
 
-        return this.http.post(GestionarComponenteSensorService.serverUrl + this.buscarComponenteUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarComponenteSensorService.serverURL + this.buscarComponenteUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as ComponenteSensor;
@@ -68,7 +68,7 @@ export class GestionarComponenteSensorService extends RestBaseService {
             'idComponenteSensor':idComponenteSensor
         };
 
-        return this.http.post(GestionarComponenteSensorService.serverUrl + this.deshabilitarComponenteUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarComponenteSensorService.serverURL + this.deshabilitarComponenteUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as any;
@@ -82,7 +82,7 @@ export class GestionarComponenteSensorService extends RestBaseService {
             'idComponenteSensor':idComponenteSensor
         };
 
-        return this.http.post(GestionarComponenteSensorService.serverUrl + this.habilitarComponenteUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarComponenteSensorService.serverURL + this.habilitarComponenteUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as any;
@@ -95,7 +95,7 @@ export class GestionarComponenteSensorService extends RestBaseService {
             'idComponenteSensor': idComponenteSensor
         };
 
-        return this.http.post(GestionarComponenteSensorService.serverUrl + this.buscarComponenteIDUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(GestionarComponenteSensorService.serverURL + this.buscarComponenteIDUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as ComponenteSensor;

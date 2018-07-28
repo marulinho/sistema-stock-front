@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
 import { MdDialog } from '@angular/material';
-import { AppService } from '../../../app/app.service';
+import { AppService } from '../../app.service';
 import { GestionarSectorFincaService, Sector } from '../CU_Gestionar_Sector/gestionar.sector.service';
 import { AsignarMecanismoRiegoSectorService, MecanismoRiego } from '../CU_Asignar_Mecanismo_Riego_Sector/asignar.mecanismo.riego.sector.service';
 import { GestionarCultivoSectorService, Cultivo } from '../../Modulo_Cultivo/CU_Gestionar_Cultivo_Sector/gestionar.cultivo.sector.service';

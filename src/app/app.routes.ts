@@ -45,8 +45,6 @@ import { PagesErrorComponent } from './pages/pages-error/pages-error.component';
 import { PagesLockscreenComponent } from './pages/pages-lockscreen/pages-lockscreen.component';
 import { PagesInvoiceComponent } from './pages/pages-invoice/pages-invoice.component';
 import { PagesNotfoundComponent } from './pages/pages-notfound/pages-notfound.component';
-import { PagesSigninComponent } from './pages/pages-signin/pages-signin.component';
-import { PagesSignupComponent } from './pages/pages-signup/pages-signup.component';
 import { AppsCalendarComponent } from './pages/apps-calendar/apps-calendar.component';
 import { AppsExplorerComponent } from './pages/apps-explorer/apps-explorer.component';
 import { AppsMailComponent } from './pages/apps-mail/apps-mail.component';
@@ -61,8 +59,30 @@ import { RegistrarUsuarioComponent } from './Modulo_Seguridad/CU_Registrar_Usuar
 import { RecuperarCuentaComponent } from './Modulo_Seguridad/CU_Recuperar_Cuenta/recuperar.cuenta.component';
 import { ModificarContraseniaComponent } from './Modulo_Seguridad/CU_Modificar_Usuario/Cambiar_Contrasenia/modificar.contrasenia.component';
 
+//IMPORTS MODULO CONFIGURACION
+import { HomeSistemaComponent } from './Modulo_Configuracion/Home_Sistema/home.sistema.component';
+import { HomeCategoriaComponent } from './Modulo_Configuracion/Home_Categoria/home.categoria.component';
+import { RegistrarCategoriaComponent } from './Modulo_Configuracion/Home_Categoria/CU_Registrar_Categoria/registrar.categoria.component';
+import { HomeCategoriaDetalleComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/home.categoria.detalle.component';
+import { ModificarCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Modificar_Categoria/modificar.categoria.component';
+import { AsignarSubCategoriaCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Asignar_SubCategoria_Categoria/asignar.subcategoriacategoria.component';
+import { AsignarProductoCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Asignar_Producto_Categoria/asignar.productocategoria.component';
+
+
+import { HomeSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria/home.subcategoria.component';
+import { RegistrarSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria/CU_Registrar_SubCategoria/registrar.subcategoria.component';
+import { HomeSubCategoriaDetalleComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/home.subcategoria.detalle.component';
+import { ModificarSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/CU_Modificar_SubCategoria/modificar.subcategoria.component';
+import { AsignarProductoSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/CU_Asignar_Producto_SubCategoria/asignar.productosubcategoria.component';
+
+
+
+import { HomeProductoComponent } from './Modulo_Configuracion/Home_Producto/home.producto.component';
+import { RegistrarProductoComponent } from './Modulo_Configuracion/Home_Producto/CU_Registrar_Producto/registrar.producto.component';
+import { HomeProductoDetalleComponent } from './Modulo_Configuracion/Home_Producto_Detalle/home.producto.detalle.component';
+import { ModificarProductoComponent } from './Modulo_Configuracion/Home_Producto_Detalle/CU_Modificar_Producto/modificar.producto.component';
+
 //IMPORTS MODULO CONFIGURACION FINCA
-import { HomeFincaComponent } from './Modulo_Configuracion_Finca/Home_Finca/home.finca.component';
 import { HomeFincaDetalleComponent } from './Modulo_Configuracion_Finca/Home_Finca_Detalle/home.finca.detalle.component';
 import { SolicitarCreacionFincaComponent } from './Modulo_Configuracion_Finca/CU_Solicitar_Creacion_Finca/solicitar.creacion.finca.component';
 import { GestionarFincaComponent } from './Modulo_Configuracion_Finca/CU_Gestionar_Finca/gestionar.finca.component';
@@ -118,11 +138,11 @@ export const ROUTES: Routes = [
 
 
   // Emergency loading, need to import component form file.
- 
-  
+
+
   //{
-    //path: 'dashboard',
-    //component: DashboardComponent
+  //path: 'dashboard',
+  //component: DashboardComponent
   //},
   // Lazy loading, you need to create a module file.
   //
@@ -133,70 +153,98 @@ export const ROUTES: Routes = [
   // 4. Modify file app.module.ts
   //    remove line "DashboardComponent," and "import { DashboardComponent } from './pages/dashboard/dashboard.component';"
   //
-  { path:'',
+  {
+    path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
 
   //MODULO SEGURIDAD
-  { path:'login', component: IniciarSesionComponent},
-  { path:'addUser', component:RegistrarUsuarioComponent, pathMatch: 'full'},
-  { path:'recoverAccount' , component: RecuperarCuentaComponent },
-  { path:'profile', component:PerfilUsuarioComponent},
-  { path:'modificarUsuario', component:ModificarUsuarioComponent},
-  { path:'modificarContraseniaUsuario', component:ModificarContraseniaComponent},
-  
+  { path: 'login', component: IniciarSesionComponent },
+  { path: 'addUser', component: RegistrarUsuarioComponent, pathMatch: 'full' },
+  { path: 'recoverAccount', component: RecuperarCuentaComponent },
+  { path: 'profile', component: PerfilUsuarioComponent },
+  { path: 'editUser', component: ModificarUsuarioComponent },
+  { path: 'changePassword', component: ModificarContraseniaComponent },
+
   {
-     path: 'dashboard',
-     component: DashboardComponent
-   },
+    path: 'dashboard',
+    component: DashboardComponent
+  },
 
-   //MODULO CONFIGURACION FINCA
-   { path:'home',component: HomeFincaComponent },
-   { path:'homeFincaDetalle', component: HomeFincaDetalleComponent },
-   { path:'crearFinca', component: SolicitarCreacionFincaComponent },
-   { path:'gestionarFinca', component: GestionarFincaComponent },
-   { path:'gestionarUsuarioFinca', component: GestionarUsuarioFincaComponent},
-   //{ path:'modificarRolUsuario/:idUsuarioFinca', component: ModificarRolUsuarioComponent},
-   { path:'agregarMecanismoFinca', component:AgregarMecanismoRiegoFincaComponent},
+  //MODULO CONFIGURACION
+  { path: 'home', component: HomeSistemaComponent },
+  { path: 'homeCategory', component: HomeCategoriaComponent },
+  { path: 'addCategory', component: RegistrarCategoriaComponent },
+  { path: 'homeCategoryDetail/:id_categoria', component: HomeCategoriaDetalleComponent },
+  { path: 'editCategory/:id_categoria', component: ModificarCategoriaComponent },
+  { path: 'assignSubCategory/:id_categoria', component: AsignarSubCategoriaCategoriaComponent },
+  { path: 'assignProductCategory/:id_categoria', component: AsignarProductoCategoriaComponent },
 
-   //MODULO CONFIGURACION SECTORES
-   { path:'homeSector' , component: HomeSectorComponent},
-   { path:'crearSectorFinca', component: CrearSectorFincaComponent},
-   { path:'gestionarSectorFinca', component: GestionarSectorFincaComponent},
-   { path:'asignarMecanismoSector', component: AsignarMecanismoRiegoSectorComponent},
-   { path:'asignarCultivo', component:AsignarCultivoSectorComponent},
-   { path:'asignarSensorComponenteSectorFinca', component:AsignarSensorComponenteSensorComponent},
-   { path:'asignarComponenteSector', component:AsignarComponenteSensorSectorComponent},
-
-   //MODULO SENSORES
-   {path:'crearSensorFinca', component:CrearSensorComponent},
-   {path:'modificarSensorFinca', component:ModificarSensorComponent},
-   {path:'crearComponenteSensorFinca', component:CrearComponenteSensorComponent},
-   {path:'modificarComponenteSensorFinca', component:GestionarComponenteSensorComponent},
-   {path:'homeComponenteSensorFinca', component:HomeComponenteSensorComponent},
-   {path:'asignarSensorComponente', component:AsignarSensorComponenteSensorComponent },
-
-   //MODULO OBTENCION INFORMACION EXTERNA
-   {path:'gestionarProveedor', component:ModificarProveedorInformacionComponent},
-   {path:'cambiarProveedor', component:CambiarProveedorInformacionComponent},
+  { path: 'homeSubCategory', component: HomeSubCategoriaComponent },
+  { path: 'addSubCategory', component: RegistrarSubCategoriaComponent },
+  { path: 'homeSubCategoryDetail/:id_subcategoria', component: HomeSubCategoriaDetalleComponent },
+  { path: 'editSubCategory/:id_subcategoria', component: ModificarSubCategoriaComponent },
+  { path: 'assignProductSubCategory/:id_subcategoria', component: AsignarProductoSubCategoriaComponent },
 
 
-   //MODULO CONFIGURACION RIEGO
-   {path:'crearConfiguracionRiego', component:CrearConfiguracionRiegoComponent},
-   {path:'homeConfiguracionRiego', component:HomeConfiguracionRiegoComponent},
-   {path:'gestionarConfiguracionRiego', component:ModificarConfiguracionRiegoComponent},
-   {path:'agregarCriterioInicial',component:AgregarCriterioInicioComponent},
-   {path:'agregarCriterioFinal',component:AgregarCriterioFinComponent},
-   {path:'gestionarCriterioRiego',component:ModificarCriterioInicialFinalComponent},
-   
+
+  { path: 'homeProduct', component: HomeProductoComponent },
+  { path: 'addProduct', component: RegistrarProductoComponent },
+  { path: 'homeProductDetail/:id_producto', component: HomeProductoDetalleComponent },
+  { path: 'editProduct/:id_producto', component: ModificarProductoComponent },
 
 
-   //MODULO CULTIVOS
-   {path:'gestionarCultivoSector', component: GestionarCultivoSectorComponent},
 
 
-   {
+
+
+
+  //MODULO CONFIGURACION FINCA
+  { path: 'homeFincaDetalle', component: HomeFincaDetalleComponent },
+  { path: 'crearFinca', component: SolicitarCreacionFincaComponent },
+  { path: 'gestionarFinca', component: GestionarFincaComponent },
+  { path: 'gestionarUsuarioFinca', component: GestionarUsuarioFincaComponent },
+  //{ path:'modificarRolUsuario/:idUsuarioFinca', component: ModificarRolUsuarioComponent},
+  { path: 'agregarMecanismoFinca', component: AgregarMecanismoRiegoFincaComponent },
+
+  //MODULO CONFIGURACION SECTORES
+  { path: 'homeSector', component: HomeSectorComponent },
+  { path: 'crearSectorFinca', component: CrearSectorFincaComponent },
+  { path: 'gestionarSectorFinca', component: GestionarSectorFincaComponent },
+  { path: 'asignarMecanismoSector', component: AsignarMecanismoRiegoSectorComponent },
+  { path: 'asignarCultivo', component: AsignarCultivoSectorComponent },
+  { path: 'asignarSensorComponenteSectorFinca', component: AsignarSensorComponenteSensorComponent },
+  { path: 'asignarComponenteSector', component: AsignarComponenteSensorSectorComponent },
+
+  //MODULO SENSORES
+  { path: 'crearSensorFinca', component: CrearSensorComponent },
+  { path: 'modificarSensorFinca', component: ModificarSensorComponent },
+  { path: 'crearComponenteSensorFinca', component: CrearComponenteSensorComponent },
+  { path: 'modificarComponenteSensorFinca', component: GestionarComponenteSensorComponent },
+  { path: 'homeComponenteSensorFinca', component: HomeComponenteSensorComponent },
+  { path: 'asignarSensorComponente', component: AsignarSensorComponenteSensorComponent },
+
+  //MODULO OBTENCION INFORMACION EXTERNA
+  { path: 'gestionarProveedor', component: ModificarProveedorInformacionComponent },
+  { path: 'cambiarProveedor', component: CambiarProveedorInformacionComponent },
+
+
+  //MODULO CONFIGURACION RIEGO
+  { path: 'crearConfiguracionRiego', component: CrearConfiguracionRiegoComponent },
+  { path: 'homeConfiguracionRiego', component: HomeConfiguracionRiegoComponent },
+  { path: 'gestionarConfiguracionRiego', component: ModificarConfiguracionRiegoComponent },
+  { path: 'agregarCriterioInicial', component: AgregarCriterioInicioComponent },
+  { path: 'agregarCriterioFinal', component: AgregarCriterioFinComponent },
+  { path: 'gestionarCriterioRiego', component: ModificarCriterioInicialFinalComponent },
+
+
+
+  //MODULO CULTIVOS
+  { path: 'gestionarCultivoSector', component: GestionarCultivoSectorComponent },
+
+
+  {
     path: 'dashboard-edge',
     component: DashboardEdgeComponent
   },
@@ -391,9 +439,9 @@ export const ROUTES: Routes = [
     path: 'apps-mail',
     component: AppsMailComponent
   }
-   
 
-  
+
+
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot( ROUTES );
+export const routing: ModuleWithProviders = RouterModule.forRoot(ROUTES);

@@ -1,5 +1,8 @@
 export const Constantes={
  
+//ESTADOS
+    ESTADO_HABILITADO : '1',
+    ESTADO_DESHABILITADO : '2', 
 
 //BOTONES
     BOTON_ACEPTAR : 'ACEPTAR',
@@ -10,14 +13,40 @@ export const Constantes={
     BOTON_SIGUIENTE : 'SIGUIENTE',
     BOTON_SALIR : 'SALIR',
     BOTON_RECUPERAR_CUENTA: 'RECUPERAR',
+    BOTON_MODIFICAR: 'MODIFICAR',
 
 //DIALOGS
     TITLE_ELIMINAR_USUARIO: 'Eliminar Usuario',
     PREGUNTA_ELIMINAR_USUARIO: '¿Desea eliminar el usuario?',
+    TITLE_ELIMINAR_CATEGORIA: 'Eliminar Categoria',
+    PREGUNTA_ELIMINAR_CATEGORIA: '¿Desea eliminar la categoria?',
+    TITLE_ELIMINAR_SUBCATEGORIA: 'Eliminar SubCategoria',
+    PREGUNTA_ELIMINAR_SUBCATEGORIA: '¿Desea eliminar la sub-categoria?',
+    TITLE_ELIMINAR_PRODUCTO: 'Eliminar Producto',
+    PREGUNTA_ELIMINAR_PRODUCTO: '¿Desea eliminar el producto?',
+    TITLE_ASIGNAR_SUBCATEGORIA: 'Asignar SubCategoria',
+    PREGUNTA_ASIGNAR_SUBCATEGORIA: '¿Desea asignar la sub-categoria?',
+    TITLE_DESASIGNAR_SUBCATEGORIA: 'Desasignar SubCategoria',
+    PREGUNTA_DESASIGNAR_SUBCATEGORIA: '¿Desea desasginar la sub-categoria?',
+    TITLE_ASIGNAR_PRODUCTO: 'Asignar Producto',
+    PREGUNTA_ASIGNAR_PRODUCTO: '¿Desea asignar el producto?',
+    TITLE_DESASIGNAR_PRODUCTO: 'Desasignar Producto',
+    PREGUNTA_DESASIGNAR_PRODUCTO: '¿Desea desasginar el producto?',
+
+//OPCIONES DIALOGS
+    OPCION_ACEPTAR: 'Aceptar',
 
 //LINKS
     LINK_REGISTRAR : 'Registrarse',
     LINK_OLVIDO_CONTRASENIA : '¿Olvido su contraseña?',
+
+//LABELS HOME
+    LABEL_HOME_PRODUCTO : 'PRODUCTO',
+    LABEL_HOME_CATEGORIA : 'CATEGORIA',
+    LABEL_HOME_CATEGORIA_DETALLE : 'CATEGORIA DETALLE',
+    LABEL_HOME_SUB_CATEGORIA: 'SUB-CATEGORIA',
+    LABEL_HOME_USUARIO : 'USUARIO',
+    
 
 //LABELS
     LABEL_USUARIO : 'Usuario',
@@ -36,6 +65,8 @@ export const Constantes={
     LABEL_PASO_3: 'Paso 3',
     LABEL_NOMBRE : 'Nombre',
     LABEL_APELLIDO : 'Apellido',
+    LABEL_DESCRIPCION : 'Descripción',
+    LABEL_CODIGO : 'Código',
     LABEL_PREGUNTA_SEGURIDAD : 'Pregunta de Seguridad',
     LABEL_RESPUESTA_PREGUNTA_SEGURIDAD : 'Respuesta de Seguridad',
     LABEL_PERFIL_USUARIO : 'Perfil Usuario',
@@ -43,19 +74,92 @@ export const Constantes={
     LABEL_ELIMINAR_USUARIO : 'Eliminar Usuario',
     LABEL_CAMBIAR_CONTRASENIA : 'Cambiar Contraseña',
     LABEL_HOME_SISTEMA: 'Home Sistema',
+    LABEL_MODIFICAR_USUARIO : 'Modificar Usuario',
+    LABEL_MODIFICAR_CONTRASENIA : 'Modificar Contraseña',
+    LABEL_DATOS_NUEVA_CONTRASENIA : 'Datos Nueva Contraseña',
+    LABEL_CONTRASENIA_ACTUAL : 'Contraseña Actual',
+    LABEL_CONTRASENIA_NUEVA : 'Contraseña Nueva',
+    LABEL_NAVEGAR_CATEGORIA : 'Ir a Categoria',
+    LABEL_NAVEGAR_ATRAS : 'Volver',
+    LABEL_NAVEGAR_SUBCATEGORIA : 'Ir a Sub-Categoria',
+    LABEL_NAVEGAR_PRODUCTO : 'Ir a Producto',
+    LABEL_NAVEGAR_USUARIO : 'Ir a Usuario',
+    LABEL_CATEGORIA : 'Categoria',
+    LABEL_CATEGORIA_DETALLE : 'Categoria Detalle',
+    LABEL_AGREGAR_CATEGORIA : 'Agregar Categoria',
+    LABEL_EDITAR_CATEGORIA : 'Editar Categoria',
+    LABEL_ELIMINAR_CATEGORIA : 'Eliminar Categoria',
+    LABEL_MODIFICAR_CATEGORIA: 'Modificar Categoria',
+    LABEL_HABILITAR_CATEGORIA: 'Habilitar Categoria',
+    LABEL_DATOS_CATEGORIA: 'Datos Categoria',
+    LABEL_REGISTRAR_CATEGORIA: 'Registrar Categoria',
+    LABEL_BUSCAR_TABLA_CATEGORIA : 'Ingrese el nombre de la categoria',
+    LABEL_ACCION : 'Acción',
+    LABEL_SUBCATEGORIASUBCATEGORIAS_CATEGORIA: 'SubCategorias de Categoria',
+    LABEL_PRODUCTOS_CATEGORIA: 'Productos de Categoria',
+    LABEL_SUBCATEGORIA : 'SubCategoria',
+    LABEL_SUBCATEGORIA_DETALLE : 'SubCategoria Detalle',
+    LABEL_AGREGAR_SUBCATEGORIA : 'Agregar SubCategoria',
+    LABEL_EDITAR_SUBCATEGORIA : 'Editar SubCategoria',
+    LABEL_ELIMINAR_SUBCATEGORIA : 'Eliminar SubCategoria',
+    LABEL_MODIFICAR_SUBCATEGORIA: 'Modificar SubCategoria',
+    LABEL_HABILITAR_SUBATEGORIA: 'Habilitar SubCategoria',
+    LABEL_DATOS_SUBCATEGORIA: 'Datos SubCategoria',
+    LABEL_ASIGNAR_SUBCATEGORIA : 'Asignar SubCategoria',
+    LABEL_DESASGINAR_SUBCATEGORIA : 'Desasignar SubCategoria',
+    LABEL_REGISTRAR_SUBCATEGORIA: 'Registrar SubCategoria',
+    LABEL_BUSCAR_TABLA_SUBCATEGORIA : 'Ingrese el nombre de la sub-categoria',
+    LABEL_PRODUCTOS_SUBCATEGORIA: 'Productos de SubCategoria',
+    LABEL_PRODUCTO : 'Producto',
+    LABEL_PRODUCTO_DETALLE : 'Producto Detalle',
+    LABEL_AGREGAR_PRODUCTO : 'Agregar Producto',
+    LABEL_EDITAR_PRODUCTO : 'Editar Producto',
+    LABEL_ELIMINAR_PRODUCTO : 'Eliminar Producto',
+    LABEL_MODIFICAR_PRODUCTO: 'Modificar Producto',
+    LABEL_HABILITAR_PRODUCTO: 'Habilitar Producto',
+    LABEL_DATOS_PRODUCTO: 'Datos Producto',
+    LABEL_REGISTRAR_PRODUCTO: 'Registrar Producto',
+    LABEL_ASIGNAR_PRODUCTO : 'Asignar Producto',
+    LABEL_DESASGINAR_PRODUCTO : 'Desasignar Producto',
+    LABEL_BUSCAR_TABLA_PRODUCTO : 'Ingrese el nombre del producto',
+    LABEL_MARCA: 'Marca',
+    LABEL_UNIDAD_MEDIDA: 'Unidad Medida',
+    LABEL_MEDIDA: 'Medida',
+    LABEL_UPDATE_TABLA: 'Actualizar Tabla',
+
+//DESCRIPCIÓN CARD 
+    DESCRIPCION_PRODUCTO : 'En esta sección se lleva a cabo la administración de los productos',
+    DESCRIPCION_CATEGORIA : 'En esta sección se lleva a cabo la administración de las categorias',
+    DESCRIPCION_SUB_CATEGORIA : 'En esta sección se lleva a cabo la administración de las sub-categorias',
+    DESCRIPCION_SUB_CATEGORIA_CATEGORIA : 'En esta sección se lleva a cabo la administración de las sub-categorias de la categoria seleccionada',
+    DESCRIPCION_SUBCATEGORIAS_NO_CATEGORIA : 'La siguiente tabla contiene subcategorias que no han sido asignadas a la categoria seleccionada',
+    DESCRIPCION_PRODUCTO_CATEGORIA : 'En esta sección se lleva a cabo la administración de los productos de la categoria seleccionada',
+    DESCRIPCION_PRODUCTOS_NO_CATEGORIA : 'La siguiente tabla contiene productos que no han sido asignados a la categoria seleccionada',
+    DESCRIPCION_PRODUCTO_SUBCATEGORIA : 'En esta sección se lleva a cabo la administración de los productos de la sub-categoria seleccionada',
+    DESCRIPCION_PRODUCTOS_NO_SUBCATEGORIA : 'La siguiente tabla contiene productos que no han sido asignados a la sub-categoria seleccionada',
+    DESCRIPCION_USUARIO: 'En esta sección se lleva a cabo la administración de los usuarios',
 
     
 //ERRORES
     ERROR_CAMPOS_INCOMPLETOS : 'Debe completar todos los campos obligatorios (*)',
     ERROR_CONTRASENIAS_DISTINTAS : 'Las contraseñas deben coincidir',
     ERROR_USUARIO_CONTRASENIA_IGUAL:'El nombre de usuario y contraseña debe ser diferente',
+    ERROR_CONTRASENIAS_IGUAL:'La contraseña nueva debe ser diferente a la actual',
     ERROR_NO_INICIO_SESION : 'El usuario no inicio sesion',
 
     
 //MENSAJES
+    MENSAJE_INICIO_SISTEMA : 'Bienvenido a CrazyBeer',
     MENSAJE_REGISTRACION_EXITOSA : 'Registración Exitosa',
     MENSAJE_RECUPERACION_EXITOSA : 'Recuperación Exitosa',
+    MENSAJE_MODIFICACION_EXITOSA : 'Modificación Exitosa',
     MENSAJE_NO_INICIO_SESION: 'La sesión expiro, ingrese nuevamente',
+    MENSAJE_USUARIO_ELIMINADO: 'Usuario eliminado correctamente',
+    MENSAJE_CATEGORIA_ELIMINADA: 'Categoria eliminada correctamente',
+    MENSAJE_SUBCATEGORIA_ELIMINADA: 'SubCategoria eliminada correctamente',
+    MENSAJE_PRODUCTO_ELIMINADO: 'Producto eliminado correctamente',
+    MENSAJE_ASIGNACION_EXISTOSA: 'Asignación Exitosa',
+    MENSAJE_DESASIGNACION_EXISTOSA: 'Desasignación Exitosa',
     MENSAJE_OK : 'OK',
 
 //OPERADORES COMPARACION
@@ -71,5 +175,20 @@ export const Constantes={
     URL_HOME : '/home/',
     URL_PERFIL : '/profile/',
     URL_REGISTRAR_USUARIO : '/addUser/',
-    URL_RECUPERAR_CUENTA: '/recoverAccount/'
+    URL_RECUPERAR_CUENTA: '/recoverAccount/',
+    URL_HOME_CATEGORIA: '/homeCategory/',
+    URL_HOME_CATEGORIA_DETALLE: '/homeCategoryDetail/',
+    URL_ASIGNAR_SUBCATEGORIA: '/assignSubCategory/',
+    URL_EDITAR_CATEGORIA: '/editCategory/',
+    URL_AGREGAR_CATEGORIA: '/addCategory/',
+    URL_HOME_SUBCATEGORIA: '/homeSubCategory/',
+    URL_HOME_SUBCATEGORIA_DETALLE: '/homeSubCategoryDetail/',
+    URL_EDITAR_SUBCATEGORIA: '/editSubCategory/',
+    URL_AGREGAR_SUBCATEGORIA: '/addSubCategory/',
+    URL_HOME_PRODUCTO: '/homeProduct/',
+    URL_HOME_PRODUCTO_DETALLE: '/homeProductDetail/',
+    URL_EDITAR_PRODUCTO: '/editProduct/',
+    URL_AGREGAR_PRODUCTO: '/addProduct/',
+    URL_ASIGNAR_PRODUCTO_CATEGORIA: '/assignProductCategory/',
+    URL_ASIGNAR_PRODUCTO_SUBCATEGORIA: '/assignProductSubCategory/'
 };

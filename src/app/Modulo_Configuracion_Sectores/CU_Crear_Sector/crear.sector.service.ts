@@ -17,7 +17,7 @@ export class CrearSectorFincaService extends RestBaseService{
       'descripcionSector':descripcion,
       'superficieSector':superficie
     };
-    return this.http.put(CrearSectorFincaService.serverUrl + this.crearSectorFincaUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.put(CrearSectorFincaService.serverURL + this.crearSectorFincaUrl, JSON.stringify(data), this.getRestHeader())
     .toPromise()
     .then(response => {return response.json() as Sector;})
     .catch(this.handleError);

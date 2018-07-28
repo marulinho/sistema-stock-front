@@ -20,7 +20,7 @@ export class AsignarComponenteSensorSectorService extends RestBaseService{
             'idSector': idSector
         };
 
-        return this.http.post(AsignarComponenteSensorSectorService.serverUrl + this.asignarComponenteSensorSectorUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(AsignarComponenteSensorSectorService.serverURL + this.asignarComponenteSensorSectorUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as any;
@@ -35,7 +35,7 @@ export class AsignarComponenteSensorSectorService extends RestBaseService{
             'idSector': idSector
         };
 
-        return this.http.post(AsignarComponenteSensorSectorService.serverUrl + this.desasignarComponenteSensorSectorUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(AsignarComponenteSensorSectorService.serverURL + this.desasignarComponenteSensorSectorUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as any;
@@ -48,7 +48,7 @@ export class AsignarComponenteSensorSectorService extends RestBaseService{
             'idSector': idSector
         };
 
-        return this.http.post(AsignarComponenteSensorSectorService.serverUrl + this.mostrarComponenteSensorSectorUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(AsignarComponenteSensorSectorService.serverURL + this.mostrarComponenteSensorSectorUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as ComponenteSensor;
@@ -61,7 +61,7 @@ export class AsignarComponenteSensorSectorService extends RestBaseService{
             'idFinca': idFinca
         };
 
-        return this.http.post(AsignarComponenteSensorSectorService.serverUrl + this.mostrarComponentesSensorFincaNoAsignadosUrl, JSON.stringify(data), this.getRestHeader())
+        return this.http.post(AsignarComponenteSensorSectorService.serverURL + this.mostrarComponentesSensorFincaNoAsignadosUrl, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as ComponenteSensor;

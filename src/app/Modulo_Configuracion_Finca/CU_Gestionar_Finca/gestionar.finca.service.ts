@@ -20,7 +20,7 @@ export class GestionarFincaService extends RestBaseService{
       
     };
 
-    return this.http.post(GestionarFincaService.serverUrl +this.modificarFincaUrl, JSON.stringify(data), this.getRestHeader())
+    return this.http.post(GestionarFincaService.serverURL +this.modificarFincaUrl, JSON.stringify(data), this.getRestHeader())
       .toPromise()
       .then(response => {
         return response.json() as Finca;

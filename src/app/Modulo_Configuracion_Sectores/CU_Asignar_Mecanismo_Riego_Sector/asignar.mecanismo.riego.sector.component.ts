@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from '../../app.service';
-import { AsignarMecanismoRiegoSectorService } from '../CU_Asignar_Mecanismo_Riego_Sector/asignar.mecanismo.riego.sector.service';
+import { AsignarMecanismoRiegoSectorService } from './asignar.mecanismo.riego.sector.service';
 import { AsignarMecanismoRiegoFincaService, MecanismoRiego } from '../../Modulo_Configuracion_Finca/CU_Asignar_Mecanismo_Riego_Finca/asignar.mecanismo.riego.finca.service';
 import { ErroresSistema } from '../../Datos_Sistema/errores.sistema';
 

@@ -1,0 +1,48 @@
+<div class="page-content">
+  <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex>
+    <md-card fxFlex class="page-card">
+      <md-card-title>
+        {{label_categoria}}
+        <a class="example-tooltip-host" mdTooltip={{tooltipNavegarCategoria}} [mdTooltipPosition]="position">
+          <img src="assets/icons/navigation.png" [routerLink]="['/homeCategory/']">
+        </a>
+      </md-card-title>
+      <md-card-content>
+        <p>{{label_detalle_categoria}}</p>
+      </md-card-content>
+    </md-card>
+    <md-card fxFlex class="page-card">
+      <md-card-title>
+        {{label_subcategoria}}
+        <a class="example-tooltip-host" mdTooltip={{tooltipNavegarSubCategoria}} [mdTooltipPosition]="position">
+            <img src="assets/icons/navigation.png" [routerLink]="['/homeSubCategory/']">
+        </a>
+      </md-card-title>
+      <md-card-content>
+        <p>{{label_detalle_subcategoria}}</p>
+      </md-card-content>
+    </md-card>
+    <md-card fxFlex class="page-card">
+      <md-card-title>
+        {{label_producto}}
+        <a class="example-tooltip-host" mdTooltip={{tooltipNavegarProducto}} [mdTooltipPosition]="position">
+            <img src="assets/icons/navigation.png" [routerLink]="['/homeProduct/']">
+          </a>
+      </md-card-title>
+      <md-card-content>
+        <p>{{label_detalle_producto}}</p>
+      </md-card-content>
+    </md-card>
+    <md-card fxFlex class="page-card">
+      <md-card-title>
+        {{label_usuario}}
+        <a class="example-tooltip-host" mdTooltip={{tooltipNavegarUsuario}} [mdTooltipPosition]="position">
+            <img src="assets/icons/navigation.png" [routerLink]="['/homeUser/']">
+          </a>
+      </md-card-title>
+      <md-card-content>
+        <p>{{label_detalle_usuario}}</p>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
