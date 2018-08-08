@@ -108,7 +108,11 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
   import { HomeProductoDetalleComponent } from './Modulo_Configuracion/Home_Producto_Detalle/home.producto.detalle.component';
   import { ModificarProductoComponent } from './Modulo_Configuracion/Home_Producto_Detalle/CU_Modificar_Producto/modificar.producto.component';
 
-  
+  import { HomeListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/home.listaprecio.component';
+  import { RegistrarListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/CU_Registrar_ListaPrecio/registrar.listaprecio.component';
+
+  import { HomeComboComponent } from './Modulo_Configuracion/Home_Combo/home.combo.component';
+
 
 //IMPORTS MODULOS CONFIGURACION FINCA
   import { HomeFincaComponent } from './Modulo_Configuracion_Finca/Home_Finca/home.finca.component';
@@ -264,6 +268,11 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     RegistrarProductoComponent,
     HomeProductoDetalleComponent,
     ModificarProductoComponent,
+
+    HomeListaPrecioComponent,
+    RegistrarListaPrecioComponent,
+
+    HomeComboComponent,
 
     //COMPONENTS MODULO CONFIGURACION FINCA
     HomeFincaComponent,

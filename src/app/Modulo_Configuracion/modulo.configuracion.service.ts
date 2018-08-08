@@ -38,6 +38,16 @@ export class ModuloConfiguracionService extends RestBaseService {
     private asignarProductoSubCategoriaURL = '/asignarProductoSubCategoria/';
 
     private obtenerUnidadesMedidasURL = '/obtenerUnidadMedida/';
+
+    private registrarListaPrecioURL = '/registrarListaPrecio/';
+    private obtenerListaPrecioVigenteURL = '/obtenerListaPrecioVigente/';
+    private obtenerProductosNoListaPrecioURL = '/obtenerProductosNoListaVigente/';
+    private eliminarListaPrecioURL = '/eliminarListaPrecio/';
+
+    private registrarComboURL = '/registrarCombo/';
+    private eliminarComboURL = '/eliminarCombo/';
+    private obtenerCombosVigentesURL = '/obtenerCombosVigentes/';
+    private obtenerDetalleComboURL = '/obtenerDetalleCombo/';
    
 
     constructor(private http: Http) { super(); }
@@ -361,6 +371,68 @@ export class ModuloConfiguracionService extends RestBaseService {
             .then(response => { return response.json() as UnidadMedida; })
             .catch(this.handleError);
     }
+
+    //LISTA DE PRECIOS
+    
+    obtenerListaPrecioVigente(): Promise<DetalleListaPrecio> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerListaPrecioVigenteURL, this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as DetalleListaPrecio; })
+            .catch(this.handleError);
+    }
+
+    eliminarListaPrecio(codigo: number): Promise<ResultadoNone> {
+        const data = {
+            'codigo': codigo
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.eliminarListaPrecioURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
+
+    registrarListaPrecio(nombre, lista_precio_productos, lista_precio_compra, lista_precio_venta): Promise<ResultadoNone> {
+        const data = {
+            'nombre': nombre,
+            'lista_productos': lista_precio_productos ,
+            'lista_precios_compra': lista_precio_compra ,
+            'lista_precios_venta': lista_precio_venta
+
+        };
+
+        return this.http.post(ModuloConfiguracionService.serverURL + this.registrarListaPrecioURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
+
+    obtenerProductosNoListaPrecio(): Promise<Producto> {
+                return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerProductosNoListaPrecioURL, this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as Producto;
+
+            })
+            .catch(this.handleError);
+    }
+
+
+    //COMBOS
+    
+    obtenerCombosVigentes(): Promise<Combo> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerCombosVigentesURL, this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Combo; })
+            .catch(this.handleError);
+    }
+
 }
 
 export interface Categoria {
@@ -382,6 +454,18 @@ export interface Producto {
 }
 
 export interface UnidadMedida {
+    resultado: boolean;
+    detalle_operacion;
+    datos_operacion;
+}
+
+export interface DetalleListaPrecio {
+    resultado: boolean;
+    detalle_operacion;
+    datos_operacion;
+}
+
+export interface Combo {
     resultado: boolean;
     detalle_operacion;
     datos_operacion;

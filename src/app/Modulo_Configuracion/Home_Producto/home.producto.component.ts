@@ -17,6 +17,7 @@ export class HomeProductoComponent implements OnInit{
     errorMessageProducto = '';
     snackBarRef: any;
     tooltipAgregarProducto = Constantes.LABEL_AGREGAR_PRODUCTO;
+    tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';
     label_producto = Constantes.LABEL_PRODUCTO;
     label_detalle_producto = Constantes.DESCRIPCION_PRODUCTO;
@@ -74,6 +75,9 @@ export class HomeProductoComponent implements OnInit{
 
     apretarAgregarProducto(){
         this.router.navigate([Constantes.URL_AGREGAR_PRODUCTO]);
+    }
+    apretarAtras(){
+        this.router.navigate([Constantes.URL_HOME]);
     }
 }
 

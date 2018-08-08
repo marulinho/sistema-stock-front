@@ -14,7 +14,18 @@ export class SearchMock {
       faIcon: 'fa-tachometer',
       link: '/home/'
     },
-
+    {
+      name: 'lista',
+      title: 'Listas de Precios',
+      faIcon: 'fa-usd',
+      link: '/homePriceList/'
+    },
+    {
+      name: 'combo',
+      title: 'Combos',
+      faIcon: ' fa-archive',
+      link: '/homeCombo/'
+    },
     {
       name: 'reportes',
       title: 'Reportes',

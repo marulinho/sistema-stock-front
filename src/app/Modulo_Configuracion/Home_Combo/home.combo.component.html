@@ -1,8 +1,8 @@
 <div class="page-content">
     <md-card fxFlex class="page-card">
       <md-card-title>
-        {{label_producto}}
-        <a class="example-tooltip-host" mdTooltip={{tooltipAgregarProducto}} [mdTooltipPosition]="position" (click)="apretarAgregarProducto()">
+        {{label_combo}}
+        <a class="example-tooltip-host" mdTooltip={{tooltipAgregarCombo}} [mdTooltipPosition]="position" (click)="apretarAgregarCombo()">
             <img src="assets/icons/nuevo.png">
         </a>
         <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
@@ -10,20 +10,20 @@
         </a>
       </md-card-title>
 
-      <section *ngIf="errorMessageProducto" class="bs">
+      <section *ngIf="errorMessageCombo" class="bs">
           <div class="bd-example" data-example-id="">
                   <div class="alert alert-danger" role="alert">
-                          <strong>{{errorMessageProducto}}</strong>
+                          <strong>{{errorMessageCombo}}</strong>
                   </div>
           </div><br>
       </section>
-      <md-card-content *ngIf="!errorMessageProducto">
+      <md-card-content *ngIf="!errorMessageCombo">
 
-        <p>{{label_detalle_producto}}</p>
+        <p>{{label_detalle_combo}}</p>
         <input
             type='text'
             style='padding:8px;margin:15px auto;width:30%;'
-            placeholder={{label_tabla_producto}}
+            placeholder={{label_tabla_combo}}
             (keyup)='updateFilter($event)'
         />
           <ngx-datatable
@@ -35,39 +35,30 @@
             [columnMode]="'force'"
             [footerHeight]="50"
             [rowHeight]="'auto'"
-            [rows]="productos">
+            [rows]="combos">
             <ngx-datatable-column name={{label_codigo}}>
               <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
                 <span 
-                  title={{label_navegar_producto}}
-                  (click)="apretarIrProducto(row.codigo)"
+                  title={{label_navegar_combo}}
+                  (click)="apretarIrCombo(row.codigo)"
                 >
-                {{row.codigo}}
+                {{row.combo_cabecera.codigo}}
               </span>
                 
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name={{label_nombre}}>
               <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                  {{row.nombre}}
+                  {{row.combo_cabecera.nombre}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name={{label_marca}}>
+          
+            <ngx-datatable-column name={{label_precio}}>
                 <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                    {{row.marca}}
+                    {{row.combo_cabecera.precio}}
                 </ng-template>
               </ngx-datatable-column>
-          <ngx-datatable-column name={{label_medida}}>
-            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                {{row.medida}} 
-            </ng-template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name={{label_unidad_medida}}>
-            <ng-template  ngx-datatable-cell-template let-row="row" let-value="value">
-                {{row.nombre_unidad_medida}}
-            </ng-template>
-          </ngx-datatable-column>
-      </ngx-datatable>
+          </ngx-datatable>
 
       </md-card-content>
 

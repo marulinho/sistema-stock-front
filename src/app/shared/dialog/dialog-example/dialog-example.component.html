@@ -1,6 +1,22 @@
+<div class="dialog">
 <h1 class="cabecera" md-dialog-title>{{title}}</h1>
-<div class=" detalle" md-dialog-content>{{description}}</div>
+<div *ngIf="description" class="detalle" md-dialog-content>{{description}}</div>
+<div *ngIf="descipcion_lista_precio" class="detalle" md-dialog-content>
+  {{descipcion_lista_precio}}<br><br>
+
+  <md-input-container>
+      <input mdInput placeholder={{label_precio_compra}} type="number" [(ngModel)]="precio_compra"  name="precio_compra" required maxlength="40">
+      <br>
+  </md-input-container>
+  <md-input-container>
+      <input mdInput placeholder={{label_margen_ganancia}} type="number" [(ngModel)]="margen_ganancia" name="margen_ganancia" required maxlength="40">
+      <br>
+  </md-input-container>
+  <label *ngIf="precio_compra>0 && margen_ganancia>0">{{label_precio_venta}}: {{precio_compra * (1+margen_ganancia)}}</label>
+  <label *ngIf="precio_compra<=0 || margen_ganancia<=0">{{label_precio_venta}}: ---</label>
+</div>
 <div md-dialog-actions>
   <button class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
   <button class="example-md-buttons" md-raised-button color="warn" (click)="dialogRef.close('Cancelar')">{{option2}}</button>
+</div>
 </div>

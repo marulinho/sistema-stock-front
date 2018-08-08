@@ -20,6 +20,7 @@ export class HomeProductoDetalleComponent implements OnInit{
     snackBarRef: any;
     tooltipEditarProducto = Constantes.LABEL_EDITAR_PRODUCTO;
     tooltipEliminarProducto = Constantes.LABEL_ELIMINAR_PRODUCTO;
+    tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';
     codigo : number;
     estado : string;
@@ -107,6 +108,10 @@ export class HomeProductoDetalleComponent implements OnInit{
 
     apretarEditarProducto(){
         this.router.navigate([Constantes.URL_EDITAR_PRODUCTO+this.codigo+'/']);
+    }
+
+    apretarAtras(){
+        this.router.navigate([Constantes.URL_HOME_PRODUCTO]);
     }
     
 }

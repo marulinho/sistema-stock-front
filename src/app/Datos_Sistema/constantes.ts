@@ -32,6 +32,14 @@ export const Constantes={
     PREGUNTA_ASIGNAR_PRODUCTO: '¿Desea asignar el producto?',
     TITLE_DESASIGNAR_PRODUCTO: 'Desasignar Producto',
     PREGUNTA_DESASIGNAR_PRODUCTO: '¿Desea desasginar el producto?',
+    TITLE_ELIMINAR_LISTA_PRECIO: 'Eliminar Lista de Precios',
+    PREGUNTA_ELIMINAR_LISTA_PRECIO: '¿Desea eliminar la lista de precios?',
+    TITLE_EDITAR_PRECIO_LISTA: 'Editar Precio',
+    DESCRIPCION_EDITAR_PRECIO_LISTA: 'Configure los precios',
+    TITLE_ELIMINAR_COMBO: 'Eliminar Combo',
+    PREGUNTA_ELIMINAR_COMBO: '¿Desea eliminar el combo?',
+    TITLE_ELIMINAR_PRODUCTO_COMBO: 'Eliminar Producto Combo',
+    PREGUNTA_ELIMINAR_PRODUCTO_COMBO: '¿Desea eliminar producto del combo?',
 
 //OPCIONES DIALOGS
     OPCION_ACEPTAR: 'Aceptar',
@@ -46,6 +54,7 @@ export const Constantes={
     LABEL_HOME_CATEGORIA_DETALLE : 'CATEGORIA DETALLE',
     LABEL_HOME_SUB_CATEGORIA: 'SUB-CATEGORIA',
     LABEL_HOME_USUARIO : 'USUARIO',
+    LABEL_HOME_COMBO : 'COMBO',
     
 
 //LABELS
@@ -126,10 +135,34 @@ export const Constantes={
     LABEL_UNIDAD_MEDIDA: 'Unidad Medida',
     LABEL_MEDIDA: 'Medida',
     LABEL_UPDATE_TABLA: 'Actualizar Tabla',
+    LABEL_LISTA_PRECIO: 'Lista de Precios',
+    LABEL_AGREGAR_LISTA_PRECIO: 'Agregar Lista de Precios',
+    LABEL_BUSCAR_TABLA_LISTA_PRECIO: 'Ingrese el nombre del producto',
+    LABEL_PRECIO_COMPRA : 'Precio Compra',
+    LABEL_PRECIO_VENTA : 'Precio Venta',
+    LABEL_MARGEN_GANANCIA : 'Margen Ganancia',
+    LABEL_GANANCIA : 'Ganancia',
+    LABEL_PESO : '$',
+    LABEL_PORCENTAJE: '%',
+    LABEL_ELIMINAR_LISTA_PRECIO : 'Eliminar Lista de Precios',
+    LABEL_REGISTRAR_LISTA_PRECIO : 'Registrar Lista de Precios',
+    LABEL_DATOS_LISTA_PRECIO : 'Datos Lista de Precios',
+    LABEL_BUSCAR_PRODUCTO: 'Buscar Producto',
+    LABEL_EDITAR_PRECIO: 'Editar Precio',
+    LABEL_AGREGAR_COMBO: 'Agregar Combo',
+    LABEL_EDITAR_COMBO: 'Editar Combo',
+    LABEL_ELIMINAR_COMBO: 'Eliminar Combo',
+    LABEL_COMBO: 'Combo',
+    LABEL_BUSCAR_TABLA_COMBO: 'Ingrese el nombre del combo',
+    LABEL_PRODUCTOS_COMBO: 'Productos Combo',
+    LABEL_NAVEGAR_COMBO: 'Ir a Combo',
+
+    
 
 //DESCRIPCIÓN CARD 
     DESCRIPCION_PRODUCTO : 'En esta sección se lleva a cabo la administración de los productos',
     DESCRIPCION_CATEGORIA : 'En esta sección se lleva a cabo la administración de las categorias',
+    DESCRIPCION_CATEDESCRIPCION_CATEGORIA : 'En esta sección se lleva a cabo la administración de las categorias',
     DESCRIPCION_SUB_CATEGORIA : 'En esta sección se lleva a cabo la administración de las sub-categorias',
     DESCRIPCION_SUB_CATEGORIA_CATEGORIA : 'En esta sección se lleva a cabo la administración de las sub-categorias de la categoria seleccionada',
     DESCRIPCION_SUBCATEGORIAS_NO_CATEGORIA : 'La siguiente tabla contiene subcategorias que no han sido asignadas a la categoria seleccionada',
@@ -138,14 +171,17 @@ export const Constantes={
     DESCRIPCION_PRODUCTO_SUBCATEGORIA : 'En esta sección se lleva a cabo la administración de los productos de la sub-categoria seleccionada',
     DESCRIPCION_PRODUCTOS_NO_SUBCATEGORIA : 'La siguiente tabla contiene productos que no han sido asignados a la sub-categoria seleccionada',
     DESCRIPCION_USUARIO: 'En esta sección se lleva a cabo la administración de los usuarios',
+    DESCRIPCION_LISTA_PRECIO : 'En esta sección se lleva a cabo la administración de listas de precios',
+    DESCRIPCION_COMBO: 'En esta sección se lleva a cabo la administración de los combos',
 
-    
+
 //ERRORES
     ERROR_CAMPOS_INCOMPLETOS : 'Debe completar todos los campos obligatorios (*)',
     ERROR_CONTRASENIAS_DISTINTAS : 'Las contraseñas deben coincidir',
     ERROR_USUARIO_CONTRASENIA_IGUAL:'El nombre de usuario y contraseña debe ser diferente',
     ERROR_CONTRASENIAS_IGUAL:'La contraseña nueva debe ser diferente a la actual',
     ERROR_NO_INICIO_SESION : 'El usuario no inicio sesion',
+    ERROR_LISTAS_DIFERENTES : 'Debe completar todas las filas de la lista de precios',
 
     
 //MENSAJES
@@ -160,6 +196,7 @@ export const Constantes={
     MENSAJE_PRODUCTO_ELIMINADO: 'Producto eliminado correctamente',
     MENSAJE_ASIGNACION_EXISTOSA: 'Asignación Exitosa',
     MENSAJE_DESASIGNACION_EXISTOSA: 'Desasignación Exitosa',
+    MENSAJE_LISTA_PRECIO_ELIMINADA: 'Lista de Precios eliminada correctamente',
     MENSAJE_OK : 'OK',
 
 //OPERADORES COMPARACION
@@ -190,5 +227,11 @@ export const Constantes={
     URL_EDITAR_PRODUCTO: '/editProduct/',
     URL_AGREGAR_PRODUCTO: '/addProduct/',
     URL_ASIGNAR_PRODUCTO_CATEGORIA: '/assignProductCategory/',
-    URL_ASIGNAR_PRODUCTO_SUBCATEGORIA: '/assignProductSubCategory/'
+    URL_ASIGNAR_PRODUCTO_SUBCATEGORIA: '/assignProductSubCategory/',
+    URL_HOME_LISTA_PRECIO : '/homePriceList/',
+    URL_AGREGAR_LISTA_PRECIO : '/addPriceList/',
+    URL_HOME_COMBO: '/homeCombo/',
+    URL_HOME_COMBO_DETALLE: '/homeComboDetail/',
+    URL_AGREGAR_COMBO : '/addCombo/',
+    URL_EDITAR_COMBO: '/editCombo/'
 };

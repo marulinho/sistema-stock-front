@@ -1,0 +1,71 @@
+<div class="page-content">
+  <md-card fxFlex class="page-card">
+    <md-card-title>
+      {{label_lista_precio}}
+      <a class="example-tooltip-host" mdTooltip={{tooltipAgregarListaPrecio}} [mdTooltipPosition]="position" (click)="apretarAgregarListaPrecio()">
+        <img src="assets/icons/nuevo.png">
+      </a>
+      <a class="example-tooltip-host" mdTooltip={{tooltipEliminarListaPrecio}} [mdTooltipPosition]="position" (click)="apretarEliminarListaPrecio()">
+          <img src="assets/icons/delete.png">
+        </a>
+      <a id="botonVolver" class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+        <img src="assets/icons/atras.png">
+      </a>
+    </md-card-title>
+
+    <section *ngIf="errorMessage" class="bs">
+      <div class="bd-example" data-example-id="">
+        <div class="alert alert-danger" role="alert">
+          <strong>{{errorMessage}}</strong>
+        </div>
+      </div>
+      <br>
+    </section>
+    <md-card-content *ngIf="!errorMessage">
+
+      <p>{{label_detalle_lista_precio}}</p>
+      <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder={{label_tabla_lista_precio}} (keyup)='updateFilter($event)'
+      />
+      <ngx-datatable #mydatatable class="material fullscreen" [headerHeight]="50" [limit]="10" [sortType]="'multi'" [columnMode]="'force'"
+        [footerHeight]="50" [rowHeight]="'auto'" [rows]="productos">
+        <ngx-datatable-column name={{label_codigo}}>
+          <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+            {{row.producto.codigo}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name={{label_nombre}}>
+          <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+            {{row.producto.nombre}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name={{label_marca}}>
+          <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+            {{row.producto.marca}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name={{label_medida}}>
+          <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+            {{row.producto.medida}} {{row.producto.nombre_unidad_medida}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name={{label_precio_compra}}>
+          <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+            {{label_peso}} {{row.precio_unitario_compra}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name={{label_margen_ganancia}}>
+          <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+            {{(row.precio_unitario_venta/row.precio_unitario_compra)-1}} {{label_porcentaje}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name={{label_precio_venta}}>
+          <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+              {{label_peso}} {{row.precio_unitario_venta}}
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+
+    </md-card-content>
+
+  </md-card>
+</div>
