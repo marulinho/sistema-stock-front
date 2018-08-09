@@ -152,6 +152,8 @@ export const Constantes={
     LABEL_AGREGAR_COMBO: 'Agregar Combo',
     LABEL_EDITAR_COMBO: 'Editar Combo',
     LABEL_ELIMINAR_COMBO: 'Eliminar Combo',
+    LABEL_REGISTRAR_COMBO: 'Registrar Combo',
+    LABEL_DATOS_COMBO: 'Datos Combo',
     LABEL_COMBO: 'Combo',
     LABEL_BUSCAR_TABLA_COMBO: 'Ingrese el nombre del combo',
     LABEL_PRODUCTOS_COMBO: 'Productos Combo',

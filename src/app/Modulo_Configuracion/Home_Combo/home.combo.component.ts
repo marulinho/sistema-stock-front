@@ -50,8 +50,7 @@ export class HomeComboComponent implements OnInit{
         .then(
             response => {
                 this.combos = response.datos_operacion;
-                this.combos = [...response.datos_operacion];
-                console.log(this.combos);
+                this.combos_temp = [...response.datos_operacion];
             }
         )
         .catch(
@@ -71,7 +70,7 @@ export class HomeComboComponent implements OnInit{
     updateFilter(event) {
         const val = event.target.value.toLowerCase();
         const temp = this.combos_temp.filter(function(d) {
-            return d.nombre.toLowerCase().indexOf(val) !== -1 || !val;
+            return d['combo_cabecera'].nombre.toLowerCase().indexOf(val) !== -1 || !val;
         });
         this.combos = temp;
       }
