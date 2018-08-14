@@ -40,6 +40,8 @@ export const Constantes={
     PREGUNTA_ELIMINAR_COMBO: '¿Desea eliminar el combo?',
     TITLE_ELIMINAR_PRODUCTO_COMBO: 'Eliminar Producto Combo',
     PREGUNTA_ELIMINAR_PRODUCTO_COMBO: '¿Desea eliminar producto del combo?',
+    TITLE_ASIGNAR_PRODUCTO_COMBO: 'Asignar Producto Combo',
+    PREGUNTA_ASIGNAR_PRODUCTO_COMBO: '¿Desea asignar el producto al combo?',
 
 //OPCIONES DIALOGS
     OPCION_ACEPTAR: 'Aceptar',
@@ -158,6 +160,9 @@ export const Constantes={
     LABEL_BUSCAR_TABLA_COMBO: 'Ingrese el nombre del combo',
     LABEL_PRODUCTOS_COMBO: 'Productos Combo',
     LABEL_NAVEGAR_COMBO: 'Ir a Combo',
+    LABEL_CANTIDAD: 'Cantidad',
+    LABEL_COMBO_DETALLE: 'Combo Detalle',
+    LABEL_MODIFICAR_COMBO: 'Modificar Combo',
 
     
 
@@ -175,6 +180,7 @@ export const Constantes={
     DESCRIPCION_USUARIO: 'En esta sección se lleva a cabo la administración de los usuarios',
     DESCRIPCION_LISTA_PRECIO : 'En esta sección se lleva a cabo la administración de listas de precios',
     DESCRIPCION_COMBO: 'En esta sección se lleva a cabo la administración de los combos',
+    DESCRIPCION_LISTA_PRECIO_COMBO: 'En esta sección se pueden seleccionar los productos que van a componer el combo',
 
 
 //ERRORES
@@ -199,6 +205,7 @@ export const Constantes={
     MENSAJE_ASIGNACION_EXISTOSA: 'Asignación Exitosa',
     MENSAJE_DESASIGNACION_EXISTOSA: 'Desasignación Exitosa',
     MENSAJE_LISTA_PRECIO_ELIMINADA: 'Lista de Precios eliminada correctamente',
+    MENSAJE_COMBO_ELIMINADO: 'Combo eliminado correctamente',
     MENSAJE_OK : 'OK',
 
 //OPERADORES COMPARACION

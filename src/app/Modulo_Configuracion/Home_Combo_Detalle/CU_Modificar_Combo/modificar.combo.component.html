@@ -1,0 +1,99 @@
+<div class="sign-container">
+        <md-card class="page-card">
+                <md-card-title>{{label_modificar_combo}}</md-card-title>
+                <md-card-content>
+                        <section *ngIf="errorMessage" class="bs">
+                                <div class="bd-example" data-example-id="">
+                                        <div class="alert alert-danger" role="alert">
+                                                <strong>{{errorMessage}}</strong>
+                                        </div>
+                                </div>
+                                <br>
+                        </section>
+
+                        <h3>{{label_datos_combo}}</h3>
+
+                        <label id="atributo">{{label_codigo}}: </label>
+                        <label>{{codigo}}.</label>
+                        <br><br>
+
+                        <md-input-container>
+                                <input mdInput placeholder={{label_nombre}} type="text" [(ngModel)]="nombre" name="nombre" required maxlength="40">
+                                <br>
+                        </md-input-container><br><br>
+
+                        <label id="atributo">{{label_precio_venta}}: </label>
+                        <label>{{label_peso}} {{precio}}.</label><br>
+
+                        <br>
+                        <label>{{label_buscar_producto}}: </label>
+                        <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder={{label_tabla_combo}} (keyup)='updateFilter($event)'
+                        />
+                        <ngx-datatable 
+                                #mydatatable 
+                                class="material fullscreen" 
+                                [headerHeight]="50"
+                                [limit]="10" 
+                                [sortType]="'multi'" 
+                                [columnMode]="'force'"
+                                [footerHeight]="50"
+                                [rowHeight]="'auto'" 
+                                [rows]="combo">
+                                <ngx-datatable-column name={{label_codigo}}>
+                                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                                {{row.codigo_producto}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_cantidad}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                {{row.cantidad}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_nombre}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                {{row.nombre_producto}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_marca}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                {{row.marca_producto}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_medida}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                {{row.medida}} {{row.nombre_medida}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_precio_compra}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                {{label_peso}} {{row.precio_producto}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_margen_ganancia}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                {{row.margen_ganancia}} 
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_precio_venta}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                {{label_peso}} {{row.precio_producto * row.margen_ganancia}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_accion}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                <a class="example-tooltip-host" mdTooltip="{{tooltipEditarProducto}}" [mdTooltipPosition]="position">
+                                                        <img src="assets/icons/editar.png" (click)="apretarEditarProductoCombo(row)">
+                                                </a>
+                                        </ng-template>
+                                </ngx-datatable-column>
+                        </ngx-datatable>
+
+                </md-card-content>
+                <md-card-actions>
+                        <button md-raised-button (click)="apretarModificarCombo()">{{boton_modificar}}</button>
+                        <button md-raised-button (click)="apretarSalir()">{{boton_salir}}</button>
+                </md-card-actions>
+                <md-card-footer></md-card-footer>
+        </md-card>
+
+</div>

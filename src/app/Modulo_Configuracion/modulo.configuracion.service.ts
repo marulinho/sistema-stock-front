@@ -46,8 +46,9 @@ export class ModuloConfiguracionService extends RestBaseService {
 
     private registrarComboURL = '/registrarCombo/';
     private eliminarComboURL = '/eliminarCombo/';
+    private modificarComboURL = '/modificarCombo/';
     private obtenerCombosVigentesURL = '/obtenerCombosVigentes/';
-    private obtenerDetalleComboURL = '/obtenerDetalleCombo/';
+    private obtenerComboIdURL = '/obtenerComboId/';
    
 
     constructor(private http: Http) { super(); }
@@ -433,6 +434,63 @@ export class ModuloConfiguracionService extends RestBaseService {
             .catch(this.handleError);
     }
 
+    obtenerComboId(codigo:number): Promise<Combo> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerComboIdURL+codigo+'/', this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Combo; })
+            .catch(this.handleError);
+    }
+
+    registrarCombo(nombre,lista_productos,lista_cantidad_productos,lista_margen_ganancia): Promise <ResultadoNone>{
+        const data = {
+            'nombre': nombre,
+            'lista_productos': lista_productos ,
+            'cantidad_productos': lista_cantidad_productos ,
+            'margen_ganancia_productos_combo': lista_margen_ganancia
+
+        };
+
+        return this.http.post(ModuloConfiguracionService.serverURL + this.registrarComboURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
+
+    modificarCombo(codigo,nombre,lista_productos,lista_margen_ganancia,lista_cantidad_productos): Promise <ResultadoNone>{
+        const data = {
+            'codigo':codigo,
+            'nombre': nombre,
+            'lista_productos': lista_productos ,
+            'cantidad_productos': lista_cantidad_productos ,
+            'margen_ganancia_productos_combo': lista_margen_ganancia
+
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.modificarComboURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
+
+    eliminarCombo(codigo: number): Promise<ResultadoNone> {
+        const data = {
+            'codigo': codigo
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.eliminarComboURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
 }
 
 export interface Categoria {

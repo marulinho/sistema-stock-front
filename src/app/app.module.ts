@@ -112,7 +112,9 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
   import { RegistrarListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/CU_Registrar_ListaPrecio/registrar.listaprecio.component';
 
   import { HomeComboComponent } from './Modulo_Configuracion/Home_Combo/home.combo.component';
-
+  import { HomeComboDetalleComponent } from './Modulo_Configuracion/Home_Combo_Detalle/home.combo.detalle.component';
+  import { RegistrarComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/registrar.combo.component';
+  import { ModificarComboComponent } from './Modulo_Configuracion/Home_Combo_Detalle/CU_Modificar_Combo/modificar.combo.component';
 
 //IMPORTS MODULOS CONFIGURACION FINCA
   import { HomeFincaComponent } from './Modulo_Configuracion_Finca/Home_Finca/home.finca.component';
@@ -273,6 +275,10 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     RegistrarListaPrecioComponent,
 
     HomeComboComponent,
+    RegistrarComboComponent,
+    HomeComboDetalleComponent,
+    ModificarComboComponent,
+
 
     //COMPONENTS MODULO CONFIGURACION FINCA
     HomeFincaComponent,

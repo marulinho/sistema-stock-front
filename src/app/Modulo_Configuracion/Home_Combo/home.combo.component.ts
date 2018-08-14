@@ -31,10 +31,6 @@ export class HomeComboComponent implements OnInit{
     label_navegar_combo = Constantes.LABEL_NAVEGAR_COMBO;
     combos = [];
     combos_temp = [];
-
-
-    label_productos_categoria = Constantes.LABEL_PRODUCTOS_CATEGORIA;
-
     
 
     constructor(private router:Router,
@@ -42,7 +38,7 @@ export class HomeComboComponent implements OnInit{
                 private snackBar: MdSnackBar,
                 private appService:AppService){
                     
-           appService.getState().topnavTitle = Constantes.LABEL_HOME_COMBO;
+           appService.getState().topnavTitle = Constantes.LABEL_COMBO;
     }
 
     ngOnInit(){

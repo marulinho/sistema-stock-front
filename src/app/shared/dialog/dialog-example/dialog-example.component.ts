@@ -17,9 +17,12 @@ export class DialogExampleComponent implements OnInit {
   descipcion_lista_precio : string;
   label_precio_compra = Constantes.LABEL_PRECIO_COMPRA;
   label_precio_venta = Constantes.LABEL_PRECIO_VENTA;
+  label_peso = Constantes.LABEL_PESO;
   label_margen_ganancia = Constantes.LABEL_MARGEN_GANANCIA;
+  label_cantidad_productos = Constantes.LABEL_CANTIDAD;
   precio_compra: number;
   margen_ganancia: number;
+  cantidad: number = 0;
   
   constructor(private dialogRef: MdDialogRef<DialogExampleComponent>) {
   }

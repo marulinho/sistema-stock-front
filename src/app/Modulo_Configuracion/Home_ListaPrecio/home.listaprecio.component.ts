@@ -5,20 +5,20 @@ import { MdSnackBar } from '@angular/material';
 import { MdDialog } from '@angular/material';
 import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
 import { Constantes } from '../../Datos_Sistema/constantes';
-import { ModuloConfiguracionService, Producto} from '../modulo.configuracion.service';
+import { ModuloConfiguracionService, Producto } from '../modulo.configuracion.service';
 
 @Component({
-    selector:'homeListaPrecio',
+    selector: 'homeListaPrecio',
     templateUrl: './home.listaprecio.component.html',
-    styleUrls:['./home.listaprecio.component.css']
-    
+    styleUrls: ['./home.listaprecio.component.css']
+
 })
 
-export class HomeListaPrecioComponent implements OnInit{
-    
+export class HomeListaPrecioComponent implements OnInit {
+
     errorMessage = '';
     snackBarRef: any;
-    selectedOption: string; 
+    selectedOption: string;
     tooltipAgregarListaPrecio = Constantes.LABEL_AGREGAR_LISTA_PRECIO;
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';
@@ -37,54 +37,54 @@ export class HomeListaPrecioComponent implements OnInit{
     tooltipEliminarListaPrecio = Constantes.LABEL_ELIMINAR_LISTA_PRECIO;
     productos = [];
     productos_temp = [];
-    codigo_lista_precio : number;
-    
+    codigo_lista_precio: number;
 
-    constructor(private router:Router,
-                private moduloConfiguracion: ModuloConfiguracionService,
-                private snackBar: MdSnackBar,
-                private dialog: MdDialog,
-                private appService:AppService){
-                    
-           appService.getState().topnavTitle = Constantes.LABEL_LISTA_PRECIO;
+
+    constructor(private router: Router,
+        private moduloConfiguracion: ModuloConfiguracionService,
+        private snackBar: MdSnackBar,
+        private dialog: MdDialog,
+        private appService: AppService) {
+
+        appService.getState().topnavTitle = Constantes.LABEL_LISTA_PRECIO;
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.obtenerListaPrecios();
     }
 
-    obtenerListaPrecios(){
+    obtenerListaPrecios() {
         this.moduloConfiguracion.obtenerListaPrecioVigente()
-        .then(
-            response => {
-                this.productos = response.datos_operacion;
-                this.productos_temp = [...response.datos_operacion];
-                this.codigo_lista_precio = this.productos[0]['lista_precio']['codigo'];
-            }
-        )
-        .catch(
-            error => {
-                if (error.error_description == Constantes.ERROR_NO_INICIO_SESION) {
-                    this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_NO_INICIO_SESION, Constantes.MENSAJE_OK, {duration: 3000,});
-                    this.router.navigate([Constantes.URL_LOGIN]);
+            .then(
+                response => {
+                    this.productos = response.datos_operacion;
+                    this.productos_temp = [...response.datos_operacion];
+                    this.codigo_lista_precio = this.productos[0]['lista_precio']['codigo'];
                 }
-                else{
-                    this.errorMessage = error.error_description;
-                }
+            )
+            .catch(
+                error => {
+                    if (error.error_description == Constantes.ERROR_NO_INICIO_SESION) {
+                        this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_NO_INICIO_SESION, Constantes.MENSAJE_OK, { duration: 3000, });
+                        this.router.navigate([Constantes.URL_LOGIN]);
+                    }
+                    else {
+                        this.errorMessage = error.error_description;
+                    }
 
-            }
-        );
+                }
+            );
     }
 
     updateFilter(event) {
         const val = event.target.value.toLowerCase();
-        const temp = this.productos_temp.filter(function(d) {
+        const temp = this.productos_temp.filter(function (d) {
             return d['producto'].nombre.toLowerCase().indexOf(val) !== -1 || !val;
         });
         this.productos = temp;
-      }
+    }
 
-    apretarEliminarListaPrecio(){
+    apretarEliminarListaPrecio() {
         this.openDialog()
     }
 
@@ -100,18 +100,18 @@ export class HomeListaPrecioComponent implements OnInit{
                 if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
                     this.moduloConfiguracion.eliminarListaPrecio(this.codigo_lista_precio)
                         .then(
-                        response => {
-                            this.router.navigate([Constantes.URL_HOME_LISTA_PRECIO]);
-                            this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_LISTA_PRECIO_ELIMINADA, Constantes.MENSAJE_OK, {duration: 3000,});
-                            this.obtenerListaPrecios()
-                        }
+                            response => {
+                                this.router.navigate([Constantes.URL_HOME_LISTA_PRECIO]);
+                                this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_LISTA_PRECIO_ELIMINADA, Constantes.MENSAJE_OK, { duration: 3000, });
+                                this.obtenerListaPrecios()
+                            }
                         )
                         .catch(
                             error => {
                                 if (error.error_description == Constantes.ERROR_NO_INICIO_SESION) {
                                     this.router.navigate([Constantes.URL_LOGIN]);
                                 }
-                                else{
+                                else {
                                     this.errorMessage = error.error_description;
                                 }
                             }
@@ -120,11 +120,11 @@ export class HomeListaPrecioComponent implements OnInit{
             });
     }
 
-    apretarAtras(){
+    apretarAtras() {
         this.router.navigate([Constantes.URL_HOME]);
     }
 
-    apretarAgregarListaPrecio(){
+    apretarAgregarListaPrecio() {
         this.router.navigate([Constantes.URL_AGREGAR_LISTA_PRECIO]);
     }
 }

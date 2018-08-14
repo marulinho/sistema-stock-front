@@ -84,6 +84,9 @@ import { HomeListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPreci
 import { RegistrarListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/CU_Registrar_ListaPrecio/registrar.listaprecio.component';
 
 import { HomeComboComponent } from './Modulo_Configuracion/Home_Combo/home.combo.component';
+import { HomeComboDetalleComponent } from './Modulo_Configuracion/Home_Combo_Detalle/home.combo.detalle.component';
+import { RegistrarComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/registrar.combo.component';
+import { ModificarComboComponent } from './Modulo_Configuracion/Home_Combo_Detalle/CU_Modificar_Combo/modificar.combo.component';
 
 
 //IMPORTS MODULO CONFIGURACION FINCA
@@ -201,8 +204,10 @@ export const ROUTES: Routes = [
   { path: 'addPriceList', component: RegistrarListaPrecioComponent },
 
   { path: 'homeCombo', component: HomeComboComponent },
-
-
+  { path: 'homeComboDetail/:id_combo', component: HomeComboDetalleComponent },
+  { path: 'addCombo', component: RegistrarComboComponent },
+  { path: 'editCombo/:id_combo', component: ModificarComboComponent },
+  
 
   //MODULO CONFIGURACION FINCA
   { path: 'homeFincaDetalle', component: HomeFincaDetalleComponent },

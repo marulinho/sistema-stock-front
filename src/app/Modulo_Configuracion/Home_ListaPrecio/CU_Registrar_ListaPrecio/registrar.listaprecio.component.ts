@@ -234,33 +234,7 @@ export class RegistrarListaPrecioComponent implements OnInit {
     }
 
 
-    apretarAgregarProducto(){
-
-    }
-
-    openDialogAgregarProducto(title,descipcion_lista_precio,precio_compra,porcentaje_margen_ganancia,row) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.descipcion_lista_precio = descipcion_lista_precio ;
-        dialogRef.componentInstance.precio_compra = precio_compra ;
-        dialogRef.componentInstance.margen_ganancia = porcentaje_margen_ganancia ;
-        dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
-        dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
-        dialogRef.afterClosed().subscribe(
-            result => {
-                this.selectedOption = result;
-                if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
-                    if(dialogRef.componentInstance.precio_compra <= 0 || dialogRef.componentInstance.margen_ganancia <= 0){
-                        //dejamos el margen y precios actuales    
-                    }
-                    else{
-                        this.lista_precio[row.$$index]['precio_unitario_compra'] = dialogRef.componentInstance.precio_compra;
-                        this.lista_precio[row.$$index]['precio_unitario_venta'] = dialogRef.componentInstance.precio_compra  * (1+dialogRef.componentInstance.margen_ganancia);
-                    }                    
-                } 
-            }
-        );
-    }
+    
     apretarAtrasRegistrar(){
         this.errorMessage = "";
         this.arrayVerificar = this.utils.limpiarArray(this.arrayVerificar);

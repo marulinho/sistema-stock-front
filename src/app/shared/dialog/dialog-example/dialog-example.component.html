@@ -4,12 +4,15 @@
 <div *ngIf="descipcion_lista_precio" class="detalle" md-dialog-content>
   {{descipcion_lista_precio}}<br><br>
 
-  <md-input-container>
-      <input mdInput placeholder={{label_precio_compra}} type="number" [(ngModel)]="precio_compra"  name="precio_compra" required maxlength="40">
-      <br>
+  <md-input-container *ngIf="cantidad != 0">
+    <input mdInput placeholder={{label_cantidad_productos}} type="number" [(ngModel)]="cantidad"  name="cantidad" required maxlength="40">
+    <br>
   </md-input-container>
+      
+  <label>{{label_precio_compra}}: {{label_peso}} {{precio_compra}}</label><br><br><br>
+  
   <md-input-container>
-      <input mdInput placeholder={{label_margen_ganancia}} type="number" [(ngModel)]="margen_ganancia" name="margen_ganancia" required maxlength="40">
+      <input mdInput placeholder={{label_margen_ganancia}}  type="number" [(ngModel)]="margen_ganancia" name="margen_ganancia" required maxlength="40">
       <br>
   </md-input-container>
   <label *ngIf="precio_compra>0 && margen_ganancia>0">{{label_precio_venta}}: {{precio_compra * (1+margen_ganancia)}}</label>

@@ -40,7 +40,7 @@
               <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
                 <span 
                   title={{label_navegar_combo}}
-                  (click)="apretarIrCombo(row.codigo)"
+                  (click)="apretarIrCombo(row.combo_cabecera.codigo)"
                 >
                 {{row.combo_cabecera.codigo}}
               </span>
@@ -55,7 +55,7 @@
             <ngx-datatable-column name={{label_productos}}  style="width:60%">
               <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
                 <ul *ngFor="let detalle of row.combo_detalles; let i = index" [attr.data-index]="i">
-                    Cod. {{detalle.codigo_producto}} - {{detalle.cantidad}} {{detalle.nombre_producto}} {{detalle.medida}} {{detalle.nombre_medida}}
+                    Cod. {{detalle.codigo_producto}} - {{detalle.cantidad}} {{detalle.nombre_producto}} {{detalle.marca_producto}} {{detalle.medida}} {{detalle.nombre_medida}}
               </ul>
               </ng-template>
             </ngx-datatable-column>
