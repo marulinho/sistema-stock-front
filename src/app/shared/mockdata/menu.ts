@@ -29,6 +29,12 @@ export class MenuMock {
       link: '/homeBuy/'
     },
     {
+      name: 'remitos',
+      title: 'Remitos',
+      faIcon: 'fa fa-exchange',
+      link: '/homeMove/'
+    },
+    {
       name: 'lista',
       title: 'Listas de Precios',
       faIcon: 'fa fa-list',

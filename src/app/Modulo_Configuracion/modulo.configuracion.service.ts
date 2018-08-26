@@ -259,12 +259,13 @@ export class ModuloConfiguracionService extends RestBaseService {
             .catch(this.handleError);
     }
 
-    registrarProducto(nombre: string, marca:string, medida:number, unidad_medida:number): Promise<ResultadoNone> {
+    registrarProducto(nombre: string, marca:string, medida:number, unidad_medida:number, stock_minimo:number): Promise<ResultadoNone> {
         const data = {
             'nombre': nombre,
             'marca': marca,
             'medida':medida,
-            'id_unidad_medida':unidad_medida
+            'id_unidad_medida':unidad_medida,
+            'stock_minimo':stock_minimo
         };
 
         return this.http.post(ModuloConfiguracionService.serverURL + this.registrarProductoURL, JSON.stringify(data), this.getRestHeader())
@@ -275,13 +276,15 @@ export class ModuloConfiguracionService extends RestBaseService {
             })
             .catch(this.handleError);
     }
-    modificarProducto(codigo: number, nombre: string, marca:string, id_unidad_medida:number, medida:number): Promise<ResultadoNone> {
+
+    modificarProducto(codigo: number, nombre: string, marca:string, id_unidad_medida:number, medida:number, stock_minimo:number): Promise<ResultadoNone> {
         const data = {
             'codigo':codigo,
             'nombre': nombre,
             'marca': marca,
             'medida':medida,
-            'id_unidad_medida':id_unidad_medida
+            'id_unidad_medida':id_unidad_medida,
+            'stock_minimo':stock_minimo
         };
 
         return this.http.put(ModuloConfiguracionService.serverURL + this.modificarProductoURL, JSON.stringify(data), this.getRestHeader())

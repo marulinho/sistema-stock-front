@@ -86,6 +86,7 @@ import { ModificarComboComponent } from './Modulo_Configuracion/Home_Combo_Detal
 //IMPORTS MODULO FINANZAS
 import { HomeCajaComponent } from './Modulo_Finanzas/Home_Caja/home.caja.component';
 import { HomeCompraComponent } from './Modulo_Finanzas/Home_Compra/home.compra.component';
+import { HomeCompraDetalleComponent } from './Modulo_Finanzas/Home_Compra_Detalle/home.compra.detalle.component';
 import { RegistrarCompraComponent } from './Modulo_Finanzas/Home_Compra/CU_Registrar_Compra/registrar.compra.component';
 
 
@@ -165,6 +166,7 @@ export const ROUTES: Routes = [
   //MODULO FINANZAS
   { path: 'homeCash', component: HomeCajaComponent },
   { path: 'homeBuy', component: HomeCompraComponent },
+  { path: 'homeBuyDetail/:id_compra', component: HomeCompraDetalleComponent },
   { path: 'addBuy', component: RegistrarCompraComponent },
 
 

@@ -27,6 +27,7 @@ export class ModificarProductoComponent implements OnInit {
     label_unidad_medida = Constantes.LABEL_UNIDAD_MEDIDA;
     label_respuesta_unidad_medida = Constantes.LABEL_MEDIDA;
     label_medida = Constantes.LABEL_MEDIDA;
+    label_stock_minimo = Constantes.LABEL_STOCK_MINIMO;
     boton_modificar = Constantes.BOTON_MODIFICAR;
     boton_salir = Constantes.BOTON_SALIR;
 
@@ -36,6 +37,7 @@ export class ModificarProductoComponent implements OnInit {
     marca: string;
     medida: number;
     id_unidad_medidad: number;
+    stock_minimo : number;
     unidades_medidas: UnidadMedida;
 
 
@@ -95,7 +97,7 @@ export class ModificarProductoComponent implements OnInit {
 
     apretarModificarProducto() {
         this.arrayVerificar = this.utils.limpiarArray(this.arrayVerificar);
-        this.arrayVerificar.push(this.nombre,this.marca,this.medida);
+        this.arrayVerificar.push(this.nombre,this.marca,this.medida,this.stock_minimo);
         if (this.utils.verificarDatosIncompletos(this.arrayVerificar) == true) {
             this.errorMessage = Constantes.ERROR_CAMPOS_INCOMPLETOS;
         }
@@ -103,7 +105,7 @@ export class ModificarProductoComponent implements OnInit {
             this.arrayVerificar = this.utils.limpiarArray(this.arrayVerificar);
             this.errorMessage = "";
 
-            this.moduloConfiguracion.modificarProducto(this.codigo,this.nombre,this.marca,this.id_unidad_medidad,this.medida)
+            this.moduloConfiguracion.modificarProducto(this.codigo,this.nombre,this.marca,this.id_unidad_medidad,this.medida,this.stock_minimo)
                 .then(
                     response => {
                         this.router.navigate([Constantes.URL_HOME_PRODUCTO_DETALLE+'/'+this.codigo]);

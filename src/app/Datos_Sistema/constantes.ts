@@ -1,8 +1,11 @@
 export const Constantes={
  
 //ESTADOS
-    ESTADO_HABILITADO : '1',
-    ESTADO_DESHABILITADO : '2', 
+    ESTADO_CANCELADO : 'Cancelado', 
+    ESTADO_CREADO : 'Creado',
+    ESTADO_PAGADO : 'Pagado',
+    ESTADO_ABIERTA : 'Abierta',
+    ESTADO_CERRADA : 'Cerrada',
 
 //BOTONES
     BOTON_ACEPTAR : 'ACEPTAR',
@@ -44,10 +47,13 @@ export const Constantes={
     PREGUNTA_ASIGNAR_PRODUCTO_COMBO: '¿Desea asignar el producto al combo?',
     TITLE_ABRIR_CAJA: 'Abrir Caja',
     PREGUNTA_ABRIR_CAJA: '¿Desea abrir la caja?',
+    PREGUNTA_ABRIR_CAJA_NO_EXISTE: 'No existe una caja abierta, ¿Desea abrir una nueva?',
     TITLE_CERRAR_CAJA: 'Cerrar Caja',
     PREGUNTA_CERRAR_CAJA: '¿Desea cerrar la caja?',
     TITLE_CANCELAR_COMPRA: 'Cancelar Compra',
     PREGUNTA_CANCELAR_COMPRA: '¿Desea cancelar la compra?',
+    TITLE_PAGAR_COMPRA: 'Pagar Compra',
+    PREGUNTA_PAGAR_COMPRA: '¿Desea pagar la compra?',
 
 //OPCIONES DIALOGS
     OPCION_ACEPTAR: 'Aceptar',
@@ -64,9 +70,6 @@ export const Constantes={
     LABEL_HOME_USUARIO : 'USUARIO',
     LABEL_HOME_COMBO : 'COMBO',
 
-//ESTADOS
-    ESTADO_ABIERTA : 'Abierta',
-    ESTADO_CERRADA : 'Cerrada',
 
 //LABELS
     LABEL_USUARIO : 'Usuario',
@@ -201,6 +204,14 @@ export const Constantes={
     LABEL_COMPRA : 'Compra',
     LABEL_BUSCAR_COMPRA: 'Buscar Compra',
     LABEL_REGISTRAR_COMPRA: 'Registrar Compra',
+    LABEL_COMPRA_DETALLE : 'Compra Detalle',
+    LABEL_SUBTOTAL : 'SubTotal',
+    LABEL_STOCK_MINIMO : 'Stock Minimo',
+    LABEL_STOCK_LOCAL : 'Stock Local',
+    LABEL_STOCK_DEPOSITO : 'Stock Deposito', 
+    LABEL_PAGAR_COMPRA : 'Pagar Compra',
+    LABEL_NO_HAY_INGRESOS : 'No hay ingresos',
+    LABEL_NO_HAY_EGRESOS : 'No hay egresos',
 
 //DESCRIPCIÓN CARD 
     DESCRIPCION_PRODUCTO : 'En esta sección se lleva a cabo la administración de los productos',
@@ -228,6 +239,7 @@ export const Constantes={
     ERROR_CONTRASENIAS_IGUAL:'La contraseña nueva debe ser diferente a la actual',
     ERROR_NO_INICIO_SESION : 'El usuario no inicio sesion',
     ERROR_LISTAS_DIFERENTES : 'Debe completar todas las filas de la lista de precios',
+    ERROR_MOVIMIENTO_CAPITAL_EXISTENTE : 'Ya existe un movimiento de capital asociado a la compra',
 
     
 //MENSAJES
@@ -246,6 +258,8 @@ export const Constantes={
     MENSAJE_COMBO_ELIMINADO: 'Combo eliminado correctamente',
     MENSAJE_REGISTRACION_APERTURA: 'Apertura Exitosa',
     MENSAJE_REGISTRACION_CIERRE: 'Cierre Exitoso',
+    MENSAJE_CANCELACION_EXITOSA: 'Cancelación Exitosa',
+    MENSAJE_REGISTRACION_PAGO_EXITOSA: 'Pago Exitoso',
     MENSAJE_OK : 'OK',
 
 //OPERADORES COMPARACION
@@ -285,6 +299,6 @@ export const Constantes={
     URL_EDITAR_COMBO: '/editCombo/',
     URL_HOME_CAJA: '/homeCash/',
     URL_HOME_COMPRA: '/homeBuy/',
-    URL_HOME_COMPRA_DETALLE: '/homeComboBuy/',
+    URL_HOME_COMPRA_DETALLE: '/homeBuyDetail/',
     URL_AGREGAR_COMPRA : '/addBuy/',
 };

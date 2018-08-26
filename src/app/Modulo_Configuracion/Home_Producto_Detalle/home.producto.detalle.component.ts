@@ -30,6 +30,9 @@ export class HomeProductoDetalleComponent implements OnInit{
     label_marca = Constantes.LABEL_MARCA;
     label_medida = Constantes.LABEL_MEDIDA;
     label_producto_detalle = Constantes.LABEL_PRODUCTO_DETALLE;
+    label_stock_minimo = Constantes.LABEL_STOCK_MINIMO;
+    label_stock_local = Constantes.LABEL_STOCK_LOCAL;
+    label_stock_deposito = Constantes.LABEL_STOCK_DEPOSITO;
     producto : Producto;
     
 

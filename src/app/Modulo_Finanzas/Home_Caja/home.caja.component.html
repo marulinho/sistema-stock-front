@@ -23,6 +23,9 @@
       <md-card-content *ngIf="!errorMessage">
         <p>{{label_descripcion_caja}}</p>
 
+        <label id='atributo'>{{label_estado}}: </label>
+        <label>{{caja_cabecera.estado}} </label> <br><br>
+
         <label id='atributo'>{{label_fecha_apertura}}: </label>
         <label>{{caja_cabecera.fecha_apertura}} </label> <br><br>
 
@@ -47,13 +50,20 @@
             <md-card-title>
               {{label_detalle_ingresos}}
             </md-card-title>
-            <md-card-content>
+            <section *ngIf="errorMessageIngresos" class="bs">
+              <div class="bd-example" data-example-id="">
+                      <div class="alert alert-danger" role="alert">
+                              <strong>{{errorMessageIngresos}}</strong>
+                      </div>
+              </div><br>
+            </section>
+            <md-card-content *ngIf="!errorMessageIngresos">
               <section class="bs">
                 <table class="table table-card">
                 <thead>
                 <tr>
-                  <th style="width:50%;">{{label_fecha}}</th>
-                  <th style="width:10%;">{{label_descripcion}}</th>
+                  <th style="width:30%;">{{label_fecha}}</th>
+                  <th style="width:50%;">{{label_descripcion}}</th>
                   <th class="number">{{label_total}}</th>
                 </tr>
                 </thead>
@@ -61,7 +71,7 @@
                 <tr *ngFor="let detalle of caja_detalles_ingreso">
                   <td>{{detalle.fecha}}</td>
                   <td>{{detalle.descripcion}}</td>
-                  <td>{{detalle.total}}</td>
+                  <td>{{label_peso}} {{detalle.total}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -72,13 +82,20 @@
             <md-card-title>
               {{label_detalle_egresos}}
             </md-card-title>
-            <md-card-content>
+            <section *ngIf="errorMessageEgresos" class="bs">
+              <div class="bd-example" data-example-id="">
+                      <div class="alert alert-danger" role="alert">
+                              <strong>{{errorMessageEgresos}}</strong>
+                      </div>
+              </div><br>
+            </section>
+            <md-card-content *ngIf="!errorMessageEgresos">
               <section class="bs">
                 <table class="table table-card">
                 <thead>
                 <tr>
-                  <th style="width:50%;">{{label_fecha}}</th>
-                  <th style="width:10%;">{{label_descripcion}}</th>
+                  <th style="width:30%;">{{label_fecha}}</th>
+                  <th style="width:50%;">{{label_descripcion}}</th>
                   <th class="number">{{label_total}}</th>
                 </tr>
                 </thead>
@@ -86,7 +103,7 @@
                 <tr *ngFor="let detalle of caja_detalle_egreso">
                     <td>{{detalle.fecha}}</td>
                     <td>{{detalle.descripcion}}</td>
-                    <td>{{detalle.total}}</td>
+                    <td>{{label_peso}} {{detalle.total}}</td>
                 </tr>
                 </tbody>
               </table>

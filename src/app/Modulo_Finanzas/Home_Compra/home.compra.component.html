@@ -39,13 +39,7 @@
           [rows]="compras">
           <ngx-datatable-column name={{label_codigo}} >
             <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-              <span 
-                title={{label_navegar_compra}}
-                (click)="apretarIrCombo(row.combo_cabecera.codigo)"
-              >
-              {{row.codigo}}
-            </span>
-              
+              {{row.codigo}}  
             </ng-template>
           </ngx-datatable-column>
           <ngx-datatable-column name={{label_fecha}}>
@@ -71,6 +65,13 @@
           <ngx-datatable-column name={{label_estado}}>
             <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
                 {{row.estado}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name={{label_accion}}>
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+              <a class="example-tooltip-host" mdTooltip="{{tooltipIrCompra}}" [mdTooltipPosition]="position">
+                <img src="assets/icons/navigation.png" (click)="apretarIrCompra(row.codigo)">
+              </a>
             </ng-template>
           </ngx-datatable-column>
         </ngx-datatable>

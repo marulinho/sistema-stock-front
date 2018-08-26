@@ -19,6 +19,7 @@ export class HomeCompraComponent implements OnInit{
     errorMessage = '';
     snackBarRef: any;
     tooltipAgregarCompra = Constantes.LABEL_AGREGAR_COMPRA;
+    tooltipIrCompra = Constantes.LABEL_NAVEGAR_COMPRA;
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';
     label_compra = Constantes.LABEL_COMPRA;
@@ -26,8 +27,6 @@ export class HomeCompraComponent implements OnInit{
     label_codigo = Constantes.LABEL_CODIGO;
     label_fecha = Constantes.LABEL_FECHA;
     label_total = Constantes.LABEL_TOTAL;
-    label_total_parcial = Constantes.LABEL_TOTAL_PARCIAL;
-    label_descuento = Constantes.LABEL_DESCUENTO;
     label_peso = Constantes.LABEL_PESO;
     label_usuario = Constantes.LABEL_USUARIO;
     label_tipo_movimiento = Constantes.LABEL_TIPO_MOVIMIENTO;
@@ -35,6 +34,7 @@ export class HomeCompraComponent implements OnInit{
     label_tabla_compra = Constantes.LABEL_BUSCAR_TABLA_COMPRA;
     label_buscar_compra = Constantes.LABEL_BUSCAR_COMPRA;
     label_navegar_compra = Constantes.LABEL_NAVEGAR_COMPRA;
+    label_accion = Constantes.LABEL_ACCION;
     compras = [];
     compras_temp = [];
     
@@ -52,6 +52,9 @@ export class HomeCompraComponent implements OnInit{
         .then(
             response => {
                 this.compras = response.datos_operacion;
+                for (var i = 0; i < this.compras.length; i++){
+                    this.compras[i]['fecha_creacion'] = this.compras[i]['fecha_creacion'].substring(0,10).concat('  ',this.compras[i]['fecha_creacion'].substring(11,19));
+                }
                 this.compras_temp = [...response.datos_operacion];
             }
         )

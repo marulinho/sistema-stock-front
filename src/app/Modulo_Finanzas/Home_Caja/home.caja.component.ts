@@ -39,9 +39,12 @@ export class HomeCajaComponent implements OnInit{
     label_fecha = Constantes.LABEL_FECHA;
     label_descripcion = Constantes.LABEL_DESCRIPCION;
     label_total = Constantes.LABEL_TOTAL;
+    label_estado = Constantes.LABEL_ESTADO;
     total_ingreso : number = 0;
     total_egreso : number = 0;
     estado = '';
+    errorMessageIngresos = '';
+    errorMessageEgresos = '';
 
     caja_cabecera = [];
     caja_detalles = [];
@@ -91,6 +94,8 @@ export class HomeCajaComponent implements OnInit{
                 this.estado = this.caja_cabecera['estado'];
                 this.caja_detalles = response.datos_operacion['caja_detalles'];
                 this.llenarCajaDetalle();
+                
+                
             }
         )
         .catch(
@@ -111,26 +116,38 @@ export class HomeCajaComponent implements OnInit{
         let longitud = this.caja_detalles.length;
         let caja_detalle_ingreso_temp : Array<{ fecha:string, descripcion: string, total: number}> = [];
         let caja_detalle_egreso_temp : Array<{ fecha:string, descripcion: string, total: number}> = [];
-        for(var i = 0; i<longitud; i++){
-            if (this.caja_detalles[i]['tipo_movimiento'] === Constantes.LABEL_MOVIMIENTO_ENTRADA){
-                caja_detalle_ingreso_temp.push({fecha : this.caja_detalles[i]['fecha_creacion'].substring(0,10).concat(' ',this.caja_detalles[i]['fecha_creacion'].substring(11,19)),
-                                                descripcion : this.caja_detalles[i]['detalle'],
+        this.caja_detalle_egreso = [];
+        this.caja_detalle_ingreso = [];
+        this.total_egreso = 0;
+        this.total_ingreso = 0;
+        
+        for (var i = 0; i < longitud; i++) {
+            if (this.caja_detalles[i]['tipo_movimiento'] === Constantes.LABEL_MOVIMIENTO_ENTRADA) {
+                caja_detalle_ingreso_temp.push({fecha: this.caja_detalles[i]['fecha_creacion'].substring(0, 10).concat(' ', this.caja_detalles[i]['fecha_creacion'].substring(11, 19)),
+                                                descripcion: this.caja_detalles[i]['detalle'],
                                                 total: this.caja_detalles[i]['total']
-                                              })
-                this.total_ingreso += caja_detalle_ingreso_temp['total'];
+                                            });
+                this.total_ingreso += this.caja_detalles[i]['total'];
                 this.caja_detalle_ingreso = this.caja_detalle_ingreso.concat(caja_detalle_ingreso_temp);
                 caja_detalle_ingreso_temp.pop();
-                
+
             }
-            else{
-                caja_detalle_egreso_temp.push({fecha : this.caja_detalles[i]['fecha_creacion'].substring(0,10).concat(' ',this.caja_detalles[i]['fecha_creacion'].substring(11,19)),
-                                                descripcion : this.caja_detalles[i]['detalle'],
+            else {
+                caja_detalle_egreso_temp.push({fecha: this.caja_detalles[i]['fecha_creacion'].substring(0, 10).concat(' ', this.caja_detalles[i]['fecha_creacion'].substring(11, 19)),
+                                                descripcion: this.caja_detalles[i]['detalle'],
                                                 total: this.caja_detalles[i]['total']
-                                              })
-                this.total_egreso += caja_detalle_egreso_temp['total'];
+                                            });
+                this.total_egreso += this.caja_detalles[i]['total'];
                 this.caja_detalle_egreso = this.caja_detalle_egreso.concat(caja_detalle_egreso_temp);
                 caja_detalle_egreso_temp.pop();
             }
+        }
+
+        if (this.caja_detalle_ingreso.length == 0) {
+            this.errorMessageIngresos = Constantes.LABEL_NO_HAY_INGRESOS;
+        }
+        if (this.caja_detalle_egreso.length == 0) {
+            this.errorMessageEgresos = Constantes.LABEL_NO_HAY_EGRESOS;
         }
     }
 
