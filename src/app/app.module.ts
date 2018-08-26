@@ -116,66 +116,7 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
   import { RegistrarComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/registrar.combo.component';
   import { ModificarComboComponent } from './Modulo_Configuracion/Home_Combo_Detalle/CU_Modificar_Combo/modificar.combo.component';
 
-//IMPORTS MODULOS CONFIGURACION FINCA
-  import { HomeFincaComponent } from './Modulo_Configuracion_Finca/Home_Finca/home.finca.component';
-  import { HomeFincaService } from './Modulo_Configuracion_Finca/Home_Finca/home.finca.service';
-  import { HomeFincaDetalleComponent } from './Modulo_Configuracion_Finca/Home_Finca_Detalle/home.finca.detalle.component';
-  import { HomeFincaDetalleService } from './Modulo_Configuracion_Finca/Home_Finca_Detalle/home.finca.detalle.service';
-  import { SolicitarCreacionFincaComponent } from './Modulo_Configuracion_Finca/CU_Solicitar_Creacion_Finca/solicitar.creacion.finca.component';
-  import { SolicitarCreacionFincaService } from './Modulo_Configuracion_Finca/CU_Solicitar_Creacion_Finca/solicitar.creacion.finca.service';
-  import { GestionarFincaComponent } from './Modulo_Configuracion_Finca/CU_Gestionar_Finca/gestionar.finca.component';
-  import { GestionarFincaService } from './Modulo_Configuracion_Finca/CU_Gestionar_Finca/gestionar.finca.service';
-  import { GestionarUsuarioFincaComponent } from './Modulo_Configuracion_Finca/CU_Gestionar_Usuario_Finca/gestionar.usuario.finca.compontent';
-  import { GestionarUsuarioFincaService } from './Modulo_Configuracion_Finca/CU_Gestionar_Usuario_Finca/gestionar.usuario.finca.service';
-  import { ModificarRolUsuarioComponent } from './Modulo_Configuracion_Finca/CU_Gestionar_Usuario_Finca/Modificar_Rol_Usuario_Finca/modificar.rol.usuario.component';
-  import { AsignarMecanismoRiegoFincaService } from './Modulo_Configuracion_Finca/CU_Asignar_Mecanismo_Riego_Finca/asignar.mecanismo.riego.finca.service';
-  import { AgregarMecanismoRiegoFincaComponent } from './Modulo_Configuracion_Finca/CU_Asignar_Mecanismo_Riego_Finca/Agregar_Mecanismo_Riego_Finca/agregar.mecanismo.riego.finca.component';
 
-
-//IMPORTS MODULO CONFIGURACION SECTORES
-  import { HomeSectorComponent } from './Modulo_Configuracion_Sectores/Home_Sector/home.sector.component';
-  import { GestionarSectorFincaComponent } from './Modulo_Configuracion_Sectores/CU_Gestionar_Sector/gestionar.sector.component';
-  import { GestionarSectorFincaService } from './Modulo_Configuracion_Sectores/CU_Gestionar_Sector/gestionar.sector.service';
-  import { CrearSectorFincaComponent } from './Modulo_Configuracion_Sectores/CU_Crear_Sector/crear.sector.component';
-  import { CrearSectorFincaService } from './Modulo_Configuracion_Sectores/CU_Crear_Sector/crear.sector.service';
-  import { AsignarMecanismoRiegoSectorComponent } from './Modulo_Configuracion_Sectores/CU_Asignar_Mecanismo_Riego_Sector/asignar.mecanismo.riego.sector.component';
-  import { AsignarMecanismoRiegoSectorService } from './Modulo_Configuracion_Sectores/CU_Asignar_Mecanismo_Riego_Sector/asignar.mecanismo.riego.sector.service';
-  import { AsignarCultivoSectorComponent } from './Modulo_Configuracion_Sectores/CU_Asignar_Cultivo_Sector/asignar.cultivo.sector.component';
-  import { AsignarCultivoSectorService } from './Modulo_Configuracion_Sectores/CU_Asignar_Cultivo_Sector/asignar.cultivo.sector.service';
-  import { AsignarComponenteSensorSectorComponent } from './Modulo_Configuracion_Sectores/CU_Asignar_Componente_Sensor_Sector/asignar.componente.sensor.sector.component';
-  import { AsignarComponenteSensorSectorService } from './Modulo_Configuracion_Sectores/CU_Asignar_Componente_Sensor_Sector/asignar.componente.sensor.sector.service';
-
-//IMPORTS MODULO SENSORES
-  import { CrearSensorComponent } from './Modulo_Sensores/ABM_Sensores/Crear_Sensor/crear.sensor.component';
-  import { ModificarSensorComponent } from './Modulo_Sensores/ABM_Sensores/Modificar_Sensor/modificar.sensor.component';
-  import { ABMSensorFincaService } from './Modulo_Sensores/ABM_Sensores/abm.sensores.service';
-  import { CrearComponenteSensorComponent } from './Modulo_Sensores/ABM_Componente_Sensor/CU_Crear_Componente_Sensor/crear.componente.sensor.component';
-  import { GestionarComponenteSensorComponent } from './Modulo_Sensores/ABM_Componente_Sensor/CU_Gestionar_Componente_Sensor/gestionar.componente.sensor.component';
-  import { GestionarComponenteSensorService } from './Modulo_Sensores/ABM_Componente_Sensor/gestionar.componente.sensor.service';
-  import { HomeComponenteSensorComponent } from './Modulo_Sensores/Home_Componente_Sensor/home.componente.sensor.component';
-  import { AsignarSensorComponenteSensorService } from './Modulo_Sensores/Asignar_Sensor_Componente_Sensor/asignar.sensor.componente.sensor.service';
-  import { AsignarSensorComponenteSensorComponent } from './Modulo_Sensores/Asignar_Sensor_Componente_Sensor/asignar.sensor.componente.sensor.component';
-
-//IMPORTS MODULO CULTIVO
-  import { GestionarCultivoSectorComponent } from './Modulo_Cultivo/CU_Gestionar_Cultivo_Sector/gestionar.cultivo.sector.component';
-  import { GestionarCultivoSectorService } from './Modulo_Cultivo/CU_Gestionar_Cultivo_Sector/gestionar.cultivo.sector.service';
-
-//IMPORTS CONFIGURACION RIEGO
-  import { GestionarConfiguracionRiegoService } from'./Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/gestionar.configuracion.riego.service';
-  import { CrearConfiguracionRiegoComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/CU_Crear_Configuracion_Riego/crear.configuracion.riego.component';
-  import { HomeConfiguracionRiegoComponent } from './Modulo_Configuracion_Riego/Home_Configuracion_Riego/home.configuracion.riego.component';
-  import { ModificarConfiguracionRiegoComponent }  from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/CU_Modificar_Configuracion_Riego/modificar.configuracion.riego.component';
-  import { AgregarCriterioInicioComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/Agregar_Criterio_Inicio/agregar.criterio.inicio.component';
-  import { AgregarCriterioFinComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/Agregar_Criterio_Fin/agregar.criterio.fin.component';
-  import { GestionarRiegoService } from './Modulo_Configuracion_Riego/Gestionar_Riego/gestionar.riego.service';
-  import { ModificarCriterioInicialFinalComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/Modificar_Criterio_Inicial_Final/modificar.criterio.inicial.fincal.component';
-
-
-//IMPORTS MODULO OBTENCION INFORMACION EXTERNA
-  import { ModificarProveedorInformacionComponent } from './Modulo_Obtencion_Informacion_Externa/CU_Gestionar_Proveedor_Informacion/Modificar_Proveedor_Informacion/modficar.proveedor.component';
-  import { CambiarProveedorInformacionComponent } from './Modulo_Obtencion_Informacion_Externa/CU_Gestionar_Proveedor_Informacion/Cambiar_Proveedor_Informacion/cambiar.proveedor.component';
-  import { GestionarProveedorInformacionService } from './Modulo_Obtencion_Informacion_Externa/CU_Gestionar_Proveedor_Informacion/gestionar.proveedor.service';
- 
 
 
 /**
@@ -277,49 +218,8 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     HomeComboComponent,
     RegistrarComboComponent,
     HomeComboDetalleComponent,
-    ModificarComboComponent,
+    ModificarComboComponent
 
-
-    //COMPONENTS MODULO CONFIGURACION FINCA
-    HomeFincaComponent,
-    HomeFincaDetalleComponent,
-    SolicitarCreacionFincaComponent,
-    GestionarFincaComponent,
-    GestionarUsuarioFincaComponent,
-    ModificarRolUsuarioComponent,
-
-    //COMPONENTS MODULO CONFIGURACION SECTORES
-    HomeSectorComponent,
-    GestionarSectorFincaComponent,
-    CrearSectorFincaComponent,
-    AgregarMecanismoRiegoFincaComponent,
-    AsignarMecanismoRiegoSectorComponent,
-    AsignarCultivoSectorComponent,
-    HomeComponenteSensorComponent,
-    AsignarComponenteSensorSectorComponent,
-
-    //COMPONENTS MODULO SENSORES
-    CrearSensorComponent,
-    ModificarSensorComponent,
-    CrearComponenteSensorComponent,
-    GestionarComponenteSensorComponent,
-    AsignarSensorComponenteSensorComponent,
-
-    //COMPONENTS MODULO CULTIVO
-    GestionarCultivoSectorComponent,
-
-    //COMPONETS MODULO CONFIGURACION RIEGO
-    CrearConfiguracionRiegoComponent,
-    HomeConfiguracionRiegoComponent,
-    ModificarConfiguracionRiegoComponent,
-    AgregarCriterioInicioComponent,
-    AgregarCriterioFinComponent,
-    ModificarCriterioInicialFinalComponent,
-
-
-    //COMPONENTS MODULO OBTENCION INFORMACION EXTERNA
-    ModificarProveedorInformacionComponent,
-    CambiarProveedorInformacionComponent
   ],
   imports: [
     // Angular Imports
@@ -360,39 +260,7 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     ModuloSeguridadService,
 
     //SERVICES MODULO CONFIGURACION
-    ModuloConfiguracionService,
-
-    //LLAMADAS MODULO CONFIGURACION FINCA
-    HomeFincaService,
-    HomeFincaDetalleService,
-    SolicitarCreacionFincaService,
-    GestionarFincaService,
-    GestionarUsuarioFincaService,
-    AsignarMecanismoRiegoFincaService,
-
-    //LLAMADAS MODULO CONFIGURACION SECTORES
-    GestionarSectorFincaService,
-    CrearSectorFincaService,
-    AsignarMecanismoRiegoSectorService,
-    AsignarCultivoSectorService,
-    AsignarComponenteSensorSectorService,
-    
-    //LLAMADAS MODULO SENSORES
-    ABMSensorFincaService,
-    GestionarComponenteSensorService,
-    AsignarSensorComponenteSensorService,
-
-    //LLAMADAS MODULO CULTIVO
-    GestionarCultivoSectorService,
-
-    //LLAMADAS CONFIGURACION RIEGO
-    GestionarConfiguracionRiegoService,
-
-    
-
-    //LLAMADAS MODULO OBTENCION INFORMACION EXTERNA
-    GestionarProveedorInformacionService,
-    GestionarRiegoService 
+    ModuloConfiguracionService
     
   ],
   entryComponents: [

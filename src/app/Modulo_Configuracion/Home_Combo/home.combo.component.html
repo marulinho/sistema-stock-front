@@ -52,7 +52,7 @@
                   {{row.combo_cabecera.nombre}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name={{label_productos}}  style="width:60%">
+            <ngx-datatable-column name={{label_productos}}>
               <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
                 <ul *ngFor="let detalle of row.combo_detalles; let i = index" [attr.data-index]="i">
                     Cod. {{detalle.codigo_producto}} - {{detalle.cantidad}} {{detalle.nombre_producto}} {{detalle.marca_producto}} {{detalle.medida}} {{detalle.nombre_medida}}

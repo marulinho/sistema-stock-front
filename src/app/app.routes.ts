@@ -89,47 +89,6 @@ import { RegistrarComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Re
 import { ModificarComboComponent } from './Modulo_Configuracion/Home_Combo_Detalle/CU_Modificar_Combo/modificar.combo.component';
 
 
-//IMPORTS MODULO CONFIGURACION FINCA
-import { HomeFincaDetalleComponent } from './Modulo_Configuracion_Finca/Home_Finca_Detalle/home.finca.detalle.component';
-import { SolicitarCreacionFincaComponent } from './Modulo_Configuracion_Finca/CU_Solicitar_Creacion_Finca/solicitar.creacion.finca.component';
-import { GestionarFincaComponent } from './Modulo_Configuracion_Finca/CU_Gestionar_Finca/gestionar.finca.component';
-import { GestionarUsuarioFincaComponent } from './Modulo_Configuracion_Finca/CU_Gestionar_Usuario_Finca/gestionar.usuario.finca.compontent';
-import { ModificarRolUsuarioComponent } from './Modulo_Configuracion_Finca/CU_Gestionar_Usuario_Finca/Modificar_Rol_Usuario_Finca/modificar.rol.usuario.component';
-import { AgregarMecanismoRiegoFincaComponent } from './Modulo_Configuracion_Finca/CU_Asignar_Mecanismo_Riego_Finca/Agregar_Mecanismo_Riego_Finca/agregar.mecanismo.riego.finca.component';
-
-//IMPORTS MODULO CONFIGURACION SECTORES
-import { HomeSectorComponent } from './Modulo_Configuracion_Sectores/Home_Sector/home.sector.component';
-import { GestionarSectorFincaComponent } from './Modulo_Configuracion_Sectores/CU_Gestionar_Sector/gestionar.sector.component';
-import { CrearSectorFincaComponent } from './Modulo_Configuracion_Sectores/CU_Crear_Sector/crear.sector.component';
-import { AsignarMecanismoRiegoSectorComponent } from './Modulo_Configuracion_Sectores/CU_Asignar_Mecanismo_Riego_Sector/asignar.mecanismo.riego.sector.component';
-import { AsignarCultivoSectorComponent } from './Modulo_Configuracion_Sectores/CU_Asignar_Cultivo_Sector/asignar.cultivo.sector.component';
-import { AsignarComponenteSensorSectorComponent } from './Modulo_Configuracion_Sectores/CU_Asignar_Componente_Sensor_Sector/asignar.componente.sensor.sector.component';
-
-//IMPORTS MODULO SENSORES
-import { CrearSensorComponent } from './Modulo_Sensores/ABM_Sensores/Crear_Sensor/crear.sensor.component';
-import { ModificarSensorComponent } from './Modulo_Sensores/ABM_Sensores/Modificar_Sensor/modificar.sensor.component';
-import { CrearComponenteSensorComponent } from './Modulo_Sensores/ABM_Componente_Sensor/CU_Crear_Componente_Sensor/crear.componente.sensor.component';
-import { GestionarComponenteSensorComponent } from './Modulo_Sensores/ABM_Componente_Sensor/CU_Gestionar_Componente_Sensor/gestionar.componente.sensor.component';
-import { HomeComponenteSensorComponent } from './Modulo_Sensores/Home_Componente_Sensor/home.componente.sensor.component';
-import { AsignarSensorComponenteSensorComponent } from './Modulo_Sensores/Asignar_Sensor_Componente_Sensor/asignar.sensor.componente.sensor.component';
-
-//IMPORTS MODULO CULTIVO
-import { GestionarCultivoSectorComponent } from './Modulo_Cultivo/CU_Gestionar_Cultivo_Sector/gestionar.cultivo.sector.component';
-
-//IMPORTS MODULO CONFIGURACION RIEGO
-import { CrearConfiguracionRiegoComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/CU_Crear_Configuracion_Riego/crear.configuracion.riego.component';
-import { HomeConfiguracionRiegoComponent } from './Modulo_Configuracion_Riego/Home_Configuracion_Riego/home.configuracion.riego.component';
-import { ModificarConfiguracionRiegoComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/CU_Modificar_Configuracion_Riego/modificar.configuracion.riego.component';
-import { AgregarCriterioInicioComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/Agregar_Criterio_Inicio/agregar.criterio.inicio.component';
-import { AgregarCriterioFinComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/Agregar_Criterio_Fin/agregar.criterio.fin.component';
-import { ModificarCriterioInicialFinalComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/Modificar_Criterio_Inicial_Final/modificar.criterio.inicial.fincal.component';
-
-
-
-//IMPORTS MODULO OBTENCION INFORMACION EXTERNA
-import { ModificarProveedorInformacionComponent } from './Modulo_Obtencion_Informacion_Externa/CU_Gestionar_Proveedor_Informacion/Modificar_Proveedor_Informacion/modficar.proveedor.component';
-import { CambiarProveedorInformacionComponent } from './Modulo_Obtencion_Informacion_Externa/CU_Gestionar_Proveedor_Informacion/Cambiar_Proveedor_Informacion/cambiar.proveedor.component';
-
 /**
  * Router Setting
  *
@@ -208,50 +167,6 @@ export const ROUTES: Routes = [
   { path: 'addCombo', component: RegistrarComboComponent },
   { path: 'editCombo/:id_combo', component: ModificarComboComponent },
   
-
-  //MODULO CONFIGURACION FINCA
-  { path: 'homeFincaDetalle', component: HomeFincaDetalleComponent },
-  { path: 'crearFinca', component: SolicitarCreacionFincaComponent },
-  { path: 'gestionarFinca', component: GestionarFincaComponent },
-  { path: 'gestionarUsuarioFinca', component: GestionarUsuarioFincaComponent },
-  //{ path:'modificarRolUsuario/:idUsuarioFinca', component: ModificarRolUsuarioComponent},
-  { path: 'agregarMecanismoFinca', component: AgregarMecanismoRiegoFincaComponent },
-
-  //MODULO CONFIGURACION SECTORES
-  { path: 'homeSector', component: HomeSectorComponent },
-  { path: 'crearSectorFinca', component: CrearSectorFincaComponent },
-  { path: 'gestionarSectorFinca', component: GestionarSectorFincaComponent },
-  { path: 'asignarMecanismoSector', component: AsignarMecanismoRiegoSectorComponent },
-  { path: 'asignarCultivo', component: AsignarCultivoSectorComponent },
-  { path: 'asignarSensorComponenteSectorFinca', component: AsignarSensorComponenteSensorComponent },
-  { path: 'asignarComponenteSector', component: AsignarComponenteSensorSectorComponent },
-
-  //MODULO SENSORES
-  { path: 'crearSensorFinca', component: CrearSensorComponent },
-  { path: 'modificarSensorFinca', component: ModificarSensorComponent },
-  { path: 'crearComponenteSensorFinca', component: CrearComponenteSensorComponent },
-  { path: 'modificarComponenteSensorFinca', component: GestionarComponenteSensorComponent },
-  { path: 'homeComponenteSensorFinca', component: HomeComponenteSensorComponent },
-  { path: 'asignarSensorComponente', component: AsignarSensorComponenteSensorComponent },
-
-  //MODULO OBTENCION INFORMACION EXTERNA
-  { path: 'gestionarProveedor', component: ModificarProveedorInformacionComponent },
-  { path: 'cambiarProveedor', component: CambiarProveedorInformacionComponent },
-
-
-  //MODULO CONFIGURACION RIEGO
-  { path: 'crearConfiguracionRiego', component: CrearConfiguracionRiegoComponent },
-  { path: 'homeConfiguracionRiego', component: HomeConfiguracionRiegoComponent },
-  { path: 'gestionarConfiguracionRiego', component: ModificarConfiguracionRiegoComponent },
-  { path: 'agregarCriterioInicial', component: AgregarCriterioInicioComponent },
-  { path: 'agregarCriterioFinal', component: AgregarCriterioFinComponent },
-  { path: 'gestionarCriterioRiego', component: ModificarCriterioInicialFinalComponent },
-
-
-
-  //MODULO CULTIVOS
-  { path: 'gestionarCultivoSector', component: GestionarCultivoSectorComponent },
-
 
   {
     path: 'dashboard-edge',

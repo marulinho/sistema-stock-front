@@ -15,9 +15,15 @@ export class SearchMock {
       link: '/home/'
     },
     {
+      name: 'caja',
+      title: 'Caja',
+      faIcon: 'fa fa-money',
+      link: '/homeCaja/'
+    },
+    {
       name: 'lista',
       title: 'Listas de Precios',
-      faIcon: 'fa-usd',
+      faIcon: 'fa fa-list',
       link: '/homePriceList/'
     },
     {
@@ -26,6 +32,7 @@ export class SearchMock {
       faIcon: ' fa-archive',
       link: '/homeCombo/'
     },
+    
     {
       name: 'reportes',
       title: 'Reportes',
