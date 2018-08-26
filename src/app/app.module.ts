@@ -87,36 +87,34 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
 
 //IMPORTS MODULO CONFIGURACION
   import { ModuloConfiguracionService } from './Modulo_Configuracion/modulo.configuracion.service';
-  import { HomeSistemaComponent } from './Modulo_Configuracion/Home_Sistema/home.sistema.component';
-  
+  import { HomeSistemaComponent } from './Modulo_Configuracion/Home_Sistema/home.sistema.component';  
   import { HomeCategoriaComponent } from './Modulo_Configuracion/Home_Categoria/home.categoria.component';
   import { RegistrarCategoriaComponent } from './Modulo_Configuracion/Home_Categoria/CU_Registrar_Categoria/registrar.categoria.component';
   import { HomeCategoriaDetalleComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/home.categoria.detalle.component';
   import { ModificarCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Modificar_Categoria/modificar.categoria.component';
   import { AsignarSubCategoriaCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Asignar_SubCategoria_Categoria/asignar.subcategoriacategoria.component';
   import { AsignarProductoCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Asignar_Producto_Categoria/asignar.productocategoria.component';
-
   import { HomeSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria/home.subcategoria.component';
   import { RegistrarSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria/CU_Registrar_SubCategoria/registrar.subcategoria.component';
   import { HomeSubCategoriaDetalleComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/home.subcategoria.detalle.component';
   import { ModificarSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/CU_Modificar_SubCategoria/modificar.subcategoria.component';
   import { AsignarProductoSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/CU_Asignar_Producto_SubCategoria/asignar.productosubcategoria.component';
-
-
   import { HomeProductoComponent } from './Modulo_Configuracion/Home_Producto/home.producto.component';
   import { RegistrarProductoComponent } from './Modulo_Configuracion/Home_Producto/CU_Registrar_Producto/registrar.producto.component';
   import { HomeProductoDetalleComponent } from './Modulo_Configuracion/Home_Producto_Detalle/home.producto.detalle.component';
   import { ModificarProductoComponent } from './Modulo_Configuracion/Home_Producto_Detalle/CU_Modificar_Producto/modificar.producto.component';
-
   import { HomeListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/home.listaprecio.component';
   import { RegistrarListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/CU_Registrar_ListaPrecio/registrar.listaprecio.component';
-
   import { HomeComboComponent } from './Modulo_Configuracion/Home_Combo/home.combo.component';
   import { HomeComboDetalleComponent } from './Modulo_Configuracion/Home_Combo_Detalle/home.combo.detalle.component';
   import { RegistrarComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/registrar.combo.component';
   import { ModificarComboComponent } from './Modulo_Configuracion/Home_Combo_Detalle/CU_Modificar_Combo/modificar.combo.component';
 
-
+//IMPORTS MODULO FINANZAS
+  import { ModuloFinanzasService } from './Modulo_Finanzas/modulo.finanzas.services';  
+  import { HomeCajaComponent } from './Modulo_Finanzas/Home_Caja/home.caja.component';
+  import { HomeCompraComponent } from './Modulo_Finanzas/Home_Compra/home.compra.component';
+  import { RegistrarCompraComponent } from './Modulo_Finanzas/Home_Compra/CU_Registrar_Compra/registrar.compra.component';
 
 
 /**
@@ -218,7 +216,13 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     HomeComboComponent,
     RegistrarComboComponent,
     HomeComboDetalleComponent,
-    ModificarComboComponent
+    ModificarComboComponent,
+
+    //MODULO FINANZAS
+    HomeCajaComponent,
+    HomeCompraComponent,
+    RegistrarCompraComponent
+
 
   ],
   imports: [
@@ -260,7 +264,10 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     ModuloSeguridadService,
 
     //SERVICES MODULO CONFIGURACION
-    ModuloConfiguracionService
+    ModuloConfiguracionService,
+
+    //SERVICES MODULO FINANZAS
+    ModuloFinanzasService
     
   ],
   entryComponents: [

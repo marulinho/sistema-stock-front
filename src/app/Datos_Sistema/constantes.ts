@@ -42,6 +42,12 @@ export const Constantes={
     PREGUNTA_ELIMINAR_PRODUCTO_COMBO: '¿Desea eliminar producto del combo?',
     TITLE_ASIGNAR_PRODUCTO_COMBO: 'Asignar Producto Combo',
     PREGUNTA_ASIGNAR_PRODUCTO_COMBO: '¿Desea asignar el producto al combo?',
+    TITLE_ABRIR_CAJA: 'Abrir Caja',
+    PREGUNTA_ABRIR_CAJA: '¿Desea abrir la caja?',
+    TITLE_CERRAR_CAJA: 'Cerrar Caja',
+    PREGUNTA_CERRAR_CAJA: '¿Desea cerrar la caja?',
+    TITLE_CANCELAR_COMPRA: 'Cancelar Compra',
+    PREGUNTA_CANCELAR_COMPRA: '¿Desea cancelar la compra?',
 
 //OPCIONES DIALOGS
     OPCION_ACEPTAR: 'Aceptar',
@@ -57,7 +63,10 @@ export const Constantes={
     LABEL_HOME_SUB_CATEGORIA: 'SUB-CATEGORIA',
     LABEL_HOME_USUARIO : 'USUARIO',
     LABEL_HOME_COMBO : 'COMBO',
-    
+
+//ESTADOS
+    ESTADO_ABIERTA : 'Abierta',
+    ESTADO_CERRADA : 'Cerrada',
 
 //LABELS
     LABEL_USUARIO : 'Usuario',
@@ -163,8 +172,35 @@ export const Constantes={
     LABEL_CANTIDAD: 'Cantidad',
     LABEL_COMBO_DETALLE: 'Combo Detalle',
     LABEL_MODIFICAR_COMBO: 'Modificar Combo',
-
-    
+    LABEL_CAJA: 'Caja',
+    LABEL_DETALLE_CAJA: 'Detalle Caja',
+    LABEL_FECHA_APERTURA: 'Fecha Apertura',
+    LABEL_FECHA_CIERRE: 'Fecha Cierre',
+    LABEL_TOTAL_APERTURA: 'Total Apertura',
+    LABEL_TOTAL_CIERRE: 'Total Cierre',
+    LABEL_ABRIR_CAJA: 'Abrir Caja',
+    LABEL_CERRAR_CAJA: 'Cerrar Caja',
+    LABEL_TOTAL_INGRESOS: 'Total Ingresos',
+    LABEL_DETALLE_INGRESOS: 'Detalle Ingresos',
+    LABEL_TOTAL_EGRESOS: 'Total Egresos',
+    LABEL_DETALLE_EGRESOS: 'Detalle Egresos',
+    LABEL_BALANCE : 'Balance',
+    LABEL_TOTAL : 'Total',
+    LABEL_FECHA: 'Fecha',
+    LABEL_MOVIMIENTO_ENTRADA: 'Entrada',
+    LABEL_MOVIMIENTO_SALIDA: 'Salida',
+    LABEL_FECHA_CIERRE_SIN_DEFINIR : 'Sin Definir',
+    LABEL_TOTAL_PARCIAL : 'Total Parcial',
+    LABEL_DESCUENTO : 'Descuento',
+    LABEL_TIPO_MOVIMIENTO : 'Tipo Movimiento',
+    LABEL_ESTADO : 'Estado',
+    LABEL_BUSCAR_TABLA_COMPRA : 'Ingrese el usuario de la compra',
+    LABEL_NAVEGAR_COMPRA : 'Ir a Compra',
+    LABEL_AGREGAR_COMPRA : 'Agregar Compra',
+    LABEL_CANCELAR_COMPRA : 'Cancelar Compra',
+    LABEL_COMPRA : 'Compra',
+    LABEL_BUSCAR_COMPRA: 'Buscar Compra',
+    LABEL_REGISTRAR_COMPRA: 'Registrar Compra',
 
 //DESCRIPCIÓN CARD 
     DESCRIPCION_PRODUCTO : 'En esta sección se lleva a cabo la administración de los productos',
@@ -181,6 +217,8 @@ export const Constantes={
     DESCRIPCION_LISTA_PRECIO : 'En esta sección se lleva a cabo la administración de listas de precios',
     DESCRIPCION_COMBO: 'En esta sección se lleva a cabo la administración de los combos',
     DESCRIPCION_LISTA_PRECIO_COMBO: 'En esta sección se pueden seleccionar los productos que van a componer el combo',
+    DESCRIPCION_CAJA: 'En esta sección se lleva a cabo la administración de la caja',
+    LABEL_DETALLE_COMPRA : 'En esta sección se lleva a cabo la administración de las compras',
 
 
 //ERRORES
@@ -206,6 +244,8 @@ export const Constantes={
     MENSAJE_DESASIGNACION_EXISTOSA: 'Desasignación Exitosa',
     MENSAJE_LISTA_PRECIO_ELIMINADA: 'Lista de Precios eliminada correctamente',
     MENSAJE_COMBO_ELIMINADO: 'Combo eliminado correctamente',
+    MENSAJE_REGISTRACION_APERTURA: 'Apertura Exitosa',
+    MENSAJE_REGISTRACION_CIERRE: 'Cierre Exitoso',
     MENSAJE_OK : 'OK',
 
 //OPERADORES COMPARACION
@@ -242,5 +282,9 @@ export const Constantes={
     URL_HOME_COMBO: '/homeCombo/',
     URL_HOME_COMBO_DETALLE: '/homeComboDetail/',
     URL_AGREGAR_COMBO : '/addCombo/',
-    URL_EDITAR_COMBO: '/editCombo/'
+    URL_EDITAR_COMBO: '/editCombo/',
+    URL_HOME_CAJA: '/homeCash/',
+    URL_HOME_COMPRA: '/homeBuy/',
+    URL_HOME_COMPRA_DETALLE: '/homeComboBuy/',
+    URL_AGREGAR_COMPRA : '/addBuy/',
 };

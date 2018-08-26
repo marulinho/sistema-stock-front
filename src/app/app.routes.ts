@@ -67,26 +67,26 @@ import { HomeCategoriaDetalleComponent } from './Modulo_Configuracion/Home_Categ
 import { ModificarCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Modificar_Categoria/modificar.categoria.component';
 import { AsignarSubCategoriaCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Asignar_SubCategoria_Categoria/asignar.subcategoriacategoria.component';
 import { AsignarProductoCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Asignar_Producto_Categoria/asignar.productocategoria.component';
-
-
 import { HomeSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria/home.subcategoria.component';
 import { RegistrarSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria/CU_Registrar_SubCategoria/registrar.subcategoria.component';
 import { HomeSubCategoriaDetalleComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/home.subcategoria.detalle.component';
 import { ModificarSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/CU_Modificar_SubCategoria/modificar.subcategoria.component';
 import { AsignarProductoSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/CU_Asignar_Producto_SubCategoria/asignar.productosubcategoria.component';
-
 import { HomeProductoComponent } from './Modulo_Configuracion/Home_Producto/home.producto.component';
 import { RegistrarProductoComponent } from './Modulo_Configuracion/Home_Producto/CU_Registrar_Producto/registrar.producto.component';
 import { HomeProductoDetalleComponent } from './Modulo_Configuracion/Home_Producto_Detalle/home.producto.detalle.component';
 import { ModificarProductoComponent } from './Modulo_Configuracion/Home_Producto_Detalle/CU_Modificar_Producto/modificar.producto.component';
-
 import { HomeListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/home.listaprecio.component';
 import { RegistrarListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/CU_Registrar_ListaPrecio/registrar.listaprecio.component';
-
 import { HomeComboComponent } from './Modulo_Configuracion/Home_Combo/home.combo.component';
 import { HomeComboDetalleComponent } from './Modulo_Configuracion/Home_Combo_Detalle/home.combo.detalle.component';
 import { RegistrarComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/registrar.combo.component';
 import { ModificarComboComponent } from './Modulo_Configuracion/Home_Combo_Detalle/CU_Modificar_Combo/modificar.combo.component';
+
+//IMPORTS MODULO FINANZAS
+import { HomeCajaComponent } from './Modulo_Finanzas/Home_Caja/home.caja.component';
+import { HomeCompraComponent } from './Modulo_Finanzas/Home_Compra/home.compra.component';
+import { RegistrarCompraComponent } from './Modulo_Finanzas/Home_Compra/CU_Registrar_Compra/registrar.compra.component';
 
 
 /**
@@ -146,27 +146,27 @@ export const ROUTES: Routes = [
   { path: 'editCategory/:id_categoria', component: ModificarCategoriaComponent },
   { path: 'assignSubCategory/:id_categoria', component: AsignarSubCategoriaCategoriaComponent },
   { path: 'assignProductCategory/:id_categoria', component: AsignarProductoCategoriaComponent },
-
   { path: 'homeSubCategory', component: HomeSubCategoriaComponent },
   { path: 'addSubCategory', component: RegistrarSubCategoriaComponent },
   { path: 'homeSubCategoryDetail/:id_subcategoria', component: HomeSubCategoriaDetalleComponent },
   { path: 'editSubCategory/:id_subcategoria', component: ModificarSubCategoriaComponent },
   { path: 'assignProductSubCategory/:id_subcategoria', component: AsignarProductoSubCategoriaComponent },
-
   { path: 'homeProduct', component: HomeProductoComponent },
   { path: 'addProduct', component: RegistrarProductoComponent },
   { path: 'homeProductDetail/:id_producto', component: HomeProductoDetalleComponent },
   { path: 'editProduct/:id_producto', component: ModificarProductoComponent },
-
-
   { path: 'homePriceList', component: HomeListaPrecioComponent },
   { path: 'addPriceList', component: RegistrarListaPrecioComponent },
-
   { path: 'homeCombo', component: HomeComboComponent },
   { path: 'homeComboDetail/:id_combo', component: HomeComboDetalleComponent },
   { path: 'addCombo', component: RegistrarComboComponent },
   { path: 'editCombo/:id_combo', component: ModificarComboComponent },
   
+  //MODULO FINANZAS
+  { path: 'homeCash', component: HomeCajaComponent },
+  { path: 'homeBuy', component: HomeCompraComponent },
+  { path: 'addBuy', component: RegistrarCompraComponent },
+
 
   {
     path: 'dashboard-edge',
