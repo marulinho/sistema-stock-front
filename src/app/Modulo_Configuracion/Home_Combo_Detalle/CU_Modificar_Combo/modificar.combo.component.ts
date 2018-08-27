@@ -189,7 +189,7 @@ export class ModificarComboComponent implements OnInit {
         let longitud = this.combo.length;
         let precio_aux = 0;
         for (let i = 0 ; i<longitud; i++){
-            precio_aux += this.combo[i]['precio_producto']*this.combo[i]['margen_ganancia']*this.combo[i]['cantidad'];
+            precio_aux += this.combo[i]['precio_producto']*(1+this.combo[i]['margen_ganancia'])*this.combo[i]['cantidad'];
         }
         this.precio = precio_aux;
     }

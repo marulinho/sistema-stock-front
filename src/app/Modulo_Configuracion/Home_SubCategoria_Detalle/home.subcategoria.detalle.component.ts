@@ -37,6 +37,10 @@ export class HomeSubCategoriaDetalleComponent implements OnInit{
     label_producto = Constantes.LABEL_PRODUCTOS_SUBCATEGORIA;
     label_detalle_producto = Constantes.DESCRIPCION_PRODUCTO_CATEGORIA;
     label_tabla_producto = Constantes.LABEL_BUSCAR_TABLA_PRODUCTO;
+    label_codigo_producto = Constantes.LABEL_CODIGO;
+    label_nombre_producto = Constantes.LABEL_PRODUCTO;
+    label_marca_producto = Constantes.LABEL_MARCA;
+    label_medida_producto = Constantes.LABEL_MEDIDA;
     productos = [];
     productos_temp = [];
 

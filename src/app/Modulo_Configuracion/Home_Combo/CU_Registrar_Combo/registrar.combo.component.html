@@ -43,7 +43,7 @@
                                 [rows]="productos_combo">
                                 <ngx-datatable-column name={{label_cantidad}}>
                                         <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                                                {{lista_cantidad_productos[row.$$index]}}
+                                                {{lista_cantidad_productos_temp[row.$$index]}}
                                         </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_codigo}}>

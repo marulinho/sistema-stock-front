@@ -163,6 +163,7 @@ export class RegistrarComboComponent implements OnInit {
         dialogRef.componentInstance.descipcion_lista_precio = description;
         dialogRef.componentInstance.precio_compra = row.precio_unitario_compra;
         dialogRef.componentInstance.margen_ganancia = (row.precio_unitario_venta / row.precio_unitario_compra) - 1;
+        dialogRef.componentInstance.cantidad = this.lista_cantidad_productos_temp[row.$$index];
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(

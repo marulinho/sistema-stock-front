@@ -23,11 +23,16 @@ export class DialogExampleComponent implements OnInit {
   precio_compra: number;
   margen_ganancia: number;
   cantidad: number = 0;
+  precio_compra_modificar: boolean = false;
   
   constructor(private dialogRef: MdDialogRef<DialogExampleComponent>) {
   }
 
   ngOnInit(): void {
+  }
+
+  getModificiarPrecioCompra(){
+    return this.precio_compra_modificar;
   }
 
 }

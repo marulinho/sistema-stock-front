@@ -215,6 +215,7 @@ export class RegistrarListaPrecioComponent implements OnInit {
         dialogRef.componentInstance.descipcion_lista_precio = descipcion_lista_precio ;
         dialogRef.componentInstance.precio_compra = precio_compra ;
         dialogRef.componentInstance.margen_ganancia = porcentaje_margen_ganancia ;
+        dialogRef.componentInstance.precio_compra_modificar = true;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(
@@ -258,9 +259,11 @@ export class RegistrarListaPrecioComponent implements OnInit {
     llenarArrays(){
         let longitud = this.lista_precio.length;
         for(var i = 0; i< longitud; i++){
-            this.lista_precio_productos.push(this.lista_precio[i]['codigo']);
-            this.lista_precio_compra.push(this.lista_precio[i]['precio_unitario_compra']);
-            this.lista_precio_venta.push(this.lista_precio[i]['precio_unitario_venta']);
+            if(this.lista_precio[i]['precio_unitario_compra'] >= 0 && this.lista_precio[i]['precio_unitario_venta']){
+                this.lista_precio_productos.push(this.lista_precio[i]['codigo']);
+                this.lista_precio_compra.push(this.lista_precio[i]['precio_unitario_compra']);
+                this.lista_precio_venta.push(this.lista_precio[i]['precio_unitario_venta']);
+            }
         }
     }
 

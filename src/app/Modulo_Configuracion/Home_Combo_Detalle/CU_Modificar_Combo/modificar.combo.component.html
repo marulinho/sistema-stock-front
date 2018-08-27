@@ -44,11 +44,7 @@
                                                 {{row.codigo_producto}}
                                         </ng-template>
                                 </ngx-datatable-column>
-                                <ngx-datatable-column name={{label_cantidad}}>
-                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                                {{row.cantidad}}
-                                        </ng-template>
-                                </ngx-datatable-column>
+                                
                                 <ngx-datatable-column name={{label_nombre}}>
                                         <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
                                                 {{row.nombre_producto}}
@@ -64,6 +60,11 @@
                                                 {{row.medida}} {{row.nombre_medida}}
                                         </ng-template>
                                 </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_cantidad}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                {{row.cantidad}}
+                                        </ng-template>
+                                </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_precio_compra}}>
                                         <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
                                                 {{label_peso}} {{row.precio_producto}}
@@ -76,7 +77,7 @@
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_precio_venta}}>
                                         <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                                {{label_peso}} {{row.precio_producto * row.margen_ganancia}}
+                                                {{label_peso}} {{row.precio_producto * (1+row.margen_ganancia) * row.cantidad}}
                                         </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_accion}}>
