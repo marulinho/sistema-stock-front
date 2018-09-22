@@ -4,17 +4,6 @@
 #atributo{
     font-weight: bold;
 }
-
-#ganancia{
-    color : green;
-    font-weight: bold;
-}
-
-#perdida{
-    color: red;
-    font-weight: bold;
-}
-
 a{
     cursor: pointer;
 }
@@ -27,3 +16,10 @@ a{
   .example-select {
     margin:0 0 10px 50px;
   }
+
+ul{
+    margin-top: -2px;
+    margin-bottom: -2px;
+    margin-left: -40px;
+    font-size: 12px;
+}

@@ -88,6 +88,16 @@ import { HomeCajaComponent } from './Modulo_Finanzas/Home_Caja/home.caja.compone
 import { HomeCompraComponent } from './Modulo_Finanzas/Home_Compra/home.compra.component';
 import { HomeCompraDetalleComponent } from './Modulo_Finanzas/Home_Compra_Detalle/home.compra.detalle.component';
 import { RegistrarCompraComponent } from './Modulo_Finanzas/Home_Compra/CU_Registrar_Compra/registrar.compra.component';
+import { HomeRetiroComponent } from './Modulo_Finanzas/Home_Retiro/home.retiro.component';
+import { HomeRetiroDetalleComponent } from './Modulo_Finanzas/Home_Retiro_Detalle/home.retiro.detalle.component';
+import { RegistrarRetiroComponent } from './Modulo_Finanzas/Home_Retiro/CU_Registrar_Retiro/registrar.retiro.component';
+import { HomeRemitoComponent } from './Modulo_Finanzas/Home_Remito/home.remito.component';
+import { HomeRemitoDetalleComponent } from './Modulo_Finanzas/Home_Remito_Detalle/home.remito.detalle.component';
+import { RegistrarRemitoComponent } from './Modulo_Finanzas/Home_Remito/CU_Registrar_Remito/registrar.remito.component';
+import { HomeVentaComponent } from './Modulo_Finanzas/Home_Venta/home.venta.component';
+import { HomeVentaDetalleComponent } from './Modulo_Finanzas/Home_Venta_Detalle/home.venta.detalle.component';
+import { RegistrarVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/registrar.venta.component';
+
 
 
 /**
@@ -168,6 +178,16 @@ export const ROUTES: Routes = [
   { path: 'homeBuy', component: HomeCompraComponent },
   { path: 'homeBuyDetail/:id_compra', component: HomeCompraDetalleComponent },
   { path: 'addBuy', component: RegistrarCompraComponent },
+  { path: 'homeWithdraw', component: HomeRetiroComponent },
+  { path: 'homeWithdrawDetail/:id_retiro', component: HomeRetiroDetalleComponent },
+  { path: 'addWithdraw', component: RegistrarRetiroComponent },
+  { path: 'homeMove', component: HomeRemitoComponent },
+  { path: 'homeMoveDetail/:id_remito', component: HomeRemitoDetalleComponent },
+  { path: 'addMove', component: RegistrarRemitoComponent },
+  { path: 'homeSell', component: HomeVentaComponent },
+  { path: 'homeSellDetail/:id_venta', component: HomeVentaDetalleComponent },
+  { path: 'addSell', component: RegistrarVentaComponent },
+  
 
 
   {

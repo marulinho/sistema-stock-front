@@ -75,8 +75,8 @@
                         </ngx-datatable-column>
                         <ngx-datatable-column name={{label_margen_ganancia}}>
                                 <ng-template  ngx-datatable-cell-template let-row="row" let-value="value">
-                                        <label *ngIf="row.precio_unitario_venta > 0 && row.precio_unitario_compra > 0">{{(row.precio_unitario_venta/row.precio_unitario_compra)-1}} {{label_porcentaje}}</label>
-                                        <label *ngIf="row.precio_unitario_venta <= 0 && row.precio_unitario_compra <= 0">---</label>
+                                        <label *ngIf="row.margen_ganancia > 0">{{row.margen_ganancia}} {{label_porcentaje}}</label>
+                                        <label *ngIf="row.margen_ganancia <= 0">---</label>
                                 </ng-template>
                         </ngx-datatable-column>
                         <ngx-datatable-column name={{label_precio_venta}}>
@@ -87,16 +87,14 @@
                         </ngx-datatable-column>
                         <ngx-datatable-column name={{label_ganancia}}>
                                 <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                        <label *ngIf="row.precio_unitario_venta > 0 && row.precio_unitario_compra > 0">{{label_peso}} {{row.precio_unitario_venta - row.precio_unitario_compra}}</label>
-                                        <label *ngIf="row.precio_unitario_venta <= 0 || row.precio_unitario_compra <= 0">---</label>
+                                        <label *ngIf="row.ganancia > 0">{{label_peso}} {{row.ganancia}}</label>
+                                        <label *ngIf="row.ganancia  <= 0">---</label>
                                 </ng-template>
                         </ngx-datatable-column>
                         <ngx-datatable-column name={{label_accion}}>
                                 <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
                                         <a class="example-tooltip-host" mdTooltip="{{tooltipEditarPrecio}}" [mdTooltipPosition]="position">
-                                                <img src="assets/icons/editar.png" (click) = "apretarEditar(row.precio_unitario_compra,
-                                                                                                            row.precio_unitario_venta,
-                                                                                                            row)">
+                                                <img src="assets/icons/editar.png" (click) = "apretarEditar(row)">
                                         </a>
                                         <a class="example-tooltip-host" mdTooltip="{{tooltipEliminarProducto}}" [mdTooltipPosition]="position">
                                                 <img src="assets/icons/delete.png" (click) = "apretarEliminarProducto(row)">

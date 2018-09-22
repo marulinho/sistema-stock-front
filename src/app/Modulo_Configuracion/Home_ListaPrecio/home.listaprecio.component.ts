@@ -35,9 +35,11 @@ export class HomeListaPrecioComponent implements OnInit {
     label_peso = Constantes.LABEL_PESO;
     label_porcentaje = Constantes.LABEL_PORCENTAJE;
     tooltipEliminarListaPrecio = Constantes.LABEL_ELIMINAR_LISTA_PRECIO;
-    productos = [];
-    productos_temp = [];
+    lista_precio_cabecera = [];
+    lista_precio_detalles = [];
+    lista_precio_detalles_temp = [];
     codigo_lista_precio: number;
+    estado_lista_precio:string;
 
 
     constructor(private router: Router,
@@ -57,9 +59,11 @@ export class HomeListaPrecioComponent implements OnInit {
         this.moduloConfiguracion.obtenerListaPrecioVigente()
             .then(
                 response => {
-                    this.productos = response.datos_operacion;
-                    this.productos_temp = [...response.datos_operacion];
-                    this.codigo_lista_precio = this.productos[0]['lista_precio']['codigo'];
+                    this.lista_precio_cabecera = response.datos_operacion['lista_precio_cabecera'];
+                    this.estado_lista_precio = this.lista_precio_cabecera['estado'];
+                    this.codigo_lista_precio = this.lista_precio_cabecera['codigo'];
+                    this.lista_precio_detalles = response.datos_operacion['lista_precio_detalles'];
+                    this.lista_precio_detalles_temp = [...this.lista_precio_detalles];
                 }
             )
             .catch(
@@ -78,10 +82,19 @@ export class HomeListaPrecioComponent implements OnInit {
 
     updateFilter(event) {
         const val = event.target.value.toLowerCase();
-        const temp = this.productos_temp.filter(function (d) {
-            return d['producto'].nombre.toLowerCase().indexOf(val) !== -1 || !val;
+        const temp = this.lista_precio_detalles_temp.filter(function (d) {
+            return d.nombre_producto.toLowerCase().indexOf(val) !== -1 || !val;
         });
-        this.productos = temp;
+        this.lista_precio_detalles = temp;
+    }
+    
+    getEstadoHabilitado(){
+        if(this.estado_lista_precio === Constantes.ESTADO_HABILITADO){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     apretarEliminarListaPrecio() {

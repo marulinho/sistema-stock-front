@@ -83,8 +83,8 @@ export class RegistrarComboComponent implements OnInit {
         this.moduloConfiguracion.obtenerListaPrecioVigente()
             .then(
                 response => {
-                    this.lista_precio = response.datos_operacion;
-                    this.lista_precio_temp = [...response.datos_operacion];
+                    this.lista_precio = response.datos_operacion['lista_precio_detalles'];
+                    this.lista_precio_temp = [...this.lista_precio];
                 }
             )
             .catch(
@@ -104,7 +104,7 @@ export class RegistrarComboComponent implements OnInit {
     updateFilterListaPrecio(event) {
         const val = event.target.value.toLowerCase();
         const temp = this.lista_precio_temp.filter(function (d) {
-            return d['producto'].nombre.toLowerCase().indexOf(val) !== -1 || !val;
+            return d.nombre_producto.toLowerCase().indexOf(val) !== -1 || !val;
         });
         this.lista_precio = temp;
     }
@@ -112,7 +112,7 @@ export class RegistrarComboComponent implements OnInit {
     updateFilterCombo(event) {
         const val = event.target.value.toLowerCase();
         const temp = this.productos_combo_temp.filter(function (d) {
-            return d['producto'].nombre.toLowerCase().indexOf(val) !== -1 || !val;
+            return d.nombre_producto.toLowerCase().indexOf(val) !== -1 || !val;
         });
         this.productos_combo = temp;
     }
@@ -134,9 +134,9 @@ export class RegistrarComboComponent implements OnInit {
                 if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
                     let lista = [];
                     let longitud = this.lista_precio.length;
-                    let codigo_producto = this.lista_precio[row.$$index]['producto']['codigo'];
+                    let codigo_producto = this.lista_precio[row.$$index]['codigo_producto'];
                     for (var i = 0; i < longitud; i++) {
-                        if (this.lista_precio[i]['producto']['codigo'] == codigo_producto) {
+                        if (this.lista_precio[i]['codigo_producto'] == codigo_producto) {
                             this.productos_combo.push(this.lista_precio[row.$$index]);
                             this.productos_combo_temp = [...this.productos_combo];
                             this.lista_cantidad_productos_temp.push(1);
@@ -161,8 +161,7 @@ export class RegistrarComboComponent implements OnInit {
         let dialogRef = this.dialog.open(DialogExampleComponent);
         dialogRef.componentInstance.title = title;
         dialogRef.componentInstance.descipcion_lista_precio = description;
-        dialogRef.componentInstance.precio_compra = row.precio_unitario_compra;
-        dialogRef.componentInstance.margen_ganancia = (row.precio_unitario_venta / row.precio_unitario_compra) - 1;
+        dialogRef.componentInstance.precio_compra = row.precio_compra;
         dialogRef.componentInstance.cantidad = this.lista_cantidad_productos_temp[row.$$index];
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
@@ -174,8 +173,8 @@ export class RegistrarComboComponent implements OnInit {
                         //no editamos los precios
                     }
                     else {
-                        this.productos_combo[row.$$index]['precio_unitario_compra'] = dialogRef.componentInstance.precio_compra;
-                        this.productos_combo[row.$$index]['precio_unitario_venta'] = dialogRef.componentInstance.precio_compra * (1 + dialogRef.componentInstance.margen_ganancia);
+                        this.productos_combo[row.$$index]['precio_compra'] = dialogRef.componentInstance.precio_compra;
+                        this.productos_combo[row.$$index]['precio_venta'] = dialogRef.componentInstance.precio_compra + (dialogRef.componentInstance.precio_compra * dialogRef.componentInstance.margen_ganancia / 100);
                         this.lista_cantidad_productos_temp[row.$$index] = dialogRef.componentInstance.cantidad;
                     }
                 }
@@ -216,8 +215,8 @@ export class RegistrarComboComponent implements OnInit {
     llenarArrays(){
         let longitud = this.productos_combo.length;
         for(var i = 0; i< longitud; i++){
-            let margen_ganancia = this.productos_combo[i]['precio_unitario_venta']/this.productos_combo[i]['precio_unitario_compra']-1;
-            this.lista_productos.push(this.productos_combo[i]['producto']['codigo']);
+            let margen_ganancia = this.productos_combo[i]['precio_venta']/this.productos_combo[i]['precio_compra']-1;
+            this.lista_productos.push(this.productos_combo[i]['codigo_producto']);
             this.lista_margen_ganancia.push(margen_ganancia);
             this.lista_cantidad_productos.push(this.lista_cantidad_productos_temp[i]);
         }

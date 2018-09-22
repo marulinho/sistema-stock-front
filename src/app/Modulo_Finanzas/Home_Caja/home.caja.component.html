@@ -45,6 +45,10 @@
         <label id ='atributo'>{{label_total_egresos}}: </label>
         <label>{{label_peso}} {{total_egreso}} </label><br><br>
         
+        <label id ='atributo'>{{label_balance}}: </label>
+        <label id ='perdida' *ngIf="getBalance()<0">{{label_peso}} {{balance}} </label>
+        <label id ='ganancia' *ngIf="getBalance()>=0">{{label_peso}} {{balance}} </label><br><br>
+
         <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex>
           <md-card class="page-card" fxFlex>
             <md-card-title>
@@ -65,19 +69,27 @@
                   <th style="width:30%;">{{label_fecha}}</th>
                   <th style="width:50%;">{{label_descripcion}}</th>
                   <th class="number">{{label_total}}</th>
+                  <th>{{label_accion}}</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr *ngFor="let detalle of caja_detalles_ingreso">
-                  <td>{{detalle.fecha}}</td>
-                  <td>{{detalle.descripcion}}</td>
-                  <td>{{label_peso}} {{detalle.total}}</td>
+                <tbody class="no-border-x">
+                <tr *ngFor="let detalle of caja_detalle_ingreso">
+                    <td>{{detalle.fecha}}</td>
+                    <td>{{detalle.descripcion}}</td>
+                    <td>{{label_peso}} {{detalle.total}}</td>                    
+                    <td>
+                      <a class="example-tooltip-host" mdTooltip={{tooltipIrVenta}} [mdTooltipPosition]="position" (click)="apretarIrVenta(detalle.descripcion)">
+                        <img src="assets/icons/navigation.png">
+                      </a>
+                    </td>
                 </tr>
                 </tbody>
               </table>
               </section>
             </md-card-content>
           </md-card>
+
+
           <md-card class="page-card" fxFlex>
             <md-card-title>
               {{label_detalle_egresos}}
@@ -97,6 +109,7 @@
                   <th style="width:30%;">{{label_fecha}}</th>
                   <th style="width:50%;">{{label_descripcion}}</th>
                   <th class="number">{{label_total}}</th>
+                  <th>{{label_accion}}</th>
                 </tr>
                 </thead>
                 <tbody class="no-border-x">
@@ -104,6 +117,14 @@
                     <td>{{detalle.fecha}}</td>
                     <td>{{detalle.descripcion}}</td>
                     <td>{{label_peso}} {{detalle.total}}</td>
+                    <td>
+                      <a *ngIf="detalle.descripcion.includes('Compra')" class="example-tooltip-host" mdTooltip={{tooltipIrCompra}} [mdTooltipPosition]="position" (click)="apretarIrCompra(detalle.descripcion)">
+                        <img src="assets/icons/navigation.png">
+                      </a>
+                      <a *ngIf="detalle.descripcion.includes('Retiro')" class="example-tooltip-host" mdTooltip={{tooltipIrRetiro}} [mdTooltipPosition]="position" (click)="apretarIrRetiro(detalle.descripcion)">
+                        <img src="assets/icons/navigation.png">
+                      </a>
+                    </td>
                 </tr>
                 </tbody>
               </table>

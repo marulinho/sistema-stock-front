@@ -24,6 +24,14 @@ export class DialogExampleComponent implements OnInit {
   margen_ganancia: number;
   cantidad: number = 0;
   precio_compra_modificar: boolean = false;
+  remito_seleccionado: boolean = false;
+  label_stock_deposito = Constantes.LABEL_STOCK_DEPOSITO;
+  stock_deposito: number;
+  label_stock_final = Constantes.LABEL_STOCK_FINAL;
+  label_stock_local = Constantes.LABEL_STOCK_LOCAL;
+  stock_local: number;
+  compra_seleccionado: boolean = false;
+  venta_seleccionado: boolean = false;
   
   constructor(private dialogRef: MdDialogRef<DialogExampleComponent>) {
   }
@@ -33,6 +41,18 @@ export class DialogExampleComponent implements OnInit {
 
   getModificiarPrecioCompra(){
     return this.precio_compra_modificar;
+  }
+
+  getRemito(){
+    return this.remito_seleccionado;
+  }
+
+  getCompra(){
+    return this.compra_seleccionado;
+  }
+  
+  getVenta(){
+    return this.venta_seleccionado;
   }
 
 }

@@ -5,7 +5,7 @@
       <a class="example-tooltip-host" mdTooltip={{tooltipAgregarListaPrecio}} [mdTooltipPosition]="position" (click)="apretarAgregarListaPrecio()">
         <img src="assets/icons/nuevo.png">
       </a>
-      <a class="example-tooltip-host" mdTooltip={{tooltipEliminarListaPrecio}} [mdTooltipPosition]="position" (click)="apretarEliminarListaPrecio()">
+      <a *ngIf="getEstadoHabilitado()" class="example-tooltip-host" mdTooltip={{tooltipEliminarListaPrecio}} [mdTooltipPosition]="position" (click)="apretarEliminarListaPrecio()">
           <img src="assets/icons/delete.png">
         </a>
       <a id="botonVolver" class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
@@ -26,41 +26,49 @@
       <p>{{label_detalle_lista_precio}}</p>
       <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder={{label_tabla_lista_precio}} (keyup)='updateFilter($event)'
       />
-      <ngx-datatable #mydatatable class="material fullscreen" [headerHeight]="50" [limit]="10" [sortType]="'multi'" [columnMode]="'force'"
-        [footerHeight]="50" [rowHeight]="'auto'" [rows]="productos">
+      <ngx-datatable 
+          #mydatatable 
+          class="material fullscreen" 
+          [headerHeight]="50" 
+          [limit]="10" 
+          [sortType]="'multi'" 
+          [columnMode]="'force'"
+          [footerHeight]="50" 
+          [rowHeight]="'auto'" 
+          [rows]="lista_precio_detalles">
         <ngx-datatable-column name={{label_codigo}}>
           <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-            {{row.producto.codigo}}
+            {{row.codigo_producto}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name={{label_nombre}}>
           <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-            {{row.producto.nombre}}
+            {{row.nombre_producto}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name={{label_marca}}>
           <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-            {{row.producto.marca}}
+            {{row.marca_producto}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name={{label_medida}}>
           <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-            {{row.producto.medida}} {{row.producto.nombre_unidad_medida}}
+            {{row.medida}} {{row.nombre_medida}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name={{label_precio_compra}}>
           <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-            {{label_peso}} {{row.precio_unitario_compra}}
+            {{label_peso}} {{row.precio_compra}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name={{label_margen_ganancia}}>
           <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-            {{(row.precio_unitario_venta/row.precio_unitario_compra)-1}} {{label_porcentaje}}
+            {{row.margen_ganancia}} {{label_porcentaje}}
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name={{label_precio_venta}}>
           <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-              {{label_peso}} {{row.precio_unitario_venta}}
+              {{label_peso}} {{row.precio_venta}}
           </ng-template>
         </ngx-datatable-column>
       </ngx-datatable>

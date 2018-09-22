@@ -65,7 +65,9 @@ export class RegistrarListaPrecioComponent implements OnInit {
                                 medida: number,
                                 nombre_unidad_medida: string,
                                 precio_unitario_compra: number,
-                                precio_unitario_venta: number}> = [];
+                                precio_unitario_venta: number,
+                                margen_ganancia:number,
+                                ganancia:number}> = [];
     lista_precio_temp = [];
 
     constructor(private appService: AppService,
@@ -85,7 +87,7 @@ export class RegistrarListaPrecioComponent implements OnInit {
         this.moduloConfiguracion.obtenerListaPrecioVigente()
         .then(
             response => {
-                this.llenarListaPrecioProductosLista(response.datos_operacion);
+                this.llenarListaPrecioProductosLista(response.datos_operacion['lista_precio_detalles']);
                 this.obtenerProductosNoLista();
                 
             }
@@ -121,15 +123,19 @@ export class RegistrarListaPrecioComponent implements OnInit {
                                        medida: number,
                                        nombre_unidad_medida: string,
                                        precio_unitario_compra: number,
-                                       precio_unitario_venta: number}> = [];
+                                       precio_unitario_venta: number,
+                                       margen_ganancia:number,
+                                       ganancia:number}> = [];
         for (var i = 0; i <longitud; i++){
-            lista_precio_temp.push({codigo: productos[i]['producto']['codigo'],
-                                nombre: productos[i]['producto']['nombre'],
-                                marca:productos[i]['producto']['marca'],
-                                medida: productos[i]['producto']['medida'],
-                                nombre_unidad_medida: productos[i]['producto']['nombre_unidad_medida'],
-                                precio_unitario_compra: productos[i]['precio_unitario_compra'],
-                                precio_unitario_venta: productos[i]['precio_unitario_venta']});
+            lista_precio_temp.push({codigo: productos[i]['codigo_producto'],
+                                nombre: productos[i]['nombre_producto'],
+                                marca:productos[i]['marca_producto'],
+                                medida: productos[i]['medida'],
+                                nombre_unidad_medida: productos[i]['nombre_medida'],
+                                precio_unitario_compra: productos[i]['precio_compra'],
+                                precio_unitario_venta: productos[i]['precio_venta'],
+                                margen_ganancia: productos[i]['margen_ganancia'],
+                                ganancia: productos[i]['ganancia']});
             this.lista_precio = this.lista_precio.concat(lista_precio_temp);
             lista_precio_temp.pop();
         }
@@ -144,15 +150,19 @@ export class RegistrarListaPrecioComponent implements OnInit {
                                        medida: number,
                                        nombre_unidad_medida: string,
                                        precio_unitario_compra: number,
-                                       precio_unitario_venta: number}> = [];
+                                       precio_unitario_venta: number,
+                                       margen_ganancia: number,
+                                       ganancia:number}> = [];
         for (var i = 0; i <longitud; i++){
-            lista_precio_temp.push({codigo: productos[i]['codigo'],
-                                nombre: productos[i]['nombre'],
-                                marca:productos[i]['marca'],
+            lista_precio_temp.push({codigo: productos[i]['codigo_producto'],
+                                nombre: productos[i]['nombre_producto'],
+                                marca:productos[i]['marca_producto'],
                                 medida: productos[i]['medida'],
-                                nombre_unidad_medida: productos[i]['nombre_unidad_medida'],
+                                nombre_unidad_medida: productos[i]['nombre_medida'],
                                 precio_unitario_compra: 0,
-                                precio_unitario_venta: 0});
+                                precio_unitario_venta: 0,
+                                margen_ganancia: 0,
+                                ganancia: 0});
             this.lista_precio = this.lista_precio.concat(lista_precio_temp);
             lista_precio_temp.pop();
         }
@@ -171,9 +181,8 @@ export class RegistrarListaPrecioComponent implements OnInit {
         this.lista_precio = temp;
     }
 
-   apretarEditar(precio_compra,precio_venta,row){
-       let margen_ganancia = (precio_venta/precio_compra)-1;
-       this.openDialogEditarPrecio(Constantes.TITLE_EDITAR_PRECIO_LISTA, Constantes.DESCRIPCION_EDITAR_PRECIO_LISTA, precio_compra, margen_ganancia,row);
+   apretarEditar(row){
+       this.openDialogEditarPrecio(Constantes.TITLE_EDITAR_PRECIO_LISTA, Constantes.DESCRIPCION_EDITAR_PRECIO_LISTA,row);
    }
 
    apretarEliminarProducto(row){
@@ -203,18 +212,19 @@ export class RegistrarListaPrecioComponent implements OnInit {
                              lista.push(this.lista_precio[i]);
                          }
                     }
-                    this.lista_precio = lista;       
+                    this.lista_precio = lista;
+                    this.lista_precio_temp = [...this.lista_precio];
                 } 
             }
         );
    }
 
-   openDialogEditarPrecio(title,descipcion_lista_precio,precio_compra,porcentaje_margen_ganancia,row) {
+   openDialogEditarPrecio(title,descipcion_lista_precio,row) {
         let dialogRef = this.dialog.open(DialogExampleComponent);
         dialogRef.componentInstance.title = title;
         dialogRef.componentInstance.descipcion_lista_precio = descipcion_lista_precio ;
-        dialogRef.componentInstance.precio_compra = precio_compra ;
-        dialogRef.componentInstance.margen_ganancia = porcentaje_margen_ganancia ;
+        dialogRef.componentInstance.precio_compra = row.precio_unitario_compra ;
+        dialogRef.componentInstance.margen_ganancia = row.margen_ganancia ;
         dialogRef.componentInstance.precio_compra_modificar = true;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
@@ -227,7 +237,9 @@ export class RegistrarListaPrecioComponent implements OnInit {
                     }
                     else{
                         this.lista_precio[row.$$index]['precio_unitario_compra'] = dialogRef.componentInstance.precio_compra;
-                        this.lista_precio[row.$$index]['precio_unitario_venta'] = dialogRef.componentInstance.precio_compra  * (1+dialogRef.componentInstance.margen_ganancia);
+                        this.lista_precio[row.$$index]['precio_unitario_venta'] = dialogRef.componentInstance.precio_compra  * (1+dialogRef.componentInstance.margen_ganancia/100);
+                        this.lista_precio[row.$$index]['margen_ganancia'] = (this.lista_precio[row.$$index]['precio_unitario_venta'] / this.lista_precio[row.$$index]['precio_unitario_compra'] - 1) * 100;
+                        this.lista_precio[row.$$index]['ganancia'] = this.lista_precio[row.$$index]['precio_unitario_venta'] - this.lista_precio[row.$$index]['precio_unitario_compra'];
                     }                    
                 } 
             }

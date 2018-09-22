@@ -1,6 +1,6 @@
 <md-card class="page-card">
         <md-card-title>
-                {{label_registrar_compra}}
+                {{label_registrar_remito}}
                 <a id="botonVolver" class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
                         <img src="assets/icons/atras.png">
                 </a>
@@ -15,21 +15,7 @@
                         <br>
                 </section>
 
-                <div>   
-                        
-                        <label id="atributo">{{label_subtotal}}: </label>
-                        <label *ngIf="subtotal > 0">{{label_peso}} {{subtotal}}</label> 
-                        <label *ngIf="subtotal <= 0">---</label> <br><br>
-
-                        <md-input-container>
-                                <input mdInput placeholder={{label_descuento}} type="number" [(ngModel)]="descuento"  name="descuento" required maxlength="40">
-                        </md-input-container>
-
-                        <label id="atributo">{{label_precio_total}}: </label>
-                        <label *ngIf= "subtotal > 0 && descuento > 0">{{label_peso}} {{subtotal - (subtotal * descuento / 100)}}</label>
-                        <label *ngIf= "subtotal > 0 && descuento == null">{{label_peso}} {{subtotal}}</label>
-                        <label *ngIf= "subtotal <= 0 || descuento <= 0">---</label><br><br>
-
+                <div>
                         <label id='atributo'>{{label_buscar_producto}}: </label>
                         <input type='text' 
                                 style='padding:8px;margin:15px auto;width:30%;' 
@@ -66,9 +52,14 @@
                                                 {{row.medida}} {{row.nombre_medida}}
                                         </ng-template>
                                 </ngx-datatable-column>
-                                <ngx-datatable-column name={{label_stock_final}}>
+                                <ngx-datatable-column name={{label_stock_deposito}}>
                                         <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                                                {{row.stock_deposito + row.stock_local}}
+                                                {{row.stock_deposito}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_stock_local}}>
+                                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                                {{row.stock_local}}
                                         </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_cantidad}}>
@@ -76,20 +67,10 @@
                                                 {{lista_cantidad_productos_temp[row.$$index]}}
                                         </ng-template>
                                 </ngx-datatable-column>
-                                <ngx-datatable-column name={{label_precio_compra}}>
-                                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                                                {{label_peso}} {{row.precio_compra}}
-                                        </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name={{label_precio_total}}>
-                                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                                                {{label_peso}} {{row.precio_compra * lista_cantidad_productos_temp[row.$$index]}}
-                                        </ng-template>
-                                </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_accion}}>
                                         <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
                                                 <a class="example-tooltip-host" mdTooltip="{{tooltipEditarProducto}}" [mdTooltipPosition]="position">
-                                                        <img src="assets/icons/editar.png" (click)="apretarEditarProductoCompra(row)">
+                                                        <img src="assets/icons/editar.png" (click)="apretarEditarProductoRemito(row)">
                                                 </a>
                                         </ng-template>
                                 </ngx-datatable-column>
@@ -97,7 +78,7 @@
                 </div>
         </md-card-content>
         <md-card-actions>
-                <button md-raised-button (click)="apretarRegistrarCompra()">{{boton_registrar}}</button>
+                <button md-raised-button (click)="apretarRegistrarRemito()">{{boton_registrar}}</button>
                 <button md-raised-button (click)="apretarSalir()">{{boton_salir}}</button>
         </md-card-actions>
         <md-card-footer></md-card-footer>

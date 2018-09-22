@@ -22,6 +22,9 @@ export class HomeCajaComponent implements OnInit{
     tooltipAbrirCaja = Constantes.LABEL_ABRIR_CAJA;
     tooltipCerrarCaja = Constantes.LABEL_CERRAR_CAJA;
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
+    tooltipIrCompra = Constantes.LABEL_NAVEGAR_COMPRA;
+    tooltipIrVenta = Constantes.LABEL_NAVEGAR_VENTA;
+    tooltipIrRetiro = Constantes.LABEL_NAVEGAR_RETIRO;
     position = 'above';
     label_caja = Constantes.LABEL_CAJA;
     label_descripcion_caja = Constantes.DESCRIPCION_CAJA;
@@ -40,8 +43,11 @@ export class HomeCajaComponent implements OnInit{
     label_descripcion = Constantes.LABEL_DESCRIPCION;
     label_total = Constantes.LABEL_TOTAL;
     label_estado = Constantes.LABEL_ESTADO;
+    label_accion = Constantes.LABEL_ACCION;
+    total_apertura : number = 0;
     total_ingreso : number = 0;
     total_egreso : number = 0;
+    balance : number = 0;
     estado = '';
     errorMessageIngresos = '';
     errorMessageEgresos = '';
@@ -78,6 +84,10 @@ export class HomeCajaComponent implements OnInit{
         }
     }
 
+    getBalance(){
+        return this.balance;
+    }
+
 
     obtenerUltimaCaja(){
         this.moduloFinanzas.obtenerUltimaCaja()
@@ -94,8 +104,8 @@ export class HomeCajaComponent implements OnInit{
                 this.estado = this.caja_cabecera['estado'];
                 this.caja_detalles = response.datos_operacion['caja_detalles'];
                 this.llenarCajaDetalle();
-                
-                
+                this.total_apertura = parseInt(this.caja_cabecera['total_apertura']);
+                this.balance = this.total_apertura + this.total_ingreso - this.total_egreso;
             }
         )
         .catch(
@@ -133,6 +143,15 @@ export class HomeCajaComponent implements OnInit{
 
             }
             else {
+                let descripcion = '';
+                let separador = ' ';
+                let detalles = this.caja_detalles[i]['detalle'].split(' ');
+                if (this.caja_detalles[i]['detalle'].includes('Retiro')){
+                    for (var x = 0; x < 3; x++){
+                        descripcion = descripcion.concat(detalles[x],separador)
+                    }
+                    this.caja_detalles[i]['detalle'] = descripcion;
+                }
                 caja_detalle_egreso_temp.push({fecha: this.caja_detalles[i]['fecha_creacion'].substring(0, 10).concat(' ', this.caja_detalles[i]['fecha_creacion'].substring(11, 19)),
                                                 descripcion: this.caja_detalles[i]['detalle'],
                                                 total: this.caja_detalles[i]['total']
@@ -226,6 +245,23 @@ export class HomeCajaComponent implements OnInit{
 
     apretarAtras(){
         this.router.navigate([Constantes.URL_HOME]);
+    }
+
+    apretarIrCompra(descripcion){
+        let codigo : number = descripcion.substring(descripcion.length-4, descripcion.length);
+        this.router.navigate([Constantes.URL_HOME_COMPRA_DETALLE+'/'+codigo+'/']);
+    }
+
+    apretarIrVenta(descripcion){
+        let codigo : number = descripcion.substring(descripcion.length-4, descripcion.length);
+        this.router.navigate([Constantes.URL_HOME_VENTA_DETALLE+'/'+codigo+'/']);
+    }
+
+    apretarIrRemito(descripcion){
+        let detalles = descripcion.split(' ');
+        let codigo = detalles[3];
+        console.log(codigo);
+        //this.router.navigate([Constantes.URL_HOME_VENTA_DETALLE+'/'+codigo+'/']);
     }
 }
 

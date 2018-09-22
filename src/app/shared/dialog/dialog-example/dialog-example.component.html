@@ -1,4 +1,4 @@
-<div class="dialog">
+<div *ngIf="!getRemito() && !getCompra() && !getVenta()" class="dialog">
 <h1 class="cabecera" md-dialog-title>{{title}}</h1>
 <div *ngIf="description" class="detalle" md-dialog-content>{{description}}</div>
 <div *ngIf="descipcion_lista_precio" class="detalle" md-dialog-content>
@@ -20,12 +20,65 @@
       <input mdInput placeholder={{label_margen_ganancia}}  type="number" [(ngModel)]="margen_ganancia" name="margen_ganancia" required maxlength="40">
       <br>
   </md-input-container>
-  <label *ngIf="precio_compra>0 && margen_ganancia>0 && cantidad<=0">{{label_precio_venta}}: {{precio_compra * (1+margen_ganancia)}}</label>
-  <label *ngIf="precio_compra>0 && margen_ganancia>0 && cantidad>0">{{label_precio_venta}}: {{precio_compra *cantidad* (1+margen_ganancia)}}</label>
+  <label *ngIf="precio_compra>0 && margen_ganancia>0 && cantidad<=0">{{label_precio_venta}}: {{precio_compra * (1+margen_ganancia/100)}}</label>
+  <label *ngIf="precio_compra>0 && margen_ganancia>0 && cantidad>0">{{label_precio_venta}}: {{precio_compra *cantidad* (1+margen_ganancia/100)}}</label>
   <label *ngIf="precio_compra<=0 || margen_ganancia<=0">{{label_precio_venta}}: ---</label>
 </div>
 <div md-dialog-actions>
   <button class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
   <button class="example-md-buttons" md-raised-button color="warn" (click)="dialogRef.close('Cancelar')">{{option2}}</button>
 </div>
+</div>
+
+<div *ngIf="getRemito()" class="dialog">
+  <h1 class="cabecera" md-dialog-title>{{title}}</h1>
+  <div *ngIf="description" class="detalle" md-dialog-content>{{description}}</div>
+    
+    <label>{{label_stock_deposito}}: {{stock_deposito}}</label><br><br>
+    
+    <md-input-container>
+      <input mdInput placeholder={{label_cantidad_productos}} type="number" [(ngModel)]="cantidad"  name="cantidad" required maxlength="40">
+      <br>
+    </md-input-container>
+
+  <div md-dialog-actions>
+    <button *ngIf="stock_deposito >= cantidad" class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
+    <button class="example-md-buttons" md-raised-button color="warn" (click)="dialogRef.close('Cancelar')">{{option2}}</button>
+  </div>
+  </div>
+
+<div *ngIf="getCompra()" class="dialog">
+    <h1 class="cabecera" md-dialog-title>{{title}}</h1>
+    <div *ngIf="description" class="detalle" md-dialog-content>{{description}}</div>
+      
+      <label>{{label_stock_deposito}}: {{stock_deposito}}</label><br><br>
+      
+      <md-input-container>
+        <input mdInput placeholder={{label_cantidad_productos}} type="number" [(ngModel)]="cantidad"  name="cantidad" required maxlength="40">
+        <br>
+      </md-input-container>
+      
+      <label *ngIf="cantidad >= 0" >{{label_stock_final}}: {{stock_deposito + cantidad}}</label>
+    <div md-dialog-actions>
+      <button *ngIf="cantidad >= 0" class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
+      <button class="example-md-buttons" md-raised-button color="warn" (click)="dialogRef.close('Cancelar')">{{option2}}</button>
+    </div>
+</div>
+
+<div *ngIf="getVenta()" class="dialog">
+  <h1 class="cabecera" md-dialog-title>{{title}}</h1>
+  <div *ngIf="description" class="detalle" md-dialog-content>{{description}}</div>
+    
+    <label>{{label_stock_local}}: {{stock_local}}</label><br><br>
+    
+    <md-input-container>
+      <input mdInput placeholder={{label_cantidad_productos}} type="number" [(ngModel)]="cantidad"  name="cantidad" required maxlength="40">
+      <br>
+    </md-input-container>
+    
+    <label *ngIf="cantidad >= 0" >{{label_stock_final}}: {{stock_local - cantidad}}</label>
+  <div md-dialog-actions>
+    <button *ngIf="cantidad >= 0" class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
+    <button class="example-md-buttons" md-raised-button color="warn" (click)="dialogRef.close('Cancelar')">{{option2}}</button>
+  </div>
 </div>

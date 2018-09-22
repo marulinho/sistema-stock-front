@@ -6,6 +6,9 @@ export const Constantes={
     ESTADO_PAGADO : 'Pagado',
     ESTADO_ABIERTA : 'Abierta',
     ESTADO_CERRADA : 'Cerrada',
+    ESTADO_HABILITADO: 'Habilitado',
+    ESTADO_DESHABILITADO: 'Deshabilitado',
+    ESTADO_NO_REALIZADO: 'No Realizado',
 
 //BOTONES
     BOTON_ACEPTAR : 'ACEPTAR',
@@ -54,6 +57,16 @@ export const Constantes={
     PREGUNTA_CANCELAR_COMPRA: '¿Desea cancelar la compra?',
     TITLE_PAGAR_COMPRA: 'Pagar Compra',
     PREGUNTA_PAGAR_COMPRA: '¿Desea pagar la compra?',
+    TITLE_CANCELAR_REMITO: 'Cancelar Remito',
+    PREGUNTA_CANCELAR_REMITO: '¿Desea cancelar el remito?',
+    TITLE_EDITAR_CANTIDAD_PRODUCTO: 'Editar Cantidad',
+    DESCRIPCION_EDITAR_CANTIDAD_PRODUCTO: 'Configure la cantidad',
+    TITLE_CANCELAR_VENTA: 'Cancelar Venta',
+    PREGUNTA_CANCELAR_VENTA: '¿Desea cancelar la venta?',
+    TITLE_ASIGNAR_PRODUCTO_VENTA: 'Asignar Producto Venta',
+    PREGUNTA_ASIGNAR_PRODUCTO_VENTA: '¿Desea asignar el producto a la venta?',
+    TITLE_REGISTRAR_VENTA: 'Registrar Venta',
+    PREGUNTA_REGISTRAR_VENTA: '¿Desea registrar la venta?',
 
 //OPCIONES DIALOGS
     OPCION_ACEPTAR: 'Aceptar',
@@ -212,6 +225,39 @@ export const Constantes={
     LABEL_PAGAR_COMPRA : 'Pagar Compra',
     LABEL_NO_HAY_INGRESOS : 'No hay ingresos',
     LABEL_NO_HAY_EGRESOS : 'No hay egresos',
+    LABEL_REMITO : 'Remito',
+    LABEL_BUSCAR_TABLA_REMITO : 'Ingrese el usuario del remito',
+    LABEL_BUSCAR_REMITO: 'Buscar Remito',
+    LABEL_AGREGAR_REMITO: 'Agregar Remito',
+    LABEL_NAVEGAR_REMITO: 'Ir a Remito',
+    LABEL_PRODUCTOS_REMITO: 'Productos Remito',
+    LABEL_REGISTRAR_REMITO: 'Registrar Remito',
+    LABEL_DATOS_REMITO: 'Datos Remito',
+    LABEL_CANCELAR_REMITO: 'Cancelar Remito',
+    LABEL_REMITO_DETALLE: 'Remito Detalle',
+    LABEL_EDITAR_PRODUCTO_CANTIDAD: 'Editar Cantidad',
+    LABEL_STOCK_FINAL: 'Stock',
+    LABEL_AGREGAR_VENTA: 'Agregar Venta',
+    LABEL_NAVEGAR_VENTA: 'Ir a Venta',
+    LABEL_VENTA: 'Venta',
+    LABEL_BUSCAR_TABLA_VENTA : 'Ingrese el usuario de la venta',
+    LABEL_BUSCAR_VENTA: 'Buscar Venta',
+    LABEL_CANCELAR_VENTA: 'Cancelar Venta',
+    LABEL_COBRAR_VENTA: 'Cobrar Venta',
+    LABEL_VENTA_DETALLE: 'Venta Detalle',
+    LABEL_REGISTRAR_VENTA: 'Registrar Venta',
+    LABEL_PRODUCTOS_DISPONIBLES: 'Productos Disponibles',
+    LABEL_AGREGAR_PRODUCTO_VENTA: 'Agregar Producto Venta',
+    LABEL_AGREGAR_RETIRO : 'Agregar Retiro Dinero',
+    LABEL_NAVEGAR_RETIRO : 'Ir a Retiro Dinero',
+    LABEL_RETIRO: 'Retiro de Dinero',
+    LABEL_BUSCAR_TABLA_RETIRO: 'Ingrese el usuario del retiro',
+    LABEL_BUSCAR_RETIRO : 'Buscar Retiro',
+    LABEL_DINERO_DISPONIBLE: 'Dinero Disponible',
+    LABEL_REGISTRAR_RETIRO: 'Registrar Retiro de Dinero',
+    LABEL_CANCELAR_RETIRO: 'Cancelar Retiro de Dinero',
+    LABEL_RETIRO_DETALLE: 'Retiro Detalle',
+
 
 //DESCRIPCIÓN CARD 
     DESCRIPCION_PRODUCTO : 'En esta sección se lleva a cabo la administración de los productos',
@@ -230,7 +276,10 @@ export const Constantes={
     DESCRIPCION_LISTA_PRECIO_COMBO: 'En esta sección se pueden seleccionar los productos que van a componer el combo',
     DESCRIPCION_CAJA: 'En esta sección se lleva a cabo la administración de la caja',
     LABEL_DETALLE_COMPRA : 'En esta sección se lleva a cabo la administración de las compras',
-
+    LABEL_DETALLE_REMITO: 'En esta sección se lleva a cabo la administración de los remitos',
+    LABEL_DETALLE_VENTA: 'En esta sección se lleva a cabo la administración de las ventas',
+    DESCRIPCION_LISTA_PRECIO_VENTA: 'En esta sección se pueden seleccionar los productos que van a componer la venta',
+    LABEL_DETALLE_RETIRO : 'En esta sección se lleva a cabo la administración de los retiros de dinero',
 
 //ERRORES
     ERROR_CAMPOS_INCOMPLETOS : 'Debe completar todos los campos obligatorios (*)',
@@ -240,6 +289,7 @@ export const Constantes={
     ERROR_NO_INICIO_SESION : 'El usuario no inicio sesion',
     ERROR_LISTAS_DIFERENTES : 'Debe completar todas las filas de la lista de precios',
     ERROR_MOVIMIENTO_CAPITAL_EXISTENTE : 'Ya existe un movimiento de capital asociado a la compra',
+    ERROR_COBRO_NO_REALIZADO: 'El cobro no se pudo llevar a cabo, intente nuevamente',
 
     
 //MENSAJES
@@ -301,4 +351,13 @@ export const Constantes={
     URL_HOME_COMPRA: '/homeBuy/',
     URL_HOME_COMPRA_DETALLE: '/homeBuyDetail/',
     URL_AGREGAR_COMPRA : '/addBuy/',
+    URL_HOME_REMITO: '/homeMove/',
+    URL_HOME_REMITO_DETALLE: '/homeMoveDetail/', 
+    URL_AGREGAR_REMITO: '/addMove/',
+    URL_HOME_VENTA: '/homeSell/',
+    URL_HOME_VENTA_DETALLE: '/homeSellDetail/',
+    URL_AGREGAR_VENTA : '/addSell/',
+    URL_HOME_RETIRO: '/homeWithdraw/',
+    URL_HOME_RETIRO_DETALLE: '/homeWithdrawDetail/',
+    URL_AGREGAR_RETIRO : '/addWithdraw/'
 };

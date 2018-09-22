@@ -1,0 +1,42 @@
+<div class="sign-container">
+  <md-card class="page-card">
+      <md-card-title>{{label_retiro_detalle}}
+
+          <a *ngIf="getEstadoPagado()" class="example-tooltip-host" mdTooltip={{tooltipCancelarRetiro}} [mdTooltipPosition]="position" (click)="apretarCancelarRetiro()">
+              <img src="assets/icons/cerrar.png">
+          </a>
+          <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+            <img src="assets/icons/atras.png">
+          </a>
+
+      </md-card-title>
+      <md-card-content *ngIf="retiro">
+          <section *ngIf="errorMessage" class="bs">
+              <div class="bd-example" data-example-id="">
+                  <div class="alert alert-danger" role="alert">
+                      <strong>{{errorMessage}}</strong>
+                  </div>
+              </div><br>
+          </section>
+          
+          <label id="atributo">{{label_codigo_retiro}}: </label>
+          <label>{{codigo_retiro}}.</label><br><br>
+
+          <label id="atributo">{{label_fecha_creacion}}: </label>
+          <label>{{retiro.fecha_creacion}}.</label><br><br>
+          
+          <label id="atributo">{{label_total}}: </label>
+          <label>{{label_peso}} {{retiro.total}}.</label><br><br>
+
+          <label id="atributo">{{label_descripcion}}: </label>
+          <label>{{retiro.descripcion}}.</label><br><br>
+
+          <label id="atributo">{{label_usuario}}: </label>
+          <label>{{retiro.usuario}}.</label><br><br>
+
+          <label id="atributo">{{label_estado}}: </label>
+          <label>{{retiro.estado}}.</label><br><br>
+
+      </md-card-content>
+  </md-card>
+</div>

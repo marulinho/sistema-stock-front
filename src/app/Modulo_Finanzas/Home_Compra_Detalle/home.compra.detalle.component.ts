@@ -41,7 +41,7 @@ export class HomeCompraDetalleComponent implements OnInit{
     label_nombre_producto = Constantes.LABEL_NOMBRE;
     label_marca_producto = Constantes.LABEL_MARCA;
     label_medida = Constantes.LABEL_MEDIDA;
-    label_precio = Constantes.LABEL_PRECIO_VENTA;
+    label_precio = Constantes.LABEL_PRECIO_COMPRA;
     label_subtotal = Constantes.LABEL_SUBTOTAL;
     label_cantidad = Constantes.LABEL_CANTIDAD;
     
@@ -69,12 +69,11 @@ export class HomeCompraDetalleComponent implements OnInit{
         this.moduloFinanzas.obtenerCompraId(this.codigo_compra)
             .then(
                 response => {
-                    this.compra_cabecera = response.datos_operacion['compra_cabecera'];
+                    this.compra_cabecera = response.datos_operacion['movimiento_cabecera'];
                     this.compra_cabecera['fecha_creacion'] = this.compra_cabecera['fecha_creacion'].substring(0,10).concat('  ',this.compra_cabecera['fecha_creacion'].substring(11,19));
                     this.estado = this.compra_cabecera['estado'];
-                    this.compra_detalles= response.datos_operacion['compra_detalles'];
+                    this.compra_detalles= response.datos_operacion['movimiento_detalles'];
                     this.compra_detalles_temp = [...this.compra_detalles];
-                    //this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_DESASIGNACION_EXISTOSA, Constantes.MENSAJE_OK, { duration: 3000, });
                 }
             )
             .catch(

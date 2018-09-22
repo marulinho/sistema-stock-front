@@ -26,6 +26,12 @@ export class SearchMock {
       link: '/homeBuy/'
     },
     {
+      name: 'retiros',
+      title: 'Retiros de Dinero',
+      faIcon: 'fa fa-arrow-right',
+      link: '/homeWithdraw/'
+    },
+    {
       name: 'remitos',
       title: 'Remitos',
       faIcon: 'fa fa-exchange',
