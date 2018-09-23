@@ -37,6 +37,12 @@ export class ModuloConfiguracionService extends RestBaseService {
     private obtenerProductoNoSubCategoriaIdURL = '/obtenerProductoNoSubCategoria/';
     private asignarProductoSubCategoriaURL = '/asignarProductoSubCategoria/';
 
+    private obtenerClientesURL = '/obtenerClientes/';
+    private obtenerClienteIdURL = '/obtenerClienteId/';
+    private registrarClienteURL = '/registrarCliente/';
+    private modificarClienteURL = '/modificarCliente/';
+    private eliminarClienteURL = '/eliminarCliente/';
+
     private obtenerUnidadesMedidasURL = '/obtenerUnidadMedida/';
 
     private registrarListaPrecioURL = '/registrarListaPrecio/';
@@ -366,6 +372,71 @@ export class ModuloConfiguracionService extends RestBaseService {
             .catch(this.handleError);
     }
 
+    //CLIENTES
+    obtenerClientes(): Promise<Resultado> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerClientesURL, this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Resultado; })
+            .catch(this.handleError);
+    }
+
+    obtenerClienteId(id_cliente:number): Promise<Resultado> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerClienteIdURL +id_cliente+'/', this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Resultado; })
+            .catch(this.handleError);
+    }
+
+    registrarCliente(nombre: string, apellido:string, dni:number, telefono:number, direccion:string, tipo_cliente:string): Promise<Resultado> {
+        const data = {
+            'nombre': nombre,
+            'apellido': apellido,
+            'dni': dni,
+            'telefono': telefono,
+            'direccion': direccion,
+            'tipo_cliente': tipo_cliente
+        };
+
+        return this.http.post(ModuloConfiguracionService.serverURL + this.registrarClienteURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as Resultado;
+
+            })
+            .catch(this.handleError);
+    }
+
+    modificarCliente(codigo:number,nombre:string,apellido:string,telefono:number,direccion:string): Promise<Resultado> {
+        const data = {
+            'id_cliente': codigo,
+            'nombre': nombre,
+            'apellido': apellido,
+            'telefono': telefono,
+            'direccion': direccion
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.modificarClienteURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as Resultado;
+
+            })
+            .catch(this.handleError);
+    }
+
+    eliminarCliente(codigo: number): Promise<Resultado> {
+        const data = {
+            'id_cliente': codigo
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.eliminarClienteURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as Resultado;
+
+            })
+            .catch(this.handleError);
+    }
 
     //UNIDADES MEDIDAS
 
@@ -533,6 +604,12 @@ export interface Combo {
 }
 
 export interface ResultadoNone {
+    resultado: boolean;
+    detalle_operacion;
+    datos_operacion;
+}
+
+export interface Resultado {
     resultado: boolean;
     detalle_operacion;
     datos_operacion;

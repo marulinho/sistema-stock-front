@@ -103,6 +103,12 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
   import { RegistrarProductoComponent } from './Modulo_Configuracion/Home_Producto/CU_Registrar_Producto/registrar.producto.component';
   import { HomeProductoDetalleComponent } from './Modulo_Configuracion/Home_Producto_Detalle/home.producto.detalle.component';
   import { ModificarProductoComponent } from './Modulo_Configuracion/Home_Producto_Detalle/CU_Modificar_Producto/modificar.producto.component';
+  
+  import { HomeClienteComponent } from './Modulo_Configuracion/Home_Cliente/home.cliente.component';
+  import { RegistrarClienteComponent } from './Modulo_Configuracion/Home_Cliente/CU_Registrar_Cliente/registrar.cliente.component';
+  import { HomeClienteDetalleComponent } from './Modulo_Configuracion/Home_Cliente_Detalle/home.cliente.detalle.component';
+  import { ModificarClienteComponent } from './Modulo_Configuracion/Home_Cliente_Detalle/CU_Modificar_Cliente/modificar.cliente.component';
+
   import { HomeListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/home.listaprecio.component';
   import { RegistrarListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/CU_Registrar_ListaPrecio/registrar.listaprecio.component';
   import { HomeComboComponent } from './Modulo_Configuracion/Home_Combo/home.combo.component';
@@ -218,6 +224,11 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     RegistrarProductoComponent,
     HomeProductoDetalleComponent,
     ModificarProductoComponent,
+
+    HomeClienteComponent,
+    RegistrarClienteComponent,
+    HomeClienteDetalleComponent,
+    ModificarClienteComponent,
 
     HomeListaPrecioComponent,
     RegistrarListaPrecioComponent,

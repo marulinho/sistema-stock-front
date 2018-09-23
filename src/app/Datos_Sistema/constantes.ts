@@ -67,6 +67,8 @@ export const Constantes={
     PREGUNTA_ASIGNAR_PRODUCTO_VENTA: '¿Desea asignar el producto a la venta?',
     TITLE_REGISTRAR_VENTA: 'Registrar Venta',
     PREGUNTA_REGISTRAR_VENTA: '¿Desea registrar la venta?',
+    TITLE_ELIMINAR_CLIENTE: 'Eliminar Cliente',
+    PREGUNTA_ELIMINAR_CLIENTE: '¿Desea eliminar el cliente?',
 
 //OPCIONES DIALOGS
     OPCION_ACEPTAR: 'Aceptar',
@@ -82,6 +84,7 @@ export const Constantes={
     LABEL_HOME_SUB_CATEGORIA: 'SUB-CATEGORIA',
     LABEL_HOME_USUARIO : 'USUARIO',
     LABEL_HOME_COMBO : 'COMBO',
+    LABEL_HOME_CLIENTE : 'CLIENTE',
 
 
 //LABELS
@@ -257,6 +260,22 @@ export const Constantes={
     LABEL_REGISTRAR_RETIRO: 'Registrar Retiro de Dinero',
     LABEL_CANCELAR_RETIRO: 'Cancelar Retiro de Dinero',
     LABEL_RETIRO_DETALLE: 'Retiro Detalle',
+    LABEL_AGREGAR_CLIENTE: 'Agregar Cliente',
+    LABEL_CLIENTE: 'Cliente',
+    LABEL_DNI: 'DNI',
+    LABEL_TELEFONO: 'Teléfono',
+    LABEL_DIRECCION: 'Dirección',
+    LABEL_TIPO_CLIENTE: 'Tipo Cliente',
+    LABEL_BUSCAR_TABLA_CLIENTE: 'Ingrese el nombre del cliente',
+    LABEL_NAVEGAR_CLIENTE: 'Ir a Cliente',
+    LABEL_REGISTRAR_CLIENTE: 'Registrar Cliente',
+    LABEL_DATOS_CLIENTE: 'Datos Cliente',
+    LABEL_TIPO_CLIENTE_INTERNO: 'Interno',
+    LABEL_TIPO_CLIENTE_PROVEEDOR: 'Proveedor',
+    LABEL_BUSCAR_CLIENTE: 'Buscar Cliente',
+    LABEL_CLIENTE_PERFIL: 'Perfil Cliente',
+    LABEL_EDITAR_CLIENTE: 'Modificar Cliente',
+    LABEL_ELIMINAR_CLIENTE: 'Eliminar Cliente',
 
 
 //DESCRIPCIÓN CARD 
@@ -280,6 +299,7 @@ export const Constantes={
     LABEL_DETALLE_VENTA: 'En esta sección se lleva a cabo la administración de las ventas',
     DESCRIPCION_LISTA_PRECIO_VENTA: 'En esta sección se pueden seleccionar los productos que van a componer la venta',
     LABEL_DETALLE_RETIRO : 'En esta sección se lleva a cabo la administración de los retiros de dinero',
+    DESCRIPCION_CLIENTE: 'En esta sección se lleva a cabo la administración de los clientes',
 
 //ERRORES
     ERROR_CAMPOS_INCOMPLETOS : 'Debe completar todos los campos obligatorios (*)',
@@ -311,6 +331,7 @@ export const Constantes={
     MENSAJE_CANCELACION_EXITOSA: 'Cancelación Exitosa',
     MENSAJE_REGISTRACION_PAGO_EXITOSA: 'Pago Exitoso',
     MENSAJE_OK : 'OK',
+    MENSAJE_CLIENTE_ELIMINADO: 'Cliente eliminado exitosamente',
 
 //OPERADORES COMPARACION
     OPERADOR_IGUAL : 'IGUAL',
@@ -359,5 +380,9 @@ export const Constantes={
     URL_AGREGAR_VENTA : '/addSell/',
     URL_HOME_RETIRO: '/homeWithdraw/',
     URL_HOME_RETIRO_DETALLE: '/homeWithdrawDetail/',
-    URL_AGREGAR_RETIRO : '/addWithdraw/'
+    URL_AGREGAR_RETIRO : '/addWithdraw/',
+    URL_HOME_CLIENTE: '/homeCustomer/',
+    URL_HOME_CLIENTE_DETALLE: '/homeCustomerDetail/',
+    URL_AGREGAR_CLIENTE : '/addCustomer/',
+    URL_EDITAR_CLIENTE : '/editCustomer/'
 };
