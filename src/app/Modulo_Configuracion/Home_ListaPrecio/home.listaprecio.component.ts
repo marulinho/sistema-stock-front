@@ -34,6 +34,7 @@ export class HomeListaPrecioComponent implements OnInit {
     label_precio_venta = Constantes.LABEL_PRECIO_VENTA;
     label_peso = Constantes.LABEL_PESO;
     label_porcentaje = Constantes.LABEL_PORCENTAJE;
+    label_buscar_producto = Constantes.LABEL_BUSCAR_PRODUCTO;
     tooltipEliminarListaPrecio = Constantes.LABEL_ELIMINAR_LISTA_PRECIO;
     lista_precio_cabecera = [];
     lista_precio_detalles = [];

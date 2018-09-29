@@ -20,6 +20,7 @@
       <md-card-content *ngIf="!errorMessageProducto">
 
         <p>{{label_detalle_producto}}</p>
+        <label id='atributo'>{{label_buscar_producto}}: </label>
         <input
             type='text'
             style='padding:8px;margin:15px auto;width:30%;'
@@ -38,13 +39,7 @@
             [rows]="productos">
             <ngx-datatable-column name={{label_codigo}}>
               <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                <span 
-                  title={{label_navegar_producto}}
-                  (click)="apretarIrProducto(row.codigo)"
-                >
-                {{row.codigo}}
-              </span>
-                
+                {{row.codigo}}  
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name={{label_nombre}}>
@@ -66,6 +61,13 @@
             <ng-template  ngx-datatable-cell-template let-row="row" let-value="value">
                 {{row.nombre_unidad_medida}}
             </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name={{label_accion}}>
+              <ng-template  ngx-datatable-cell-template let-row="row" let-value="value">
+                  <a class="example-tooltip-host" mdTooltip="{{tooltipIrProducto}}" [mdTooltipPosition]="position">
+                      <img src="assets/icons/navigation.png" (click)="apretarIrProducto(row.codigo)">
+                  </a>
+              </ng-template>
           </ngx-datatable-column>
       </ngx-datatable>
 

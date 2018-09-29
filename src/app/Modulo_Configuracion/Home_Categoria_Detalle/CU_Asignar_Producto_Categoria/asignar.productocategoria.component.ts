@@ -26,6 +26,7 @@ export class AsignarProductoCategoriaComponent implements OnInit {
     label_marca= Constantes.LABEL_MARCA;
     label_medida= Constantes.LABEL_MEDIDA;
     label_accion = Constantes.LABEL_ACCION;
+    label_buscar_producto = Constantes.LABEL_BUSCAR_PRODUCTO;
     tooltipAsignarProducto = Constantes.LABEL_ASIGNAR_PRODUCTO;
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';

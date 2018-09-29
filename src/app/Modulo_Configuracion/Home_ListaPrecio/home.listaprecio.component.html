@@ -24,6 +24,7 @@
     <md-card-content *ngIf="!errorMessage">
 
       <p>{{label_detalle_lista_precio}}</p>
+      <label id='atributo'>{{label_buscar_producto}}: </label>
       <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder={{label_tabla_lista_precio}} (keyup)='updateFilter($event)'
       />
       <ngx-datatable 

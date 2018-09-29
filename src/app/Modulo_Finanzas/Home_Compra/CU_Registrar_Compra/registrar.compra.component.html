@@ -18,17 +18,17 @@
                 <div>   
                         
                         <label id="atributo">{{label_subtotal}}: </label>
-                        <label *ngIf="subtotal > 0">{{label_peso}} {{subtotal}}</label> 
-                        <label *ngIf="subtotal <= 0">---</label> <br><br>
+                        <label *ngIf="subtotal >= 0">{{label_peso}} {{subtotal}}</label> 
+                        <label *ngIf="subtotal < 0">---</label> <br><br>
 
                         <md-input-container>
                                 <input mdInput placeholder={{label_descuento}} type="number" [(ngModel)]="descuento"  name="descuento" required maxlength="40">
                         </md-input-container>
 
                         <label id="atributo">{{label_precio_total}}: </label>
-                        <label *ngIf= "subtotal > 0 && descuento > 0">{{label_peso}} {{subtotal - (subtotal * descuento / 100)}}</label>
-                        <label *ngIf= "subtotal > 0 && descuento == null">{{label_peso}} {{subtotal}}</label>
-                        <label *ngIf= "subtotal <= 0 || descuento <= 0">---</label><br><br>
+                        <label *ngIf= "subtotal >= 0 && descuento >= 0">{{label_peso}} {{subtotal - (subtotal * descuento / 100)}}</label>
+                        <label *ngIf= "subtotal >= 0 && descuento == null">{{label_peso}} {{subtotal}}</label>
+                        <label *ngIf= "subtotal < 0 || descuento < 0">---</label><br><br>
 
                         <label id='atributo'>{{label_buscar_producto}}: </label>
                         <input type='text' 

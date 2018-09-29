@@ -17,6 +17,7 @@ export class HomeComboComponent implements OnInit{
     errorMessageCombo = '';
     snackBarRef: any;
     tooltipAgregarCombo = Constantes.LABEL_AGREGAR_COMBO;
+    tooltipIrCombo = Constantes.LABEL_NAVEGAR_COMBO;
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';
     label_codigo = Constantes.LABEL_CODIGO;
@@ -27,8 +28,9 @@ export class HomeComboComponent implements OnInit{
     label_detalle_combo = Constantes.DESCRIPCION_COMBO;
     label_tabla_combo = Constantes.LABEL_BUSCAR_TABLA_COMBO;
     label_productos = Constantes.LABEL_PRODUCTOS_COMBO;
-    
-    label_navegar_combo = Constantes.LABEL_NAVEGAR_COMBO;
+    label_accion = Constantes.LABEL_ACCION;
+    label_buscar_combo = Constantes.LABEL_BUSCAR_COMBO;
+
     combos = [];
     combos_temp = [];
     

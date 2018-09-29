@@ -29,11 +29,13 @@ export class RegistrarComboComponent implements OnInit {
     label_datos_combo = Constantes.LABEL_DATOS_COMBO;
 
     label_nombre = Constantes.LABEL_NOMBRE;
+    label_total = Constantes.LABEL_TOTAL;
     label_precio_combo = Constantes.LABEL_PRECIO_VENTA;
     boton_registrar = Constantes.BOTON_REGISTRAR;
     boton_salir = Constantes.BOTON_SALIR;
 
     //LISTA_PRECIO
+    tooltipAgregarProducto = Constantes.LABEL_AGREGAR_PRODUCTO;
     label_lista_precio = Constantes.LABEL_LISTA_PRECIO;
     label_buscar_producto = Constantes.LABEL_BUSCAR_PRODUCTO;
     label_tabla_lista_precio = Constantes.LABEL_BUSCAR_TABLA_PRODUCTO;
@@ -48,13 +50,12 @@ export class RegistrarComboComponent implements OnInit {
     label_cantidad = Constantes.LABEL_CANTIDAD;
     label_descripcion_lista_precio_combo = Constantes.DESCRIPCION_LISTA_PRECIO_COMBO;
     label_accion = Constantes.LABEL_ACCION;
-    tooltipAgregarProducto = Constantes.LABEL_AGREGAR_PRODUCTO;
     lista_precio = [];
     lista_precio_temp = [];
 
 
     nombre: string;
-    precio_combo: number;
+    total: number = 0;
 
     productos_combo = [];
     productos_combo_temp = [];
@@ -140,6 +141,7 @@ export class RegistrarComboComponent implements OnInit {
                             this.productos_combo.push(this.lista_precio[row.$$index]);
                             this.productos_combo_temp = [...this.productos_combo];
                             this.lista_cantidad_productos_temp.push(1);
+                            this.calcularTotal();
                         }
                         else {
                             lista.push(this.lista_precio[i]);
@@ -175,11 +177,24 @@ export class RegistrarComboComponent implements OnInit {
                     else {
                         this.productos_combo[row.$$index]['precio_compra'] = dialogRef.componentInstance.precio_compra;
                         this.productos_combo[row.$$index]['precio_venta'] = dialogRef.componentInstance.precio_compra + (dialogRef.componentInstance.precio_compra * dialogRef.componentInstance.margen_ganancia / 100);
+                        this.productos_combo[row.$$index]['precio_venta'] = parseFloat(this.productos_combo[row.$$index]['precio_venta']).toFixed(2);
+                        this.productos_combo[row.$$index]['margen_ganancia'] =((this.productos_combo[row.$$index]['precio_venta'] / this.productos_combo[row.$$index]['precio_compra']) -1 )* 100; //{{((row.precio_venta/row.precio_compra)-1) *100}} 
+                        this.productos_combo[row.$$index]['margen_ganancia'] = parseFloat(this.productos_combo[row.$$index]['margen_ganancia']).toFixed(2);
                         this.lista_cantidad_productos_temp[row.$$index] = dialogRef.componentInstance.cantidad;
+                        this.calcularTotal();
                     }
                 }
             }
         );
+    }
+    
+    calcularTotal(){
+        this.total = 0;
+        let longitud = this.productos_combo.length;
+        for(var i = 0; i < longitud; i++){
+            this.total += this.productos_combo[i]['precio_venta'] * this.lista_cantidad_productos_temp[i];
+        }
+        
     }
 
     apretarRegistrarCombo(){
@@ -210,16 +225,20 @@ export class RegistrarComboComponent implements OnInit {
         else{
             this.errorMessage = Constantes.ERROR_LISTAS_DIFERENTES;
         }
+        
     }
 
     llenarArrays(){
         let longitud = this.productos_combo.length;
         for(var i = 0; i< longitud; i++){
-            let margen_ganancia = this.productos_combo[i]['precio_venta']/this.productos_combo[i]['precio_compra']-1;
+            let margen_ganancia = (this.productos_combo[i]['precio_venta']/this.productos_combo[i]['precio_compra']-1)*100;
             this.lista_productos.push(this.productos_combo[i]['codigo_producto']);
             this.lista_margen_ganancia.push(margen_ganancia);
             this.lista_cantidad_productos.push(this.lista_cantidad_productos_temp[i]);
         }
+        console.log(this.lista_productos);
+        console.log(this.lista_margen_ganancia);
+        console.log(this.lista_cantidad_productos);
     }
 
     apretarSalir() {

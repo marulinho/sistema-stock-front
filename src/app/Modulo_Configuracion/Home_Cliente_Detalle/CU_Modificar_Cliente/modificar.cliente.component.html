@@ -1,5 +1,5 @@
-<!--SECCION MODIFICAR USUARIO-->
 <div class="sign-container">
+        <form (keyup.enter)="apretarModificarCliente()">
         <md-card class="page-card">
                 <md-card-title>{{label_modificar_cliente}}</md-card-title>
                 <md-card-content>
@@ -12,7 +12,7 @@
                                 <br>
                         </section>
 
-                        <h2>{{label_datos_cliente}}</h2>
+                        <h3>{{label_datos_cliente}}</h3>
 
                         <label id="atributo">{{label_codigo}}: </label>
                         <label>{{codigo}}.</label> <br><br>
@@ -48,5 +48,5 @@
                 </md-card-actions>
                 <md-card-footer></md-card-footer>
         </md-card>
-
+        </form>
 </div>

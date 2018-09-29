@@ -43,6 +43,7 @@ export class HomeCategoriaDetalleComponent implements OnInit{
     label_nombre_subcategoria = Constantes.LABEL_NOMBRE;
     label_descripcion_subcategoria = Constantes.LABEL_DESCRIPCION;
     label_codigo_subcategoria = Constantes.LABEL_CODIGO;
+    label_buscar_subcategoria = Constantes.LABEL_BUSCAR_SUBCATEGORIA;
     subcategorias = [];
     subcategorias_temp = [];
 
@@ -56,6 +57,7 @@ export class HomeCategoriaDetalleComponent implements OnInit{
     label_marca_producto = Constantes.LABEL_MARCA;
     label_codigo_producto = Constantes.LABEL_CODIGO;
     label_medida_producto = Constantes.LABEL_MEDIDA;
+    label_buscar_producto = Constantes.LABEL_BUSCAR_PRODUCTO;
     productos = [];
     productos_temp = [];
 

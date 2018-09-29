@@ -55,6 +55,7 @@ export class ModuloConfiguracionService extends RestBaseService {
     private modificarComboURL = '/modificarCombo/';
     private obtenerCombosVigentesURL = '/obtenerCombosVigentes/';
     private obtenerComboIdURL = '/obtenerComboId/';
+    private actualizarPrecioComboURL = '/actualizarPrecioCombo/';
    
 
     constructor(private http: Http) { super(); }
@@ -558,6 +559,20 @@ export class ModuloConfiguracionService extends RestBaseService {
         };
 
         return this.http.put(ModuloConfiguracionService.serverURL + this.eliminarComboURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
+
+    actualizarPrecioCombo(codigo): Promise <ResultadoNone>{
+        const data = {
+            'codigo':codigo
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.actualizarPrecioComboURL, JSON.stringify(data), this.getRestHeader())
             .toPromise()
             .then(response => {
                 return response.json() as ResultadoNone;

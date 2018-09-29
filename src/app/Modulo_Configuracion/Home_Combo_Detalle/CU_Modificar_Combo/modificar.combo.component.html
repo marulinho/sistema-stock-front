@@ -26,7 +26,7 @@
                         <label>{{label_peso}} {{precio}}.</label><br>
 
                         <br>
-                        <label>{{label_buscar_producto}}: </label>
+                        <label id="atributo">{{label_buscar_producto}}: </label>
                         <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder={{label_tabla_combo}} (keyup)='updateFilter($event)'
                         />
                         <ngx-datatable 
@@ -72,12 +72,12 @@
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_margen_ganancia}}>
                                         <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                                {{row.margen_ganancia}} 
+                                                {{row.margen_ganancia}} {{label_porcentaje}}
                                         </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_precio_venta}}>
                                         <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                                {{label_peso}} {{row.precio_producto * (1+row.margen_ganancia) * row.cantidad}}
+                                                {{label_peso}} {{row.subtotal}}
                                         </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_accion}}>

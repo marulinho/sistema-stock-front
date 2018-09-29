@@ -81,6 +81,12 @@ export class ModificarComboComponent implements OnInit {
         .then(
             response => {
                 this.combo = response.datos_operacion['combo_detalles'];
+                let longitud = this.combo.length;
+                for(var i = 0; i < longitud; i++){
+                    this.combo[i]['precio_producto'] = parseFloat(this.combo[i]['precio_producto']).toFixed(2);
+                    this.combo[i]['margen_ganancia'] = parseFloat(this.combo[i]['margen_ganancia']).toFixed(2);
+                    this.combo[i]['subtotal'] = parseFloat(this.combo[i]['subtotal']).toFixed(2);
+                }
                 this.combo_temp = [...response.datos_operacion['combo_detalles']];
                 this.nombre = response.datos_operacion['combo_cabecera']['nombre'];
                 this.precio = response.datos_operacion['combo_cabecera']['precio'];
@@ -166,6 +172,8 @@ export class ModificarComboComponent implements OnInit {
                     else {
                         this.combo[row.$$index]['margen_ganancia'] = dialogRef.componentInstance.margen_ganancia;
                         this.combo[row.$$index]['cantidad'] = dialogRef.componentInstance.cantidad;
+                        this.combo[row.$$index]['subtotal'] = this.combo[row.$$index]['precio_producto'] * (1+(this.combo[row.$$index]['margen_ganancia'] / 100.00)) * this.combo[row.$$index]['cantidad'];
+                        this.combo[row.$$index]['subtotal'] = parseFloat(this.combo[row.$$index]['subtotal']).toFixed(2);
                         this.actualizarPrecioCombo();
                     }
                 }
@@ -177,21 +185,19 @@ export class ModificarComboComponent implements OnInit {
         let longitud = this.combo.length;
         for(var i = 0; i< longitud; i++){
             this.lista_productos.push(this.combo[i]['codigo_producto']);
-            this.lista_margen_ganancia.push(this.combo[i]['margen_ganancia']);
+            let margen_ganancia = parseFloat(this.combo[i]['margen_ganancia']);
+            this.lista_margen_ganancia.push(margen_ganancia);
             this.lista_cantidad_productos.push(this.combo[i]['cantidad']);
         }
-        console.log(this.lista_productos);
-        console.log(this.lista_margen_ganancia);
-        console.log(this.lista_cantidad_productos);
     }
 
     actualizarPrecioCombo(){
         let longitud = this.combo.length;
-        let precio_aux = 0;
-        for (let i = 0 ; i<longitud; i++){
-            precio_aux += this.combo[i]['precio_producto']*(1+this.combo[i]['margen_ganancia'])*this.combo[i]['cantidad'];
+        this.precio = 0;
+        for(var i = 0; i < longitud; i++){
+            this.precio += this.combo[i]['subtotal'] * this.combo[i]['cantidad'];
         }
-        this.precio = precio_aux;
+        //this.precio.toPrecision(2);
     }
     apretarSalir() {
         this.router.navigate([Constantes.URL_HOME_COMBO_DETALLE+'/'+this.codigo]);

@@ -68,7 +68,9 @@ export const Constantes={
     TITLE_REGISTRAR_VENTA: 'Registrar Venta',
     PREGUNTA_REGISTRAR_VENTA: '¿Desea registrar la venta?',
     TITLE_ELIMINAR_CLIENTE: 'Eliminar Cliente',
-    PREGUNTA_ELIMINAR_CLIENTE: '¿Desea eliminar el cliente?',
+    PREGUNTA_ELIMINAR_CLIENTE: '¿Desea eliminar el cliente?',   
+    TITLE_ACTUALIZAR_PRECIO_COMBO: 'Actualizar Precio Combo',
+    PREGUNTA_ACTUALIZAR_PRECIO_COMBO: '¿Desea actualizar el precio del combo?',
 
 //OPCIONES DIALOGS
     OPCION_ACEPTAR: 'Aceptar',
@@ -276,7 +278,10 @@ export const Constantes={
     LABEL_CLIENTE_PERFIL: 'Perfil Cliente',
     LABEL_EDITAR_CLIENTE: 'Modificar Cliente',
     LABEL_ELIMINAR_CLIENTE: 'Eliminar Cliente',
-
+    LABEL_BUSCAR_CATEGORIA: 'Buscar Categoria',
+    LABEL_BUSCAR_SUBCATEGORIA: 'Buscar SubCategoria',
+    LABEL_BUSCAR_COMBO: 'Buscar Combo',
+    LABEL_ACTUALIZAR_PRECIO_COMBO: 'Actualizar Precio Combo',
 
 //DESCRIPCIÓN CARD 
     DESCRIPCION_PRODUCTO : 'En esta sección se lleva a cabo la administración de los productos',
@@ -332,6 +337,7 @@ export const Constantes={
     MENSAJE_REGISTRACION_PAGO_EXITOSA: 'Pago Exitoso',
     MENSAJE_OK : 'OK',
     MENSAJE_CLIENTE_ELIMINADO: 'Cliente eliminado exitosamente',
+    MENSAJE_COMBO_ACTUALIZADO: 'Combo actualizado exitosamente',
 
 //OPERADORES COMPARACION
     OPERADOR_IGUAL : 'IGUAL',

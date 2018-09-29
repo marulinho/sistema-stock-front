@@ -4,6 +4,9 @@
 #invisible{
     display : none;
 }
+#atributo{
+    font-weight: bold;
+}
 a{
     cursor: pointer;
 }

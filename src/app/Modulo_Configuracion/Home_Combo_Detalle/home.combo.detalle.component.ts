@@ -19,6 +19,7 @@ export class HomeComboDetalleComponent implements OnInit{
     errorMessage = '';
     snackBarRef: any;
     tooltipEditarCombo = Constantes.LABEL_EDITAR_COMBO;
+    tooltipActualizarPrecioCombo = Constantes.LABEL_ACTUALIZAR_PRECIO_COMBO;
     tooltipEliminarCombo = Constantes.LABEL_ELIMINAR_COMBO;
     position = 'above';
     codigo : number;
@@ -70,6 +71,36 @@ export class HomeComboDetalleComponent implements OnInit{
         );
     }
 
+    apretarActualizarPrecioCombo(){
+        let dialogRef = this.dialog.open(DialogExampleComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_ACTUALIZAR_PRECIO_COMBO;
+        dialogRef.componentInstance.description = Constantes.PREGUNTA_ACTUALIZAR_PRECIO_COMBO;
+        dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
+        dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
+        dialogRef.afterClosed().subscribe(
+            result => {
+                this.selectedOption = result;
+                if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
+                    this.moduloConfiguracion.actualizarPrecioCombo(this.codigo)
+                        .then(
+                        response => {
+                            this.router.navigate([Constantes.URL_HOME_COMBO_DETALLE+'/'+this.codigo]);
+                            this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_COMBO_ACTUALIZADO, Constantes.MENSAJE_OK, {duration: 3000,});
+                        }
+                        )
+                        .catch(
+                            error => {
+                                if (error.error_description == Constantes.ERROR_NO_INICIO_SESION) {
+                                    this.router.navigate([Constantes.URL_LOGIN]);
+                                }
+                                else{
+                                    this.errorMessage = error.error_description;
+                                }
+                            }
+                        );
+                }
+            });
+    }
 
     apretarEliminarCombo(){
         this.openDialogEliminarCombo(Constantes.TITLE_ELIMINAR_COMBO,Constantes.PREGUNTA_ELIMINAR_COMBO);

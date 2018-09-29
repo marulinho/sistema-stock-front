@@ -27,6 +27,7 @@ export class HomeSubCategoriaDetalleComponent implements OnInit{
     label_nombre = Constantes.LABEL_NOMBRE;
     label_descripcion = Constantes.LABEL_DESCRIPCION;
     label_subcategoria_detalle = Constantes.LABEL_SUBCATEGORIA_DETALLE;
+    label_buscar_producto = Constantes.LABEL_BUSCAR_PRODUCTO;
     subcategoria : SubCategoria;
 
     errorMessageProducto = '';

@@ -44,10 +44,10 @@ export class HomeCajaComponent implements OnInit{
     label_total = Constantes.LABEL_TOTAL;
     label_estado = Constantes.LABEL_ESTADO;
     label_accion = Constantes.LABEL_ACCION;
-    total_apertura : number = 0;
-    total_ingreso : number = 0;
-    total_egreso : number = 0;
-    balance : number = 0;
+    total_apertura : number = 0.0;
+    total_ingreso : number = 0.0;
+    total_egreso : number = 0.0;
+    balance : number = 0.0;
     estado = '';
     errorMessageIngresos = '';
     errorMessageEgresos = '';
@@ -104,7 +104,8 @@ export class HomeCajaComponent implements OnInit{
                 this.estado = this.caja_cabecera['estado'];
                 this.caja_detalles = response.datos_operacion['caja_detalles'];
                 this.llenarCajaDetalle();
-                this.total_apertura = parseInt(this.caja_cabecera['total_apertura']);
+                this.caja_cabecera['total_apertura'] = parseFloat(this.caja_cabecera['total_apertura'].toFixed(2));
+                this.total_apertura = this.caja_cabecera['total_apertura'];
                 this.balance = this.total_apertura + this.total_ingreso - this.total_egreso;
             }
         )
@@ -161,6 +162,9 @@ export class HomeCajaComponent implements OnInit{
                 caja_detalle_egreso_temp.pop();
             }
         }
+        
+        this.total_egreso = parseFloat(this.total_egreso.toFixed(2));
+        this.total_ingreso = parseFloat(this.total_ingreso.toFixed(2));
 
         if (this.caja_detalle_ingreso.length == 0) {
             this.errorMessageIngresos = Constantes.LABEL_NO_HAY_INGRESOS;

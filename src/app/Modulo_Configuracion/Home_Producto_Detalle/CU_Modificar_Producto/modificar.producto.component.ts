@@ -78,6 +78,7 @@ export class ModificarProductoComponent implements OnInit {
                 this.marca = response.datos_operacion['marca'];
                 this.codigo = response.datos_operacion['codigo'];
                 this.medida = response.datos_operacion['medida'];
+                this.stock_minimo = response.datos_operacion['stock_minimo'];
             }
         )
         .catch(

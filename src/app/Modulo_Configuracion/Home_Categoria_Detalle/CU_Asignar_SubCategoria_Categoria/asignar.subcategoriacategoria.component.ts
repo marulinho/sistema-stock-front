@@ -25,6 +25,7 @@ export class AsignarSubCategoriaCategoriaComponent implements OnInit {
     label_codigo = Constantes.LABEL_CODIGO;
     label_descripcion = Constantes.LABEL_DESCRIPCION;
     label_accion = Constantes.LABEL_ACCION;
+    label_buscar_subcategoria = Constantes.LABEL_BUSCAR_SUBCATEGORIA;
     tooltipAsignarSubCategoria = Constantes.LABEL_ASIGNAR_SUBCATEGORIA;
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';
