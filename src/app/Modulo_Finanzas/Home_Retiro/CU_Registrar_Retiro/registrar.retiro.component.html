@@ -1,3 +1,4 @@
+<form (keyup.enter)="apretarRegistrarRetiro()">
 <md-card class="page-card">
         <md-card-title>
                 {{label_registrar_retiro}}
@@ -28,12 +29,14 @@
                                 <input mdInput placeholder={{label_descripcion}} type="string" [(ngModel)]="descripcion"  name="descripcion" required maxlength="140">
                         </md-input-container>
 
-                        
+                        <label id='error' *ngIf="balance < total">{{label_error_total_balance}}</label>
                 </div>
         </md-card-content>
         <md-card-actions>
-                <button *ngIf="balance > total && total >0" md-raised-button (click)="apretarRegistrarRetiro()">{{boton_registrar}}</button>
+                <button *ngIf="balance >= total" md-raised-button (click)="apretarRegistrarRetiro()">{{boton_registrar}}</button>
+                <button *ngIf="balance < total" disabled md-raised-button (click)="apretarRegistrarRetiro()">{{boton_registrar}}</button>
                 <button md-raised-button (click)="apretarSalir()">{{boton_salir}}</button>
         </md-card-actions>
         <md-card-footer></md-card-footer>
 </md-card>
+</form>

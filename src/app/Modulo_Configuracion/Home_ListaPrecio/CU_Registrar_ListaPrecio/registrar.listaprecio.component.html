@@ -1,3 +1,4 @@
+<form (keyup.enter)="apretarRegistrarListaPrecio()">
 <md-card class="page-card">
   <md-card-title>{{label_registrar_lista_precio}}</md-card-title>
     <md-card-content>
@@ -94,7 +95,7 @@
                         <ngx-datatable-column name={{label_accion}}>
                                 <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
                                         <a class="example-tooltip-host" mdTooltip="{{tooltipEditarPrecio}}" [mdTooltipPosition]="position">
-                                                <img src="assets/icons/editar.png" (click) = "apretarEditar(row)">
+                                                <img src="assets/icons/editar.png" (click) = "apretarEditarPrecioProducto(row)">
                                         </a>
                                         <a class="example-tooltip-host" mdTooltip="{{tooltipEliminarProducto}}" [mdTooltipPosition]="position">
                                                 <img src="assets/icons/delete.png" (click) = "apretarEliminarProducto(row)">
@@ -104,23 +105,7 @@
                 </ngx-datatable>
                 </div>
                 </md-tab>
-                        <md-tab disabled label={{label_paso_3}}>
-                                <div class="tab-body-content">
-                                        <h4>{{label_resumen}}</h4>
-                                        <section *ngIf="errorMessage" class="bs">
-                                                <div class="bd-example" data-example-id="">
-                                                        <div class="alert alert-danger" role="alert">
-                                                                <strong>{{errorMessage}}</strong>
-                                                        </div>
-                                                </div>
-                                                <br>
-                                        </section>
-                                        <label id="atributo">{{label_nombre}}: </label>
-                                        <label>{{nombre}}.</label>
-                                        <br>
-                                        <br>
-                                </div>
-                        </md-tab>
+                        
                 </md-tab-group>
         </md-card-content>
         <md-card-actions>
@@ -131,3 +116,4 @@
         </md-card-actions>
         <md-card-footer></md-card-footer>
 </md-card>
+</form>

@@ -72,10 +72,6 @@ export class HomeClienteDetalleComponent implements OnInit{
     }
 
     apretarEliminarCliente(){
-        this.openDialogCliente();
-    }
-
-    openDialogCliente() {
         let dialogRef = this.dialog.open(DialogExampleComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_ELIMINAR_CLIENTE;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_ELIMINAR_CLIENTE ;

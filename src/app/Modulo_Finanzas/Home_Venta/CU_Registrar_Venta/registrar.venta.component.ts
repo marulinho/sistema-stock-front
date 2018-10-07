@@ -5,7 +5,9 @@ import { AppService } from '../../../app.service';
 import { Constantes } from '../../../Datos_Sistema/constantes';
 import { ModuloFinanzasService } from '../../modulo.finanzas.services';
 import { ModuloConfiguracionService } from '../../../Modulo_Configuracion/modulo.configuracion.service';
-import { DialogExampleComponent } from '../../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogYesNoComponent } from '../../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
+import { DialogSeleccionarProductoVentaComponent } from './dialog-seleccionar-productos-venta/dialog.seleccionar.productos.venta.component';
+import { DialogEditarCantidadVentaComponent } from './dialog-editar-cantidad-venta/dialog.editar.cantidad.venta.component';
 
 
 @Component({
@@ -22,35 +24,35 @@ export class RegistrarVentaComponent implements OnInit {
     selectedOption: string;
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     tooltipAgregarProducto = Constantes.LABEL_AGREGAR_PRODUCTO_VENTA;
+    tooltipEditarProducto = Constantes.LABEL_EDITAR_PRODUCTO;
+    tooltipEliminarProducto = Constantes.LABEL_ELIMINAR_PRODUCTO;
     position = 'above';
     id_usuario = JSON.parse(localStorage.getItem('idUsuario'));
     label_registrar_venta = Constantes.LABEL_REGISTRAR_VENTA;
     label_venta = Constantes.LABEL_COMPRA;
-    label_detalle_venta = Constantes.LABEL_DETALLE_VENTA;
     label_total = Constantes.LABEL_TOTAL;
+    label_descuento = Constantes.LABEL_DESCUENTO;
+    label_subtotal = Constantes.LABEL_SUBTOTAL;
     label_peso = Constantes.LABEL_PESO;
-    label_usuario = Constantes.LABEL_USUARIO;
     label_codigo = Constantes.LABEL_CODIGO;
     label_nombre = Constantes.LABEL_NOMBRE;
     label_marca = Constantes.LABEL_MARCA;
     label_medida = Constantes.LABEL_MEDIDA;
-    label_subtotal = Constantes.LABEL_SUBTOTAL;
     label_cantidad = Constantes.LABEL_CANTIDAD;
+    label_accion = Constantes.LABEL_ACCION;
+    label_error_descuento = Constantes.MENSAJE_DESCUENTO_INSUFICIENTE;
     label_tabla_producto = Constantes.LABEL_BUSCAR_TABLA_PRODUCTO;
     label_buscar_producto = Constantes.LABEL_BUSCAR_PRODUCTO;
-    label_stock_local = Constantes.LABEL_STOCK_LOCAL;
+
     label_productos_disponibles = Constantes.LABEL_PRODUCTOS_DISPONIBLES;
     label_precio_venta = Constantes.LABEL_PRECIO_VENTA;
     label_precio_total = Constantes.LABEL_TOTAL;
-    label_descuento = Constantes.LABEL_DESCUENTO;
-    label_porcentaje = Constantes.LABEL_PORCENTAJE;
-    label_accion = Constantes.LABEL_ACCION;
-    label_descripcion_lista_precio_venta = Constantes.DESCRIPCION_LISTA_PRECIO_VENTA;
+    
     boton_registrar = Constantes.BOTON_REGISTRAR;
     boton_salir = Constantes.BOTON_SALIR;
     
 
-    descuento: number;
+    descuento: number = 0;
     subtotal: number = 0;
 
 
@@ -61,7 +63,7 @@ export class RegistrarVentaComponent implements OnInit {
     productos_venta_temp = [];
 
     lista_productos = [];
-    lista_productos_temp = [];
+
     lista_cantidad_productos = [];
     lista_cantidad_productos_temp = [];
 
@@ -112,14 +114,6 @@ export class RegistrarVentaComponent implements OnInit {
             );
     }
 
-    updateFilterProductosListaPrecio(event) {
-        const val = event.target.value.toLowerCase();
-        const temp = this.lista_precio_temp.filter(function (d) {
-            return d.nombre_producto.toLowerCase().indexOf(val) !== -1 || !val;
-        });
-        this.lista_precio = temp;
-    }
-
     updateFilterProductosVenta(event) {
         const val = event.target.value.toLowerCase();
         const temp = this.productos_venta_temp.filter(function (d) {
@@ -128,53 +122,66 @@ export class RegistrarVentaComponent implements OnInit {
         this.productos_venta = temp;
     }
 
-    apretarAgregarProductoVenta(row) {
-        this.openDialogAgregarProducto(row);
+        
+    getPrecioTotal(){
+        return (this.subtotal - (this.subtotal * this.descuento / 100)).toFixed(2);
     }
 
-
-    openDialogAgregarProducto(row) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = Constantes.TITLE_ASIGNAR_PRODUCTO_VENTA;
-        dialogRef.componentInstance.description = Constantes.PREGUNTA_ASIGNAR_PRODUCTO_VENTA;
+    apretarAgregarProductoVenta(row) {
+        let dialogRef = this.dialog.open(DialogSeleccionarProductoVentaComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_PRODUCTOS_DISPONIBLES;
+        dialogRef.componentInstance.description = Constantes.DESCRIPCION_LISTA_PRECIO_VENTA;
+        dialogRef.componentInstance.productos = this.lista_precio;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(
             result => {
                 this.selectedOption = result;
                 if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
-                    let lista = [];
-                    let longitud = this.lista_precio.length;
-                    let codigo_producto = this.lista_precio[row.$$index]['codigo_producto'];
-                    for (var i = 0; i < longitud; i++) {
-                        if (this.lista_precio[i]['codigo_producto'] == codigo_producto) {
-                            this.productos_venta.push(this.lista_precio[row.$$index]);
-                            this.productos_venta_temp = [...this.productos_venta];
+                    
+                    let longitud = dialogRef.componentInstance.productos.length;
+                    for(var i = 0; i < longitud ; i++){
+                        if(dialogRef.componentInstance.productos[i]['checked']===true){
+                            this.productos_venta.push(dialogRef.componentInstance.productos[i]);
                             this.lista_cantidad_productos_temp.push(1);
-                            this.lista_productos_temp.push(codigo_producto);
-                        }
-                        else {
-                            lista.push(this.lista_precio[i]);
                         }
                     }
-                    this.lista_precio = lista;
-                    this.lista_precio_temp = [...this.lista_precio];
+                    this.sacarRepetidos();
+                    this.calcularTotal();
+                    this.productos_venta_temp = [...this.productos_venta];
                 }
                 
             }
         );
     }
 
-    apretarEditarProductoCompra(row) {
-        this.openDialogEditarProducto(row);
+
+    sacarRepetidos(){
+        let longitud = this.lista_precio.length;
+        let lista_aux = [];
+        
+        for(var i=0; i<longitud; i++){
+            if(!(this.productos_venta.includes(this.lista_precio[i]))){
+                lista_aux.push(this.lista_precio[i]);
+            }
+        }
+        this.lista_precio = lista_aux;
+    } 
+
+    calcularTotal(){
+        this.subtotal = 0;
+        let longitud = this.productos_venta.length;
+        for(var i = 0; i < longitud; i++){
+            this.subtotal += this.productos_venta[i]['precio_venta'] * this.lista_cantidad_productos_temp[i];
+        }
+        
     }
 
-    openDialogEditarProducto(row) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+    apretarEditarProductoVenta(row) {
+        let dialogRef = this.dialog.open(DialogEditarCantidadVentaComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_EDITAR_CANTIDAD_PRODUCTO;
-        dialogRef.componentInstance.descipcion_lista_precio = Constantes.DESCRIPCION_EDITAR_CANTIDAD_PRODUCTO;
+        dialogRef.componentInstance.description = Constantes.DESCRIPCION_EDITAR_CANTIDAD_PRODUCTO;
         dialogRef.componentInstance.cantidad = this.lista_cantidad_productos_temp[row.$$index];
-        dialogRef.componentInstance.venta_seleccionado = true;
         dialogRef.componentInstance.stock_local = row.stock_local;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
@@ -186,12 +193,8 @@ export class RegistrarVentaComponent implements OnInit {
                         //no editamos las cantidades de la compra
                     }
                     else {
-                        this.subtotal = 0;
                         this.lista_cantidad_productos_temp[row.$$index] = dialogRef.componentInstance.cantidad;
-                        let longitud_x = this.productos_venta.length;
-                        for(var x = 0; x < longitud_x ; x++){
-                            this.subtotal += this.productos_venta[x]['precio_venta'] * this.lista_cantidad_productos_temp[x];
-                        }
+                        this.calcularTotal();
                     }
                 }
             }
@@ -225,9 +228,16 @@ export class RegistrarVentaComponent implements OnInit {
             )        
     }
 
+    apretarEliminarProductoVenta(row){
+        this.productos_venta = this.productos_venta.filter(item => item.codigo_producto !== row.codigo_producto);
+        this.lista_precio.push(row); 
+        this.calcularTotal();
+        this.productos_venta_temp = [...this.productos_venta];
+    }
+
 
     openDialogRegistrarVenta(){
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_REGISTRAR_VENTA;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_REGISTRAR_VENTA;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
@@ -325,7 +335,7 @@ export class RegistrarVentaComponent implements OnInit {
     }
     
     openDialogAbrirCaja(){
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_ABRIR_CAJA;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_ABRIR_CAJA_NO_EXISTE;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
@@ -359,9 +369,9 @@ export class RegistrarVentaComponent implements OnInit {
 
 
     llenarArrays(){
-        let longitud = this.lista_productos_temp.length;
+        let longitud = this.productos_venta.length;
         for(var i = 0; i< longitud; i++){
-            this.lista_productos.push(this.lista_productos_temp[i]);
+            this.lista_productos.push(this.productos_venta[i]['codigo_producto']);
             this.lista_cantidad_productos.push(this.lista_cantidad_productos_temp[i]);
         }
     }

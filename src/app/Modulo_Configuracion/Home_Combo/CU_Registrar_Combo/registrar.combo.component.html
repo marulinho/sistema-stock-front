@@ -1,6 +1,9 @@
 <md-card class="page-card">
         <md-card-title>
                 {{label_registrar_combo}}
+                <a class="example-tooltip-host" mdTooltip={{tooltipAgregarProducto}} [mdTooltipPosition]="position" (click)="apretarAgregarProducto()">
+                        <img src="assets/icons/nuevo.png">
+                </a>
                 <a id="botonVolver" class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
                         <img src="assets/icons/atras.png">
                 </a>
@@ -33,8 +36,8 @@
                 <!--LISTA COMBO-->
 
                 <div>
-                        <label>{{label_buscar_producto}}: </label>
-                        <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder={{label_tabla_lista_precio}} (keyup)='updateFilterCombo($event)'
+                        <label id='atributo'>{{label_buscar_producto}}: </label>
+                        <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder={{label_tabla_lista_combo}} (keyup)='updateFilterCombo($event)'
                         />
                         <ngx-datatable #mydatatableCombo
                                 class="material fullscreen" 
@@ -45,11 +48,6 @@
                                 [footerHeight]="50" 
                                 [rowHeight]="'auto'"
                                 [rows]="productos_combo">
-                                <ngx-datatable-column name={{label_cantidad}}>
-                                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                                                {{lista_cantidad_productos_temp[row.$$index]}}
-                                        </ng-template>
-                                </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_codigo}}>
                                         <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
                                                 {{row.codigo_producto}}
@@ -68,6 +66,11 @@
                                 <ngx-datatable-column name={{label_medida}}>
                                         <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
                                                 {{row.medida}} {{row.nombre_medida}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_cantidad}}>
+                                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                                {{lista_cantidad_productos_temp[row.$$index]}}
                                         </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_precio_compra}}>
@@ -90,82 +93,13 @@
                                                 <a class="example-tooltip-host" mdTooltip="{{tooltipEditarProducto}}" [mdTooltipPosition]="position">
                                                         <img src="assets/icons/editar.png" (click)="apretarEditarProductoCombo(row)">
                                                 </a>
-                                        </ng-template>
-                                </ngx-datatable-column>
-                        </ngx-datatable>
-                </div>
-
-
-
-                <br><br><br><br>
-
-                <!--LISTA PRECIO-->
-
-                <div>
-                        <md-card-title>
-                                {{label_lista_precio}}
-                        </md-card-title>
-                        <p>{{label_descripcion_lista_precio_combo}}</p>
-                        <label>{{label_buscar_producto}}: </label>
-                        <input type='text' style='padding:8px;margin:15px auto;width:30%;' placeholder={{label_tabla_lista_precio}} (keyup)='updateFilterListaPrecio($event)'
-                        />
-                        <ngx-datatable 
-                                #mydatatable 
-                                class="material fullscreen" 
-                                [headerHeight]="50" 
-                                [limit]="10" 
-                                [sortType]="'multi'"
-                                [columnMode]="'force'"
-                                [footerHeight]="50" 
-                                [rowHeight]="'auto'"
-                                [rows]="lista_precio">
-                                <ngx-datatable-column name={{label_codigo}}>
-                                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                                                {{row.codigo_producto}}
-                                        </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name={{label_nombre}}>
-                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                                {{row.nombre_producto}}
-                                        </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name={{label_marca}}>
-                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                                {{row.marca_producto}}
-                                        </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name={{label_medida}}>
-                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                                {{row.medida}} {{row.nombre_medida}}
-                                        </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name={{label_precio_compra}}>
-                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                                {{label_peso}} {{row.precio_compra}}
-                                        </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name={{label_margen_ganancia}}>
-                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                                {{row.margen_ganancia}} {{label_porcentaje}}
-                                        </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name={{label_precio_venta}}>
-                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                                {{label_peso}} {{row.precio_venta}}
-                                        </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name={{label_accion}}>
-                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                                                <a class="example-tooltip-host" mdTooltip="{{tooltipAgregarProducto}}" [mdTooltipPosition]="position">
-                                                        <img src="assets/icons/nuevo.png" (click)="apretarAgregarProductoCombo(row,row.codigo_producto,
-                                                                                                                               row.precio_compra)">
+                                                <a class="example-tooltip-host" mdTooltip="{{tooltipEliminarProducto}}" [mdTooltipPosition]="position">
+                                                        <img src="assets/icons/delete.png" (click)="apretarEliminarProductoCombo(row)">
                                                 </a>
                                         </ng-template>
                                 </ngx-datatable-column>
                         </ngx-datatable>
                 </div>
-
-
         </md-card-content>
         <md-card-actions>
                 <button md-raised-button (click)="apretarRegistrarCombo()">{{boton_registrar}}</button>

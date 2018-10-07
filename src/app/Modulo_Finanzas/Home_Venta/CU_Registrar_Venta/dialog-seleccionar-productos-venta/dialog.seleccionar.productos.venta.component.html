@@ -1,0 +1,63 @@
+<div class="dialog">
+    <h1 class="cabecera" md-dialog-title>{{title}}</h1>
+    <div *ngIf="description" class="detalle" md-dialog-content>{{description}}</div>
+    <div>
+        <label id='atributo'>{{label_buscar_producto}}: </label>
+        <input type='text' 
+                style='padding:8px;margin:15px auto;width:30%;' 
+                placeholder={{label_tabla_producto}} 
+                (keyup)='updateFilter($event)'
+        />
+        <ngx-datatable #mydatatable
+                class="material fullscreen" 
+                [headerHeight]="50" 
+                [limit]="5" 
+                [sortType]="'multi'" 
+                [columnMode]="'force'"
+                [footerHeight]="50" 
+                [rowHeight]="'auto'"
+                [rows]="productos">
+         
+                <ngx-datatable-column name={{label_codigo}}>
+                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                {{row.codigo_producto}}
+                        </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name={{label_nombre}}>
+                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                {{row.nombre_producto}}
+                        </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name={{label_marca}}>
+                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                {{row.marca_producto}}
+                        </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name={{label_medida}}>
+                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                {{row.medida}} {{row.nombre_medida}}
+                        </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name={{label_stock_local}}>
+                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                {{row.stock_local}}
+                        </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name={{label_precio_venta}}>
+                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                {{label_peso}} {{row.precio_venta}}
+                        </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name={{label_accion}}>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                        <md-checkbox class="example-margin" [(ngModel)]="row.checked"></md-checkbox>
+                    </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+    <div md-dialog-actions>
+        <button id = 'aceptar' *ngIf="getProductosSeleccionados()===true" class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
+        <button id = 'aceptar' *ngIf="getProductosSeleccionados()===false" disabled class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
+        <button id = 'cancelar' class="example-md-buttons" md-raised-button color="warn" (click)="dialogRef.close('Cancelar')">{{option2}}</button>
+    </div>
+</div>

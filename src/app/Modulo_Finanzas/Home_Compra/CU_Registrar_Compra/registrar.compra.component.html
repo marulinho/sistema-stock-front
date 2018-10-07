@@ -4,6 +4,9 @@
                 <a id="botonVolver" class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
                         <img src="assets/icons/atras.png">
                 </a>
+                <a class="example-tooltip-host" mdTooltip={{tooltipAgregarProducto}} [mdTooltipPosition]="position" (click)="apretarAgregarProducto()">
+                        <img src="assets/icons/nuevo.png">
+                </a>
         </md-card-title>
         <md-card-content>
                 <section *ngIf="errorMessage" class="bs">
@@ -24,11 +27,12 @@
                         <md-input-container>
                                 <input mdInput placeholder={{label_descuento}} type="number" [(ngModel)]="descuento"  name="descuento" required maxlength="40">
                         </md-input-container>
+                        
+                        <label id='error' *ngIf= "descuento <0">{{label_error_descuento_insuficiente}}</label><br><br>
 
                         <label id="atributo">{{label_precio_total}}: </label>
-                        <label *ngIf= "subtotal >= 0 && descuento >= 0">{{label_peso}} {{subtotal - (subtotal * descuento / 100)}}</label>
-                        <label *ngIf= "subtotal >= 0 && descuento == null">{{label_peso}} {{subtotal}}</label>
-                        <label *ngIf= "subtotal < 0 || descuento < 0">---</label><br><br>
+                        <label *ngIf= "subtotal >= 0 && descuento >=0">{{label_peso}} {{subtotal - (subtotal * descuento / 100)}}</label>
+                        <label *ngIf= "subtotal < 0 ">---</label><br><br>
 
                         <label id='atributo'>{{label_buscar_producto}}: </label>
                         <input type='text' 
@@ -44,7 +48,7 @@
                                 [columnMode]="'force'"
                                 [footerHeight]="50" 
                                 [rowHeight]="'auto'"
-                                [rows]="lista_precio">
+                                [rows]="lista_compra">
                          
                                 <ngx-datatable-column name={{label_codigo}}>
                                         <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
@@ -90,6 +94,9 @@
                                         <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
                                                 <a class="example-tooltip-host" mdTooltip="{{tooltipEditarProducto}}" [mdTooltipPosition]="position">
                                                         <img src="assets/icons/editar.png" (click)="apretarEditarProductoCompra(row)">
+                                                </a>
+                                                <a class="example-tooltip-host" mdTooltip="{{tooltipEliminarProducto}}" [mdTooltipPosition]="position">
+                                                        <img src="assets/icons/delete.png" (click)="apretarEliminarProductoCompra(row)">
                                                 </a>
                                         </ng-template>
                                 </ngx-datatable-column>

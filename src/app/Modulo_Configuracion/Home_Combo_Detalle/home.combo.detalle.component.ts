@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { MdSnackBar } from '@angular/material';
 import { MdDialog } from '@angular/material';
-import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogYesNoComponent } from '../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
 import { Constantes } from '../../Datos_Sistema/constantes';
 import { ModuloConfiguracionService, Combo} from '../modulo.configuracion.service';
 
@@ -72,7 +72,7 @@ export class HomeComboDetalleComponent implements OnInit{
     }
 
     apretarActualizarPrecioCombo(){
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_ACTUALIZAR_PRECIO_COMBO;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_ACTUALIZAR_PRECIO_COMBO;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
@@ -84,7 +84,7 @@ export class HomeComboDetalleComponent implements OnInit{
                     this.moduloConfiguracion.actualizarPrecioCombo(this.codigo)
                         .then(
                         response => {
-                            this.router.navigate([Constantes.URL_HOME_COMBO_DETALLE+'/'+this.codigo]);
+                            this.obtenerCombo();
                             this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_COMBO_ACTUALIZADO, Constantes.MENSAJE_OK, {duration: 3000,});
                         }
                         )
@@ -103,13 +103,9 @@ export class HomeComboDetalleComponent implements OnInit{
     }
 
     apretarEliminarCombo(){
-        this.openDialogEliminarCombo(Constantes.TITLE_ELIMINAR_COMBO,Constantes.PREGUNTA_ELIMINAR_COMBO);
-    }
-
-    openDialogEliminarCombo(title,description) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.description = description ;
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_ELIMINAR_COMBO;
+        dialogRef.componentInstance.description = Constantes.PREGUNTA_ELIMINAR_COMBO ;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { MdSnackBar } from '@angular/material';
 import { MdDialog } from '@angular/material';
-import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogYesNoComponent } from '../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
 import { Constantes } from '../../Datos_Sistema/constantes';
 import { ModuloFinanzasService} from '../modulo.finanzas.services';
 
@@ -129,7 +129,7 @@ export class HomeCompraDetalleComponent implements OnInit{
     }
     
     openDialogCancelarCompra() {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_CANCELAR_COMPRA;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_CANCELAR_COMPRA ;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
@@ -182,7 +182,7 @@ export class HomeCompraDetalleComponent implements OnInit{
     }
 
     openDialogPagarCompra(){
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_PAGAR_COMPRA;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_PAGAR_COMPRA ;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
@@ -257,7 +257,7 @@ export class HomeCompraDetalleComponent implements OnInit{
         )
     }
     openDialogAbrirCaja(){
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_ABRIR_CAJA;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_ABRIR_CAJA_NO_EXISTE;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;

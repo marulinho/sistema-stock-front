@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { MdSnackBar } from '@angular/material';
 import { MdDialog } from '@angular/material';
-import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogYesNoComponent } from '../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
 import { Constantes } from '../../Datos_Sistema/constantes';
 import { ModuloFinanzasService} from '../modulo.finanzas.services';
 
@@ -109,11 +109,7 @@ export class HomeVentaDetalleComponent implements OnInit{
     
  
     apretarCancelarVenta(){
-        this.openDialogCancelarVenta();
-    }
-    
-    openDialogCancelarVenta() {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_CANCELAR_VENTA;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_CANCELAR_VENTA;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;

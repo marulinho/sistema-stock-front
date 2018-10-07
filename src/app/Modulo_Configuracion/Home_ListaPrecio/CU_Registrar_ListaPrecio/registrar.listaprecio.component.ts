@@ -6,7 +6,8 @@ import { Constantes } from '../../../Datos_Sistema/constantes';
 import { Utils } from '../../../Datos_Sistema/utils';
 import { ModuloConfiguracionService } from '../../modulo.configuracion.service';
 import { MdDialog } from '@angular/material';
-import { DialogExampleComponent } from '../../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogEditarPrecioListaComponent } from './dialog-editar-precio-lista-precio/dialog.editar.precio.lista.component';
+import { DialogYesNoComponent } from '../../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
 
 
 @Component({
@@ -181,20 +182,47 @@ export class RegistrarListaPrecioComponent implements OnInit {
         this.lista_precio = temp;
     }
 
-   apretarEditar(row){
-       this.openDialogEditarPrecio(Constantes.TITLE_EDITAR_PRECIO_LISTA, Constantes.DESCRIPCION_EDITAR_PRECIO_LISTA,row);
+   apretarEditarPrecioProducto(row){
+        let dialogRef = this.dialog.open(DialogEditarPrecioListaComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_EDITAR_PRECIO_LISTA;
+        dialogRef.componentInstance.description = Constantes.DESCRIPCION_EDITAR_PRECIO_LISTA ;
+        if(row.precio_unitario_compra === null){
+            dialogRef.componentInstance.precio_compra = 0 ;
+        }
+        else{
+            dialogRef.componentInstance.precio_compra = row.precio_unitario_compra ;
+        }
+
+        if(row.margen_ganancia === null){
+            dialogRef.componentInstance.margen_ganancia = 0 ;
+        }
+        else{
+            dialogRef.componentInstance.margen_ganancia = row.margen_ganancia ;
+        }
+        dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
+        dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
+        dialogRef.afterClosed().subscribe(
+            result => {
+                this.selectedOption = result;
+                if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
+                    if(dialogRef.componentInstance.precio_compra <= 0 || dialogRef.componentInstance.margen_ganancia <= 0){
+                        //dejamos el margen y precios actuales    
+                    }
+                    else{
+                        this.lista_precio[row.$$index]['precio_unitario_compra'] = dialogRef.componentInstance.precio_compra;
+                        this.lista_precio[row.$$index]['precio_unitario_venta'] = parseFloat(dialogRef.componentInstance.getPrecioTotal());
+                        this.lista_precio[row.$$index]['margen_ganancia'] = dialogRef.componentInstance.margen_ganancia;
+                        this.lista_precio[row.$$index]['ganancia'] = parseFloat((this.lista_precio[row.$$index]['precio_unitario_venta'] - this.lista_precio[row.$$index]['precio_unitario_compra']).toFixed(2));
+                    }                    
+                } 
+            }
+        );
    }
 
    apretarEliminarProducto(row){
-       this.opengDialogEliminarProducto(Constantes.TITLE_ELIMINAR_PRODUCTO,Constantes.PREGUNTA_ELIMINAR_PRODUCTO,row);
-     
-       
-   }
-
-   opengDialogEliminarProducto(title,description,row){
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.description = description ;
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_ELIMINAR_PRODUCTO;
+        dialogRef.componentInstance.description = Constantes.PREGUNTA_ELIMINAR_PRODUCTO ;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(
@@ -219,35 +247,6 @@ export class RegistrarListaPrecioComponent implements OnInit {
         );
    }
 
-   openDialogEditarPrecio(title,descipcion_lista_precio,row) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.descipcion_lista_precio = descipcion_lista_precio ;
-        dialogRef.componentInstance.precio_compra = row.precio_unitario_compra ;
-        dialogRef.componentInstance.margen_ganancia = row.margen_ganancia ;
-        dialogRef.componentInstance.precio_compra_modificar = true;
-        dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
-        dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
-        dialogRef.afterClosed().subscribe(
-            result => {
-                this.selectedOption = result;
-                if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
-                    if(dialogRef.componentInstance.precio_compra <= 0 || dialogRef.componentInstance.margen_ganancia <= 0){
-                        //dejamos el margen y precios actuales    
-                    }
-                    else{
-                        this.lista_precio[row.$$index]['precio_unitario_compra'] = dialogRef.componentInstance.precio_compra;
-                        this.lista_precio[row.$$index]['precio_unitario_venta'] = dialogRef.componentInstance.precio_compra  * (1+dialogRef.componentInstance.margen_ganancia/100);
-                        this.lista_precio[row.$$index]['margen_ganancia'] = (this.lista_precio[row.$$index]['precio_unitario_venta'] / this.lista_precio[row.$$index]['precio_unitario_compra'] - 1) * 100;
-                        this.lista_precio[row.$$index]['ganancia'] = this.lista_precio[row.$$index]['precio_unitario_venta'] - this.lista_precio[row.$$index]['precio_unitario_compra'];
-                    }                    
-                } 
-            }
-        );
-    }
-
-
-    
     apretarAtrasRegistrar(){
         this.errorMessage = "";
         this.arrayVerificar = this.utils.limpiarArray(this.arrayVerificar);

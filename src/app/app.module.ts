@@ -11,6 +11,16 @@ import { Md2Module } from 'md2/module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, NoPreloading } from '@angular/router';
 import { DialogExampleComponent } from './shared/dialog/dialog-example/dialog-example.component';
+import { DialogRegistrarRemitoComponent } from './Modulo_Finanzas/Home_Remito/CU_Registrar_Remito/dialog-registrar-remito/dialog-seleccionar-productos/dialog.registrar.remito.component';
+import { DialogEditarCantidadRemitoComponent } from './Modulo_Finanzas/Home_Remito/CU_Registrar_Remito/dialog-registrar-remito/dialog-editar-cantidad/dialog.editar.cantidad.remito.component';
+import { DialogYesNoComponent } from './Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
+import { DialogRegistrarComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/dialog-registrar-combo/dialog.registrar.combo.component';
+import { DialogEditarPrecioComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/dialog-editar-precio-combo/dialog.editar.precio.combo.component';
+import { DialogEditarPrecioListaComponent } from './Modulo_Configuracion/Home_ListaPrecio/CU_Registrar_ListaPrecio/dialog-editar-precio-lista-precio/dialog.editar.precio.lista.component';
+import { DialogSeleccionarProductoCompraComponent } from './Modulo_Finanzas/Home_Compra/CU_Registrar_Compra/dialog-seleccionar-producto-compra/dialog.seleccionar.producto.compra.component';
+import { DialogEditarCantidadCompraComponent } from './Modulo_Finanzas/Home_Compra/CU_Registrar_Compra/dialog-editar-cantidad-compra/dialog.editar.cantidad.compra.component';
+import { DialogSeleccionarProductoVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/dialog-seleccionar-productos-venta/dialog.seleccionar.productos.venta.component';
+import { DialogEditarCantidadVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/dialog-editar-cantidad-venta/dialog.editar.cantidad.venta.component';
 import { ComponentDialogComponent } from './pages/component-dialog/component-dialog.component';
 //import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -142,6 +152,16 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     // Page
     AppComponent,
     DialogExampleComponent,
+    DialogRegistrarRemitoComponent,
+    DialogEditarCantidadRemitoComponent,
+    DialogYesNoComponent,
+    DialogRegistrarComboComponent,
+    DialogEditarPrecioComboComponent,
+    DialogEditarPrecioListaComponent,
+    DialogSeleccionarProductoCompraComponent,
+    DialogEditarCantidadCompraComponent,
+    DialogSeleccionarProductoVentaComponent,
+    DialogEditarCantidadVentaComponent,
     DialogThemeComponent,
     ComponentDialogComponent,
     DashboardComponent,
@@ -303,6 +323,16 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
   entryComponents: [
     // Customize dialog must be import here.
     DialogExampleComponent,
+    DialogRegistrarRemitoComponent,
+    DialogEditarCantidadRemitoComponent,
+    DialogYesNoComponent,
+    DialogRegistrarComboComponent,
+    DialogEditarPrecioComboComponent,
+    DialogEditarPrecioListaComponent,
+    DialogSeleccionarProductoCompraComponent,
+    DialogEditarCantidadCompraComponent,
+    DialogSeleccionarProductoVentaComponent,
+    DialogEditarCantidadVentaComponent,
     DialogThemeComponent,
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA ],

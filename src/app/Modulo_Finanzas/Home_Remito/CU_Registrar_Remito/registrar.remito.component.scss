@@ -37,3 +37,20 @@
   #botonVolver{
     float : right;
 }
+
+.example-md-buttons {
+  align-content: center;
+  margin-right: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#aceptar{
+  margin-left: 45%;
+}
+#aceptar:hover{
+  background-color: #027167;
+}
+#cancelar:hover{
+  background-color: red;
+}

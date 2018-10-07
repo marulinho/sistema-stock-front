@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { MdSnackBar } from '@angular/material';
 import { MdDialog } from '@angular/material';
-import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogYesNoComponent } from '../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
 import { Constantes } from '../../Datos_Sistema/constantes';
 import { ModuloFinanzasService} from '../modulo.finanzas.services';
 
@@ -98,11 +98,7 @@ export class HomeRemitoDetalleComponent implements OnInit{
     
  
     apretarCancelarRemito(){
-        this.openDialogCancelarRemito();
-    }
-    
-    openDialogCancelarRemito() {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_CANCELAR_REMITO;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_CANCELAR_REMITO;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
@@ -133,7 +129,6 @@ export class HomeRemitoDetalleComponent implements OnInit{
             }
         );
     }
-
     
     apretarAtras(){
         this.router.navigate([Constantes.URL_HOME_REMITO]);

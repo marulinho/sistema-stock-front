@@ -5,8 +5,8 @@ import { AppService } from '../../../app.service';
 import { Constantes } from '../../../Datos_Sistema/constantes';
 import { Utils } from '../../../Datos_Sistema/utils';
 import { ModuloConfiguracionService } from '../../modulo.configuracion.service';
-import { DialogExampleComponent } from '../../../shared/dialog/dialog-example/dialog-example.component';
-
+import { DialogRegistrarComboComponent } from './dialog-registrar-combo/dialog.registrar.combo.component';
+import { DialogEditarPrecioComboComponent } from './dialog-editar-precio-combo/dialog.editar.precio.combo.component';
 
 @Component({
     selector: 'app-registrar-combo',
@@ -22,23 +22,19 @@ export class RegistrarComboComponent implements OnInit {
     utils = new Utils();
     errorMessage = '';
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
+    tooltipAgregarProducto = Constantes.LABEL_AGREGAR_PRODUCTO;
+    tooltipEliminarProducto = Constantes.LABEL_ELIMINAR_PRODUCTO;
+    tooltipEditarProducto = Constantes.LABEL_EDITAR_PRODUCTO_CANTIDAD;
     position = 'above';
     selectedOption: string;
     label_registrar_combo = Constantes.LABEL_REGISTRAR_COMBO;
     label_datos_obligatorios = Constantes.LABEL_DATOS_OBLIGATORIOS;
     label_datos_combo = Constantes.LABEL_DATOS_COMBO;
-
     label_nombre = Constantes.LABEL_NOMBRE;
     label_total = Constantes.LABEL_TOTAL;
     label_precio_combo = Constantes.LABEL_PRECIO_VENTA;
-    boton_registrar = Constantes.BOTON_REGISTRAR;
-    boton_salir = Constantes.BOTON_SALIR;
-
-    //LISTA_PRECIO
-    tooltipAgregarProducto = Constantes.LABEL_AGREGAR_PRODUCTO;
-    label_lista_precio = Constantes.LABEL_LISTA_PRECIO;
     label_buscar_producto = Constantes.LABEL_BUSCAR_PRODUCTO;
-    label_tabla_lista_precio = Constantes.LABEL_BUSCAR_TABLA_PRODUCTO;
+    label_tabla_lista_combo = Constantes.LABEL_BUSCAR_TABLA_PRODUCTO;
     label_codigo = Constantes.LABEL_CODIGO;
     label_marca = Constantes.LABEL_MARCA;
     label_medida = Constantes.LABEL_MEDIDA;
@@ -48,8 +44,10 @@ export class RegistrarComboComponent implements OnInit {
     label_peso = Constantes.LABEL_PESO;
     label_precio_venta = Constantes.LABEL_PRECIO_VENTA;
     label_cantidad = Constantes.LABEL_CANTIDAD;
-    label_descripcion_lista_precio_combo = Constantes.DESCRIPCION_LISTA_PRECIO_COMBO;
     label_accion = Constantes.LABEL_ACCION;
+    boton_registrar = Constantes.BOTON_REGISTRAR;
+    boton_salir = Constantes.BOTON_SALIR;
+
     lista_precio = [];
     lista_precio_temp = [];
 
@@ -118,52 +116,51 @@ export class RegistrarComboComponent implements OnInit {
         this.productos_combo = temp;
     }
 
-    apretarAgregarProductoCombo(row) {
-        this.openDialogAgregarProducto(Constantes.TITLE_ASIGNAR_PRODUCTO_COMBO, Constantes.PREGUNTA_ASIGNAR_PRODUCTO_COMBO, row);
-    }
-
-
-    openDialogAgregarProducto(title, description, row) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.description = description;
+    apretarAgregarProducto(){
+        let dialogRef = this.dialog.open(DialogRegistrarComboComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_PRODUCTOS_DISPONIBLES;
+        dialogRef.componentInstance.description = Constantes.DESCRIPCION_PRODUCTOS_DISPONIBLES_COMBO;
+        dialogRef.componentInstance.productos = this.lista_precio; 
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(
             result => {
                 this.selectedOption = result;
                 if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
-                    let lista = [];
-                    let longitud = this.lista_precio.length;
-                    let codigo_producto = this.lista_precio[row.$$index]['codigo_producto'];
-                    for (var i = 0; i < longitud; i++) {
-                        if (this.lista_precio[i]['codigo_producto'] == codigo_producto) {
-                            this.productos_combo.push(this.lista_precio[row.$$index]);
-                            this.productos_combo_temp = [...this.productos_combo];
+                    let longitud = dialogRef.componentInstance.productos.length;
+                    for(var i=0; i<longitud; i++){
+                        if (dialogRef.componentInstance.productos[i]['checked']) {
+                            this.productos_combo.push(this.lista_precio[i]);
                             this.lista_cantidad_productos_temp.push(1);
                             this.calcularTotal();
                         }
-                        else {
-                            lista.push(this.lista_precio[i]);
-                        }
                     }
-                    this.lista_precio = lista;
-                    this.lista_precio_temp = [...this.lista_precio];
+                    this.productos_combo_temp = [...this.productos_combo];
+                    this.sacarRepetidos();
                 }
                 
             }
         );
     }
 
-    apretarEditarProductoCombo(row) {
-        this.openDialogEditarProducto(Constantes.TITLE_EDITAR_PRECIO_LISTA, Constantes.DESCRIPCION_EDITAR_PRECIO_LISTA, row);
-    }
+    sacarRepetidos(){
+        let longitud = this.lista_precio.length;
+        let lista_aux = [];
+        
+        for(var i=0; i<longitud; i++){
+            if(!(this.productos_combo.includes(this.lista_precio[i]))){
+                lista_aux.push(this.lista_precio[i]);
+            }
+        }
+        this.lista_precio = lista_aux;
+    }  
 
-    openDialogEditarProducto(title, description, row) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.descipcion_lista_precio = description;
+    apretarEditarProductoCombo(row) {
+        let dialogRef = this.dialog.open(DialogEditarPrecioComboComponent);
+        dialogRef.componentInstance.title = Constantes.LABEL_EDITAR_PRECIO;
+        dialogRef.componentInstance.description = Constantes.DESCRIPCION_EDITAR_PRECIO_LISTA;
         dialogRef.componentInstance.precio_compra = row.precio_compra;
+        dialogRef.componentInstance.margen_ganancia = row.margen_ganancia;
         dialogRef.componentInstance.cantidad = this.lista_cantidad_productos_temp[row.$$index];
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
@@ -176,9 +173,9 @@ export class RegistrarComboComponent implements OnInit {
                     }
                     else {
                         this.productos_combo[row.$$index]['precio_compra'] = dialogRef.componentInstance.precio_compra;
-                        this.productos_combo[row.$$index]['precio_venta'] = dialogRef.componentInstance.precio_compra + (dialogRef.componentInstance.precio_compra * dialogRef.componentInstance.margen_ganancia / 100);
+                        this.productos_combo[row.$$index]['precio_venta'] = dialogRef.componentInstance.getPrecioVenta();
                         this.productos_combo[row.$$index]['precio_venta'] = parseFloat(this.productos_combo[row.$$index]['precio_venta']).toFixed(2);
-                        this.productos_combo[row.$$index]['margen_ganancia'] =((this.productos_combo[row.$$index]['precio_venta'] / this.productos_combo[row.$$index]['precio_compra']) -1 )* 100; //{{((row.precio_venta/row.precio_compra)-1) *100}} 
+                        this.productos_combo[row.$$index]['margen_ganancia'] = dialogRef.componentInstance.margen_ganancia;
                         this.productos_combo[row.$$index]['margen_ganancia'] = parseFloat(this.productos_combo[row.$$index]['margen_ganancia']).toFixed(2);
                         this.lista_cantidad_productos_temp[row.$$index] = dialogRef.componentInstance.cantidad;
                         this.calcularTotal();
@@ -186,6 +183,14 @@ export class RegistrarComboComponent implements OnInit {
                 }
             }
         );
+    }
+
+
+    
+    apretarEliminarProductoCombo(row){
+        this.productos_combo = this.productos_combo.filter(item => item.codigo_producto !== row.codigo_producto);
+        this.lista_precio.push(row); 
+        this.calcularTotal();
     }
     
     calcularTotal(){
@@ -231,14 +236,10 @@ export class RegistrarComboComponent implements OnInit {
     llenarArrays(){
         let longitud = this.productos_combo.length;
         for(var i = 0; i< longitud; i++){
-            let margen_ganancia = (this.productos_combo[i]['precio_venta']/this.productos_combo[i]['precio_compra']-1)*100;
             this.lista_productos.push(this.productos_combo[i]['codigo_producto']);
-            this.lista_margen_ganancia.push(margen_ganancia);
+            this.lista_margen_ganancia.push(this.productos_combo[i]['margen_ganancia']);
             this.lista_cantidad_productos.push(this.lista_cantidad_productos_temp[i]);
         }
-        console.log(this.lista_productos);
-        console.log(this.lista_margen_ganancia);
-        console.log(this.lista_cantidad_productos);
     }
 
     apretarSalir() {

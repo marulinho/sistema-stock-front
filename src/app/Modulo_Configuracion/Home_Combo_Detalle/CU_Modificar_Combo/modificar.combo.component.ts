@@ -5,7 +5,7 @@ import { AppService } from '../../../app.service';
 import { Constantes } from '../../../Datos_Sistema/constantes';
 import { Utils } from '../../../Datos_Sistema/utils';
 import { ModuloConfiguracionService } from '../../modulo.configuracion.service';
-import { DialogExampleComponent } from '../../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogEditarPrecioComboComponent } from '../../Home_Combo/CU_Registrar_Combo/dialog-editar-precio-combo/dialog.editar.precio.combo.component';
 
 
 @Component({
@@ -149,14 +149,10 @@ export class ModificarComboComponent implements OnInit {
         }
     }
 
-    apretarEditarProductoCombo(row) {
-        this.openDialogEditarProducto(Constantes.TITLE_EDITAR_PRECIO_LISTA, Constantes.DESCRIPCION_EDITAR_PRECIO_LISTA, row);
-    }
-
-    openDialogEditarProducto(title, description, row) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.descipcion_lista_precio = description;
+    apretarEditarProductoCombo(row){
+        let dialogRef = this.dialog.open(DialogEditarPrecioComboComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_EDITAR_PRECIO_LISTA;
+        dialogRef.componentInstance.description = Constantes.DESCRIPCION_EDITAR_PRECIO_LISTA;
         dialogRef.componentInstance.precio_compra = row.precio_producto;
         dialogRef.componentInstance.margen_ganancia = row.margen_ganancia;
         dialogRef.componentInstance.cantidad = row.cantidad;
@@ -166,14 +162,13 @@ export class ModificarComboComponent implements OnInit {
             result => {
                 this.selectedOption = result;
                 if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
-                    if (dialogRef.componentInstance.precio_compra <= 0 || dialogRef.componentInstance.margen_ganancia <= 0 || dialogRef.componentInstance.cantidad <= 0) {
+                    if (dialogRef.componentInstance.precio_venta <= 0 || parseFloat(dialogRef.componentInstance.getPrecioTotal()) <= 0) {
                         //no editamos los precios
                     }
                     else {
                         this.combo[row.$$index]['margen_ganancia'] = dialogRef.componentInstance.margen_ganancia;
                         this.combo[row.$$index]['cantidad'] = dialogRef.componentInstance.cantidad;
-                        this.combo[row.$$index]['subtotal'] = this.combo[row.$$index]['precio_producto'] * (1+(this.combo[row.$$index]['margen_ganancia'] / 100.00)) * this.combo[row.$$index]['cantidad'];
-                        this.combo[row.$$index]['subtotal'] = parseFloat(this.combo[row.$$index]['subtotal']).toFixed(2);
+                        this.combo[row.$$index]['subtotal'] = dialogRef.componentInstance.getPrecioTotal();
                         this.actualizarPrecioCombo();
                     }
                 }
@@ -181,6 +176,7 @@ export class ModificarComboComponent implements OnInit {
         );
     }
 
+    
     llenarArrays(){
         let longitud = this.combo.length;
         for(var i = 0; i< longitud; i++){

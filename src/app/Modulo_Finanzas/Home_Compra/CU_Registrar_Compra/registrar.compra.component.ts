@@ -6,6 +6,8 @@ import { Constantes } from '../../../Datos_Sistema/constantes';
 import { ModuloFinanzasService } from '../../modulo.finanzas.services';
 import { ModuloConfiguracionService } from '../../../Modulo_Configuracion/modulo.configuracion.service';
 import { DialogExampleComponent } from '../../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogSeleccionarProductoCompraComponent } from './dialog-seleccionar-producto-compra/dialog.seleccionar.producto.compra.component';
+import { DialogEditarCantidadCompraComponent } from './dialog-editar-cantidad-compra/dialog.editar.cantidad.compra.component';
 
 
 @Component({
@@ -16,11 +18,14 @@ import { DialogExampleComponent } from '../../../shared/dialog/dialog-example/di
 })
 
 export class RegistrarCompraComponent implements OnInit {
-    
+
     errorMessage = '';
     snackBarRef: any;
     selectedOption: string;
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
+    tooltipAgregarProducto = Constantes.LABEL_AGREGAR_PRODUCTO;
+    tooltipEditarProducto = Constantes.LABEL_EDITAR_PRODUCTO;
+    tooltipEliminarProducto = Constantes.LABEL_ELIMINAR_PRODUCTO;
     position = 'above';
     id_usuario = JSON.parse(localStorage.getItem('idUsuario'));
     label_registrar_compra = Constantes.LABEL_REGISTRAR_COMPRA;
@@ -44,35 +49,38 @@ export class RegistrarCompraComponent implements OnInit {
     label_descuento = Constantes.LABEL_DESCUENTO;
     label_porcentaje = Constantes.LABEL_PORCENTAJE;
     label_accion = Constantes.LABEL_ACCION;
+    label_error_descuento_insuficiente = Constantes.MENSAJE_DESCUENTO_INSUFICIENTE;
     boton_registrar = Constantes.BOTON_REGISTRAR;
     boton_salir = Constantes.BOTON_SALIR;
-    
 
-    descuento: number;
+
+    descuento: number = 0;
     subtotal: number = 0;
 
 
     lista_precio = [];
-    lista_precio_temp = [];
+
+    lista_compra = [];
+    lista_compra_temp = [];
 
     lista_productos = [];
-    lista_productos_temp = [];
+
     lista_cantidad_productos = [];
     lista_cantidad_productos_temp = [];
 
-    
 
-    constructor(private router:Router,
-                private moduloFinanzas: ModuloFinanzasService,
-                private moduloConfiguracion: ModuloConfiguracionService,
-                private snackBar: MdSnackBar,
-                private dialog: MdDialog,
-                private appService:AppService){
-                    
-           appService.getState().topnavTitle = Constantes.LABEL_REGISTRAR_COMPRA;
+
+    constructor(private router: Router,
+        private moduloFinanzas: ModuloFinanzasService,
+        private moduloConfiguracion: ModuloConfiguracionService,
+        private snackBar: MdSnackBar,
+        private dialog: MdDialog,
+        private appService: AppService) {
+
+        appService.getState().topnavTitle = Constantes.LABEL_REGISTRAR_COMPRA;
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.obtenerListaPrecios();
     }
 
@@ -82,10 +90,9 @@ export class RegistrarCompraComponent implements OnInit {
                 response => {
                     this.lista_precio = response.datos_operacion['lista_precio_detalles'];
                     let longitud = this.lista_precio.length;
-                    for(var i = 0; i < longitud ; i++){
-                        this.lista_cantidad_productos_temp.push(0);
+                    for (var i = 0; i < longitud; i++) {
+                        this.lista_cantidad_productos_temp.push(1);
                     }
-                    this.lista_precio_temp = [...this.lista_precio];
                 }
             )
             .catch(
@@ -104,23 +111,59 @@ export class RegistrarCompraComponent implements OnInit {
 
     updateFilter(event) {
         const val = event.target.value.toLowerCase();
-        const temp = this.lista_precio_temp.filter(function (d) {
+        const temp = this.lista_compra_temp.filter(function (d) {
             return d.nombre_producto.toLowerCase().indexOf(val) !== -1 || !val;
         });
-        this.lista_precio = temp;
+        this.lista_compra = temp;
     }
+
+
+    apretarAgregarProducto() {
+        let dialogRef = this.dialog.open(DialogSeleccionarProductoCompraComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_PRODUCTOS_DISPONIBLES;
+        dialogRef.componentInstance.description = Constantes.DESCRIPCION_PRODUCTOS_DISPONIBLES_COMPRA;
+        dialogRef.componentInstance.productos = this.lista_precio;
+        dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
+        dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
+        dialogRef.afterClosed().subscribe(
+            result => {
+                this.selectedOption = result;
+                if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
+                    let longitud = dialogRef.componentInstance.productos.length;
+                    for(var i=0; i<longitud; i++){
+                        if(dialogRef.componentInstance.productos[i]['checked']===true){
+                            this.lista_productos.push(dialogRef.componentInstance.productos[i]['codigo_producto']);
+                            this.lista_compra.push(dialogRef.componentInstance.productos[i]);
+                            this.lista_cantidad_productos_temp.push(1);
+                        }
+                    }
+                    this.lista_compra_temp = [...this.lista_compra];
+                    this.sacarRepetidos();
+                    this.calcularTotal();
+                }
+
+            }
+        );
+    }
+
+    sacarRepetidos(){
+        let longitud = this.lista_precio.length;
+        let lista_aux = [];
+        
+        for(var i=0; i<longitud; i++){
+            if(!(this.lista_compra.includes(this.lista_precio[i]))){
+                lista_aux.push(this.lista_precio[i]);
+            }
+        }
+        this.lista_precio = lista_aux;
+    }  
 
     apretarEditarProductoCompra(row) {
-        this.openDialogEditarProducto(row);
-    }
-
-    openDialogEditarProducto(row) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogEditarCantidadCompraComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_EDITAR_CANTIDAD_PRODUCTO;
-        dialogRef.componentInstance.descipcion_lista_precio = Constantes.DESCRIPCION_EDITAR_CANTIDAD_PRODUCTO;
+        dialogRef.componentInstance.description = Constantes.DESCRIPCION_EDITAR_CANTIDAD_PRODUCTO;
         dialogRef.componentInstance.cantidad = this.lista_cantidad_productos_temp[row.$$index];
-        dialogRef.componentInstance.compra_seleccionado = true;
-        dialogRef.componentInstance.stock_deposito = row.stock_deposito;
+        dialogRef.componentInstance.stock_actual = row.stock_deposito + row.stock_local;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(
@@ -131,41 +174,43 @@ export class RegistrarCompraComponent implements OnInit {
                         //no editamos las cantidades de la compra
                     }
                     else {
-                        this.subtotal = 0;
-                        let codigo_producto = this.lista_precio[row.$$index]['codigo_producto']
-                        this.lista_productos_temp.push(codigo_producto);
                         this.lista_cantidad_productos_temp[row.$$index] = dialogRef.componentInstance.cantidad;
-
-                        let longitud_x = this.lista_productos_temp.length;
-                        let longitud_y = this.lista_precio.length; 
-                        for(var x = 0; x < longitud_x ; x++){
-                            for(var y = 0; y < longitud_y; y++){
-                                if(this.lista_productos_temp[x] === this.lista_precio[y]['codigo_producto']){
-                                    this.subtotal += this.lista_precio[y]['precio_compra'] * this.lista_cantidad_productos_temp[x];
-                                }
-                            }
 
                         }
                     }
+                    this.calcularTotal();
                 }
-                
-            }
         );
     }
 
+    apretarEliminarProductoCompra(row){
+        this.lista_compra = this.lista_compra.filter(item => item.codigo_producto !== row.codigo_producto);
+        this.lista_precio.push(row); 
+        this.calcularTotal();
+        this.lista_compra_temp = [...this.lista_compra];
+    }
 
+    calcularTotal(){
+        this.subtotal = 0;
+        let longitud = this.lista_compra.length;
+        for(var i = 0; i < longitud; i++){
+            this.subtotal += this.lista_compra[i]['precio_compra'] * this.lista_cantidad_productos_temp[i];
+        }
+        
+    }
+    
     apretarRegistrarCompra() {
         this.lista_cantidad_productos = [];
         this.lista_productos = [];
         this.llenarArrays();
-        if(this.descuento == null){
+        if (this.descuento == null) {
             this.descuento = 0;
         }
-        this.moduloFinanzas.registrarCompra(this.id_usuario,this.descuento,this.lista_productos,this.lista_cantidad_productos)
+        this.moduloFinanzas.registrarCompra(this.id_usuario, this.descuento, this.lista_productos, this.lista_cantidad_productos)
             .then(
                 response => {
-                   this.router.navigate([Constantes.URL_HOME_COMPRA]);
-                   this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_REGISTRACION_EXITOSA, Constantes.MENSAJE_OK, { duration: 3000, });
+                    this.router.navigate([Constantes.URL_HOME_COMPRA]);
+                    this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_REGISTRACION_EXITOSA, Constantes.MENSAJE_OK, { duration: 3000, });
                 }
             )
             .catch(
@@ -182,10 +227,10 @@ export class RegistrarCompraComponent implements OnInit {
             );
     }
 
-    llenarArrays(){
-        let longitud = this.lista_productos_temp.length;
-        for(var i = 0; i< longitud; i++){
-            this.lista_productos.push(this.lista_productos_temp[i]);
+    llenarArrays() {
+        let longitud = this.lista_compra.length;
+        for (var i = 0; i < longitud; i++) {
+            this.lista_productos.push(this.lista_compra[i]['codigo_producto']);
             this.lista_cantidad_productos.push(this.lista_cantidad_productos_temp[i]);
         }
     }
@@ -194,7 +239,7 @@ export class RegistrarCompraComponent implements OnInit {
         this.router.navigate([Constantes.URL_HOME_COMPRA]);
     }
 
-    apretarAtras(){
+    apretarAtras() {
         this.router.navigate([Constantes.URL_HOME_COMPRA]);
     }
 }

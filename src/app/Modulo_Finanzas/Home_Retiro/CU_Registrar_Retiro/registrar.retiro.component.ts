@@ -28,6 +28,7 @@ export class RegistrarRetiroComponent implements OnInit {
     label_total = Constantes.LABEL_TOTAL;
     label_peso = Constantes.LABEL_PESO;
     label_usuario = Constantes.LABEL_USUARIO;
+    label_error_total_balance = Constantes.MENSAJE_TOTAL_BALANCE;
     boton_registrar = Constantes.BOTON_REGISTRAR;
     boton_salir = Constantes.BOTON_SALIR;
     
@@ -55,7 +56,7 @@ export class RegistrarRetiroComponent implements OnInit {
             response => {
                 let caja_cabecera = response.datos_operacion['caja_cabecera'];
                 let resultado = this.llenarCajaDetalle(response.datos_operacion['caja_detalles']);
-                let total_apertura = parseInt(caja_cabecera['total_apertura']);
+                let total_apertura = parseFloat(caja_cabecera['total_apertura'].toFixed(2));
                 this.balance = total_apertura + resultado;
             }
         )
@@ -90,7 +91,11 @@ export class RegistrarRetiroComponent implements OnInit {
         return (total_ingreso - total_egreso);
     }
     apretarRegistrarRetiro() {
-        this.moduloFinanzas.registrarRetiro(this.id_usuario,this.descripcion,this.total)
+        if(this.total > this.balance){
+            this.errorMessage = this.label_error_total_balance;
+        }
+        else{
+            this.moduloFinanzas.registrarRetiro(this.id_usuario,this.descripcion,this.total)
             .then(
                 response => {
                     let codigo = response.datos_operacion['codigo'];
@@ -109,6 +114,7 @@ export class RegistrarRetiroComponent implements OnInit {
 
                 }
             );
+        }
     }
 
     generarDetalleCaja(codigo:number){

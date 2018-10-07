@@ -1,0 +1,23 @@
+<div class="dialog">
+    <h1 class="cabecera" md-dialog-title>{{title}}</h1>
+    <div *ngIf="description" class="detalle" md-dialog-content>{{description}}</div><br><br>
+    <div>
+        <label id='atributo'>{{label_stock_local}}: </label>
+        <label>{{stock_local}}</label><br><br>
+
+        <md-input-container>
+                <input mdInput placeholder={{label_cantidad}} type="number" [(ngModel)]="cantidad"  name="cantidad" required maxlength="40">
+        </md-input-container>
+
+        <label id='atributo' >{{label_stock_final}}: </label>
+        <label>{{getStockFinal()}}</label><br><br>
+
+        <label id='error' *ngIf="cantidad <=0" >{{label_error_cantidad}}</label>
+        <label id='error' *ngIf="getStockFinal() < 0" >{{label_error_cantidad_stock}}</label><br>
+    </div>
+    <div md-dialog-actions>
+        <button id = 'aceptar' *ngIf="cantidad>0 && getStockFinal() >=0" class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
+        <button id = 'aceptar' *ngIf="cantidad<=0 || getStockFinal() <0" disabled class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
+        <button id = 'cancelar' class="example-md-buttons" md-raised-button color="warn" (click)="dialogRef.close('Cancelar')">{{option2}}</button>
+    </div>
+</div>

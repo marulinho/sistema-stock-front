@@ -6,7 +6,8 @@ import { Constantes } from '../../../Datos_Sistema/constantes';
 import { Utils } from '../../../Datos_Sistema/utils';
 import { ModuloConfiguracionService } from '../../../Modulo_Configuracion/modulo.configuracion.service';
 import { ModuloFinanzasService } from '../../modulo.finanzas.services';
-import { DialogExampleComponent } from '../../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogRegistrarRemitoComponent } from './dialog-registrar-remito/dialog-seleccionar-productos/dialog.registrar.remito.component';
+import { DialogEditarCantidadRemitoComponent } from './dialog-registrar-remito/dialog-editar-cantidad/dialog.editar.cantidad.remito.component';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class RegistrarRemitoComponent implements OnInit {
     errorMessage = '';
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     tooltipEditarProducto = Constantes.LABEL_EDITAR_PRODUCTO_CANTIDAD;
+    tooltipEliminarProducto = Constantes.LABEL_ELIMINAR_PRODUCTO;
+    tooltipAgregarProducto = Constantes.LABEL_AGREGAR_PRODUCTO;
     position = 'above';
     selectedOption: string;
     label_registrar_remito = Constantes.LABEL_REGISTRAR_REMITO;
@@ -42,13 +45,13 @@ export class RegistrarRemitoComponent implements OnInit {
     boton_registrar = Constantes.BOTON_REGISTRAR;
     boton_salir = Constantes.BOTON_SALIR;
     
-    lista_precio = [];
-    lista_precio_temp = [];
+    lista_productos_precio = [];
+
+    lista_productos_remito = [];
+    lista_productos_remito_temp = [];
 
     lista_productos = [];
-    lista_productos_temp = [];
     lista_cantidad_productos = [];
-    lista_cantidad_productos_temp = [];
 
 
 
@@ -67,6 +70,7 @@ export class RegistrarRemitoComponent implements OnInit {
     }
 
     obtenerListaPrecios() {
+        //llamo a lista precio vigente, porque solo puedo crear remito de productos que tengan un precio.
         this.moduloConfiguracion.obtenerListaPrecioVigente()
             .then(
                 response => {
@@ -74,12 +78,10 @@ export class RegistrarRemitoComponent implements OnInit {
                     
                     for(var i = 0; i<longitud; i++){
                         if(response.datos_operacion['lista_precio_detalles'][i]['stock_deposito']>0){
-                            this.lista_precio.push(response.datos_operacion['lista_precio_detalles'][i]);
-                            this.lista_cantidad_productos_temp.push(0);
+                            this.lista_productos_precio.push(response.datos_operacion['lista_precio_detalles'][i]);
+                            //this.lista_cantidad_prp.push(0;
                         }
                     }
-
-                    this.lista_precio_temp = [...response.datos_operacion];
                 }
             )
             .catch(
@@ -98,22 +100,54 @@ export class RegistrarRemitoComponent implements OnInit {
 
     updateFilter(event) {
         const val = event.target.value.toLowerCase();
-        const temp = this.lista_precio_temp.filter(function (d) {
-            return d.producto_nombre.toLowerCase().indexOf(val) !== -1 || !val;
+        const temp = this.lista_productos_remito_temp.filter(function (d) {
+            return d.nombre_producto.toLowerCase().indexOf(val) !== -1 || !val;
         });
-        this.lista_precio = temp;
+        this.lista_productos_remito = temp;
     }
 
+    apretarAgregarProducto(){
+        let dialogRef = this.dialog.open(DialogRegistrarRemitoComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_PRODUCTOS_DISPONIBLES;
+        dialogRef.componentInstance.description = Constantes.DESCRIPCION_PRODUCTOS_DISPONIBLES;
+        dialogRef.componentInstance.productos = this.lista_productos_precio; 
+        dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
+        dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
+        dialogRef.afterClosed().subscribe(
+            result => {
+                this.selectedOption = result;
+                if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
+                    let longitud = dialogRef.componentInstance.productos.length;
+                    for(var i=0; i<longitud; i++){
+                        if (dialogRef.componentInstance.productos[i]['checked']) {
+                            this.lista_productos_remito.push(dialogRef.componentInstance.productos[i]);
+                            this.lista_productos.push(this.lista_productos_remito[i]['codigo_producto']);
+                            this.lista_cantidad_productos.push(1);
+                        }
+                    }
+                    this.lista_productos_remito_temp = [...this.lista_productos_remito];
+                    this.sacarRepetidos();        
+                }
+                
+            }
+        );
+    }
+
+    sacarRepetidos(){
+        let longitud = this.lista_productos_precio.length;
+        let lista_aux = [];
+        for(var i=0; i<longitud; i++){
+            if(!(this.lista_productos_remito.includes(this.lista_productos_precio[i]))){
+                lista_aux.push(this.lista_productos_precio[i]);
+            }
+        }
+        this.lista_productos_precio = lista_aux;
+    }  
+    
     apretarEditarProductoRemito(row) {
-        this.openDialogEditarProducto(row);
-    }
-
-    openDialogEditarProducto(row) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogEditarCantidadRemitoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_EDITAR_CANTIDAD_PRODUCTO;
-        dialogRef.componentInstance.descipcion_lista_precio = Constantes.DESCRIPCION_EDITAR_CANTIDAD_PRODUCTO;
-        dialogRef.componentInstance.cantidad = this.lista_cantidad_productos_temp[row.$$index];
-        dialogRef.componentInstance.remito_seleccionado = true;
+        dialogRef.componentInstance.description = Constantes.DESCRIPCION_EDITAR_CANTIDAD_PRODUCTO;
         dialogRef.componentInstance.stock_deposito = row.stock_deposito;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
@@ -125,10 +159,9 @@ export class RegistrarRemitoComponent implements OnInit {
                         //no editamos las cantidades del remito
                     }
                     else {
-                        let codigo_producto = this.lista_precio[row.$$index]['codigo_producto']
-                        this.lista_productos_temp.push(codigo_producto);
-                        this.lista_cantidad_productos_temp[row.$$index] = dialogRef.componentInstance.cantidad;
-                        
+                        //let codigo_producto = this.lista_productos_remito[row.$$index]['codigo_producto']
+                        //this.lista_productos.push(codigo_producto);
+                        this.lista_cantidad_productos[row.$$index] = dialogRef.componentInstance.cantidad;
                     }
                 }
                 
@@ -137,8 +170,6 @@ export class RegistrarRemitoComponent implements OnInit {
     }
 
     apretarRegistrarRemito(){
-        this.lista_cantidad_productos = [];
-        this.lista_productos = [];
         this.llenarArrays();
         if(this.lista_productos.length == this.lista_cantidad_productos.length){
             this.moduloFinanzas.registrarRemito(this.id_usuario,this.lista_productos,this.lista_cantidad_productos)
@@ -165,11 +196,50 @@ export class RegistrarRemitoComponent implements OnInit {
         }
     }
 
+    apretarEliminarProductoRemito(codigo){
+        let lista_cantidad_productos_aux = [];
+        let lista_productos_precio_aux : Array<{codigo_producto:number,
+            nombre_producto: string,
+            marca_producto: string,
+            nombre_medida: string,
+            stock_deposito: number,
+            stock_local: number}> = [];
+        let lista_remito_aux = [];
+        let longitud = this.lista_productos_remito.length;
+    
+        for(var i=0; i<longitud; i++){
+            if(this.lista_productos_remito[i]['codigo_producto']  === codigo){
+                lista_productos_precio_aux.push({codigo_producto:this.lista_productos_remito[i]['codigo_producto'],
+                                                nombre_producto:this.lista_productos_remito[i]['nombre_producto'],
+                                                marca_producto:this.lista_productos_remito[i]['marca_producto'],
+                                                nombre_medida:this.lista_productos_remito[i]['nombre_medida'],
+                                                stock_deposito:this.lista_productos_remito[i]['stock_deposito'],
+                                                stock_local:this.lista_productos_remito[i]['stock_local']});
+            }
+            else{
+                lista_cantidad_productos_aux.push(this.lista_cantidad_productos[i]);
+                this.lista_productos_remito[i]['checked'] = false;
+                lista_remito_aux.push(this.lista_productos_remito[i]);
+            }
+        }
+        
+        this.lista_productos_remito = lista_remito_aux;
+        this.lista_productos_precio = this.lista_productos_precio.concat(lista_productos_precio_aux);
+        this.lista_cantidad_productos = lista_cantidad_productos_aux;
+        this.lista_productos_remito_temp = [...this.lista_productos_remito];
+        
+    }
+
     llenarArrays(){
-        let longitud = this.lista_precio.length;
+        let longitud = this.lista_productos_remito.length;
+        if(longitud === 0 || this.lista_productos_remito == null){
+            this.errorMessage = Constantes.ERROR_CANTIDAD_INCOMPLETA;
+        }
         for(var i = 0; i< longitud; i++){
-            this.lista_productos.push(this.lista_productos_temp[i]);
-            this.lista_cantidad_productos.push(this.lista_cantidad_productos_temp[i]);
+            if(this.lista_cantidad_productos[i]<=0){
+                this.lista_productos.pop();
+                this.lista_cantidad_productos.pop();
+            }
         }
     }
 

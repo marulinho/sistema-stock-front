@@ -59,6 +59,8 @@ export const Constantes={
     PREGUNTA_PAGAR_COMPRA: '¿Desea pagar la compra?',
     TITLE_CANCELAR_REMITO: 'Cancelar Remito',
     PREGUNTA_CANCELAR_REMITO: '¿Desea cancelar el remito?',
+    TITLE_CANCELAR_RETIRO: 'Cancelar Retiro',
+    PREGUNTA_CANCELAR_RETIRO: '¿Desea cancelar el retiro?',
     TITLE_EDITAR_CANTIDAD_PRODUCTO: 'Editar Cantidad',
     DESCRIPCION_EDITAR_CANTIDAD_PRODUCTO: 'Configure la cantidad',
     TITLE_CANCELAR_VENTA: 'Cancelar Venta',
@@ -71,6 +73,10 @@ export const Constantes={
     PREGUNTA_ELIMINAR_CLIENTE: '¿Desea eliminar el cliente?',   
     TITLE_ACTUALIZAR_PRECIO_COMBO: 'Actualizar Precio Combo',
     PREGUNTA_ACTUALIZAR_PRECIO_COMBO: '¿Desea actualizar el precio del combo?',
+    TITLE_PRODUCTOS_DISPONIBLES:'Productos Disponibles',
+    DESCRIPCION_PRODUCTOS_DISPONIBLES: 'Seleccione los productos que componen el remito',
+    DESCRIPCION_PRODUCTOS_DISPONIBLES_COMBO: 'Seleccione los productos que componen el combo',
+    DESCRIPCION_PRODUCTOS_DISPONIBLES_COMPRA: 'Seleccione los productos que componen la compra',
 
 //OPCIONES DIALOGS
     OPCION_ACEPTAR: 'Aceptar',
@@ -242,6 +248,7 @@ export const Constantes={
     LABEL_REMITO_DETALLE: 'Remito Detalle',
     LABEL_EDITAR_PRODUCTO_CANTIDAD: 'Editar Cantidad',
     LABEL_STOCK_FINAL: 'Stock',
+    LABEL_STOCK_ACTUAL: 'Stock Actual',
     LABEL_AGREGAR_VENTA: 'Agregar Venta',
     LABEL_NAVEGAR_VENTA: 'Ir a Venta',
     LABEL_VENTA: 'Venta',
@@ -282,6 +289,8 @@ export const Constantes={
     LABEL_BUSCAR_SUBCATEGORIA: 'Buscar SubCategoria',
     LABEL_BUSCAR_COMBO: 'Buscar Combo',
     LABEL_ACTUALIZAR_PRECIO_COMBO: 'Actualizar Precio Combo',
+    LABEL_ADVERTENCIA: 'Advertencia',
+    LABEL_MARCAR: 'Marcar',
 
 //DESCRIPCIÓN CARD 
     DESCRIPCION_PRODUCTO : 'En esta sección se lleva a cabo la administración de los productos',
@@ -315,6 +324,8 @@ export const Constantes={
     ERROR_LISTAS_DIFERENTES : 'Debe completar todas las filas de la lista de precios',
     ERROR_MOVIMIENTO_CAPITAL_EXISTENTE : 'Ya existe un movimiento de capital asociado a la compra',
     ERROR_COBRO_NO_REALIZADO: 'El cobro no se pudo llevar a cabo, intente nuevamente',
+    ERROR_CANTIDAD_INSUFICIENTE: 'Debe ingresar una cantidad menor a la disponible',
+    ERROR_CANTIDAD_INCOMPLETA: 'Debe ingresar una cantidad por cada producto',
 
     
 //MENSAJES
@@ -338,6 +349,14 @@ export const Constantes={
     MENSAJE_OK : 'OK',
     MENSAJE_CLIENTE_ELIMINADO: 'Cliente eliminado exitosamente',
     MENSAJE_COMBO_ACTUALIZADO: 'Combo actualizado exitosamente',
+    MENSAJE_ACCION_IRREVERSIBLE: 'La acción es irreversible',
+    MENSAJE_PRECIO_VENTA_MENOR_COMPRA: 'El precio de venta debe ser mayor o igual al de compra',
+    MENSAJE_TOTAL_COMBO_INSUFICIENTE: 'El precio total debe ser mayor que cero',
+    MENSAJE_PRECIO_COMPRA_MARGEN_INSUFICIENTE : 'El precio de compra y margen de ganancia deben ser mayor que cero',
+    MENSAJE_TOTAL_BALANCE : 'El valor a retirar debe ser menor o igual que el total disponible',
+    MENSAJE_CANTIDAD_INSUFICIENTE : 'La cantidad debe ser mayor que cero',
+    MENSAJE_DESCUENTO_INSUFICIENTE: 'El descuento debe ser mayor o igual que cero',
+    MENSAJE_STOCK_FINAL_INSUFICIENTE: 'El stock final debe ser mayor o igual que cero',
 
 //OPERADORES COMPARACION
     OPERADOR_IGUAL : 'IGUAL',

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { MdSnackBar } from '@angular/material';
 import { MdDialog } from '@angular/material';
-import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogYesNoComponent } from '../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
 import { Constantes } from '../../Datos_Sistema/constantes';
 import { ModuloConfiguracionService, Producto } from '../modulo.configuracion.service';
 
@@ -99,11 +99,7 @@ export class HomeListaPrecioComponent implements OnInit {
     }
 
     apretarEliminarListaPrecio() {
-        this.openDialog()
-    }
-
-    openDialog() {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_ELIMINAR_LISTA_PRECIO;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_ELIMINAR_LISTA_PRECIO;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
