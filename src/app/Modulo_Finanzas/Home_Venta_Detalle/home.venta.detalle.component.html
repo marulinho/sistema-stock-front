@@ -5,6 +5,9 @@
           <a *ngIf="getEstadoCancelado()" class="example-tooltip-host" mdTooltip={{tooltipCancelarVenta}} [mdTooltipPosition]="position" (click)="apretarCancelarVenta()">
               <img src="assets/icons/cerrar.png">
           </a>
+          <a *ngIf="getEstadoCreado()" class="example-tooltip-host" mdTooltip={{tooltipCobrarVenta}} [mdTooltipPosition]="position" (click)="apretarRegistrarVenta()">
+            <img src="assets/icons/pagar.png">
+          </a>
           <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
             <img src="assets/icons/atras.png">
           </a>
@@ -36,6 +39,10 @@
           
           <label id="atributo">{{label_usuario}}: </label>
           <label>{{venta_cabecera.usuario}}.</label><br><br>
+        
+          <label id="atributo">{{label_cliente}}: </label>
+          <label *ngIf="venta_cabecera.cliente === null">----</label>
+          <label *ngIf="venta_cabecera.cliente != null">{{venta_cabecera.cliente}}.</label><br><br>
 
           <label id="atributo">{{label_estado}}: </label>
           <label>{{venta_cabecera.estado}}.</label><br><br>

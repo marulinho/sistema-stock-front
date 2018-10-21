@@ -35,6 +35,7 @@ export class HomeCompraDetalleComponent implements OnInit{
     label_usuario = Constantes.LABEL_USUARIO;
     label_tipo_movimiento = Constantes.LABEL_TIPO_MOVIMIENTO;
     label_estado = Constantes.LABEL_ESTADO;
+    label_proveedor = Constantes.LABEL_PROVEEDOR;
     label_buscar_producto = Constantes.LABEL_BUSCAR_TABLA_PRODUCTO;
     
     label_codigo_producto = Constantes.LABEL_CODIGO;

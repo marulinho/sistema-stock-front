@@ -1,0 +1,32 @@
+<div class="dialog">
+    <h1 class="cabecera" md-dialog-title>{{title}}</h1>
+    <div *ngIf="description" class="detalle" md-dialog-content>{{description}}</div><br><br>
+    <div>
+        <section *ngIf="errorMessage" class="bs">
+                <div class="bd-example" data-example-id="">
+                        <div class="alert alert-danger" role="alert">
+                                <strong>{{errorMessage}}</strong>
+                        </div>
+                </div>
+        <br>
+        </section>
+        <div>
+        <quill-editor [(ngModel)]="participantes"></quill-editor><br>
+                <div *ngIf="getSorteoRealizado()">
+                        <h3 class="cabecera">{{label_datos_sorteo}}</h3>
+
+                        <label id='atributo'>{{label_participantes}}: </label>
+                        <label>{{cantidad_participantes}}.</label> <br><br>
+                        
+                        <label id='atributo'>{{label_ganadores}}: </label>
+                        <ul *ngFor="let ganador of ganadores; let i =index" [attr.data-index]="i">
+                                <li>{{label_posicion}}: {{i+1}}{{label_lugar}} - {{ganador}}.</li>
+                        </ul>
+                </div>
+        </div>
+    <div md-dialog-actions>
+        <button id = 'aceptar' *ngIf="getSorteoRealizado()" class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
+        <button id ='aceptar'  *ngIf="getSorteoRealizado() === false" class="example-md-buttons" md-raised-button color="primary" (click)="apretarRealizarSorteo()">{{label_realizar_sorteo}}</button>
+        <button id = 'cancelar' class="example-md-buttons" md-raised-button color="warn" (click)="dialogRef.close('Cancelar')">{{option2}}</button>
+    </div>
+</div>

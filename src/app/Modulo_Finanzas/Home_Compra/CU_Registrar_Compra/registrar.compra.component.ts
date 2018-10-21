@@ -5,7 +5,6 @@ import { AppService } from '../../../app.service';
 import { Constantes } from '../../../Datos_Sistema/constantes';
 import { ModuloFinanzasService } from '../../modulo.finanzas.services';
 import { ModuloConfiguracionService } from '../../../Modulo_Configuracion/modulo.configuracion.service';
-import { DialogExampleComponent } from '../../../shared/dialog/dialog-example/dialog-example.component';
 import { DialogSeleccionarProductoCompraComponent } from './dialog-seleccionar-producto-compra/dialog.seleccionar.producto.compra.component';
 import { DialogEditarCantidadCompraComponent } from './dialog-editar-cantidad-compra/dialog.editar.cantidad.compra.component';
 
@@ -50,15 +49,18 @@ export class RegistrarCompraComponent implements OnInit {
     label_porcentaje = Constantes.LABEL_PORCENTAJE;
     label_accion = Constantes.LABEL_ACCION;
     label_error_descuento_insuficiente = Constantes.MENSAJE_DESCUENTO_INSUFICIENTE;
+    label_proveedor = Constantes.LABEL_PROVEEDOR;
     boton_registrar = Constantes.BOTON_REGISTRAR;
     boton_salir = Constantes.BOTON_SALIR;
 
 
     descuento: number = 0;
     subtotal: number = 0;
+    id_proveedor: number;
 
 
     lista_precio = [];
+    lista_proveedores = [];
 
     lista_compra = [];
     lista_compra_temp = [];
@@ -82,6 +84,7 @@ export class RegistrarCompraComponent implements OnInit {
 
     ngOnInit() {
         this.obtenerListaPrecios();
+        this.obtenerProveedores();
     }
 
     obtenerListaPrecios() {
@@ -107,6 +110,33 @@ export class RegistrarCompraComponent implements OnInit {
 
                 }
             );
+    }
+
+    obtenerProveedores(){
+        this.moduloConfiguracion.obtenerClientes()
+        .then(
+            response => {
+                let lista = response.datos_operacion;
+                let longitud = lista.length;
+                for (var i = 0; i < longitud; i++) {
+                    if(lista[i]['tipo_cliente'] === Constantes.LABEL_PROVEEDOR){
+                        this.lista_proveedores.push(lista[i]);
+                    }
+                }
+            }
+        )
+        .catch(
+            error => {
+                if (error.error_description == Constantes.ERROR_NO_INICIO_SESION) {
+                    this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_NO_INICIO_SESION, Constantes.MENSAJE_OK, { duration: 3000, });
+                    this.router.navigate([Constantes.URL_LOGIN]);
+                }
+                else {
+                    this.errorMessage = error.error_description;
+                }
+
+            }
+        );
     }
 
     updateFilter(event) {
@@ -206,7 +236,7 @@ export class RegistrarCompraComponent implements OnInit {
         if (this.descuento == null) {
             this.descuento = 0;
         }
-        this.moduloFinanzas.registrarCompra(this.id_usuario, this.descuento, this.lista_productos, this.lista_cantidad_productos)
+        this.moduloFinanzas.registrarCompra(this.id_usuario, this.id_proveedor, this.descuento, this.lista_productos, this.lista_cantidad_productos)
             .then(
                 response => {
                     this.router.navigate([Constantes.URL_HOME_COMPRA]);

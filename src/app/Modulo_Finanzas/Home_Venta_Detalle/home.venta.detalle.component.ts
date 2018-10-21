@@ -33,6 +33,7 @@ export class HomeVentaDetalleComponent implements OnInit{
     label_peso = Constantes.LABEL_PESO;
     label_porcentaje = Constantes.LABEL_PORCENTAJE;
     label_usuario = Constantes.LABEL_USUARIO;
+    label_cliente = Constantes.LABEL_CLIENTE;
     label_tipo_movimiento = Constantes.LABEL_TIPO_MOVIMIENTO;
     label_estado = Constantes.LABEL_ESTADO;
     label_buscar_producto = Constantes.LABEL_BUSCAR_TABLA_PRODUCTO;
@@ -96,6 +97,148 @@ export class HomeVentaDetalleComponent implements OnInit{
         else{
             return false;
         }
+    }
+
+    getEstadoCreado(){
+        if (this.estado === Constantes.ESTADO_CREADO){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    apretarRegistrarVenta(){
+        this.moduloFinanzas.obtenerUltimaCaja()
+        .then(
+            response=>{
+                if(response.datos_operacion['caja_cabecera']['estado'] === Constantes.ESTADO_ABIERTA){
+                    this.openDialogRegistrarVenta();
+                }
+                else{
+                    this.openDialogAbrirCaja();
+                }
+            }
+        )
+        .catch(
+            error=>{
+                this.openDialogAbrirCaja();
+            }
+        ) 
+    }
+
+    openDialogRegistrarVenta(){
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_COBRAR_VENTA;
+        dialogRef.componentInstance.description = Constantes.PREGUNTA_COBRAR_VENTA;
+        dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
+        dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
+        dialogRef.afterClosed().subscribe(
+            result => {
+                this.selectedOption = result;
+                if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
+                    this.cobrarVenta(this.codigo_venta);
+                }
+                this.selectedOption = '';
+            }
+        );
+    }
+
+    cobrarVenta(codigo){
+        this.moduloFinanzas.cobrarVenta(codigo)
+        .then(
+            response => {
+                if(response.datos_operacion['estado'] === Constantes.ESTADO_PAGADO){
+                    this.generarMovimientoCapital(response.datos_operacion['codigo']);
+                }
+            }
+        )
+        .catch(
+            error => {
+                if (error.error_description == Constantes.ERROR_NO_INICIO_SESION) {
+                    this.router.navigate([Constantes.URL_LOGIN]);
+                }
+                else {
+                    this.errorMessage = error.error_description;
+                }
+            }
+        );
+    }
+
+    generarMovimientoCapital(codigo){
+        this.moduloFinanzas.generarMovimientoStockEntradaCapital(codigo)
+            .then(
+                response=>{
+                    if(response.datos_operacion['estado'] === Constantes.ESTADO_PAGADO){
+                        let codigo = response.datos_operacion['codigo'];
+                        this.generarDetalleCaja(codigo);
+                    }
+                }
+            )
+            .catch(
+                error=>{
+                    //la venta esta en estado pagado, por lo tanto hay que devolverle el estado a creado para que se pueda reintentar cobrar la venta
+                    let estado = Constantes.ESTADO_CREADO;
+                    this.moduloFinanzas.cambiarEstadoVenta(codigo,estado)
+                        .then(
+                            response=>{
+                                this.errorMessage = Constantes.ERROR_COBRO_NO_REALIZADO;
+                            }
+                        )
+                        .catch(
+                            error=>{}
+                        )
+                }
+            )
+        
+    }
+
+    generarDetalleCaja(codigo:number){
+        this.moduloFinanzas.generarDetalleCaja(codigo)
+        .then(
+            response=>{
+                this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_REGISTRACION_PAGO_EXITOSA, Constantes.MENSAJE_OK, { duration: 3000, });
+                this.router.navigate([Constantes.URL_HOME_VENTA]);
+            }
+        )
+        .catch(
+            error=>{
+                
+            }
+        )
+    }
+
+    openDialogAbrirCaja(){
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_ABRIR_CAJA;
+        dialogRef.componentInstance.description = Constantes.PREGUNTA_ABRIR_CAJA_NO_EXISTE;
+        dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
+        dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
+        dialogRef.afterClosed().subscribe(
+            result => {
+                this.selectedOption = result;
+                if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
+                    this.moduloFinanzas.abrirCaja()
+                        .then(
+                            response => {
+                                this.openDialogRegistrarVenta();
+                                this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_REGISTRACION_APERTURA, Constantes.MENSAJE_OK, { duration: 3000, });
+                            }
+                        )
+                        .catch(
+                            error => {
+                                if (error.error_description == Constantes.ERROR_NO_INICIO_SESION) {
+                                    this.router.navigate([Constantes.URL_LOGIN]);
+                                }
+                                else {
+                                    this.errorMessage = error.error_description;
+                                }
+                            }
+                        );
+                }
+                this.selectedOption = '';
+            }
+        );
     }
 
 

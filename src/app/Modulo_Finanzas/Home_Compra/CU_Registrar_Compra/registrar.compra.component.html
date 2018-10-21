@@ -32,8 +32,14 @@
 
                         <label id="atributo">{{label_precio_total}}: </label>
                         <label *ngIf= "subtotal >= 0 && descuento >=0">{{label_peso}} {{subtotal - (subtotal * descuento / 100)}}</label>
-                        <label *ngIf= "subtotal < 0 ">---</label><br><br>
-
+                        <label *ngIf= "subtotal < 0 ">---</label><br><br><br>
+                        
+                        <md-select placeholder={{label_proveedor}} [(ngModel)]="id_proveedor" name="id_proveedor">
+                                <md-option *ngFor="let proveedor of lista_proveedores" [value]="proveedor.codigo" requerid>
+                                  {{proveedor.nombre}} {{proveedor.apellido}}
+                                </md-option>
+                        </md-select><br><br>
+                        
                         <label id='atributo'>{{label_buscar_producto}}: </label>
                         <input type='text' 
                                 style='padding:8px;margin:15px auto;width:30%;' 

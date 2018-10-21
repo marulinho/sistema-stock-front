@@ -56,6 +56,10 @@ export class ModuloConfiguracionService extends RestBaseService {
     private obtenerCombosVigentesURL = '/obtenerCombosVigentes/';
     private obtenerComboIdURL = '/obtenerComboId/';
     private actualizarPrecioComboURL = '/actualizarPrecioCombo/';
+
+    private registrarSorteoURL = '/registrarSorteo/';
+    private obtenerSorteosURL = '/obtenerSorteos/';
+    private obtenerSorteoIdURL = '/obtenerSorteoId/';
    
 
     constructor(private http: Http) { super(); }
@@ -580,6 +584,38 @@ export class ModuloConfiguracionService extends RestBaseService {
             })
             .catch(this.handleError);
     }
+
+    //SORTEOS
+
+    obtenerSorteos(): Promise<Resultado> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerSorteosURL, this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Resultado; })
+            .catch(this.handleError);
+    }
+
+    obtenerSorteoId(codigo:number): Promise<Resultado> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerSorteoIdURL +codigo+'/', this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Resultado; })
+            .catch(this.handleError);
+    }
+
+    registrarSorteo(nombre, lista): Promise<Resultado> {
+        const data = {
+            'nombre': nombre,
+            'lista_sorteo': lista
+        };
+
+        return this.http.post(ModuloConfiguracionService.serverURL + this.registrarSorteoURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as Resultado;
+
+            })
+            .catch(this.handleError);
+    }
+
 }
 
 export interface Categoria {

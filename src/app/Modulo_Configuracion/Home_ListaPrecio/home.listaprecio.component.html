@@ -7,7 +7,10 @@
       </a>
       <a *ngIf="getEstadoHabilitado()" class="example-tooltip-host" mdTooltip={{tooltipEliminarListaPrecio}} [mdTooltipPosition]="position" (click)="apretarEliminarListaPrecio()">
           <img src="assets/icons/delete.png">
-        </a>
+      </a>
+      <a *ngIf="getEstadoHabilitado()" class="example-tooltip-host" mdTooltip={{tooltipDescargarListaPrecio}} [mdTooltipPosition]="position" (click)="apretarDescargarListaPrecio()">
+        <img src="assets/icons/download.png">
+    </a>
       <a id="botonVolver" class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
         <img src="assets/icons/atras.png">
       </a>

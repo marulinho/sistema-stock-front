@@ -59,6 +59,7 @@
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
     "daemonite-material": "4.0.0-alpha.6",
+    "file-saver": "^2.0.0-rc.3",
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.1.0",
     "github-markdown-css": "^2.4.1",
@@ -83,6 +84,8 @@
     "ts-helpers": "^1.1.1",
     "weathericons": "^2.1.0",
     "web-animations-js": "^2.2.2",
+    "xlsx": "^0.14.0",
+    "xlsx-style": "^0.8.13",
     "zone.js": "^0.7.6"
   },
   "devDependencies": {

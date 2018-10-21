@@ -89,6 +89,11 @@ import { HomeComboDetalleComponent } from './Modulo_Configuracion/Home_Combo_Det
 import { RegistrarComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/registrar.combo.component';
 import { ModificarComboComponent } from './Modulo_Configuracion/Home_Combo_Detalle/CU_Modificar_Combo/modificar.combo.component';
 
+import { HomeSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/home.sorteo.component';
+import { HomeSorteoDetalleComponent } from './Modulo_Configuracion/Home_Sorteo_Detalle/home.sorteo.detalle.component';
+import { RegistrarSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/CU_Registrar_Sorteo/registrar.sorteo.component';
+
+
 //IMPORTS MODULO FINANZAS
 import { HomeCajaComponent } from './Modulo_Finanzas/Home_Caja/home.caja.component';
 import { HomeCompraComponent } from './Modulo_Finanzas/Home_Compra/home.compra.component';
@@ -104,6 +109,11 @@ import { HomeVentaComponent } from './Modulo_Finanzas/Home_Venta/home.venta.comp
 import { HomeVentaDetalleComponent } from './Modulo_Finanzas/Home_Venta_Detalle/home.venta.detalle.component';
 import { RegistrarVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/registrar.venta.component';
 
+//IMPORTS MODULO REPORTES
+import { HomeReporteComponent } from './Modulo_Reportes/home.reporte.component';
+import { ReporteStockMinimoComponent } from './Modulo_Reportes/Reporte_Stock_Minimo/reporte.stock.minimo.component';
+import { ReporteComprasVentasComponent } from './Modulo_Reportes/Reporte_Compras_Ventas/reporte.compras.ventas.component';
+import { ReporteGananciaProductosComponent } from './Modulo_Reportes/Reporte_Ganancia_Productos/reporte.ganancia.productos.component';
 
 
 /**
@@ -184,6 +194,11 @@ export const ROUTES: Routes = [
   { path: 'homeComboDetail/:id_combo', component: HomeComboDetalleComponent },
   { path: 'addCombo', component: RegistrarComboComponent },
   { path: 'editCombo/:id_combo', component: ModificarComboComponent },
+
+  { path: 'homeGift', component: HomeSorteoComponent },
+  { path: 'homeDetailGift/:id_sorteo', component: HomeSorteoDetalleComponent },
+  { path: 'addGift', component: RegistrarSorteoComponent },
+  
   
   //MODULO FINANZAS
   { path: 'homeCash', component: HomeCajaComponent },
@@ -200,7 +215,11 @@ export const ROUTES: Routes = [
   { path: 'homeSellDetail/:id_venta', component: HomeVentaDetalleComponent },
   { path: 'addSell', component: RegistrarVentaComponent },
   
-
+  //MODULO REPORTES
+  { path: 'homeReport', component: HomeReporteComponent },
+  { path: 'homeMinimunStockReport', component: ReporteStockMinimoComponent },
+  { path: 'homeBuySellReport', component: ReporteComprasVentasComponent },
+  { path: 'homeGainProductoReport', component: ReporteGananciaProductosComponent },
 
   {
     path: 'dashboard-edge',

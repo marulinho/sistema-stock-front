@@ -57,6 +57,11 @@
                   {{row.usuario}}
               </ng-template>
           </ngx-datatable-column>
+          <ngx-datatable-column name={{label_proveedor}}>
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                {{row.cliente}}
+            </ng-template>
+        </ngx-datatable-column>
           <ngx-datatable-column name={{label_tipo_movimiento}}>
             <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
                 {{row.tipo_movimiento}}

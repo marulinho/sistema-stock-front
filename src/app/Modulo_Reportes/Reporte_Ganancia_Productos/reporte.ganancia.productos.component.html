@@ -1,0 +1,84 @@
+<md-card class="page-card">
+        <md-card-title>
+                {{label_reporte_ganancia_productos}}
+                <a id="botonVolver" class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+                        <img src="assets/icons/atras.png">
+                </a>
+                
+        </md-card-title>
+        <md-card-content>
+                <section *ngIf="errorMessage" class="bs">
+                        <div class="bd-example" data-example-id="">
+                                <div class="alert alert-danger" role="alert">
+                                        <strong>{{errorMessage}}</strong>
+                                </div>
+                        </div>
+                        <br>
+                </section>
+
+                <div>   
+                        <label>{{label_detalle_reporte_ganancia_productos}}</label><br><br>
+
+                        <label id="ejemplo">{{label_ejemplo_reporte_ganancia_productos}}</label><br><br>
+
+                        <md-input-container>
+                                <input mdInput placeholder="{{label_fecha_desde}}" type="date"  [(ngModel)]="fecha_desde" name="fecha_desde" required><br>
+                        </md-input-container>
+
+                        <md-input-container>
+                                <input  mdInput placeholder="{{label_fecha_hasta}}" type="date"  [(ngModel)]="fecha_hasta" name="fecha_hasta" requerid><br>
+                        </md-input-container>
+                        
+                        <div>
+                                <label id='atributo'>{{label_buscar_producto}}: </label>
+                                <input type='text' 
+                                        style='padding:8px;margin:15px auto;width:30%;' 
+                                        placeholder={{label_tabla_producto}} 
+                                        (keyup)='updateFilter($event)'
+                                />
+                                <ngx-datatable #mydatatable
+                                        class="material fullscreen" 
+                                        [headerHeight]="50" 
+                                        [limit]="10" 
+                                        [sortType]="'multi'" 
+                                        [columnMode]="'force'"
+                                        [footerHeight]="50" 
+                                        [rowHeight]="'auto'"
+                                        [rows]="productos">
+                                 
+                                        <ngx-datatable-column name={{label_codigo}}>
+                                                <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                                        {{row.codigo}}
+                                                </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column name={{label_nombre}}>
+                                                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                        {{row.nombre}}
+                                                </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column name={{label_marca}}>
+                                                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                        {{row.marca}}
+                                                </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column name={{label_medida}}>
+                                                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                        {{row.medida}} {{row.unidad_medida}}
+                                                </ng-template>
+                                        </ngx-datatable-column>
+                                        <ngx-datatable-column name={{label_ganancia}}>
+                                                <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                                        {{label_peso}} {{row.ganancia}}
+                                                </ng-template>
+                                        </ngx-datatable-column>
+                                </ngx-datatable>
+                            </div>
+
+                </div>
+        </md-card-content>
+        <md-card-actions>
+                <button md-raised-button (click)="apretarObtenerReporte()">{{boton_obtener_reporte}}</button>
+                <button md-raised-button (click)="apretarSalir()">{{boton_salir}}</button>
+        </md-card-actions>
+        <md-card-footer></md-card-footer>
+</md-card>

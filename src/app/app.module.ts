@@ -2,6 +2,7 @@ import { ROUTES } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { ExcelService } from './Datos_Sistema/export.excel.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
 import { AppComponent } from './app.component';
@@ -21,6 +22,10 @@ import { DialogSeleccionarProductoCompraComponent } from './Modulo_Finanzas/Home
 import { DialogEditarCantidadCompraComponent } from './Modulo_Finanzas/Home_Compra/CU_Registrar_Compra/dialog-editar-cantidad-compra/dialog.editar.cantidad.compra.component';
 import { DialogSeleccionarProductoVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/dialog-seleccionar-productos-venta/dialog.seleccionar.productos.venta.component';
 import { DialogEditarCantidadVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/dialog-editar-cantidad-venta/dialog.editar.cantidad.venta.component';
+import { DialogSeleccionarClienteVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/dialog-seleccionar-cliente-venta/dialog.seleccionar.cliente.venta.component';
+import { DialogSeleccionarProductoSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/CU_Registrar_Sorteo/dialog-seleccionar-producto-sorteo/dialog.seleccionar.producto.sorteo.component';
+import { DialogEditarCantidadSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/CU_Registrar_Sorteo/dialog-editar-cantidad-sorteo/dialog.editar.cantidad.sorteo.component';
+import { DialogRealizarSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/CU_Registrar_Sorteo/dialog-realizar-sorteo/dialog.realizar.sorteo.component';
 import { ComponentDialogComponent } from './pages/component-dialog/component-dialog.component';
 //import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -126,6 +131,10 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
   import { RegistrarComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/registrar.combo.component';
   import { ModificarComboComponent } from './Modulo_Configuracion/Home_Combo_Detalle/CU_Modificar_Combo/modificar.combo.component';
 
+  import { HomeSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/home.sorteo.component';
+  import { HomeSorteoDetalleComponent } from './Modulo_Configuracion/Home_Sorteo_Detalle/home.sorteo.detalle.component';
+  import { RegistrarSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/CU_Registrar_Sorteo/registrar.sorteo.component';
+
 //IMPORTS MODULO FINANZAS
   import { ModuloFinanzasService } from './Modulo_Finanzas/modulo.finanzas.services';  
   import { HomeCajaComponent } from './Modulo_Finanzas/Home_Caja/home.caja.component';
@@ -141,6 +150,13 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
   import { HomeVentaComponent } from './Modulo_Finanzas/Home_Venta/home.venta.component';
   import { HomeVentaDetalleComponent } from './Modulo_Finanzas/Home_Venta_Detalle/home.venta.detalle.component';
   import { RegistrarVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/registrar.venta.component';
+
+  //MODULO REPORTES
+  import { HomeReporteComponent } from './Modulo_Reportes/home.reporte.component';
+  import { ReporteStockMinimoComponent } from './Modulo_Reportes/Reporte_Stock_Minimo/reporte.stock.minimo.component';
+  import { ReporteComprasVentasComponent } from './Modulo_Reportes/Reporte_Compras_Ventas/reporte.compras.ventas.component';
+  import { ReporteGananciaProductosComponent } from './Modulo_Reportes/Reporte_Ganancia_Productos/reporte.ganancia.productos.component';
+  import { ModuloReportesService } from './Modulo_Reportes/modulo.reportes.services';
 
 /**
  * Root Module
@@ -162,6 +178,10 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     DialogEditarCantidadCompraComponent,
     DialogSeleccionarProductoVentaComponent,
     DialogEditarCantidadVentaComponent,
+    DialogSeleccionarProductoSorteoComponent,
+    DialogSeleccionarClienteVentaComponent,
+    DialogEditarCantidadSorteoComponent,
+    DialogRealizarSorteoComponent,
     DialogThemeComponent,
     ComponentDialogComponent,
     DashboardComponent,
@@ -258,6 +278,10 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     HomeComboDetalleComponent,
     ModificarComboComponent,
 
+    HomeSorteoComponent,
+    HomeSorteoDetalleComponent,
+    RegistrarSorteoComponent,
+    
     //MODULO FINANZAS
     HomeCajaComponent,
     HomeCompraComponent,
@@ -273,6 +297,11 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     HomeVentaDetalleComponent,
     RegistrarVentaComponent,
 
+    //MODULO REPORTES
+    HomeReporteComponent,
+    ReporteStockMinimoComponent,
+    ReporteComprasVentasComponent,
+    ReporteGananciaProductosComponent,
 
   ],
   imports: [
@@ -299,7 +328,7 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     FileUploadModule,
     CustomFormsModule,
     TreeModule,
-    
+
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
@@ -317,7 +346,12 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     ModuloConfiguracionService,
 
     //SERVICES MODULO FINANZAS
-    ModuloFinanzasService
+    ModuloFinanzasService,
+
+    //SERVICES MODULO REPORTES
+    ModuloReportesService,
+
+    ExcelService
     
   ],
   entryComponents: [
@@ -333,6 +367,10 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     DialogEditarCantidadCompraComponent,
     DialogSeleccionarProductoVentaComponent,
     DialogEditarCantidadVentaComponent,
+    DialogSeleccionarProductoSorteoComponent,
+    DialogSeleccionarClienteVentaComponent,
+    DialogEditarCantidadSorteoComponent,
+    DialogRealizarSorteoComponent,
     DialogThemeComponent,
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA ],

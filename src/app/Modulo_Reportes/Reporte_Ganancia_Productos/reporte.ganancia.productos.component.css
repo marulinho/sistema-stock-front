@@ -1,0 +1,21 @@
+#atributo{
+    font-weight: bold;
+  }
+  #botonVolver{
+    float : right;
+}
+#ejemplo{
+    font-style: italic;
+    color:gray;
+}
+a{
+    cursor: pointer;
+}
+#positivo{
+    font-weight: bold;
+    color:green;
+}
+#negativo{
+    font-weight: bold;
+    color:red;
+}

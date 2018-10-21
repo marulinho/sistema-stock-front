@@ -1,0 +1,49 @@
+<md-card class="page-card">
+        <md-card-title>
+                {{label_reporte_compras_ventas}}
+                <a id="botonVolver" class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+                        <img src="assets/icons/atras.png">
+                </a>
+                
+        </md-card-title>
+        <md-card-content>
+                <section *ngIf="errorMessage" class="bs">
+                        <div class="bd-example" data-example-id="">
+                                <div class="alert alert-danger" role="alert">
+                                        <strong>{{errorMessage}}</strong>
+                                </div>
+                        </div>
+                        <br>
+                </section>
+
+                <div>   
+                        <label>{{label_detalle_reporte_compras_ventas}}</label><br><br>
+
+                        <label id="ejemplo">{{label_ejemplo_reporte_compras_ventas}}</label><br><br>
+
+                        <md-input-container>
+                                <input mdInput placeholder="{{label_fecha_desde}}" type="date"  [(ngModel)]="fecha_desde" name="fecha_desde" required><br>
+                        </md-input-container>
+
+                        <md-input-container>
+                                <input  mdInput placeholder="{{label_fecha_hasta}}" type="date"  [(ngModel)]="fecha_hasta" name="fecha_hasta" requerid><br>
+                        </md-input-container>
+                        
+                        <label id='atributo'>{{label_compras}}: </label>
+                        <label>{{label_peso}} {{compras}}</label> <br><br>
+
+                        <label id='atributo'>{{label_ventas}}: </label>
+                        <label>{{label_peso}} {{ventas}}</label> <br><br>
+
+                        <label id='atributo'>{{label_balance}}: </label>
+                        <label *ngIf="ventas >= compras" id='positivo'>{{label_peso}} {{balance}}</label> 
+                        <label *ngIf="ventas < compras" id='negativo'>{{label_peso}} {{balance}}</label> <br><br>
+
+                </div>
+        </md-card-content>
+        <md-card-actions>
+                <button md-raised-button (click)="apretarObtenerReporte()">{{boton_obtener_reporte}}</button>
+                <button md-raised-button (click)="apretarSalir()">{{boton_salir}}</button>
+        </md-card-actions>
+        <md-card-footer></md-card-footer>
+</md-card>

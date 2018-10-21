@@ -20,6 +20,19 @@ export const Constantes={
     BOTON_SALIR : 'SALIR',
     BOTON_RECUPERAR_CUENTA: 'RECUPERAR',
     BOTON_MODIFICAR: 'MODIFICAR',
+    BOTON_SORTEO:'SORTEAR',
+    BOTON_BUSCAR: 'BUSCAR',
+
+//REPORTES
+    LABEL_REPORTE_STOCK_MINIMO: 'Reporte Stock Mínimo',
+    DETALLE_REPORTE_STOCK_MINIMO: 'Mediante este reporte se obtienen los productos que estan por alcanzar el stock mínimo',
+    LABEL_EJEMPLO_REPORTE_STOCK_MINIMO: 'Debe ingresar una cantidad, la cuál será sumada al stock mínimo y se comparara con el stock total disponible (stock local + stock déposito). Se mostrarán los productos cuyo stock total sea menor a la suma (cantidad ingresada + stock minimo). Por ejemplo: El producto X tiene un stock total de 5 unidades, el stock mínimo es de 2 unidades, ingresa 6 en cantidad, por lo tanto el producto se mostrará en la tabla, dado que 5 < (6+2)',
+    LABEL_REPORTE_COMPRAS_VENTAS: 'Reporte Compras - Ventas',
+    DETALLE_REPORTE_COMPRAS_VENTAS: 'Mediante este reporte se obtiene un balance de las compras y ventas realizadas',
+    LABEL_EJEMPLO_REPORTE_COMPRAS_VENTAS: 'Debe ingresar un período de inicio (DD-MM-YYYY) y uno de fin (DD-MM-YYYY). Se mostrará la $ invertidas en compras y la $ recibidas por ventas, junto con el balance durante ese período. Ejemplo: Ingresa la fecha 2018-10-01 y 2018-10-10, durante ese lapso se invirtio $5000 en compras y se obtuvo $6500 por ventas, el balance es $1500',
+    LABEL_REPORTE_GANANCIA_PRODUCTOS: 'Reporte Ganancia Producto', 
+    DETALLE_REPORTE_GANANCIA_PRODUCTOS: 'Mediante este reporte se obtiene la ganancia por cada producto vendido',
+    LABEL_EJEMPLO_REPORTE_GANANCIA_PRODUCTOS: 'Debe ingresar un período de inicio (DD-MM-YYYY) y uno de fin (DD-MM-YYYY). Se mostrará la $ ganada por las ventas realizadas del producto. Ejemplo: Ingresa la fecha 2018-10-01 y 2018-10-10, durante ese lapso se vendieron 10 productos X, con una ganancia unitaria de $150, por lo tanto se mostrara una ganancia de $1500',
 
 //DIALOGS
     TITLE_ELIMINAR_USUARIO: 'Eliminar Usuario',
@@ -77,6 +90,13 @@ export const Constantes={
     DESCRIPCION_PRODUCTOS_DISPONIBLES: 'Seleccione los productos que componen el remito',
     DESCRIPCION_PRODUCTOS_DISPONIBLES_COMBO: 'Seleccione los productos que componen el combo',
     DESCRIPCION_PRODUCTOS_DISPONIBLES_COMPRA: 'Seleccione los productos que componen la compra',
+    DESCRIPCION_PRODUCTOS_DISPONIBLES_SORTEO: 'Seleccione los productos que componen el sorteo',
+    TITLE_SORTEO: 'Realizar Sorteo',
+    DESCRIPCION_PARTICIPANTES: 'Ingrese los participantes seguidos de ","',
+    TITLE_COBRAR_VENTA: 'Cobrar Venta',
+    PREGUNTA_COBRAR_VENTA: '¿Desea cobrar la venta?',
+    TITLE_CLIENTES_DISPONIBLES: 'Clientes Disponibles',
+    DESCRIPCION_CLIENTES_DISPONIBLES: 'Seleccione el cliente que compone la venta',
 
 //OPCIONES DIALOGS
     OPCION_ACEPTAR: 'Aceptar',
@@ -175,6 +195,7 @@ export const Constantes={
     LABEL_UPDATE_TABLA: 'Actualizar Tabla',
     LABEL_LISTA_PRECIO: 'Lista de Precios',
     LABEL_AGREGAR_LISTA_PRECIO: 'Agregar Lista de Precios',
+    LABEL_DESCARGAR_LISTA_PRECIO: 'Descargar Lista de Precios',
     LABEL_BUSCAR_TABLA_LISTA_PRECIO: 'Ingrese el nombre del producto',
     LABEL_PRECIO_COMPRA : 'Precio Compra',
     LABEL_PRECIO_VENTA : 'Precio Venta',
@@ -291,7 +312,29 @@ export const Constantes={
     LABEL_ACTUALIZAR_PRECIO_COMBO: 'Actualizar Precio Combo',
     LABEL_ADVERTENCIA: 'Advertencia',
     LABEL_MARCAR: 'Marcar',
-
+    LABEL_PROVEEDOR: 'Proveedor',
+    LABEL_SORTEO: 'Sorteo',
+    LABEL_AGREGAR_SORTEO: 'Agregar Sorteo',
+    LABEL_BUSCAR_SORTEO: 'Buscar Sorteo',
+    LABEL_NAVEGAR_SORTEO: 'Ir a Sorteo',
+    LABEL_BUSCAR_TABLA_SORTEO: 'Ingrese el nombre del sorteo',
+    LABEL_GANANDOR: 'Ganador',
+    LABEL_SORTEO_DETALLE: 'Sorteo Detalle',
+    LABEL_POSICION: 'Posición',
+    LABEL_LUGAR: '° Lugar',
+    LABEL_REGISTRAR_SORTEO: 'Registrar Sorteo',
+    LABEL_PARTICIPANTES: 'Participantes',
+    LABEL_SORTEAR: 'Sortear',
+    LABEL_DATOS_SORTEO: 'Datos Sorteo',
+    LABEL_GANADORES: 'Ganadores',
+    LABEL_NAVEGAR_REPORTE: 'Ir a Reporte',
+    LABEL_REPORTES: 'Reportes',
+    LABEL_FECHA_DESDE: 'Fecha Desde',
+    LABEL_FECHA_HASTA: 'Fecha Hasta',
+    LABEL_MEDIO_PAGO: 'Medio de Pago',
+    LABEL_EFECTIVO: 'Efectivo',
+    LABEL_CUENTA_CORRIENTE: 'Cuenta Corriente',
+    
 //DESCRIPCIÓN CARD 
     DESCRIPCION_PRODUCTO : 'En esta sección se lleva a cabo la administración de los productos',
     DESCRIPCION_CATEGORIA : 'En esta sección se lleva a cabo la administración de las categorias',
@@ -314,6 +357,8 @@ export const Constantes={
     DESCRIPCION_LISTA_PRECIO_VENTA: 'En esta sección se pueden seleccionar los productos que van a componer la venta',
     LABEL_DETALLE_RETIRO : 'En esta sección se lleva a cabo la administración de los retiros de dinero',
     DESCRIPCION_CLIENTE: 'En esta sección se lleva a cabo la administración de los clientes',
+    LABEL_DETALLE_SORTEO : 'En esta sección se lleva a cabo la administración de los sorteos',
+    LABEL_DESCRIPCION_PARTICIPANTES: 'En esta sección se lleva a cabo la administración de los participantes. Ingrese cada nombre seguido de ,',
 
 //ERRORES
     ERROR_CAMPOS_INCOMPLETOS : 'Debe completar todos los campos obligatorios (*)',
@@ -326,7 +371,10 @@ export const Constantes={
     ERROR_COBRO_NO_REALIZADO: 'El cobro no se pudo llevar a cabo, intente nuevamente',
     ERROR_CANTIDAD_INSUFICIENTE: 'Debe ingresar una cantidad menor a la disponible',
     ERROR_CANTIDAD_INCOMPLETA: 'Debe ingresar una cantidad por cada producto',
-
+    ERROR_CANTIDAD_PREMIOS: 'Debe seleccionar los productos a sortear',
+    ERROR_CANTIDAD_PARTICIPANTES_PREMIO: 'La cantidad de participantes debe ser mayor o igual a la de productos a sortear',
+    ERROR_FECHA_DESDE_MAYOR_HASTA: 'La fecha desde no puede ser menor a la fecha hasta',
+    ERROR_NO_HAY_INFORMACION: 'No hay información para el periodo seleccionado',
     
 //MENSAJES
     MENSAJE_INICIO_SISTEMA : 'Bienvenido a CrazyBeer',
@@ -409,5 +457,9 @@ export const Constantes={
     URL_HOME_CLIENTE: '/homeCustomer/',
     URL_HOME_CLIENTE_DETALLE: '/homeCustomerDetail/',
     URL_AGREGAR_CLIENTE : '/addCustomer/',
-    URL_EDITAR_CLIENTE : '/editCustomer/'
+    URL_EDITAR_CLIENTE : '/editCustomer/',
+    URL_HOME_SORTEO: '/homeGift/',
+    URL_HOME_SORTEO_DETALLE: '/homeDetailGift/',
+    URL_AGREGAR_SORTEO: '/addGift/',
+    URL_HOME_REPORTE: '/homeReport/'
 };

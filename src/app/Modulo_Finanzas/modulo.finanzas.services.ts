@@ -82,9 +82,10 @@ export class ModuloFinanzasService extends RestBaseService {
 
     //COMPRAS
 
-    registrarCompra(usuario,descuento,lista_productos,lista_cantidad): Promise<Resultado> {
+    registrarCompra(usuario, proveedor,descuento,lista_productos,lista_cantidad): Promise<Resultado> {
         const data = {
             "id_usuario":usuario,
+            "id_cliente":proveedor,
             "descuento":descuento,
             "lista_productos":lista_productos,
             "cantidad_productos":lista_cantidad
@@ -185,12 +186,16 @@ export class ModuloFinanzasService extends RestBaseService {
 
     //VENTAS
 
-    registrarVenta(usuario,descuento,lista_productos,lista_cantidad): Promise<Resultado> {
+    registrarVenta(usuario,descuento,lista_productos,lista_cantidad,lista_cantidad_combos,lista_combos_ventas,cliente,medio_pago): Promise<Resultado> {
         const data = {
             "id_usuario":usuario,
             "descuento":descuento,
             "lista_productos":lista_productos,
-            "cantidad_productos":lista_cantidad
+            "cantidad_productos":lista_cantidad,
+            "lista_combos":lista_combos_ventas,
+            "cantidad_productos_combo":lista_cantidad_combos,
+            "medio_pago":medio_pago,
+            "id_cliente":cliente
         }
         return this.http.post(ModuloFinanzasService.serverURL + this.registrarVentaURL, JSON.stringify(data), this.getRestHeader())
             .toPromise()

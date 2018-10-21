@@ -49,12 +49,17 @@ export class SearchMock {
       faIcon: ' fa-archive',
       link: '/homeCombo/'
     },
-    
+    {
+      name: 'sorteo',
+      title: 'Sorteos',
+      faIcon: 'fa fa-gift',
+      link: '/homeGift/'
+    },
     {
       name: 'reportes',
       title: 'Reportes',
       faIcon: 'fa-line-chart',
-      link: '/homeReportes/'
+      link: '/homeReport/'
     },
     {
       name: 'configuracion',

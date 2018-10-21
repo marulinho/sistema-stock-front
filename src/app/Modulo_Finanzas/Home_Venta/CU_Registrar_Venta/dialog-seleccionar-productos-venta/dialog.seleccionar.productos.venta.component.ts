@@ -51,6 +51,7 @@ export class DialogSeleccionarProductoVentaComponent implements OnInit {
         return resultado;
     }
 
+
     updateFilter(event) {
         const val = event.target.value.toLowerCase();
         const temp = this.productos_temp.filter(function (d) {

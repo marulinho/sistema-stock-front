@@ -7,6 +7,9 @@
                 <a class="example-tooltip-host" mdTooltip={{tooltipAgregarProducto}} [mdTooltipPosition]="position" (click)="apretarAgregarProductoVenta()">
                         <img src="assets/icons/nuevo.png">
                 </a>
+                <a *ngIf="getCuentaCorriente()" class="example-tooltip-host" mdTooltip={{tooltipAgregarCliente}} [mdTooltipPosition]="position" (click)="obtenerClientes()">
+                                <img src="assets/icons/nuevoUsuario.png">
+                </a>
         </md-card-title>
         <md-card-content>
                 <section *ngIf="errorMessage" class="bs">
@@ -27,12 +30,23 @@
                         <md-input-container>
                                 <input mdInput placeholder={{label_descuento}} type="number" [(ngModel)]="descuento"  name="descuento" required maxlength="40">
                         </md-input-container>
-
                         <label id='error' *ngIf="descuento <0">{{label_error_descuento}}</label><br><br>
 
                         <label id="atributo">{{label_precio_total}}: </label>
                         <label *ngIf= "subtotal >= 0 && descuento >= 0">{{label_peso}} {{getPrecioTotal()}}</label>
-                        <label *ngIf= "subtotal < 0">---</label><br><br>
+                        <label *ngIf= "subtotal < 0">---</label><br><br><br>
+
+                        <md-select placeholder={{label_medio_pago}} [(ngModel)]="medio_pago" name="medio_pago">
+                                <md-option *ngFor="let medio of medios_pagos" [value]="medio.nombre" requerid >
+                                  {{medio.nombre}}
+                                </md-option>
+                        </md-select><br><br><br>
+                        
+                        <div *ngIf="medio_pago === 'Cuenta Corriente'">
+                                <label id='atributo'>{{label_cliente}}: </label>
+                                <label>{{cliente}}</label><br>
+                        </div>
+
 
                         <label id='atributo'>{{label_buscar_producto}}: </label>
                         <input type='text' 
@@ -82,7 +96,7 @@
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_precio_total}}>
                                         <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                                                {{label_peso}} {{row.precio_venta * lista_cantidad_productos_temp[row.$$index]}}
+                                                {{label_peso}} {{(row.precio_venta * lista_cantidad_productos_temp[row.$$index]).toFixed(2)}}
                                         </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column name={{label_accion}}>

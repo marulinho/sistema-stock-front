@@ -21,6 +21,7 @@ export class DialogEditarCantidadVentaComponent implements OnInit {
 
     cantidad: number;
     stock_local: number;
+    combo:boolean;
 
     constructor(private dialogRef: MdDialogRef<DialogEditarCantidadVentaComponent>) {
     }

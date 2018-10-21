@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from '../../app.service';
-import { MdSnackBar , MdDialog } from '@angular/material';
+import { MdSnackBar } from '@angular/material';
 import { Constantes } from '../../Datos_Sistema/constantes';
 import { ModuloFinanzasService} from '../modulo.finanzas.services';
-import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
 
 
 @Component({
@@ -30,6 +29,7 @@ export class HomeCompraComponent implements OnInit{
     label_peso = Constantes.LABEL_PESO;
     label_usuario = Constantes.LABEL_USUARIO;
     label_tipo_movimiento = Constantes.LABEL_TIPO_MOVIMIENTO;
+    label_proveedor = Constantes.LABEL_PROVEEDOR;
     label_estado = Constantes.LABEL_ESTADO;
     label_tabla_compra = Constantes.LABEL_BUSCAR_TABLA_COMPRA;
     label_buscar_compra = Constantes.LABEL_BUSCAR_COMPRA;

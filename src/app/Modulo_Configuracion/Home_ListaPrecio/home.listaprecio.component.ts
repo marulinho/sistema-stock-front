@@ -6,6 +6,7 @@ import { MdDialog } from '@angular/material';
 import { DialogYesNoComponent } from '../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
 import { Constantes } from '../../Datos_Sistema/constantes';
 import { ModuloConfiguracionService, Producto } from '../modulo.configuracion.service';
+import { ExcelService } from '../../Datos_Sistema/export.excel.service';
 
 @Component({
     selector: 'homeListaPrecio',
@@ -20,6 +21,7 @@ export class HomeListaPrecioComponent implements OnInit {
     snackBarRef: any;
     selectedOption: string;
     tooltipAgregarListaPrecio = Constantes.LABEL_AGREGAR_LISTA_PRECIO;
+    tooltipDescargarListaPrecio = Constantes.LABEL_DESCARGAR_LISTA_PRECIO;
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';
     label_lista_precio = Constantes.LABEL_LISTA_PRECIO;
@@ -39,6 +41,9 @@ export class HomeListaPrecioComponent implements OnInit {
     lista_precio_cabecera = [];
     lista_precio_detalles = [];
     lista_precio_detalles_temp = [];
+    lista_productos_excel: Array<{  "Código":number,
+                                    "Producto": string,
+                                    "Precio Venta": string}> = [];
     codigo_lista_precio: number;
     estado_lista_precio:string;
 
@@ -47,7 +52,8 @@ export class HomeListaPrecioComponent implements OnInit {
         private moduloConfiguracion: ModuloConfiguracionService,
         private snackBar: MdSnackBar,
         private dialog: MdDialog,
-        private appService: AppService) {
+        private appService: AppService,
+        private excelService: ExcelService) {
 
         appService.getState().topnavTitle = Constantes.LABEL_LISTA_PRECIO;
     }
@@ -65,7 +71,13 @@ export class HomeListaPrecioComponent implements OnInit {
                     this.codigo_lista_precio = this.lista_precio_cabecera['codigo'];
                     this.lista_precio_detalles = response.datos_operacion['lista_precio_detalles'];
                     this.lista_precio_detalles_temp = [...this.lista_precio_detalles];
-                }
+                    let longitud = this.lista_precio_detalles.length;
+                    for(var i=0; i < longitud; i++){
+                        this.lista_productos_excel.push({"Código": this.lista_precio_detalles[i]['codigo_producto'],
+                                                    "Producto": this.lista_precio_detalles[i]['nombre_producto'].concat(' - ', this.lista_precio_detalles[i]['marca_producto'], ' - ', this.lista_precio_detalles[i]['medida'], ' ', this.lista_precio_detalles[i]['nombre_medida']) ,
+                                                    "Precio Venta":'$'.concat(' ',this.lista_precio_detalles[i]['precio_venta'])});
+                    }
+                }  
             )
             .catch(
                 error => {
@@ -128,6 +140,13 @@ export class HomeListaPrecioComponent implements OnInit {
                         );
                 }
             });
+    }
+
+    apretarDescargarListaPrecio(){
+        //header array
+        let longitud = 3;
+        this.excelService.setColumn(longitud);
+        this.excelService.exportAsExcelFile(this.lista_productos_excel, 'Lista de Precio '+this.lista_precio_cabecera['nombre']);
     }
 
     apretarAtras() {
