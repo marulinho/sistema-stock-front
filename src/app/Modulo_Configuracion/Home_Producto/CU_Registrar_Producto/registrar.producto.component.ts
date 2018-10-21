@@ -26,6 +26,7 @@ export class RegistrarProductoComponent implements OnInit {
     label_marca = Constantes.LABEL_MARCA;
     label_unidad_medida = Constantes.LABEL_UNIDAD_MEDIDA;
     label_respuesta_unidad_medida = Constantes.LABEL_UNIDAD_MEDIDA;
+    label_stock_minimo = Constantes.LABEL_STOCK_MINIMO;
     boton_registrar = Constantes.BOTON_REGISTRAR;
     boton_salir = Constantes.BOTON_SALIR;
 
@@ -34,6 +35,7 @@ export class RegistrarProductoComponent implements OnInit {
     medida: number;
     id_unidad_medidad: number;
     unidades_medidas: UnidadMedida;
+    stock_minimo : number;
 
     constructor(private appService: AppService,
         private moduloConfiguracion: ModuloConfiguracionService,
@@ -60,7 +62,7 @@ export class RegistrarProductoComponent implements OnInit {
 
     apretarRegistrarProducto() {
         this.arrayVerificar = this.utils.limpiarArray(this.arrayVerificar);
-        this.arrayVerificar.push(this.nombre,this.marca,this.medida);
+        this.arrayVerificar.push(this.nombre,this.marca,this.medida,this.stock_minimo);
         if (this.utils.verificarDatosIncompletos(this.arrayVerificar) == true) {
             this.errorMessage = Constantes.ERROR_CAMPOS_INCOMPLETOS;
         }
@@ -68,7 +70,7 @@ export class RegistrarProductoComponent implements OnInit {
             this.arrayVerificar = this.utils.limpiarArray(this.arrayVerificar);
             this.errorMessage = "";
 
-            this.moduloConfiguracion.registrarProducto(this.nombre, this.marca,this.medida,this.id_unidad_medidad)
+            this.moduloConfiguracion.registrarProducto(this.nombre, this.marca,this.medida,this.id_unidad_medidad,this.stock_minimo)
                 .then(
                     response => {
                         this.router.navigate([Constantes.URL_HOME_PRODUCTO]);

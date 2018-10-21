@@ -1,0 +1,75 @@
+<div class="page-content">
+    <md-card fxFlex class="page-card">
+      <md-card-title>
+        {{label_combo}}
+        <a class="example-tooltip-host" mdTooltip={{tooltipAgregarCombo}} [mdTooltipPosition]="position" (click)="apretarAgregarCombo()">
+            <img src="assets/icons/nuevo.png">
+        </a>
+        <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+          <img src="assets/icons/atras.png">
+        </a>
+      </md-card-title>
+
+      <section *ngIf="errorMessageCombo" class="bs">
+          <div class="bd-example" data-example-id="">
+                  <div class="alert alert-danger" role="alert">
+                          <strong>{{errorMessageCombo}}</strong>
+                  </div>
+          </div><br>
+      </section>
+      <md-card-content *ngIf="!errorMessageCombo">
+
+        <p>{{label_detalle_combo}}</p>
+        <label id='atributo'>{{label_buscar_combo}}: </label>
+        <input
+            type='text'
+            style='padding:8px;margin:15px auto;width:30%;'
+            placeholder={{label_tabla_combo}}
+            (keyup)='updateFilter($event)'
+        />
+          <ngx-datatable
+            #mydatatable
+            class="material fullscreen"
+            [headerHeight]="50"
+            [limit]="10"
+            [sortType]="'multi'"
+            [columnMode]="'force'"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [rows]="combos">
+            <ngx-datatable-column name={{label_codigo}} >
+              <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                {{row.combo_cabecera.codigo}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_nombre}}>
+              <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                  {{row.combo_cabecera.nombre}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_productos}}>
+              <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                <ul *ngFor="let detalle of row.combo_detalles; let i = index" [attr.data-index]="i">
+                    Cod. {{detalle.codigo_producto}} - {{detalle.cantidad}} {{detalle.nombre_producto}} {{detalle.marca_producto}} {{detalle.medida}} {{detalle.nombre_medida}}
+              </ul>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_precio}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    {{label_peso}} {{row.combo_cabecera.precio}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name={{label_accion}}>
+                  <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                      <a class="example-tooltip-host" mdTooltip="{{tooltipIrCombo}}" [mdTooltipPosition]="position">
+                          <img src="assets/icons/navigation.png" (click)="apretarIrCombo(row.combo_cabecera.codigo)">
+                      </a>
+                  </ng-template>
+              </ngx-datatable-column>
+          </ngx-datatable>
+      </md-card-content>
+    </md-card>
+</div>
+
+          
+  

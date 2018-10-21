@@ -20,6 +20,7 @@
       <md-card-content *ngIf="!errorMessageCategoria">
 
         <p>{{label_detalle_categoria}}</p>
+        <label id='atributo'>{{label_buscar_categoria}}: </label>
         <input
             type='text'
             style='padding:8px;margin:15px auto;width:30%;'
@@ -38,13 +39,7 @@
             [rows]="categorias">
             <ngx-datatable-column name={{label_codigo}}>
               <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                <span 
-                  title={{label_navegar_categoria}}
-                  (click)="apretarIrCategoria(row.codigo)"
-                >
                 {{row.codigo}}
-              </span>
-                
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name={{label_nombre}}>
@@ -57,8 +52,14 @@
                     {{row.descripcion}}
                 </ng-template>
               </ngx-datatable-column>
-          </ngx-datatable>
-
+          <ngx-datatable-column name={{label_accion}}>
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+              <a class="example-tooltip-host" mdTooltip="{{tooltipIrCategoria}}" [mdTooltipPosition]="position">
+                <img src="assets/icons/navigation.png" (click)="apretarIrCategoria(row.codigo)">
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
       </md-card-content>
 
     </md-card>

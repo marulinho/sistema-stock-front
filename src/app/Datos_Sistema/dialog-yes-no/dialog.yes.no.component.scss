@@ -1,0 +1,28 @@
+.cabecera{
+    text-align: center;
+}
+  
+.dialog{
+    height: 150px;
+    width: 280px;
+}
+
+.example-md-buttons {
+    align-content: center;
+    margin-right: 10px;
+    text-align: center;
+}
+#aceptar{
+    margin-left:12%;
+}
+#aceptar:hover{
+    background-color: #027167;
+}
+#cancelar:hover{
+    background-color: red;
+}
+#advertencia{
+    font-style: italic;
+    color: red;
+}
+  

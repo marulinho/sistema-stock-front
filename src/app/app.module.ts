@@ -2,6 +2,7 @@ import { ROUTES } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { ExcelService } from './Datos_Sistema/export.excel.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http } from '@angular/http';
 import { AppComponent } from './app.component';
@@ -11,6 +12,20 @@ import { Md2Module } from 'md2/module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, NoPreloading } from '@angular/router';
 import { DialogExampleComponent } from './shared/dialog/dialog-example/dialog-example.component';
+import { DialogRegistrarRemitoComponent } from './Modulo_Finanzas/Home_Remito/CU_Registrar_Remito/dialog-registrar-remito/dialog-seleccionar-productos/dialog.registrar.remito.component';
+import { DialogEditarCantidadRemitoComponent } from './Modulo_Finanzas/Home_Remito/CU_Registrar_Remito/dialog-registrar-remito/dialog-editar-cantidad/dialog.editar.cantidad.remito.component';
+import { DialogYesNoComponent } from './Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
+import { DialogRegistrarComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/dialog-registrar-combo/dialog.registrar.combo.component';
+import { DialogEditarPrecioComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/dialog-editar-precio-combo/dialog.editar.precio.combo.component';
+import { DialogEditarPrecioListaComponent } from './Modulo_Configuracion/Home_ListaPrecio/CU_Registrar_ListaPrecio/dialog-editar-precio-lista-precio/dialog.editar.precio.lista.component';
+import { DialogSeleccionarProductoCompraComponent } from './Modulo_Finanzas/Home_Compra/CU_Registrar_Compra/dialog-seleccionar-producto-compra/dialog.seleccionar.producto.compra.component';
+import { DialogEditarCantidadCompraComponent } from './Modulo_Finanzas/Home_Compra/CU_Registrar_Compra/dialog-editar-cantidad-compra/dialog.editar.cantidad.compra.component';
+import { DialogSeleccionarProductoVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/dialog-seleccionar-productos-venta/dialog.seleccionar.productos.venta.component';
+import { DialogEditarCantidadVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/dialog-editar-cantidad-venta/dialog.editar.cantidad.venta.component';
+import { DialogSeleccionarClienteVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/dialog-seleccionar-cliente-venta/dialog.seleccionar.cliente.venta.component';
+import { DialogSeleccionarProductoSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/CU_Registrar_Sorteo/dialog-seleccionar-producto-sorteo/dialog.seleccionar.producto.sorteo.component';
+import { DialogEditarCantidadSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/CU_Registrar_Sorteo/dialog-editar-cantidad-sorteo/dialog.editar.cantidad.sorteo.component';
+import { DialogRealizarSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/CU_Registrar_Sorteo/dialog-realizar-sorteo/dialog.realizar.sorteo.component';
 import { ComponentDialogComponent } from './pages/component-dialog/component-dialog.component';
 //import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -87,90 +102,61 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
 
 //IMPORTS MODULO CONFIGURACION
   import { ModuloConfiguracionService } from './Modulo_Configuracion/modulo.configuracion.service';
-  import { HomeSistemaComponent } from './Modulo_Configuracion/Home_Sistema/home.sistema.component';
-  
+  import { HomeSistemaComponent } from './Modulo_Configuracion/Home_Sistema/home.sistema.component';  
   import { HomeCategoriaComponent } from './Modulo_Configuracion/Home_Categoria/home.categoria.component';
   import { RegistrarCategoriaComponent } from './Modulo_Configuracion/Home_Categoria/CU_Registrar_Categoria/registrar.categoria.component';
   import { HomeCategoriaDetalleComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/home.categoria.detalle.component';
   import { ModificarCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Modificar_Categoria/modificar.categoria.component';
   import { AsignarSubCategoriaCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Asignar_SubCategoria_Categoria/asignar.subcategoriacategoria.component';
   import { AsignarProductoCategoriaComponent } from './Modulo_Configuracion/Home_Categoria_Detalle/CU_Asignar_Producto_Categoria/asignar.productocategoria.component';
-
   import { HomeSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria/home.subcategoria.component';
   import { RegistrarSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria/CU_Registrar_SubCategoria/registrar.subcategoria.component';
   import { HomeSubCategoriaDetalleComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/home.subcategoria.detalle.component';
   import { ModificarSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/CU_Modificar_SubCategoria/modificar.subcategoria.component';
   import { AsignarProductoSubCategoriaComponent } from './Modulo_Configuracion/Home_SubCategoria_Detalle/CU_Asignar_Producto_SubCategoria/asignar.productosubcategoria.component';
-
-
   import { HomeProductoComponent } from './Modulo_Configuracion/Home_Producto/home.producto.component';
   import { RegistrarProductoComponent } from './Modulo_Configuracion/Home_Producto/CU_Registrar_Producto/registrar.producto.component';
   import { HomeProductoDetalleComponent } from './Modulo_Configuracion/Home_Producto_Detalle/home.producto.detalle.component';
   import { ModificarProductoComponent } from './Modulo_Configuracion/Home_Producto_Detalle/CU_Modificar_Producto/modificar.producto.component';
-
   
+  import { HomeClienteComponent } from './Modulo_Configuracion/Home_Cliente/home.cliente.component';
+  import { RegistrarClienteComponent } from './Modulo_Configuracion/Home_Cliente/CU_Registrar_Cliente/registrar.cliente.component';
+  import { HomeClienteDetalleComponent } from './Modulo_Configuracion/Home_Cliente_Detalle/home.cliente.detalle.component';
+  import { ModificarClienteComponent } from './Modulo_Configuracion/Home_Cliente_Detalle/CU_Modificar_Cliente/modificar.cliente.component';
 
-//IMPORTS MODULOS CONFIGURACION FINCA
-  import { HomeFincaComponent } from './Modulo_Configuracion_Finca/Home_Finca/home.finca.component';
-  import { HomeFincaService } from './Modulo_Configuracion_Finca/Home_Finca/home.finca.service';
-  import { HomeFincaDetalleComponent } from './Modulo_Configuracion_Finca/Home_Finca_Detalle/home.finca.detalle.component';
-  import { HomeFincaDetalleService } from './Modulo_Configuracion_Finca/Home_Finca_Detalle/home.finca.detalle.service';
-  import { SolicitarCreacionFincaComponent } from './Modulo_Configuracion_Finca/CU_Solicitar_Creacion_Finca/solicitar.creacion.finca.component';
-  import { SolicitarCreacionFincaService } from './Modulo_Configuracion_Finca/CU_Solicitar_Creacion_Finca/solicitar.creacion.finca.service';
-  import { GestionarFincaComponent } from './Modulo_Configuracion_Finca/CU_Gestionar_Finca/gestionar.finca.component';
-  import { GestionarFincaService } from './Modulo_Configuracion_Finca/CU_Gestionar_Finca/gestionar.finca.service';
-  import { GestionarUsuarioFincaComponent } from './Modulo_Configuracion_Finca/CU_Gestionar_Usuario_Finca/gestionar.usuario.finca.compontent';
-  import { GestionarUsuarioFincaService } from './Modulo_Configuracion_Finca/CU_Gestionar_Usuario_Finca/gestionar.usuario.finca.service';
-  import { ModificarRolUsuarioComponent } from './Modulo_Configuracion_Finca/CU_Gestionar_Usuario_Finca/Modificar_Rol_Usuario_Finca/modificar.rol.usuario.component';
-  import { AsignarMecanismoRiegoFincaService } from './Modulo_Configuracion_Finca/CU_Asignar_Mecanismo_Riego_Finca/asignar.mecanismo.riego.finca.service';
-  import { AgregarMecanismoRiegoFincaComponent } from './Modulo_Configuracion_Finca/CU_Asignar_Mecanismo_Riego_Finca/Agregar_Mecanismo_Riego_Finca/agregar.mecanismo.riego.finca.component';
+  import { HomeListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/home.listaprecio.component';
+  import { RegistrarListaPrecioComponent } from './Modulo_Configuracion/Home_ListaPrecio/CU_Registrar_ListaPrecio/registrar.listaprecio.component';
+  import { HomeComboComponent } from './Modulo_Configuracion/Home_Combo/home.combo.component';
+  import { HomeComboDetalleComponent } from './Modulo_Configuracion/Home_Combo_Detalle/home.combo.detalle.component';
+  import { RegistrarComboComponent } from './Modulo_Configuracion/Home_Combo/CU_Registrar_Combo/registrar.combo.component';
+  import { ModificarComboComponent } from './Modulo_Configuracion/Home_Combo_Detalle/CU_Modificar_Combo/modificar.combo.component';
 
+  import { HomeSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/home.sorteo.component';
+  import { HomeSorteoDetalleComponent } from './Modulo_Configuracion/Home_Sorteo_Detalle/home.sorteo.detalle.component';
+  import { RegistrarSorteoComponent } from './Modulo_Configuracion/Home_Sorteo/CU_Registrar_Sorteo/registrar.sorteo.component';
 
-//IMPORTS MODULO CONFIGURACION SECTORES
-  import { HomeSectorComponent } from './Modulo_Configuracion_Sectores/Home_Sector/home.sector.component';
-  import { GestionarSectorFincaComponent } from './Modulo_Configuracion_Sectores/CU_Gestionar_Sector/gestionar.sector.component';
-  import { GestionarSectorFincaService } from './Modulo_Configuracion_Sectores/CU_Gestionar_Sector/gestionar.sector.service';
-  import { CrearSectorFincaComponent } from './Modulo_Configuracion_Sectores/CU_Crear_Sector/crear.sector.component';
-  import { CrearSectorFincaService } from './Modulo_Configuracion_Sectores/CU_Crear_Sector/crear.sector.service';
-  import { AsignarMecanismoRiegoSectorComponent } from './Modulo_Configuracion_Sectores/CU_Asignar_Mecanismo_Riego_Sector/asignar.mecanismo.riego.sector.component';
-  import { AsignarMecanismoRiegoSectorService } from './Modulo_Configuracion_Sectores/CU_Asignar_Mecanismo_Riego_Sector/asignar.mecanismo.riego.sector.service';
-  import { AsignarCultivoSectorComponent } from './Modulo_Configuracion_Sectores/CU_Asignar_Cultivo_Sector/asignar.cultivo.sector.component';
-  import { AsignarCultivoSectorService } from './Modulo_Configuracion_Sectores/CU_Asignar_Cultivo_Sector/asignar.cultivo.sector.service';
-  import { AsignarComponenteSensorSectorComponent } from './Modulo_Configuracion_Sectores/CU_Asignar_Componente_Sensor_Sector/asignar.componente.sensor.sector.component';
-  import { AsignarComponenteSensorSectorService } from './Modulo_Configuracion_Sectores/CU_Asignar_Componente_Sensor_Sector/asignar.componente.sensor.sector.service';
+//IMPORTS MODULO FINANZAS
+  import { ModuloFinanzasService } from './Modulo_Finanzas/modulo.finanzas.services';  
+  import { HomeCajaComponent } from './Modulo_Finanzas/Home_Caja/home.caja.component';
+  import { HomeCompraComponent } from './Modulo_Finanzas/Home_Compra/home.compra.component';
+  import { HomeCompraDetalleComponent } from './Modulo_Finanzas/Home_Compra_Detalle/home.compra.detalle.component';
+  import { RegistrarCompraComponent } from './Modulo_Finanzas/Home_Compra/CU_Registrar_Compra/registrar.compra.component';
+  import { HomeRetiroComponent } from './Modulo_Finanzas/Home_Retiro/home.retiro.component';
+  import { HomeRetiroDetalleComponent } from './Modulo_Finanzas/Home_Retiro_Detalle/home.retiro.detalle.component';
+  import { RegistrarRetiroComponent } from './Modulo_Finanzas/Home_Retiro/CU_Registrar_Retiro/registrar.retiro.component';
+  import { HomeRemitoComponent } from './Modulo_Finanzas/Home_Remito/home.remito.component';
+  import { HomeRemitoDetalleComponent } from './Modulo_Finanzas/Home_Remito_Detalle/home.remito.detalle.component';
+  import { RegistrarRemitoComponent } from './Modulo_Finanzas/Home_Remito/CU_Registrar_Remito/registrar.remito.component';
+  import { HomeVentaComponent } from './Modulo_Finanzas/Home_Venta/home.venta.component';
+  import { HomeVentaDetalleComponent } from './Modulo_Finanzas/Home_Venta_Detalle/home.venta.detalle.component';
+  import { RegistrarVentaComponent } from './Modulo_Finanzas/Home_Venta/CU_Registrar_Venta/registrar.venta.component';
 
-//IMPORTS MODULO SENSORES
-  import { CrearSensorComponent } from './Modulo_Sensores/ABM_Sensores/Crear_Sensor/crear.sensor.component';
-  import { ModificarSensorComponent } from './Modulo_Sensores/ABM_Sensores/Modificar_Sensor/modificar.sensor.component';
-  import { ABMSensorFincaService } from './Modulo_Sensores/ABM_Sensores/abm.sensores.service';
-  import { CrearComponenteSensorComponent } from './Modulo_Sensores/ABM_Componente_Sensor/CU_Crear_Componente_Sensor/crear.componente.sensor.component';
-  import { GestionarComponenteSensorComponent } from './Modulo_Sensores/ABM_Componente_Sensor/CU_Gestionar_Componente_Sensor/gestionar.componente.sensor.component';
-  import { GestionarComponenteSensorService } from './Modulo_Sensores/ABM_Componente_Sensor/gestionar.componente.sensor.service';
-  import { HomeComponenteSensorComponent } from './Modulo_Sensores/Home_Componente_Sensor/home.componente.sensor.component';
-  import { AsignarSensorComponenteSensorService } from './Modulo_Sensores/Asignar_Sensor_Componente_Sensor/asignar.sensor.componente.sensor.service';
-  import { AsignarSensorComponenteSensorComponent } from './Modulo_Sensores/Asignar_Sensor_Componente_Sensor/asignar.sensor.componente.sensor.component';
-
-//IMPORTS MODULO CULTIVO
-  import { GestionarCultivoSectorComponent } from './Modulo_Cultivo/CU_Gestionar_Cultivo_Sector/gestionar.cultivo.sector.component';
-  import { GestionarCultivoSectorService } from './Modulo_Cultivo/CU_Gestionar_Cultivo_Sector/gestionar.cultivo.sector.service';
-
-//IMPORTS CONFIGURACION RIEGO
-  import { GestionarConfiguracionRiegoService } from'./Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/gestionar.configuracion.riego.service';
-  import { CrearConfiguracionRiegoComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/CU_Crear_Configuracion_Riego/crear.configuracion.riego.component';
-  import { HomeConfiguracionRiegoComponent } from './Modulo_Configuracion_Riego/Home_Configuracion_Riego/home.configuracion.riego.component';
-  import { ModificarConfiguracionRiegoComponent }  from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/CU_Modificar_Configuracion_Riego/modificar.configuracion.riego.component';
-  import { AgregarCriterioInicioComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/Agregar_Criterio_Inicio/agregar.criterio.inicio.component';
-  import { AgregarCriterioFinComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/Agregar_Criterio_Fin/agregar.criterio.fin.component';
-  import { GestionarRiegoService } from './Modulo_Configuracion_Riego/Gestionar_Riego/gestionar.riego.service';
-  import { ModificarCriterioInicialFinalComponent } from './Modulo_Configuracion_Riego/Gestionar_Configuracion_Riego/Modificar_Criterio_Inicial_Final/modificar.criterio.inicial.fincal.component';
-
-
-//IMPORTS MODULO OBTENCION INFORMACION EXTERNA
-  import { ModificarProveedorInformacionComponent } from './Modulo_Obtencion_Informacion_Externa/CU_Gestionar_Proveedor_Informacion/Modificar_Proveedor_Informacion/modficar.proveedor.component';
-  import { CambiarProveedorInformacionComponent } from './Modulo_Obtencion_Informacion_Externa/CU_Gestionar_Proveedor_Informacion/Cambiar_Proveedor_Informacion/cambiar.proveedor.component';
-  import { GestionarProveedorInformacionService } from './Modulo_Obtencion_Informacion_Externa/CU_Gestionar_Proveedor_Informacion/gestionar.proveedor.service';
- 
-
+  //MODULO REPORTES
+  import { HomeReporteComponent } from './Modulo_Reportes/home.reporte.component';
+  import { ReporteStockMinimoComponent } from './Modulo_Reportes/Reporte_Stock_Minimo/reporte.stock.minimo.component';
+  import { ReporteComprasVentasComponent } from './Modulo_Reportes/Reporte_Compras_Ventas/reporte.compras.ventas.component';
+  import { ReporteGananciaProductosComponent } from './Modulo_Reportes/Reporte_Ganancia_Productos/reporte.ganancia.productos.component';
+  import { ModuloReportesService } from './Modulo_Reportes/modulo.reportes.services';
 
 /**
  * Root Module
@@ -182,6 +168,20 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     // Page
     AppComponent,
     DialogExampleComponent,
+    DialogRegistrarRemitoComponent,
+    DialogEditarCantidadRemitoComponent,
+    DialogYesNoComponent,
+    DialogRegistrarComboComponent,
+    DialogEditarPrecioComboComponent,
+    DialogEditarPrecioListaComponent,
+    DialogSeleccionarProductoCompraComponent,
+    DialogEditarCantidadCompraComponent,
+    DialogSeleccionarProductoVentaComponent,
+    DialogEditarCantidadVentaComponent,
+    DialogSeleccionarProductoSorteoComponent,
+    DialogSeleccionarClienteVentaComponent,
+    DialogEditarCantidadSorteoComponent,
+    DialogRealizarSorteoComponent,
     DialogThemeComponent,
     ComponentDialogComponent,
     DashboardComponent,
@@ -265,46 +265,44 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     HomeProductoDetalleComponent,
     ModificarProductoComponent,
 
-    //COMPONENTS MODULO CONFIGURACION FINCA
-    HomeFincaComponent,
-    HomeFincaDetalleComponent,
-    SolicitarCreacionFincaComponent,
-    GestionarFincaComponent,
-    GestionarUsuarioFincaComponent,
-    ModificarRolUsuarioComponent,
+    HomeClienteComponent,
+    RegistrarClienteComponent,
+    HomeClienteDetalleComponent,
+    ModificarClienteComponent,
 
-    //COMPONENTS MODULO CONFIGURACION SECTORES
-    HomeSectorComponent,
-    GestionarSectorFincaComponent,
-    CrearSectorFincaComponent,
-    AgregarMecanismoRiegoFincaComponent,
-    AsignarMecanismoRiegoSectorComponent,
-    AsignarCultivoSectorComponent,
-    HomeComponenteSensorComponent,
-    AsignarComponenteSensorSectorComponent,
+    HomeListaPrecioComponent,
+    RegistrarListaPrecioComponent,
 
-    //COMPONENTS MODULO SENSORES
-    CrearSensorComponent,
-    ModificarSensorComponent,
-    CrearComponenteSensorComponent,
-    GestionarComponenteSensorComponent,
-    AsignarSensorComponenteSensorComponent,
+    HomeComboComponent,
+    RegistrarComboComponent,
+    HomeComboDetalleComponent,
+    ModificarComboComponent,
 
-    //COMPONENTS MODULO CULTIVO
-    GestionarCultivoSectorComponent,
+    HomeSorteoComponent,
+    HomeSorteoDetalleComponent,
+    RegistrarSorteoComponent,
+    
+    //MODULO FINANZAS
+    HomeCajaComponent,
+    HomeCompraComponent,
+    HomeCompraDetalleComponent,
+    RegistrarCompraComponent,
+    HomeRetiroComponent,
+    HomeRetiroDetalleComponent,
+    RegistrarRetiroComponent,
+    HomeRemitoComponent,
+    HomeRemitoDetalleComponent,
+    RegistrarRemitoComponent,
+    HomeVentaComponent,
+    HomeVentaDetalleComponent,
+    RegistrarVentaComponent,
 
-    //COMPONETS MODULO CONFIGURACION RIEGO
-    CrearConfiguracionRiegoComponent,
-    HomeConfiguracionRiegoComponent,
-    ModificarConfiguracionRiegoComponent,
-    AgregarCriterioInicioComponent,
-    AgregarCriterioFinComponent,
-    ModificarCriterioInicialFinalComponent,
+    //MODULO REPORTES
+    HomeReporteComponent,
+    ReporteStockMinimoComponent,
+    ReporteComprasVentasComponent,
+    ReporteGananciaProductosComponent,
 
-
-    //COMPONENTS MODULO OBTENCION INFORMACION EXTERNA
-    ModificarProveedorInformacionComponent,
-    CambiarProveedorInformacionComponent
   ],
   imports: [
     // Angular Imports
@@ -330,7 +328,7 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     FileUploadModule,
     CustomFormsModule,
     TreeModule,
-    
+
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
@@ -347,42 +345,32 @@ import { QuillEditorComponent } from './shared/editor/quill-editor.component';
     //SERVICES MODULO CONFIGURACION
     ModuloConfiguracionService,
 
-    //LLAMADAS MODULO CONFIGURACION FINCA
-    HomeFincaService,
-    HomeFincaDetalleService,
-    SolicitarCreacionFincaService,
-    GestionarFincaService,
-    GestionarUsuarioFincaService,
-    AsignarMecanismoRiegoFincaService,
+    //SERVICES MODULO FINANZAS
+    ModuloFinanzasService,
 
-    //LLAMADAS MODULO CONFIGURACION SECTORES
-    GestionarSectorFincaService,
-    CrearSectorFincaService,
-    AsignarMecanismoRiegoSectorService,
-    AsignarCultivoSectorService,
-    AsignarComponenteSensorSectorService,
-    
-    //LLAMADAS MODULO SENSORES
-    ABMSensorFincaService,
-    GestionarComponenteSensorService,
-    AsignarSensorComponenteSensorService,
+    //SERVICES MODULO REPORTES
+    ModuloReportesService,
 
-    //LLAMADAS MODULO CULTIVO
-    GestionarCultivoSectorService,
-
-    //LLAMADAS CONFIGURACION RIEGO
-    GestionarConfiguracionRiegoService,
-
-    
-
-    //LLAMADAS MODULO OBTENCION INFORMACION EXTERNA
-    GestionarProveedorInformacionService,
-    GestionarRiegoService 
+    ExcelService
     
   ],
   entryComponents: [
     // Customize dialog must be import here.
     DialogExampleComponent,
+    DialogRegistrarRemitoComponent,
+    DialogEditarCantidadRemitoComponent,
+    DialogYesNoComponent,
+    DialogRegistrarComboComponent,
+    DialogEditarPrecioComboComponent,
+    DialogEditarPrecioListaComponent,
+    DialogSeleccionarProductoCompraComponent,
+    DialogEditarCantidadCompraComponent,
+    DialogSeleccionarProductoVentaComponent,
+    DialogEditarCantidadVentaComponent,
+    DialogSeleccionarProductoSorteoComponent,
+    DialogSeleccionarClienteVentaComponent,
+    DialogEditarCantidadSorteoComponent,
+    DialogRealizarSorteoComponent,
     DialogThemeComponent,
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA ],

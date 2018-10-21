@@ -17,6 +17,7 @@ export class HomeCategoriaComponent implements OnInit{
     errorMessageCategoria = '';
     snackBarRef: any;
     tooltipAgregarCategoria = Constantes.LABEL_AGREGAR_CATEGORIA;
+    tooltipIrCategoria = Constantes.LABEL_NAVEGAR_CATEGORIA;
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';
     label_categoria = Constantes.LABEL_CATEGORIA;
@@ -25,7 +26,8 @@ export class HomeCategoriaComponent implements OnInit{
     label_nombre = Constantes.LABEL_NOMBRE;
     label_descripcion = Constantes.LABEL_DESCRIPCION;
     label_codigo = Constantes.LABEL_CODIGO;
-    label_navegar_categoria = Constantes.LABEL_NAVEGAR_CATEGORIA;
+    label_accion = Constantes.LABEL_ACCION;
+    label_buscar_categoria = Constantes.LABEL_BUSCAR_CATEGORIA;
     categorias = [];
     categorias_temp = [];
 

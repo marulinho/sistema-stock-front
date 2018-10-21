@@ -37,7 +37,29 @@ export class ModuloConfiguracionService extends RestBaseService {
     private obtenerProductoNoSubCategoriaIdURL = '/obtenerProductoNoSubCategoria/';
     private asignarProductoSubCategoriaURL = '/asignarProductoSubCategoria/';
 
+    private obtenerClientesURL = '/obtenerClientes/';
+    private obtenerClienteIdURL = '/obtenerClienteId/';
+    private registrarClienteURL = '/registrarCliente/';
+    private modificarClienteURL = '/modificarCliente/';
+    private eliminarClienteURL = '/eliminarCliente/';
+
     private obtenerUnidadesMedidasURL = '/obtenerUnidadMedida/';
+
+    private registrarListaPrecioURL = '/registrarListaPrecio/';
+    private obtenerListaPrecioVigenteURL = '/obtenerListaPrecioVigente/';
+    private obtenerProductosNoListaPrecioURL = '/obtenerProductosNoListaVigente/';
+    private eliminarListaPrecioURL = '/eliminarListaPrecio/';
+
+    private registrarComboURL = '/registrarCombo/';
+    private eliminarComboURL = '/eliminarCombo/';
+    private modificarComboURL = '/modificarCombo/';
+    private obtenerCombosVigentesURL = '/obtenerCombosVigentes/';
+    private obtenerComboIdURL = '/obtenerComboId/';
+    private actualizarPrecioComboURL = '/actualizarPrecioCombo/';
+
+    private registrarSorteoURL = '/registrarSorteo/';
+    private obtenerSorteosURL = '/obtenerSorteos/';
+    private obtenerSorteoIdURL = '/obtenerSorteoId/';
    
 
     constructor(private http: Http) { super(); }
@@ -248,12 +270,13 @@ export class ModuloConfiguracionService extends RestBaseService {
             .catch(this.handleError);
     }
 
-    registrarProducto(nombre: string, marca:string, medida:number, unidad_medida:number): Promise<ResultadoNone> {
+    registrarProducto(nombre: string, marca:string, medida:number, unidad_medida:number, stock_minimo:number): Promise<ResultadoNone> {
         const data = {
             'nombre': nombre,
             'marca': marca,
             'medida':medida,
-            'id_unidad_medida':unidad_medida
+            'id_unidad_medida':unidad_medida,
+            'stock_minimo':stock_minimo
         };
 
         return this.http.post(ModuloConfiguracionService.serverURL + this.registrarProductoURL, JSON.stringify(data), this.getRestHeader())
@@ -264,13 +287,15 @@ export class ModuloConfiguracionService extends RestBaseService {
             })
             .catch(this.handleError);
     }
-    modificarProducto(codigo: number, nombre: string, marca:string, id_unidad_medida:number, medida:number): Promise<ResultadoNone> {
+
+    modificarProducto(codigo: number, nombre: string, marca:string, id_unidad_medida:number, medida:number, stock_minimo:number): Promise<ResultadoNone> {
         const data = {
             'codigo':codigo,
             'nombre': nombre,
             'marca': marca,
             'medida':medida,
-            'id_unidad_medida':id_unidad_medida
+            'id_unidad_medida':id_unidad_medida,
+            'stock_minimo':stock_minimo
         };
 
         return this.http.put(ModuloConfiguracionService.serverURL + this.modificarProductoURL, JSON.stringify(data), this.getRestHeader())
@@ -352,6 +377,71 @@ export class ModuloConfiguracionService extends RestBaseService {
             .catch(this.handleError);
     }
 
+    //CLIENTES
+    obtenerClientes(): Promise<Resultado> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerClientesURL, this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Resultado; })
+            .catch(this.handleError);
+    }
+
+    obtenerClienteId(id_cliente:number): Promise<Resultado> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerClienteIdURL +id_cliente+'/', this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Resultado; })
+            .catch(this.handleError);
+    }
+
+    registrarCliente(nombre: string, apellido:string, dni:number, telefono:number, direccion:string, tipo_cliente:string): Promise<Resultado> {
+        const data = {
+            'nombre': nombre,
+            'apellido': apellido,
+            'dni': dni,
+            'telefono': telefono,
+            'direccion': direccion,
+            'tipo_cliente': tipo_cliente
+        };
+
+        return this.http.post(ModuloConfiguracionService.serverURL + this.registrarClienteURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as Resultado;
+
+            })
+            .catch(this.handleError);
+    }
+
+    modificarCliente(codigo:number,nombre:string,apellido:string,telefono:number,direccion:string): Promise<Resultado> {
+        const data = {
+            'id_cliente': codigo,
+            'nombre': nombre,
+            'apellido': apellido,
+            'telefono': telefono,
+            'direccion': direccion
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.modificarClienteURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as Resultado;
+
+            })
+            .catch(this.handleError);
+    }
+
+    eliminarCliente(codigo: number): Promise<Resultado> {
+        const data = {
+            'id_cliente': codigo
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.eliminarClienteURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as Resultado;
+
+            })
+            .catch(this.handleError);
+    }
 
     //UNIDADES MEDIDAS
 
@@ -361,6 +451,171 @@ export class ModuloConfiguracionService extends RestBaseService {
             .then(response => { return response.json() as UnidadMedida; })
             .catch(this.handleError);
     }
+
+    //LISTA DE PRECIOS
+    
+    obtenerListaPrecioVigente(): Promise<DetalleListaPrecio> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerListaPrecioVigenteURL, this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as DetalleListaPrecio; })
+            .catch(this.handleError);
+    }
+
+    eliminarListaPrecio(codigo: number): Promise<ResultadoNone> {
+        const data = {
+            'codigo': codigo
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.eliminarListaPrecioURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
+
+    registrarListaPrecio(nombre, lista_precio_productos, lista_precio_compra, lista_precio_venta): Promise<ResultadoNone> {
+        const data = {
+            'nombre': nombre,
+            'lista_productos': lista_precio_productos ,
+            'lista_precios_compra': lista_precio_compra ,
+            'lista_precios_venta': lista_precio_venta
+
+        };
+
+        return this.http.post(ModuloConfiguracionService.serverURL + this.registrarListaPrecioURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
+
+    obtenerProductosNoListaPrecio(): Promise<Producto> {
+                return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerProductosNoListaPrecioURL, this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as Producto;
+
+            })
+            .catch(this.handleError);
+    }
+
+
+    //COMBOS
+    
+    obtenerCombosVigentes(): Promise<Combo> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerCombosVigentesURL, this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Combo; })
+            .catch(this.handleError);
+    }
+
+    obtenerComboId(codigo:number): Promise<Combo> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerComboIdURL+codigo+'/', this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Combo; })
+            .catch(this.handleError);
+    }
+
+    registrarCombo(nombre,lista_productos,lista_cantidad_productos,lista_margen_ganancia): Promise <ResultadoNone>{
+        const data = {
+            'nombre': nombre,
+            'lista_productos': lista_productos ,
+            'cantidad_productos': lista_cantidad_productos ,
+            'margen_ganancia_productos_combo': lista_margen_ganancia
+
+        };
+
+        return this.http.post(ModuloConfiguracionService.serverURL + this.registrarComboURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
+
+    modificarCombo(codigo,nombre,lista_productos,lista_margen_ganancia,lista_cantidad_productos): Promise <ResultadoNone>{
+        const data = {
+            'codigo':codigo,
+            'nombre': nombre,
+            'lista_productos': lista_productos ,
+            'cantidad_productos': lista_cantidad_productos ,
+            'margen_ganancia_productos_combo': lista_margen_ganancia
+
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.modificarComboURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
+
+    eliminarCombo(codigo: number): Promise<ResultadoNone> {
+        const data = {
+            'codigo': codigo
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.eliminarComboURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
+
+    actualizarPrecioCombo(codigo): Promise <ResultadoNone>{
+        const data = {
+            'codigo':codigo
+        };
+
+        return this.http.put(ModuloConfiguracionService.serverURL + this.actualizarPrecioComboURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as ResultadoNone;
+
+            })
+            .catch(this.handleError);
+    }
+
+    //SORTEOS
+
+    obtenerSorteos(): Promise<Resultado> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerSorteosURL, this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Resultado; })
+            .catch(this.handleError);
+    }
+
+    obtenerSorteoId(codigo:number): Promise<Resultado> {
+        return this.http.get(ModuloConfiguracionService.serverURL + this.obtenerSorteoIdURL +codigo+'/', this.getRestHeader())
+            .toPromise()
+            .then(response => { return response.json() as Resultado; })
+            .catch(this.handleError);
+    }
+
+    registrarSorteo(nombre, lista): Promise<Resultado> {
+        const data = {
+            'nombre': nombre,
+            'lista_sorteo': lista
+        };
+
+        return this.http.post(ModuloConfiguracionService.serverURL + this.registrarSorteoURL, JSON.stringify(data), this.getRestHeader())
+            .toPromise()
+            .then(response => {
+                return response.json() as Resultado;
+
+            })
+            .catch(this.handleError);
+    }
+
 }
 
 export interface Categoria {
@@ -387,7 +642,25 @@ export interface UnidadMedida {
     datos_operacion;
 }
 
+export interface DetalleListaPrecio {
+    resultado: boolean;
+    detalle_operacion;
+    datos_operacion;
+}
+
+export interface Combo {
+    resultado: boolean;
+    detalle_operacion;
+    datos_operacion;
+}
+
 export interface ResultadoNone {
+    resultado: boolean;
+    detalle_operacion;
+    datos_operacion;
+}
+
+export interface Resultado {
     resultado: boolean;
     detalle_operacion;
     datos_operacion;

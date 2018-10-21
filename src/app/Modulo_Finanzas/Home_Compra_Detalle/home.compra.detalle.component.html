@@ -1,0 +1,107 @@
+<div class="sign-container">
+  <md-card class="page-card">
+      <md-card-title>{{label_compra_detalle}}
+
+          <a *ngIf="!getEstadoCancelado() && !getEstadoPagado()" class="example-tooltip-host" mdTooltip={{tooltipCancelarCompra}} [mdTooltipPosition]="position" (click)="apretarCancelarCompra()">
+              <img src="assets/icons/cerrar.png">
+          </a>
+          <a *ngIf="getEstadoCreado()" class="example-tooltip-host" mdTooltip={{tooltipPagarCompra}} [mdTooltipPosition]="position" (click)="apretarPagarCompra()">
+            <img src="assets/icons/pagar.png">
+          </a>
+          <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+            <img src="assets/icons/atras.png">
+          </a>
+
+      </md-card-title>
+      <md-card-content>
+          <section *ngIf="errorMessage" class="bs">
+              <div class="bd-example" data-example-id="">
+                  <div class="alert alert-danger" role="alert">
+                      <strong>{{errorMessage}}</strong>
+                  </div>
+              </div><br>
+          </section>
+          
+          <label id="atributo">{{label_codigo_compra}}: </label>
+          <label>{{codigo_compra}}.</label><br><br>
+
+          <label id="atributo">{{label_fecha_creacion}}: </label>
+          <label>{{compra_cabecera.fecha_creacion}}.</label><br><br>
+          
+          <label id="atributo">{{label_total_parcial}}: </label>
+          <label>{{label_peso}} {{compra_cabecera.total_parcial}}.</label><br><br>
+
+          <label id="atributo">{{label_descuento}}: </label>
+          <label *ngIf="compra_cabecera.descuento != null">{{compra_cabecera.descuento}} {{label_porcentaje}}.</label>
+          <label *ngIf="compra_cabecera.descuento === null"> 0 {{label_porcentaje}}.</label><br><br>
+          
+          <label id="atributo">{{label_total_final}}: </label>
+          <label>{{label_peso}} {{compra_cabecera.total_final}}.</label><br><br>
+          
+          <label id="atributo">{{label_usuario}}: </label>
+          <label>{{compra_cabecera.usuario}}.</label><br><br>
+
+          <label id="atributo">{{label_proveedor}}: </label>
+          <label>{{compra_cabecera.cliente}}.</label><br><br>
+
+          <label id="atributo">{{label_estado}}: </label>
+          <label>{{compra_cabecera.estado}}.</label><br><br>
+
+          <label id='atributo'>{{label_buscar_producto}}: </label>
+          <input
+            type='text'
+            style='padding:8px;margin:15px auto;width:30%;'
+            placeholder={{label_buscar_producto}}
+            (keyup)='updateFilterProducto($event)'
+        />
+          <ngx-datatable
+            #mydatatable
+            class="material fullscreen"
+            [headerHeight]="50"
+            [limit]="10"
+            [sortType]="'multi'"
+            [columnMode]="'force'"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [rows]="compra_detalles">
+            <ngx-datatable-column name={{label_codigo_producto}}>
+              <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                {{row.codigo_producto}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_nombre_producto}}>
+              <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                  {{row.nombre_producto}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_marca_producto}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    {{row.marca_producto}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_medida}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    {{row.medida}} {{row.nombre_medida}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_cantidad}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    {{row.cantidad}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_precio}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                  {{label_peso}}  {{row.precio_unitario}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_subtotal}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                   {{label_peso}} {{row.subtotal}}
+                </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+
+      </md-card-content>
+  </md-card>
+
+</div>

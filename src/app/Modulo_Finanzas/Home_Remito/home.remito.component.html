@@ -1,0 +1,80 @@
+<div class="page-content">
+  <md-card fxFlex class="page-card">
+    <md-card-title>
+      {{label_remito}}
+      <a class="example-tooltip-host" mdTooltip={{tooltipAgregarRemito}} [mdTooltipPosition]="position" (click)="apretarAgregarRemito()">
+          <img src="assets/icons/nuevo.png">
+      </a>
+      <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+        <img src="assets/icons/atras.png">
+      </a>
+    </md-card-title>
+
+    <section *ngIf="errorMessage" class="bs">
+        <div class="bd-example" data-example-id="">
+                <div class="alert alert-danger" role="alert">
+                        <strong>{{errorMessage}}</strong>
+                </div>
+        </div><br>
+    </section>
+    <md-card-content *ngIf="!errorMessage">
+
+      <p>{{label_detalle_remito}}</p>
+      <label id = 'atributo' >{{label_buscar_remito}}: </label>
+      <input
+          type='text'
+          style='padding:8px;margin:15px auto;width:30%;'
+          placeholder={{label_tabla_remito}}
+          (keyup)='updateFilter($event)'
+      />
+        <ngx-datatable
+          #mydatatable
+          class="material fullscreen"
+          [headerHeight]="50"
+          [limit]="10"
+          [sortType]="'multi'"
+          [columnMode]="'force'"
+          [footerHeight]="50"
+          [rowHeight]="'auto'"
+          [rows]="remitos">
+          <ngx-datatable-column name={{label_codigo}} >
+            <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+              {{row.movimiento_cabecera.codigo}}  
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name={{label_fecha}}>
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                {{row.movimiento_cabecera.fecha_creacion}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name={{label_productos}}>
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+              <ul *ngFor="let detalle of row.movimiento_detalles; let i = index" [attr.data-index]="i">
+                Cod. {{detalle.codigo_producto}} - {{detalle.cantidad}} {{detalle.nombre_producto}} {{detalle.marca_producto}}
+              </ul>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name={{label_usuario}}>
+              <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                  {{row.movimiento_cabecera.usuario}}
+              </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name={{label_estado}}>
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                {{row.movimiento_cabecera.estado}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name={{label_accion}}>
+            <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+              <a class="example-tooltip-host" mdTooltip="{{tooltipIrRemito}}" [mdTooltipPosition]="position">
+                <img src="assets/icons/navigation.png" (click)="apretarIrRemito(row.movimiento_cabecera.codigo)">
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+    </md-card-content>
+
+  </md-card>
+</div>
+
+        

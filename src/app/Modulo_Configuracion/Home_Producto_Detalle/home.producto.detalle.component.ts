@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { MdSnackBar } from '@angular/material';
 import { MdDialog } from '@angular/material';
-import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogYesNoComponent } from '../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
 import { Constantes } from '../../Datos_Sistema/constantes';
 import { ModuloConfiguracionService, Producto} from '../modulo.configuracion.service';
 
@@ -20,6 +20,7 @@ export class HomeProductoDetalleComponent implements OnInit{
     snackBarRef: any;
     tooltipEditarProducto = Constantes.LABEL_EDITAR_PRODUCTO;
     tooltipEliminarProducto = Constantes.LABEL_ELIMINAR_PRODUCTO;
+    tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';
     codigo : number;
     estado : string;
@@ -29,6 +30,9 @@ export class HomeProductoDetalleComponent implements OnInit{
     label_marca = Constantes.LABEL_MARCA;
     label_medida = Constantes.LABEL_MEDIDA;
     label_producto_detalle = Constantes.LABEL_PRODUCTO_DETALLE;
+    label_stock_minimo = Constantes.LABEL_STOCK_MINIMO;
+    label_stock_local = Constantes.LABEL_STOCK_LOCAL;
+    label_stock_deposito = Constantes.LABEL_STOCK_DEPOSITO;
     producto : Producto;
     
 
@@ -70,11 +74,7 @@ export class HomeProductoDetalleComponent implements OnInit{
     }
 
     apretarEliminarProducto(){
-        this.openDialog();
-    }
-
-    openDialog() {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_ELIMINAR_PRODUCTO;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_ELIMINAR_PRODUCTO;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
@@ -107,6 +107,10 @@ export class HomeProductoDetalleComponent implements OnInit{
 
     apretarEditarProducto(){
         this.router.navigate([Constantes.URL_EDITAR_PRODUCTO+this.codigo+'/']);
+    }
+
+    apretarAtras(){
+        this.router.navigate([Constantes.URL_HOME_PRODUCTO]);
     }
     
 }

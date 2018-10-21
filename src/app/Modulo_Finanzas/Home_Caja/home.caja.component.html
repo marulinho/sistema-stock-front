@@ -1,0 +1,142 @@
+<div class="page-content">
+    <md-card fxFlex class="page-card">
+      <md-card-title>
+        {{label_caja}}
+        <a *ngIf="getEstadoCerrada()" class="example-tooltip-host" mdTooltip={{tooltipAbrirCaja}} [mdTooltipPosition]="position" (click)="apretarAbrirCaja()">
+            <img src="assets/icons/nuevo.png">
+        </a>
+        <a *ngIf="!getEstadoCerrada()"class="example-tooltip-host" mdTooltip={{tooltipCerrarCaja}} [mdTooltipPosition]="position" (click)="apretarCerrarCaja()">
+          <img src="assets/icons/cerrar.png">
+        </a>
+        <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+          <img src="assets/icons/atras.png">
+        </a>
+      </md-card-title>
+
+      <section *ngIf="errorMessage" class="bs">
+          <div class="bd-example" data-example-id="">
+                  <div class="alert alert-danger" role="alert">
+                          <strong>{{errorMessage}}</strong>
+                  </div>
+          </div><br>
+      </section>
+      <md-card-content *ngIf="!errorMessage">
+        <p>{{label_descripcion_caja}}</p>
+
+        <label id='atributo'>{{label_estado}}: </label>
+        <label>{{caja_cabecera.estado}} </label> <br><br>
+
+        <label id='atributo'>{{label_fecha_apertura}}: </label>
+        <label>{{caja_cabecera.fecha_apertura}} </label> <br><br>
+
+        <label id='atributo'>{{label_fecha_cierre}}: </label>
+        <label>{{caja_cabecera.fecha_cierre}} </label> <br><br>
+
+        <label id='atributo'>{{label_total_apertura}}: </label>
+        <label>{{label_peso}} {{caja_cabecera.total_apertura}} </label> <br><br>
+
+        <label id ='atributo'>{{label_total_cierre}}: </label>
+        <label *ngIf="caja_cabecera.total_cierre === null">{{label_peso}} 0 </label>
+        <label *ngIf="caja_cabecera.total_cierre != null">{{label_peso}} {{caja_cabecera.total_cierre}} </label><br><br>
+        
+        <label id='atributo'>{{label_total_ingresos}}: </label>
+        <label>{{label_peso}} {{total_ingreso}} </label> <br><br>
+
+        <label id ='atributo'>{{label_total_egresos}}: </label>
+        <label>{{label_peso}} {{total_egreso}} </label><br><br>
+        
+        <label id ='atributo'>{{label_balance}}: </label>
+        <label id ='perdida' *ngIf="getBalance()<0">{{label_peso}} {{balance}} </label>
+        <label id ='ganancia' *ngIf="getBalance()>=0">{{label_peso}} {{balance}} </label><br><br>
+
+        <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex>
+          <md-card class="page-card" fxFlex>
+            <md-card-title>
+              {{label_detalle_ingresos}}
+            </md-card-title>
+            <section *ngIf="errorMessageIngresos" class="bs">
+              <div class="bd-example" data-example-id="">
+                      <div class="alert alert-danger" role="alert">
+                              <strong>{{errorMessageIngresos}}</strong>
+                      </div>
+              </div><br>
+            </section>
+            <md-card-content *ngIf="!errorMessageIngresos">
+              <section class="bs">
+                <table class="table table-card">
+                <thead>
+                <tr>
+                  <th style="width:30%;">{{label_fecha}}</th>
+                  <th style="width:50%;">{{label_descripcion}}</th>
+                  <th class="number">{{label_total}}</th>
+                  <th>{{label_accion}}</th>
+                </tr>
+                </thead>
+                <tbody class="no-border-x">
+                <tr *ngFor="let detalle of caja_detalle_ingreso">
+                    <td>{{detalle.fecha}}</td>
+                    <td>{{detalle.descripcion}}</td>
+                    <td>{{label_peso}} {{detalle.total}}</td>                    
+                    <td>
+                      <a class="example-tooltip-host" mdTooltip={{tooltipIrVenta}} [mdTooltipPosition]="position" (click)="apretarIrVenta(detalle.descripcion)">
+                        <img src="assets/icons/navigation.png">
+                      </a>
+                    </td>
+                </tr>
+                </tbody>
+              </table>
+              </section>
+            </md-card-content>
+          </md-card>
+
+
+          <md-card class="page-card" fxFlex>
+            <md-card-title>
+              {{label_detalle_egresos}}
+            </md-card-title>
+            <section *ngIf="errorMessageEgresos" class="bs">
+              <div class="bd-example" data-example-id="">
+                      <div class="alert alert-danger" role="alert">
+                              <strong>{{errorMessageEgresos}}</strong>
+                      </div>
+              </div><br>
+            </section>
+            <md-card-content *ngIf="!errorMessageEgresos">
+              <section class="bs">
+                <table class="table table-card">
+                <thead>
+                <tr>
+                  <th style="width:30%;">{{label_fecha}}</th>
+                  <th style="width:50%;">{{label_descripcion}}</th>
+                  <th class="number">{{label_total}}</th>
+                  <th>{{label_accion}}</th>
+                </tr>
+                </thead>
+                <tbody class="no-border-x">
+                <tr *ngFor="let detalle of caja_detalle_egreso">
+                    <td>{{detalle.fecha}}</td>
+                    <td>{{detalle.descripcion}}</td>
+                    <td>{{label_peso}} {{detalle.total}}</td>
+                    <td>
+                      <a *ngIf="detalle.descripcion.includes('Compra')" class="example-tooltip-host" mdTooltip={{tooltipIrCompra}} [mdTooltipPosition]="position" (click)="apretarIrCompra(detalle.descripcion)">
+                        <img src="assets/icons/navigation.png">
+                      </a>
+                      <a *ngIf="detalle.descripcion.includes('Retiro')" class="example-tooltip-host" mdTooltip={{tooltipIrRetiro}} [mdTooltipPosition]="position" (click)="apretarIrRetiro(detalle.descripcion)">
+                        <img src="assets/icons/navigation.png">
+                      </a>
+                    </td>
+                </tr>
+                </tbody>
+              </table>
+              </section>
+            </md-card-content>
+          </md-card>
+        </div>
+
+      </md-card-content>
+
+    </md-card>
+</div>
+
+          
+  

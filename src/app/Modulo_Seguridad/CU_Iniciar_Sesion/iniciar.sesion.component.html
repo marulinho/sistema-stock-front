@@ -1,5 +1,6 @@
 <div class="sign-container">
   <div class="sign-background"></div>
+  <form (keyup.enter)="apretarLogin(username.value,password.value)">
   <md-card class="sign-card">
     <md-card-title><img style="height: 80px;" src="assets/icons/logo.jpg"></md-card-title>
     <md-card-subtitle>{{label_iniciar_sesion}}</md-card-subtitle>
@@ -25,5 +26,6 @@
       <button md-raised-button color="primary" (click)="apretarLogin(username.value,password.value)">{{boton_login}}</button>
     </md-card-actions>
   </md-card>
+</form>
   <br>
 </div>

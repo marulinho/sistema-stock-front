@@ -20,14 +20,14 @@ export class HomeSistemaComponent implements OnInit{
   label_detalle_categoria = Constantes.DESCRIPCION_CATEGORIA;
   label_subcategoria = Constantes.LABEL_HOME_SUB_CATEGORIA;
   label_detalle_subcategoria = Constantes.DESCRIPCION_SUB_CATEGORIA;
-  label_usuario = Constantes.LABEL_HOME_USUARIO;
-  label_detalle_usuario = Constantes.DESCRIPCION_USUARIO;
+  label_cliente = Constantes.LABEL_HOME_CLIENTE;
+  label_detalle_cliente = Constantes.DESCRIPCION_CLIENTE;
 
   position = 'above';
   tooltipNavegarCategoria = Constantes.LABEL_NAVEGAR_CATEGORIA;
   tooltipNavegarSubCategoria = Constantes.LABEL_NAVEGAR_SUBCATEGORIA;
   tooltipNavegarProducto = Constantes.LABEL_NAVEGAR_PRODUCTO;
-  tooltipNavegarUsuario = Constantes.LABEL_NAVEGAR_USUARIO;
+  tooltipNavegarCliente = Constantes.LABEL_NAVEGAR_CLIENTE;
 
     
 

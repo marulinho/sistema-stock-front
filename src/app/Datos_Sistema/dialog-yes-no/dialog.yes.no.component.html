@@ -1,0 +1,11 @@
+<div class="dialog">
+    <h1 class="cabecera" md-dialog-title>{{title}}</h1>
+    <div class="detalle" md-dialog-content>{{description}}</div><br>
+
+    <label id='advertencia'>{{label_advertencia}}: {{mensaje_advertencia}}</label>
+
+    <div md-dialog-actions>
+        <button class="example-md-buttons" md-raised-button color="primary" id='aceptar'(click)="dialogRef.close('Aceptar')">{{option1}}</button>
+        <button class="example-md-buttons" md-raised-button color="warn" id='cancelar' (click)="dialogRef.close('Cancelar')">{{option2}}</button>
+    </div>
+</div>

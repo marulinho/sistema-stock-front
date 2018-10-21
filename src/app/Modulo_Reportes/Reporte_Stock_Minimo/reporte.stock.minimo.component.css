@@ -1,0 +1,13 @@
+#atributo{
+    font-weight: bold;
+  }
+  #botonVolver{
+    float : right;
+}
+#ejemplo{
+    font-style: italic;
+    color:gray;
+}
+a{
+    cursor: pointer;
+}

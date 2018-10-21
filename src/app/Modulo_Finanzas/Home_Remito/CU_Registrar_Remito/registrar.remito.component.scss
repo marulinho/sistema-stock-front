@@ -1,0 +1,56 @@
+.sign-container {
+    text-align: center;
+    margin-top: 150px;
+    .sign-background {
+      position: fixed;
+      margin-top: -250px;
+      width: 100%;
+      height: 100%;
+      opacity: 0.038;
+      //background: url('/assets/img/logo-full-noborder.svg') no-repeat center;
+    }
+    .sign-card {
+      margin: 0 auto;
+      width: 380px;
+    }
+  }
+  
+  p{
+    font-size: 12px;  
+    text-align: left;
+    color:blue;
+    margin-top: 5px;
+  
+  }
+  
+  a{
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .tab-body-content{
+    text-align: left;
+  }
+  #atributo{
+    font-weight: bold;
+  }
+  #botonVolver{
+    float : right;
+}
+
+.example-md-buttons {
+  align-content: center;
+  margin-right: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#aceptar{
+  margin-left: 45%;
+}
+#aceptar:hover{
+  background-color: #027167;
+}
+#cancelar:hover{
+  background-color: red;
+}

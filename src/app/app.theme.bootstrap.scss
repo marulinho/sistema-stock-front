@@ -745,12 +745,12 @@ body.light {
     $table-tfoot-padding-y: (($table-tfoot-cell-height - $table-tfoot-font-size * $line-height-base) / 2) !default;
 
     $table-thead-cell-height: $table-tfoot-cell-height !default;
-    //$table-thead-color: $body-color !default;
-    $table-thead-color: rgba(255,255,255,255); 
-    //$table-thead-font-size: $table-tfoot-font-size !default;
-    $table-thead-font-size: 1rem;
-    //$table-thead-font-weight: $font-weight-medium !default;
-    $table-thead-font-weight: bold;
+    $table-thead-color: $body-color !default;
+    //$table-thead-color: rgba(255,255,255,255); 
+    $table-thead-font-size: $table-tfoot-font-size !default;
+    //$table-thead-font-size: 1rem;
+    $table-thead-font-weight: $font-weight-medium !default;
+    //$table-thead-font-weight: bold;
     $table-thead-padding-y: (($table-thead-cell-height - $table-thead-font-size * $line-height-base) / 2) !default;
 
     //

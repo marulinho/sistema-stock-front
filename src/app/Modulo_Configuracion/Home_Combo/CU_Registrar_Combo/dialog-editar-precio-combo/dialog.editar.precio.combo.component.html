@@ -1,0 +1,30 @@
+<div class="dialog">
+    <h1 class="cabecera" md-dialog-title>{{title}}</h1>
+    <div *ngIf="description" class="detalle" md-dialog-content>{{description}}</div><br><br>
+    <div>
+        <label id='atributo'>{{label_precio_compra}}: </label>
+        <label>{{label_peso}} {{precio_compra}}</label><br><br>
+
+        <md-input-container>
+                <input mdInput placeholder={{label_cantidad}} type="number" [(ngModel)]="cantidad"  name="cantidad" required maxlength="40">
+        </md-input-container>
+
+        <md-input-container>
+                <input mdInput placeholder={{label_margen_ganancia}}  type="number" [(ngModel)]="margen_ganancia" name="margen_ganancia" required maxlength="40">
+        </md-input-container>
+
+        <label id='atributo' >{{label_precio_venta}}: </label>
+        <label>{{label_peso}} {{getPrecioVenta()}}</label><br><br>
+
+        <label id='atributo' >{{label_total}}: </label>
+        <label>{{label_peso}} {{getPrecioTotal()}}</label>
+
+        <label id='error' *ngIf="getVerificarPrecios() === false" >{{label_error_precios}}</label><br>
+        <label id='error' *ngIf="getPrecioTotal()<=0" >{{label_error_total_combo}}</label>
+    </div>
+    <div md-dialog-actions>
+        <button id = 'aceptar' *ngIf="getVerificarPrecios() === true && getPrecioTotal()>0" class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
+        <button id = 'aceptar' *ngIf="getVerificarPrecios() === false || getPrecioTotal()<=0" disabled class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
+        <button id = 'cancelar' class="example-md-buttons" md-raised-button color="warn" (click)="dialogRef.close('Cancelar')">{{option2}}</button>
+    </div>
+</div>

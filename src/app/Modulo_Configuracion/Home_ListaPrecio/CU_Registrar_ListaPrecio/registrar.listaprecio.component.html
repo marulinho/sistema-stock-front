@@ -1,0 +1,119 @@
+<form (keyup.enter)="apretarRegistrarListaPrecio()">
+<md-card class="page-card">
+  <md-card-title>{{label_registrar_lista_precio}}</md-card-title>
+    <md-card-content>
+        <md-tab-group selectedIndex="{{selectIndex}}">
+           <md-tab disabled label={{label_paso_1}}>
+                <div class="tab-body-content">
+                   <h3>
+                        <small>{{label_datos_lista_precios}}</small>
+                   </h3>
+                   <p>{{label_datos_obligatorios}}</p>
+                   <section *ngIf="errorMessage" class="bs">
+                        <div class="bd-example" data-example-id="">
+                           <div class="alert alert-danger" role="alert">
+                                <strong>{{errorMessage}}</strong>
+                           </div>
+                        </div><br>
+                    </section>
+                   <md-input-container>
+                        <input mdInput placeholder={{label_nombre}} type="text" [(ngModel)]="nombre" name="nombre" required maxlength="60">
+                        <br>
+                   </md-input-container>
+                                
+                </div>
+            </md-tab>
+            <md-tab disabled label={{label_paso_2}}>
+                <div class="tab-body-content">
+                  <h3>
+                     <small>{{label_datos_lista_precios}}</small>
+                  </h3>
+                  <p>{{label_datos_obligatorios}}</p><br>
+                  <section *ngIf="errorMessage" class="bs">
+                     <div class="bd-example" data-example-id="">
+                        <div class="alert alert-danger" role="alert">
+                           <strong>{{errorMessage}}</strong>
+                        </div>
+                      </div><br>
+                   </section>
+                <label>{{label_buscar_producto}}: </label>
+                <input type='text' style='padding:8px;margin:15px auto;width:30%;' 
+                       placeholder={{label_tabla_lista_precio}} (keyup)='updateFilter($event)'/>
+                <ngx-datatable *ngIf ="!getListaPrecioVigente()" 
+                                #mydatatable class="material fullscreen" 
+                                [headerHeight]="50" 
+                                [limit]="10" 
+                                [sortType]="'multi'" 
+                                [columnMode]="'force'"
+                                [footerHeight]="50" 
+                                [rowHeight]="'auto'"
+                                [rows]="lista_precio">
+                        <ngx-datatable-column name={{label_codigo}}>
+                            <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                {{row.codigo}}
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name={{label_nombre}}>
+                                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                  {{row.nombre}}
+                                </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name={{label_marca}}>
+                                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                   {{row.marca}}
+                                </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name={{label_medida}}>
+                                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                   {{row.medida}} {{row.nombre_unidad_medida}}
+                                </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name={{label_precio_compra}}>
+                                <ng-template  ngx-datatable-cell-template let-row="row" let-value="value">
+                                        <label *ngIf="row.precio_unitario_compra > 0">{{label_peso}} {{row.precio_unitario_compra}}</label>
+                                        <label *ngIf="row.precio_unitario_compra <= 0">---</label>
+                                </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name={{label_margen_ganancia}}>
+                                <ng-template  ngx-datatable-cell-template let-row="row" let-value="value">
+                                        <label *ngIf="row.margen_ganancia > 0">{{row.margen_ganancia}} {{label_porcentaje}}</label>
+                                        <label *ngIf="row.margen_ganancia <= 0">---</label>
+                                </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name={{label_precio_venta}}>
+                                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                        <label *ngIf="row.precio_unitario_venta > 0">{{label_peso}} {{row.precio_unitario_venta}}</label>
+                                        <label *ngIf="row.precio_unitario_venta <= 0">---</label>
+                                </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name={{label_ganancia}}>
+                                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                        <label *ngIf="row.ganancia > 0">{{label_peso}} {{row.ganancia}}</label>
+                                        <label *ngIf="row.ganancia  <= 0">---</label>
+                                </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name={{label_accion}}>
+                                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                        <a class="example-tooltip-host" mdTooltip="{{tooltipEditarPrecio}}" [mdTooltipPosition]="position">
+                                                <img src="assets/icons/editar.png" (click) = "apretarEditarPrecioProducto(row)">
+                                        </a>
+                                        <a class="example-tooltip-host" mdTooltip="{{tooltipEliminarProducto}}" [mdTooltipPosition]="position">
+                                                <img src="assets/icons/delete.png" (click) = "apretarEliminarProducto(row)">
+                                        </a> 
+                                </ng-template>
+                        </ngx-datatable-column>
+                </ngx-datatable>
+                </div>
+                </md-tab>
+                        
+                </md-tab-group>
+        </md-card-content>
+        <md-card-actions>
+                <button md-raised-button [disabled]="selectIndex <= 0" (click)=apretarAtrasRegistrar()>{{boton_atras}}</button>
+                <button *ngIf="selectIndex <1" md-raised-button [disabled]="selectIndex >= 1" (click)="apretarNextRegistrar()">{{boton_siguiente}}</button>
+                <button *ngIf="selectIndex == 1" md-raised-button (click)="apretarRegistrarListaPrecio()">{{boton_registrar}}</button>
+                <button md-raised-button (click)="apretarSalir()">{{boton_salir}}</button>
+        </md-card-actions>
+        <md-card-footer></md-card-footer>
+</md-card>
+</form>

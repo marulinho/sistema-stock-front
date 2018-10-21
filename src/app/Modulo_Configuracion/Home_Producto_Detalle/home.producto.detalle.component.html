@@ -9,6 +9,9 @@
               <img src="assets/icons/delete.png">
           </a>
 
+          <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+            <img src="assets/icons/atras.png">
+          </a>
       </md-card-title>
       <md-card-content *ngIf="producto">
           <section *ngIf="errorMessage" class="bs">
@@ -31,7 +34,16 @@
           <label id="atributo">{{label_medida}}: </label>
           <label>{{producto.medida}} {{producto.nombre_unidad_medida}}.</label><br><br>
 
-      </md-card-content>
-    </md-card>
+          <label id="atributo">{{label_stock_minimo}}: </label>
+          <label>{{producto.stock_minimo}}.</label><br><br>
 
-</div>
+          <label id="atributo">{{label_stock_local}}: </label>
+          <label>{{producto.stock_local}}.</label><br><br>
+
+          <label id="atributo">{{label_stock_deposito}}: </label>
+          <label>{{producto.stock_deposito}}.</label><br><br>
+
+        </md-card-content>
+        </md-card>
+
+    </div>

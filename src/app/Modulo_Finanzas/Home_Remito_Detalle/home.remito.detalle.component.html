@@ -1,0 +1,79 @@
+<div class="sign-container">
+  <md-card class="page-card">
+      <md-card-title>{{label_remito_detalle}}
+
+          <a *ngIf="getEstadoCreado()" class="example-tooltip-host" mdTooltip={{tooltipCancelarRemito}} [mdTooltipPosition]="position" (click)="apretarCancelarRemito()">
+              <img src="assets/icons/cerrar.png">
+          </a>
+          <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+            <img src="assets/icons/atras.png">
+          </a>
+
+      </md-card-title>
+      <md-card-content>
+          <section *ngIf="errorMessage" class="bs">
+              <div class="bd-example" data-example-id="">
+                  <div class="alert alert-danger" role="alert">
+                      <strong>{{errorMessage}}</strong>
+                  </div>
+              </div><br>
+          </section>
+          
+          <label id="atributo">{{label_codigo_remito}}: </label>
+          <label>{{codigo_remito}}.</label><br><br>
+
+          <label id="atributo">{{label_fecha_creacion}}: </label>
+          <label>{{remito_cabecera.fecha_creacion}}.</label><br><br>
+          
+          <label id="atributo">{{label_usuario}}: </label>
+          <label>{{remito_cabecera.usuario}}.</label><br><br>
+
+          <label id="atributo">{{label_estado}}: </label>
+          <label>{{remito_cabecera.estado}}.</label><br><br>
+
+          <label id='atributo'>{{label_buscar_producto}}: </label>
+          <input
+            type='text'
+            style='padding:8px;margin:15px auto;width:30%;'
+            placeholder={{label_buscar_producto_tabla}}
+            (keyup)='updateFilterProducto($event)'
+          />
+          <ngx-datatable
+            #mydatatable
+            class="material fullscreen"
+            [headerHeight]="50"
+            [limit]="10"
+            [sortType]="'multi'"
+            [columnMode]="'force'"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [rows]="remito_detalles">
+            <ngx-datatable-column name={{label_codigo_producto}}>
+              <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                {{row.codigo_producto}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_nombre_producto}}>
+              <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                  {{row.nombre_producto}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_marca_producto}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    {{row.marca_producto}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_medida}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    {{row.medida}} {{row.nombre_medida}}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name={{label_cantidad}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    {{row.cantidad}}
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+      </md-card-content>
+  </md-card>
+</div>

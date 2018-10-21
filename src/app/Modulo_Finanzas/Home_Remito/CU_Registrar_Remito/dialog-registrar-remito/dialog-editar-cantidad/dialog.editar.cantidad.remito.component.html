@@ -1,0 +1,20 @@
+<div class="dialog">
+    <h1 class="cabecera" md-dialog-title>{{title}}</h1>
+    <div *ngIf="description" class="detalle" md-dialog-content>{{description}}</div><br>
+        
+        <label id='atributo'>{{label_stock_deposito}}: </label>
+        <label>{{stock_deposito}}</label><br><br>
+        
+        <md-input-container>
+          <input mdInput placeholder={{label_cantidad_productos}} type="number" [(ngModel)]="cantidad"  name="cantidad" required maxlength="40">
+          <br>
+        </md-input-container>
+        
+        <label id='error' *ngIf="stock_deposito < cantidad">{{label_error_cantidad_producto_remito}}</label>
+
+      <div md-dialog-actions>
+        <button id = 'aceptar' *ngIf="stock_deposito >= cantidad && cantidad != null && cantidad > 0" class="example-md-buttons" md-raised-button color="primary" (click)="dialogRef.close('Aceptar')">{{option1}}</button>
+        <button id = 'aceptar' *ngIf="stock_deposito < cantidad || cantidad ==null || cantidad == 0" class="example-md-buttons" md-raised-button color="primary" disabled>{{option1}}</button>
+        <button id = 'cancelar' class="example-md-buttons" md-raised-button color="warn" (click)="dialogRef.close('Cancelar')">{{option2}}</button>
+      </div>
+</div>

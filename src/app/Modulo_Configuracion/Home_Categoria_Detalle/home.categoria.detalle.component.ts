@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { MdSnackBar } from '@angular/material';
 import { MdDialog } from '@angular/material';
-import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogYesNoComponent } from '../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
 import { Constantes } from '../../Datos_Sistema/constantes';
 import { ModuloConfiguracionService, Categoria} from '../modulo.configuracion.service';
 
@@ -43,6 +43,7 @@ export class HomeCategoriaDetalleComponent implements OnInit{
     label_nombre_subcategoria = Constantes.LABEL_NOMBRE;
     label_descripcion_subcategoria = Constantes.LABEL_DESCRIPCION;
     label_codigo_subcategoria = Constantes.LABEL_CODIGO;
+    label_buscar_subcategoria = Constantes.LABEL_BUSCAR_SUBCATEGORIA;
     subcategorias = [];
     subcategorias_temp = [];
 
@@ -56,6 +57,7 @@ export class HomeCategoriaDetalleComponent implements OnInit{
     label_marca_producto = Constantes.LABEL_MARCA;
     label_codigo_producto = Constantes.LABEL_CODIGO;
     label_medida_producto = Constantes.LABEL_MEDIDA;
+    label_buscar_producto = Constantes.LABEL_BUSCAR_PRODUCTO;
     productos = [];
     productos_temp = [];
 
@@ -133,13 +135,9 @@ export class HomeCategoriaDetalleComponent implements OnInit{
     }
 
     apretarEliminarCategoria(){
-        this.openDialogCategoria(Constantes.TITLE_ELIMINAR_CATEGORIA,Constantes.PREGUNTA_ELIMINAR_CATEGORIA);
-    }
-
-    openDialogCategoria(title,description) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.description = description ;
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_ELIMINAR_CATEGORIA;
+        dialogRef.componentInstance.description = Constantes.PREGUNTA_ELIMINAR_CATEGORIA ;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(
@@ -176,13 +174,9 @@ export class HomeCategoriaDetalleComponent implements OnInit{
     }
 
     apretarDesAsignarSubCategoria(codigo_subcategoria){
-        this.openDialogSubCategoria(Constantes.TITLE_DESASIGNAR_SUBCATEGORIA,Constantes.PREGUNTA_DESASIGNAR_SUBCATEGORIA,codigo_subcategoria);
-    }
-
-    openDialogSubCategoria(title,description,codigo_subcategoria) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.description = description ;
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_DESASIGNAR_SUBCATEGORIA;
+        dialogRef.componentInstance.description = Constantes.PREGUNTA_DESASIGNAR_SUBCATEGORIA ;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(
@@ -215,20 +209,16 @@ export class HomeCategoriaDetalleComponent implements OnInit{
     }
 
     apretarDesAsignarProducto(codigo){
-        this.openDialogProducto(Constantes.TITLE_DESASIGNAR_PRODUCTO,Constantes.PREGUNTA_DESASIGNAR_PRODUCTO,codigo);
-    }
-    
-    openDialogProducto(title,description,codigo_producto) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.description = description ;
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_DESASIGNAR_PRODUCTO;
+        dialogRef.componentInstance.description = Constantes.PREGUNTA_DESASIGNAR_PRODUCTO ;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(
             result => {
                 this.selectedOption = result;
                 if (this.selectedOption === Constantes.OPCION_ACEPTAR) {
-                    this.moduloConfiguracion.desasignarProductoCategoria(this.codigo,codigo_producto)
+                    this.moduloConfiguracion.desasignarProductoCategoria(this.codigo,codigo)
                         .then(
                         response => {
                             this.obtenerProductos();

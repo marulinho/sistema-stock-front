@@ -20,6 +20,7 @@
       <md-card-content *ngIf="!errorMessageSubCategoria">
 
         <p>{{label_detalle_subcategoria}}</p>
+        <label id='atributo'>{{label_buscar_subcategoria}}: </label>
         <input
             type='text'
             style='padding:8px;margin:15px auto;width:30%;'
@@ -57,6 +58,13 @@
                     {{row.descripcion}}
                 </ng-template>
               </ngx-datatable-column>
+            <ngx-datatable-column name={{label_accion}}>
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    <a class="example-tooltip-host" mdTooltip="{{tooltipIrSubCategoria}}" [mdTooltipPosition]="position">
+                        <img src="assets/icons/navigation.png" (click)="apretarIrSubCategoria(row.codigo)">
+                    </a>
+                </ng-template>
+            </ngx-datatable-column>
           </ngx-datatable>
 
       </md-card-content>

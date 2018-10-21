@@ -1,0 +1,49 @@
+<div class="sign-container">
+  <md-card class="page-card">
+      <md-card-title>{{label_combo_detalle}}
+          <a class="example-tooltip-host" mdTooltip={{tooltipEditarCombo}} [mdTooltipPosition]="position">
+              <img src="assets/icons/editar.png" (click) = "apretarEditarCombo()">
+          </a>
+
+          <a  class="example-tooltip-host" mdTooltip={{tooltipEliminarCombo}} [mdTooltipPosition]="position" (click)="apretarEliminarCombo()">
+              <img src="assets/icons/delete.png">
+          </a>
+          <a  class="example-tooltip-host" mdTooltip={{tooltipActualizarPrecioCombo}} [mdTooltipPosition]="position" (click)="apretarActualizarPrecioCombo()">
+                <img src="assets/icons/refresh.png">
+          </a>
+          <a id="botonVolver"  class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+            <img src="assets/icons/atras.png">
+          </a>
+
+      </md-card-title>
+      <md-card-content *ngIf="combo">
+          <section *ngIf="errorMessage" class="bs">
+              <div class="bd-example" data-example-id="">
+                  <div class="alert alert-danger" role="alert">
+                      <strong>{{errorMessage}}</strong>
+                  </div>
+              </div><br>
+          </section>
+          
+          <label id="atributo">{{label_codigo_combo}}: </label>
+          <label>{{codigo}}.</label><br><br>
+
+          <label id="atributo">{{label_nombre}}: </label>
+          <label>{{combo.combo_cabecera.nombre}}.</label><br><br>
+
+          <label id="atributo">{{label_precio}}: </label>
+          <label>{{label_peso}} {{combo.combo_cabecera.precio}}.</label><br><br>
+
+          <label id="atributo">{{label_productos_combo}}: </label>
+          <ul *ngFor="let detalle of combo.combo_detalles">
+            <li>
+                Cod. {{detalle.codigo_producto}} - {{detalle.cantidad}} {{detalle.nombre_producto}} {{detalle.medida}} {{detalle.nombre_medida}}
+            </li>
+         </ul>
+
+      </md-card-content>
+  </md-card>
+
+  
+
+</div>

@@ -1,0 +1,16 @@
+#atributo{
+    font-weight: bold;
+}
+a{
+    cursor: pointer;
+}
+
+.example-tooltip-host {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .example-select {
+    margin:0 0 10px 50px;
+  }
+  

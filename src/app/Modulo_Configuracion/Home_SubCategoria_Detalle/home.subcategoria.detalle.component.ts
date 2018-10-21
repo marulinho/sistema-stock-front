@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { MdSnackBar } from '@angular/material';
 import { MdDialog } from '@angular/material';
-import { DialogExampleComponent } from '../../shared/dialog/dialog-example/dialog-example.component';
+import { DialogYesNoComponent } from '../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
 import { Constantes } from '../../Datos_Sistema/constantes';
 import { ModuloConfiguracionService, SubCategoria} from '../modulo.configuracion.service';
 
@@ -27,6 +27,7 @@ export class HomeSubCategoriaDetalleComponent implements OnInit{
     label_nombre = Constantes.LABEL_NOMBRE;
     label_descripcion = Constantes.LABEL_DESCRIPCION;
     label_subcategoria_detalle = Constantes.LABEL_SUBCATEGORIA_DETALLE;
+    label_buscar_producto = Constantes.LABEL_BUSCAR_PRODUCTO;
     subcategoria : SubCategoria;
 
     errorMessageProducto = '';
@@ -37,6 +38,10 @@ export class HomeSubCategoriaDetalleComponent implements OnInit{
     label_producto = Constantes.LABEL_PRODUCTOS_SUBCATEGORIA;
     label_detalle_producto = Constantes.DESCRIPCION_PRODUCTO_CATEGORIA;
     label_tabla_producto = Constantes.LABEL_BUSCAR_TABLA_PRODUCTO;
+    label_codigo_producto = Constantes.LABEL_CODIGO;
+    label_nombre_producto = Constantes.LABEL_PRODUCTO;
+    label_marca_producto = Constantes.LABEL_MARCA;
+    label_medida_producto = Constantes.LABEL_MEDIDA;
     productos = [];
     productos_temp = [];
 
@@ -94,13 +99,9 @@ export class HomeSubCategoriaDetalleComponent implements OnInit{
     }
 
     apretarEliminarSubCategoria(){
-        this.openDialogSubCategoria(Constantes.TITLE_ELIMINAR_SUBCATEGORIA,Constantes.PREGUNTA_ELIMINAR_SUBCATEGORIA);
-    }
-
-    openDialogSubCategoria(title,description) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.description = description ;
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_ELIMINAR_SUBCATEGORIA;
+        dialogRef.componentInstance.description = Constantes.PREGUNTA_ELIMINAR_SUBCATEGORIA ;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(
@@ -137,13 +138,9 @@ export class HomeSubCategoriaDetalleComponent implements OnInit{
     }
 
     apretarDesAsignarProducto(codigo_producto){
-        this.openDialogProducto(Constantes.TITLE_DESASIGNAR_PRODUCTO,Constantes.PREGUNTA_DESASIGNAR_PRODUCTO,codigo_producto);
-    }
-
-    openDialogProducto(title,description,codigo_producto) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
-        dialogRef.componentInstance.title = title;
-        dialogRef.componentInstance.description = description ;
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
+        dialogRef.componentInstance.title = Constantes.TITLE_DESASIGNAR_PRODUCTO;
+        dialogRef.componentInstance.description = Constantes.PREGUNTA_DESASIGNAR_PRODUCTO ;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;
         dialogRef.componentInstance.option2 = Constantes.BOTON_CANCELAR;
         dialogRef.afterClosed().subscribe(

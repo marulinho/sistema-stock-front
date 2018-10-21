@@ -1,0 +1,92 @@
+<md-card class="page-card">
+        <md-card-title>
+                {{label_registrar_remito}}
+                <a id="botonVolver" class="example-tooltip-host" mdTooltip={{tooltipAtras}} [mdTooltipPosition]="position" (click)="apretarAtras()">
+                        <img src="assets/icons/atras.png">
+                </a>
+                <a class="example-tooltip-host" mdTooltip={{tooltipAgregarProducto}} [mdTooltipPosition]="position" (click)="apretarAgregarProducto()">
+                        <img src="assets/icons/nuevo.png">
+                </a>
+        </md-card-title>
+        <md-card-content>
+                <section *ngIf="errorMessage" class="bs">
+                        <div class="bd-example" data-example-id="">
+                                <div class="alert alert-danger" role="alert">
+                                        <strong>{{errorMessage}}</strong>
+                                </div>
+                        </div>
+                        <br>
+                </section>
+
+                <div>
+                        <label id='atributo'>{{label_buscar_producto}}: </label>
+                        <input type='text' 
+                                style='padding:8px;margin:15px auto;width:30%;' 
+                                placeholder={{label_tabla_producto}} 
+                                (keyup)='updateFilter($event)'
+                        />
+                        <ngx-datatable #mydatatable
+                                class="material fullscreen" 
+                                [headerHeight]="50" 
+                                [limit]="10" 
+                                [sortType]="'multi'" 
+                                [columnMode]="'force'"
+                                [footerHeight]="50" 
+                                [rowHeight]="'auto'"
+                                [rows]="lista_productos_remito">
+                         
+                                <ngx-datatable-column name={{label_codigo}}>
+                                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                                {{row.codigo_producto}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_nombre}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                {{row.nombre_producto}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_marca}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                {{row.marca_producto}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_medida}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                {{row.medida}} {{row.nombre_medida}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_stock_deposito}}>
+                                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                                {{row.stock_deposito}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_stock_local}}>
+                                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                                {{row.stock_local}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_cantidad}}>
+                                        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+                                                {{lista_cantidad_productos[row.$$index]}}
+                                        </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name={{label_accion}}>
+                                        <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                                                <a class="example-tooltip-host" mdTooltip="{{tooltipEditarProducto}}" [mdTooltipPosition]="position">
+                                                        <img src="assets/icons/editar.png" (click)="apretarEditarProductoRemito(row)">
+                                                </a>
+                                                <a class="example-tooltip-host" mdTooltip="{{tooltipEliminarProducto}}" [mdTooltipPosition]="position">
+                                                                <img src="assets/icons/delete.png" (click)="apretarEliminarProductoRemito(row.codigo_producto)">
+                                                </a>
+                                        </ng-template>
+                                </ngx-datatable-column>
+                        </ngx-datatable>
+                </div>
+        </md-card-content>
+        <md-card-actions>
+                <button id ='aceptar' *ngIf="lista_productos_remito.length >=1 && lista_cantidad_productos.length>=1" color='primary' md-raised-button (click)="apretarRegistrarRemito()">{{boton_registrar}}</button>
+                <button id ='aceptar' *ngIf="lista_productos_remito.length <1 && lista_cantidad_productos.length<1" disabled color='primary' md-raised-button (click)="apretarRegistrarRemito()">{{boton_registrar}}</button>
+                <button id ='cancelar' color='warn' md-raised-button (click)="apretarSalir()">{{boton_salir}}</button>
+        </md-card-actions>
+        <md-card-footer></md-card-footer>
+</md-card>

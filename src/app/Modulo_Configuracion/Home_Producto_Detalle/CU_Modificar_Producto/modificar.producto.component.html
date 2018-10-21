@@ -1,4 +1,5 @@
 <div class="sign-container">
+        <form (keyup.enter)="apretarModificarProducto()">
         <md-card class="page-card">
                 <md-card-title>{{label_modificar_producto}}</md-card-title>
                 <md-card-content>
@@ -37,7 +38,11 @@
                                 <input mdInput placeholder={{label_respuesta_unidad_medida}} type="number" [(ngModel)]="medida" name="medida" maxlength="40">
                                 <br>
                         </md-input-container>
-
+                        
+                        <md-input-container>
+                                <input mdInput placeholder={{label_stock_minimo}} type="number" [(ngModel)]="stock_minimo" name="stock_minimo" maxlength="40" requerid>
+                                <br>
+                        </md-input-container>
 
                 </md-card-content>
                 <md-card-actions>
@@ -46,5 +51,5 @@
                 </md-card-actions>
                 <md-card-footer></md-card-footer>
         </md-card>
-
+        </form>
 </div>

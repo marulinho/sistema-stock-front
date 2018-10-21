@@ -25,9 +25,8 @@ export class AppComponent implements OnInit {
   activeSubMenuName: string;
   date: Date;
   snackBarRef: any;
-
+  id_usuario :number ; 
   errroMessage:string="";
-  id_usuario = JSON.parse(localStorage.getItem('idUsuario'));
 
   constructor(private appService: AppService,
               private dialog: MdDialog,
@@ -160,7 +159,8 @@ export class AppComponent implements OnInit {
   }
 
   apretamosCerrarSesion(){
-    this.moduloSeguridad.finalizarSesion(this.id_usuario)
+    let id_usuario = JSON.parse(localStorage.getItem('idUsuario'));
+    this.moduloSeguridad.finalizarSesion(id_usuario)
       .then(
         response=>{
           this.router.navigate([Constantes.URL_LOGIN]);

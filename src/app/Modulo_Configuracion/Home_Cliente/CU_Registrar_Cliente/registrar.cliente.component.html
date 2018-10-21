@@ -1,0 +1,55 @@
+<form (keyup.enter)="apretarRegistrarCliente()">
+<md-card class="page-card">
+            <md-card-title>{{label_registrar_cliente}}</md-card-title>
+            <md-card-content>
+                    <section *ngIf="errorMessage" class="bs">
+                            <div class="bd-example" data-example-id="">
+                                    <div class="alert alert-danger" role="alert">
+                                            <strong>{{errorMessage}}</strong>
+                                    </div>
+                            </div>
+                            <br>
+                    </section>
+
+                    <h3>{{label_datos_cliente}}</h3>
+                    <p>{{label_datos_obligatorios}}</p>
+
+                    <md-input-container>
+                            <input mdInput placeholder={{label_nombre}} type="text" [(ngModel)]="nombre" name="nombre" required maxlength="40">
+                            <br>
+                    </md-input-container>
+
+                    <md-input-container>
+                            <input mdInput placeholder={{label_apellido}} type="text" [(ngModel)]="apellido" name="apelido" required maxlength="40">
+                            <br>
+                    </md-input-container>
+                    
+                    <md-input-container>
+                        <input mdInput placeholder={{label_dni}} type="number" [(ngModel)]="dni" name="dni" required maxlength="12">
+                        <br>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input mdInput placeholder={{label_telefono}} type="number" [(ngModel)]="telefono" name="telefono" required maxlength="20">
+                        <br>
+                    </md-input-container>
+
+                    <md-input-container>
+                        <input mdInput placeholder={{label_direccion}} type="text" [(ngModel)]="direccion" name="direccion" required maxlength="60">
+                        <br>
+                    </md-input-container><br><br>
+
+                    <md-select placeholder={{label_tipo_cliente}} [(ngModel)]="tipo_cliente" name="tipo_cliente">
+                        <md-option *ngFor="let tipo of tipo_clientes" [value]="tipo.nombre" requerid>
+                          {{tipo.nombre}}
+                        </md-option>
+                    </md-select>
+
+            </md-card-content>
+            <md-card-actions>
+                    <button md-raised-button (click)="apretarRegistrarCliente()">{{boton_registrar}}</button>
+                    <button md-raised-button (click)="apretarSalir()">{{boton_salir}}</button>
+            </md-card-actions>
+            <md-card-footer></md-card-footer>
+    </md-card>
+</form>

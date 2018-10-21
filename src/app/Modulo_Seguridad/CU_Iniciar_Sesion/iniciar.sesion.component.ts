@@ -44,7 +44,7 @@ export class IniciarSesionComponent implements OnInit, OnDestroy {
       this.moduloSeguridad.login(username, password)
         .then(
           response => {
-            localStorage.setItem('idUsuario',JSON.stringify(response.datos_operacion.id_usuario));
+            localStorage.setItem('idUsuario',JSON.stringify(response.datos_operacion['id_usuario']));
             this.router.navigate([Constantes.URL_HOME]);
             this.snackBarRef = this.snackBar.open(Constantes.MENSAJE_INICIO_SISTEMA, Constantes.MENSAJE_OK, {duration: 3000,});
           }

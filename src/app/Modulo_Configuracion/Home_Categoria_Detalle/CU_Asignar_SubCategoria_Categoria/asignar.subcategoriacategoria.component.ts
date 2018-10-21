@@ -4,8 +4,8 @@ import { MdSnackBar } from '@angular/material';
 import { MdDialog } from '@angular/material';
 import { AppService } from '../../../app.service';
 import { Constantes } from '../../../Datos_Sistema/constantes';
-import { DialogExampleComponent } from '../../../shared/dialog/dialog-example/dialog-example.component';
-import { ModuloConfiguracionService, Categoria } from '../../modulo.configuracion.service';
+import { DialogYesNoComponent } from '../../../Datos_Sistema/dialog-yes-no/dialog.yes.no.component';
+import { ModuloConfiguracionService } from '../../modulo.configuracion.service';
 
 @Component({
     selector: 'app-asignar-subcategoria-categoria',
@@ -25,6 +25,7 @@ export class AsignarSubCategoriaCategoriaComponent implements OnInit {
     label_codigo = Constantes.LABEL_CODIGO;
     label_descripcion = Constantes.LABEL_DESCRIPCION;
     label_accion = Constantes.LABEL_ACCION;
+    label_buscar_subcategoria = Constantes.LABEL_BUSCAR_SUBCATEGORIA;
     tooltipAsignarSubCategoria = Constantes.LABEL_ASIGNAR_SUBCATEGORIA;
     tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';
@@ -84,7 +85,7 @@ export class AsignarSubCategoriaCategoriaComponent implements OnInit {
     }
 
     openDialog(codigo_subcategoria) {
-        let dialogRef = this.dialog.open(DialogExampleComponent);
+        let dialogRef = this.dialog.open(DialogYesNoComponent);
         dialogRef.componentInstance.title = Constantes.TITLE_ASIGNAR_SUBCATEGORIA;
         dialogRef.componentInstance.description = Constantes.PREGUNTA_ASIGNAR_SUBCATEGORIA;
         dialogRef.componentInstance.option1 = Constantes.BOTON_ACEPTAR;

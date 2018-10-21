@@ -1,0 +1,38 @@
+<div class="page-content">
+    <div fxLayout="row" fxLayout.xs="column" fxLayout.sm="column" fxFlex>
+      <md-card fxFlex class="page-card">
+        <md-card-title>
+          {{label_reporte_stock_minimo}}
+          <a class="example-tooltip-host" mdTooltip={{tooltipNavegarReporte}} [mdTooltipPosition]="position">
+            <img src="assets/icons/navigation.png" [routerLink]="['/homeMinimunStockReport/']">
+          </a>
+        </md-card-title>
+        <md-card-content>
+          <p>{{label_detalle_stock_minimo}}</p>
+        </md-card-content>
+      </md-card>
+      <md-card fxFlex class="page-card">
+        <md-card-title>
+          {{label_reporte_compras_ventas}}
+          <a class="example-tooltip-host" mdTooltip={{tooltipNavegarReporte}} [mdTooltipPosition]="position">
+              <img src="assets/icons/navigation.png" [routerLink]="['/homeBuySellReport/']">
+          </a>
+        </md-card-title>
+        <md-card-content>
+          <p>{{label_detalle_compras_ventas}}</p>
+        </md-card-content>
+      </md-card>
+      <md-card fxFlex class="page-card">
+        <md-card-title>
+          {{label_reporte_ganancia_productos}}
+          <a class="example-tooltip-host" mdTooltip={{tooltipNavegarReporte}} [mdTooltipPosition]="position">
+              <img src="assets/icons/navigation.png" [routerLink]="['/homeGainProductoReport/']">
+            </a>
+        </md-card-title>
+        <md-card-content>
+          <p>{{label_detalle_reporte_ganancia_productos}}</p>
+        </md-card-content>
+      </md-card>
+      
+    </div>
+  </div>

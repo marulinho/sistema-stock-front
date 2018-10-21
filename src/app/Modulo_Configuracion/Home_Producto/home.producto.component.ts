@@ -17,6 +17,8 @@ export class HomeProductoComponent implements OnInit{
     errorMessageProducto = '';
     snackBarRef: any;
     tooltipAgregarProducto = Constantes.LABEL_AGREGAR_PRODUCTO;
+    tooltipIrProducto = Constantes.LABEL_NAVEGAR_PRODUCTO;
+    tooltipAtras = Constantes.LABEL_NAVEGAR_ATRAS;
     position = 'above';
     label_producto = Constantes.LABEL_PRODUCTO;
     label_detalle_producto = Constantes.DESCRIPCION_PRODUCTO;
@@ -26,7 +28,7 @@ export class HomeProductoComponent implements OnInit{
     label_medida = Constantes.LABEL_MEDIDA;
     label_unidad_medida = Constantes.LABEL_UNIDAD_MEDIDA;
     label_codigo = Constantes.LABEL_CODIGO;
-    label_navegar_producto = Constantes.LABEL_NAVEGAR_PRODUCTO;
+    label_buscar_producto = Constantes.LABEL_BUSCAR_PRODUCTO;
     productos = [];
     productos_temp = [];
     
@@ -74,6 +76,9 @@ export class HomeProductoComponent implements OnInit{
 
     apretarAgregarProducto(){
         this.router.navigate([Constantes.URL_AGREGAR_PRODUCTO]);
+    }
+    apretarAtras(){
+        this.router.navigate([Constantes.URL_HOME]);
     }
 }
 
